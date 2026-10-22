@@ -6,7 +6,7 @@ This repository holds the data behind the essay at
 [ramongonzalez.com/cost-to-guessing](https://ramongonzalez.com/cost-to-guessing/),
 with the scoring code and a check that rebuilds every number in the essay from
 the graded rows without an API key. The code that called, evaluated, and
-trained the models is available on request.
+trained the models is not included.
 
 ```bash
 pip install -e ".[dev]"
@@ -101,12 +101,12 @@ Hypotheses, primary outcomes, and stop rules were fixed in advance:
 
 ## What's not here
 
-This repository is a curated snapshot of a private research repository; each
-release commit names the commit it was exported from. Not included:
+This repository is a curated snapshot of a private research repository. Not
+included:
 
 - **The code that called, evaluated, and trained the models**: the runner that
   sent the prompts, the judge grading, the evaluation batteries, and the
-  training recipe. It is available on request. The graded rows it produced are
+  training recipe. The graded rows it produced are
   here, and every number in the essay rebuilds from them.
 - **The research notebook.** Provenance manifests in `data/processed/` cite
   its dated notes by filename; every released input is also pinned by sha256
