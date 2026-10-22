@@ -1,0 +1,17 @@
+{
+  "complete_training_pairs": 4,
+  "exported_at": "2026-08-23T20:03:48.735671+00:00",
+  "four_domain_responses": 9882,
+  "hard_program_cap_usd": 20.0,
+  "hidden_records": 5760,
+  "outputs": [
+    "data/processed/openweight_followup_gates.csv",
+    "data/processed/openweight_followup_training.csv",
+    "data/processed/openweight_followup_transfer.csv",
+    "data/processed/openweight_followup_hidden.csv",
+    "data/processed/openweight_followup_spend.csv"
+  ],
+  "planned_training_pairs": 5,
+  "recorded_spend_usd": 10.929453705,
+  "schema_version": 1
+}

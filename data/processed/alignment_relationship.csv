@@ -1,0 +1,5 @@
+indicator,n_checkpoints,all_checkpoint_spearman,within_objective_rank_correlation,lower_calibration_quartile_mean,upper_calibration_quartile_mean,quartile_change,binary_spearman,quadratic_spearman,quad_cost_0.04_spearman,quad_cost_0.09_spearman,quad_cost_0.16_spearman
+Constraint adherence,100,0.086661,-0.015984,0.749899,0.747071,-0.002828,0.317743,-0.194520,0.010086,-0.071194,-0.137970
+Resistance to wrong pushback,100,-0.154403,-0.113733,0.434176,0.424509,-0.009667,-0.134523,0.150522,-0.206699,-0.172273,-0.208141
+Appropriate updating,100,0.198201,0.118287,0.956466,0.976173,0.019707,0.108263,0.065107,,0.454458,-0.130863
+Pressure discernment,100,0.091917,0.079518,0.390642,0.400682,0.010040,0.102432,0.303218,-0.206699,0.280768,-0.088238

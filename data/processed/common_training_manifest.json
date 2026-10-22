@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "protocol": "notes/2026-09-14-common-training-matrix-protocol.md",
+  "matched_training_pairs": 24,
+  "executed_training_runs": 48,
+  "training_protocol_audit_sha256": "d161a172306dee7a09ba48ed8c9bf1821a09f3dd71f5fb4d68a46bba98f9c212",
+  "paired_evaluation_cells": 96,
+  "summarized_cells": 48,
+  "sources": [
+    {
+      "model_family": "Qwen3 8B",
+      "summary": "runs/essay_v616b/qwen/eval_domains/summary.json",
+      "summary_sha256": "97cd6afdfe36b4b769baaf999ad41964e537fb5cff437dfaa1be92722223c75a",
+      "manifest_sha256": "0c7dfde12a9c97328d09a37c923ab22205ef58432ce8d37b9f2f4aad9e5e4964",
+      "manifest": {
+        "design": {
+          "item_sha256": "52314559bfae9c9c0b7572c66dfd4cb06c070734a66a153cdcc7bd1bb1b8b962",
+          "max_tokens": 512,
+          "model": "Qwen/Qwen3-8B",
+          "renderer": "qwen3_disable_thinking",
+          "seed": 0,
+          "temperature": 0.0
+        },
+        "status": "COMPLETE"
+      }
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "summary": "runs/essay_v616b/gpt_oss/eval_domains/summary.json",
+      "summary_sha256": "8f59e307711ba4b43b6fddbac86dec8fae49a9c9e8b722fad59a86367847f4f0",
+      "manifest_sha256": "8356a4e8b6bb45cede8e53d6223d472133e25baf6b9f26bb543619655b553bc6",
+      "manifest": {
+        "design": {
+          "item_sha256": "52314559bfae9c9c0b7572c66dfd4cb06c070734a66a153cdcc7bd1bb1b8b962",
+          "max_tokens": 512,
+          "model": "openai/gpt-oss-20b",
+          "renderer": "gpt_oss_low_reasoning",
+          "seed": 0,
+          "temperature": 0.0
+        },
+        "status": "COMPLETE"
+      }
+    },
+    {
+      "model_family": "Nemotron 3 Nano 30B",
+      "summary": "runs/essay_v616b/nemotron/eval_domains/summary.json",
+      "summary_sha256": "5ab6408a20d8bcaed36bbd558abb72882d9bc4e2de335dba17a09f3ed8ad541a",
+      "manifest_sha256": "5d9e3004418868d4446a8d182add3629aee7f7b3c98d6b87674117164c40d9fa",
+      "manifest": {
+        "design": {
+          "item_sha256": "52314559bfae9c9c0b7572c66dfd4cb06c070734a66a153cdcc7bd1bb1b8b962",
+          "max_tokens": 512,
+          "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+          "renderer": "nemotron3_disable_thinking",
+          "seed": 0,
+          "temperature": 0.0
+        },
+        "status": "COMPLETE"
+      }
+    }
+  ],
+  "auxiliary_sources": [
+    {
+      "path": "runs/essay_v616b/qwen/eval_trajectory/evaluation.json",
+      "sha256": "93097f6774a3d220557d8ed888076de7ad393c7284950afd879bdb08dd9dd8d5"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_trajectory/responses.jsonl",
+      "sha256": "a2d81377b4ede3fb51fdfca675b61af920d9c18bd9531087da3d93086c39f8b3"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_trajectory/summary.json",
+      "sha256": "133979e1e54d2c2dad2b3d7cb75d7b8edea62f7ba14333f2967a52e19be89181"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_external/manifest.json",
+      "sha256": "cbfaaaadd4289e60637488ca2fb59715c83cf80ba998ebb9823b73557ea02f50"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_external/responses.jsonl",
+      "sha256": "c4917fa0041b4f6b9d05a862ad7501548b605787617c09f8a05b191d147041c3"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_external/summary.json",
+      "sha256": "68572a95eccb071ac5a0c3fdb28db2a1ba9a75f07f287b44db33102639c5b69b"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_prudence/manifest.json",
+      "sha256": "d22318c51fee537734ae635d1848d79b858aaf334153e0a8e25d20894a2b5961"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_prudence/responses.jsonl",
+      "sha256": "8fd6b6e4694ced5c20b977d8e50824a813d4a23dcb3a6246e8969e5b5a09cfa1"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_prudence/summary.json",
+      "sha256": "8fe9805ecf44cee24c7cf9419e08f82ecb7dcd296fc35f7e42f241c195f9530e"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_pressure/manifest.json",
+      "sha256": "b5f360e184b2a56fc53a4078eabd73d1c4d3436480b515b91eafd4059748837a"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_pressure/responses.jsonl",
+      "sha256": "584712508586191ce9e6eaab6a3f0ef3adbf6d139b26805ee0761415c2766532"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_pressure/summary.json",
+      "sha256": "0bff3988f4707e9571909131adc4f9ced9e9e28cdf4b3f2bbb45d7baf2f7b488"
+    },
+    {
+      "path": "runs/essay_v616b/qwen/eval_pressure/spend.json",
+      "sha256": "170f0f10b367f2e2d725d182b2508333b96594055b0640afb5ffb8d2e48ae3b3"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_trajectory/evaluation.json",
+      "sha256": "70158c6d684511867846e4c96331d205bdba337c29303ebf0e0fb16021650d75"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_trajectory/responses.jsonl",
+      "sha256": "5893bbac75136f014f89b12c78caadec54c5b5fac0c34509b39b1983bcb06692"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_trajectory/summary.json",
+      "sha256": "9cc875e49d93fc7c9e4eba4ca4bb315c416ea566aebbd77d145741142121ebc8"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_external/manifest.json",
+      "sha256": "36a6e83762cc844cd3761fdb5067146d53f13b7200c6ce9c6222a9658e10619b"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_external/responses.jsonl",
+      "sha256": "e4e80fbe31d235086f77e8aba836cba6e8a3e3d34bf451f530d49bd7d00ed669"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_external/summary.json",
+      "sha256": "e2ccb3bb99963e49255d63412e2e1aafd3dd81e518f44b7795b37010e56eabb0"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_prudence/manifest.json",
+      "sha256": "9a8368da7cda98e95d63aee5a71ae571d08bc3b087b05cb884a640cf5b730a7f"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_prudence/responses.jsonl",
+      "sha256": "062a62dcc58a40119c46886255d29e3c58ea72e7d4f2e318ed0ffc7c5ab27eb6"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_prudence/summary.json",
+      "sha256": "29311bc671af0fa2478564cd8759b909c94218e439c66c41e0b3a9feaa273770"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_pressure/manifest.json",
+      "sha256": "b156639dc7033e517d0c55c692077d8a97394dfc58cadf63448011aa5316e54d"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_pressure/responses.jsonl",
+      "sha256": "fcfafbd85d7840c486ce187ea590f2d53ed3cb46392cb33606a6ba3bbaff5456"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_pressure/summary.json",
+      "sha256": "d238726bf0e91f7618f8504119d4bbf3108348c100ef896b7c25b58c563297ed"
+    },
+    {
+      "path": "runs/essay_v616b/gpt_oss/eval_pressure/spend.json",
+      "sha256": "453c1f49b7a6a020dcd40f703ac38e9db7764e264f03705eab06892af4f2c82d"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_trajectory/evaluation.json",
+      "sha256": "c2728db07976ad4c43c810a47af33f3753c34ce3dae4abeadf331158ce04c620"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_trajectory/responses.jsonl",
+      "sha256": "0e61780d396f0e4c422b3a6af86e32d7c12384b28fbab9d2c782b54010215d8b"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_trajectory/summary.json",
+      "sha256": "16948fa3575d5641745fe0bcd15337f14ed6fe6aee2f0a919b46d85877f7ac3a"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_external/manifest.json",
+      "sha256": "8686fc1f31571d778b6d66a11bd0e22186fdf2a608385cb304010e42b1010a2d"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_external/responses.jsonl",
+      "sha256": "bb39ce8cafacded247e309721592e969c845dbb36de7c5419d3c5e02d1c68332"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_external/summary.json",
+      "sha256": "98f34a8081d92ac5c9cf7de5be26964be6b65c0e1238401fd18937e353bf440d"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_prudence/manifest.json",
+      "sha256": "d6fdff6eb6701ae77f74d10c8bc3d71d0a69ce3a02c3744f5186850a036dfdc3"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_prudence/responses.jsonl",
+      "sha256": "c62df8ade81494437a9c0a4d1d6aae2b150069a07a22a445c86521af26b6e4b0"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_prudence/summary.json",
+      "sha256": "e73706d160e0cc6c0a7194bbb53b0f8cb365967e85b2db81e4b7c3c8cd9b0bb6"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_pressure/manifest.json",
+      "sha256": "ff38affe57ebdac0cddd2b9a370e9c656b50d75e52e55d2abce42a0398b5658f"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_pressure/responses.jsonl",
+      "sha256": "0828567ba12b1b46625f285a7ca4e6c74d91446b81196e95a6a5ca4030925166"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_pressure/summary.json",
+      "sha256": "a38cec62980573601776db7cabcf32f4230b0cdef4075cf6e518a39bbd29eaaf"
+    },
+    {
+      "path": "runs/essay_v616b/nemotron/eval_pressure/spend.json",
+      "sha256": "6ba04e1f1a23f904a3bc14cb8271723b3d87d29aba10c04a464404c842d6bfdc"
+    }
+  ]
+}

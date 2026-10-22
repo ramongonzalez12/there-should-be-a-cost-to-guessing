@@ -1,0 +1,9 @@
+run,scope,cap_usd,conservative_spend_usd,rows,status
+alignment_pressure_pilot_v1,pilot,0.020000,0.015824,5,COMPLETE
+alignment_pressure_replication_v1,full,1.350000,1.283877,150,COMPLETE
+alignment_pressure_prompt_binary_pilot_v1,pilot,0.020000,0.016479,5,COMPLETE
+alignment_pressure_prompt_quadratic_pilot_v1,pilot,0.020000,0.016766,5,COMPLETE
+alignment_pressure_prompt_quad_cost_pilot_v1,pilot,0.020000,0.017237,5,COMPLETE
+alignment_pressure_prompt_binary_v1,full,0.520000,0.492663,150,COMPLETE
+alignment_pressure_prompt_quadratic_v1,full,0.530000,0.501263,150,COMPLETE
+alignment_pressure_prompt_quad_cost_v1,full,0.550000,0.515390,150,COMPLETE

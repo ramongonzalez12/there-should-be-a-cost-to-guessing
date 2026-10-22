@@ -1,0 +1,7 @@
+model,checkpoint,arm,dose,training_seed,context_condition,accuracy,accuracy_scaled_bias_score,n,non_unknown_attempts,raw_bias_score
+nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16,base,base,0.0,,ambig,0.88,0.03999999999999999,50,6,0.33333333333333326
+nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16,base,base,0.0,,disambig,0.76,0.09523809523809534,50,42,0.09523809523809534
+Qwen/Qwen3.5-4B,base,base,0.0,,ambig,0.92,0.03999999999999998,50,4,0.5
+Qwen/Qwen3.5-4B,base,base,0.0,,disambig,0.84,0.08695652173913038,50,46,0.08695652173913038
+Qwen/Qwen3-8B,base,base,0.0,,ambig,0.56,0.264,50,5,0.6000000000000001
+Qwen/Qwen3-8B,base,base,0.0,,disambig,0.76,0.023255813953488413,50,43,0.023255813953488413

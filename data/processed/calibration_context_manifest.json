@@ -1,0 +1,34 @@
+{
+  "exported": "2026-08-24",
+  "binning": "fixed deciles [0,.1), ... [.9,1.0]",
+  "prompt_primary_responses": 4536,
+  "prompt_usable_confidence_answers": 4108,
+  "reliability_cohort": [
+    "GPT-OSS 20B",
+    "Qwen3 8B"
+  ],
+  "training_matched_responses": 19764,
+  "training_matched_responses_all_families": 26352,
+  "training_usable_confidence_answers": 19278,
+  "training_baseline_responses": 2196,
+  "training_baseline_responses_all_families": 3294,
+  "training_baseline_usable_confidence_answers": 1631,
+  "training_pairs": 9,
+  "training_subjects": 4,
+  "sources": {
+    "runs/prompt_estimation_deepseek_20260822.db": "f2167672cda0f4e46d04d777f37d88772478e5bf9e5e82d6bd71ba69ea18800e",
+    "runs/prompt_estimation_gemini_20260822.db": "c5b507899c480617dbf1c69f0ed9e8526a0f291b445b7f0177145e970c502b92",
+    "runs/prompt_estimation_mistral_20260822.db": "f0568efec3036c8d99479ff0d3c4c69c4304e03a4ba752c15c08ca675bf7a0e3",
+    "runs/prompt_estimation_mistral_medium_20260822.db": "97007ba16eeaaf5991730fa28c224cf172107f1180cafe32aada660e77091915",
+    "runs/prompt_estimation_nemotron_20260822.db": "7f8a7c08d82fb04ae4950a5aa5184caf5c5b4218f0f594593d9235d30831e23c",
+    "runs/finetune/multitask_family_agentic_v1/qwen_evaluation/responses.jsonl": "728f3a8939f2a70e8b007d424b97d1402321cbd94d69ae9a4fe1c63f272726a8",
+    "runs/finetune/openweight_family_v2/gpt_oss_evaluation/responses.jsonl": "2c357f271981ab47accdfd0c8aa60ed30bb8517b853764e4e13faf212a0e9dee",
+    "runs/finetune/third_family_v1/nemotron_evaluation/responses.jsonl": "11801aa0b45df0d3edddfe185b16573417ac8415bcc9f352cf3dcb935345c3eb"
+  },
+  "outputs": [
+    "data/processed/calibration_reliability_bins.csv",
+    "data/processed/pooled_training_levels.csv",
+    "site/below-zero/data/calibration_reliability_bins.csv",
+    "site/below-zero/data/pooled_training_levels.csv"
+  ]
+}

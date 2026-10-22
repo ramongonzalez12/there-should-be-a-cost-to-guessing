@@ -1,0 +1,41 @@
+{
+  "analysis_date": "2026-08-26",
+  "inputs": [
+    "data/processed/prompt_only_calibration_cells.csv",
+    "data/processed/prompt_estimation_levels.csv"
+  ],
+  "outputs": [
+    "data/processed/prompt_only_calibration_difficulty_sensitivity.csv",
+    "data/processed/prompt_only_calibration_composition_bridge.csv",
+    "data/processed/prompt_only_calibration_effect_bridge.csv"
+  ],
+  "exact_overlap": {
+    "models": [
+      "deepseek/deepseek-v4-pro-0813",
+      "google/gemini-3.7-flash"
+    ],
+    "benchmarks": [
+      "mmlu_pro",
+      "gpqa_parity",
+      "medmcqa"
+    ],
+    "earlier_control_accuracy": 0.7927536231884058,
+    "integrated_control_accuracy": 0.796416908583698,
+    "change": 0.0036632853952921485
+  },
+  "integrated_benchmark_control_accuracy": {
+    "gpqa_parity": 0.6793372982456177,
+    "math500": 0.7674491549591215,
+    "mmlu_pro": 0.7723284901227974,
+    "medmcqa": 0.8233605353769763,
+    "ethics_hard": 0.8802530384474374,
+    "boolq": 0.897206600830366,
+    "truthfulqa_mc": 0.8983149250402636,
+    "bbq": 0.9143528050384445
+  },
+  "interpretation_guardrails": [
+    "Compare prompts only within a fixed study slice.",
+    "Treat difficulty cutoffs as post-hoc sensitivity analyses, not a replacement primary outcome.",
+    "Report signed gap together with absolute gap and the proper score."
+  ]
+}

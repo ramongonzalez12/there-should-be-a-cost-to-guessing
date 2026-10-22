@@ -1,0 +1,55 @@
+{
+  "pulled": "2026-08-22",
+  "benchmarks": [
+    "mmlu_pro",
+    "gpqa_parity",
+    "medmcqa"
+  ],
+  "contracts": [
+    "control",
+    "guess",
+    "thresh75",
+    "quad_formula",
+    "quad_plain",
+    "quad_both",
+    "quad_c50",
+    "deploy"
+  ],
+  "models": [
+    {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "n_per_condition": 120,
+      "reasoning": "off",
+      "database": "prompt_estimation_deepseek_20260822.db"
+    },
+    {
+      "model": "google/gemini-3.7-flash",
+      "n_per_condition": 120,
+      "reasoning": "low",
+      "database": "prompt_estimation_gemini_20260822.db"
+    },
+    {
+      "model": "mistralai/mistral-small-2603",
+      "n_per_condition": 198,
+      "reasoning": "off",
+      "database": "prompt_estimation_mistral_20260822.db"
+    },
+    {
+      "model": "mistralai/mistral-medium-3.1",
+      "n_per_condition": 120,
+      "reasoning": "off",
+      "database": "prompt_estimation_mistral_medium_20260822.db"
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-30b-a3b",
+      "n_per_condition": 198,
+      "reasoning": "off",
+      "database": "prompt_estimation_nemotron_20260822.db"
+    }
+  ],
+  "model_benchmark_comparisons": 15,
+  "cells": 120,
+  "responses": 18144,
+  "generation_cost_usd": 3.402521,
+  "score": "quadratic confidence-calibrated score with c=0.09"
+}

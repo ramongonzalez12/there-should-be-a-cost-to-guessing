@@ -1,0 +1,79 @@
+{
+  "axes": {
+    "objectives": [
+      "binary",
+      "quadratic",
+      "quad_cost_0.04",
+      "quad_cost_0.09",
+      "quad_cost_0.16"
+    ],
+    "response_contexts": [
+      "neutral",
+      "wrong",
+      "right"
+    ],
+    "scoring_rules": [
+      "binary",
+      "quadratic",
+      "quad_cost_0.04",
+      "quad_cost_0.09",
+      "quad_cost_0.16",
+      "log",
+      "spherical"
+    ],
+    "steps": [
+      25,
+      50,
+      75,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      325,
+      350,
+      375,
+      400,
+      425,
+      450,
+      475,
+      500
+    ]
+  },
+  "inputs": {
+    "behaviour": [
+      {
+        "path": "runs/finetune/qwen_dose_grid_behaviour_all_steps_v1/responses.jsonl",
+        "sha256": "e81bbb999b08ba1307a0aaa582c153859f5b8dd2b2614dc7a2ce0d87a17af149"
+      },
+      {
+        "path": "runs/finetune/qwen_base_behaviour_v1/responses.jsonl",
+        "sha256": "81fa47daa7a47d9d5ce019a310b0535c53e1d0522c93ba81181ce289c2f03ef5"
+      }
+    ],
+    "knowledge": {
+      "path": "runs/finetune/qwen_dose_grid_knowledge_all_steps_v1/responses.jsonl",
+      "sha256": "ad2e1448ad46ed4fc4c639c74ef8ef8ef3ee3c39b7adf1150d926d9030e2c70e"
+    },
+    "sycophancy": {
+      "path": "runs/finetune/qwen_dose_grid_sycophancy_all_steps_v1/responses.jsonl",
+      "sha256": "3b2c3621391813dbffb8f17351a698abb33e943e5a7310a912f78b320f4409c9"
+    }
+  },
+  "notes": {
+    "behaviour_scores": "Diagnostic only: reported probability concerns answer correctness, not compliance.",
+    "scoring": "All score columns are post-hoc applications to the same stored neutral response; they are not prompt conditions.",
+    "sycophancy": "Wrong and right pressure arms stay separate because abandoning a correct answer and correcting a wrong answer have opposite meanings."
+  },
+  "row_counts": {
+    "behaviour": 101,
+    "knowledge": 101,
+    "long": 5731,
+    "sycophancy": 200
+  },
+  "schema_version": 1
+}

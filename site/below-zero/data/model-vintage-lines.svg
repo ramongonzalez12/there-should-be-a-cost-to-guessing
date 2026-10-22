@@ -1,0 +1,316 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 916 756" width="916" height="756" role="img" class="mv" aria-label="Stated confidence and accuracy by company over time">
+<style>.mv text{font-family:Georgia,"Times New Roman",serif;fill:#222222}.mv-t{font-size:17px}.mv-s{font-size:12.5px;fill:#686866}.mv-a{font-size:11px;fill:#686866}.mv-p{font-size:13px;fill:#222}</style>
+<rect width="916" height="756" fill="#ffffff"/>
+<text class="mv-t" x="24" y="30">Company by company: confidence held near 90%; accuracy rose to meet it</text>
+<text class="mv-s" x="24" y="50">Mean stated confidence (plum) and accuracy (grey) on the same 800 items, answer-normally prompt, models in the order OpenRouter listed them.</text>
+<circle cx="52" cy="64" r="5" fill="#7C2F55"/>
+<text class="mv-a" x="63" y="68">stated confidence</text>
+<circle cx="177" cy="64" r="5" fill="#8A8A86"/>
+<text class="mv-a" x="188" y="68">accuracy</text>
+<text class="mv-p" x="46" y="88">OpenAI</text>
+<line x1="46" x2="246" y1="242.0" y2="242.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="246.0" text-anchor="end">40%</text>
+<line x1="46" x2="246" y1="192.0" y2="192.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="196.0" text-anchor="end">60%</text>
+<line x1="46" x2="246" y1="142.0" y2="142.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="146.0" text-anchor="end">80%</text>
+<line x1="46" x2="246" y1="92.0" y2="92.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="96.0" text-anchor="end">100%</text>
+<line x1="91.5" x2="91.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="91.5" y="258" text-anchor="middle">2024</text>
+<line x1="146.0" x2="146.0" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="146.0" y="258" text-anchor="middle">2025</text>
+<line x1="200.5" x2="200.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="200.5" y="258" text-anchor="middle">2026</text>
+<line x1="46" x2="246" y1="242" y2="242" stroke="#686866" stroke-width="1"/>
+<polyline points="59.0,101.8 59.0,102.6 106.3,111.7 124.0,113.7 161.5,104.9 178.4,120.0 193.2,126.4 197.3,122.3 210.2,108.4 217.6,109.7 229.0,102.4" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="59.0,197.8 59.0,160.1 106.3,154.4 124.0,149.4 161.5,160.1 178.4,135.7 193.2,161.9 197.3,153.5 210.2,154.9 217.6,140.6 229.0,134.2" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>GPT-3.5 Turbo, listed 2023-05-28: confidence 96%, accuracy 58%</title>
+<circle cx="59.0" cy="101.8" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="59.0" cy="197.8" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-4, listed 2023-05-28: confidence 96%, accuracy 73%</title>
+<circle cx="59.0" cy="102.6" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="59.0" cy="160.1" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-4 Turbo, listed 2024-04-09: confidence 92%, accuracy 75%</title>
+<circle cx="106.3" cy="111.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="106.3" cy="154.4" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-4o, listed 2024-08-06: confidence 91%, accuracy 77%</title>
+<circle cx="124.0" cy="113.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="124.0" cy="149.4" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-4.1, listed 2025-04-14: confidence 95%, accuracy 73%</title>
+<circle cx="161.5" cy="104.9" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="161.5" cy="160.1" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-OSS 120B, listed 2025-08-05: confidence 89%, accuracy 83%</title>
+<circle cx="178.4" cy="120.0" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="178.4" cy="135.7" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-5.1, listed 2025-11-13: confidence 86%, accuracy 72%</title>
+<circle cx="193.2" cy="126.4" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="193.2" cy="161.9" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-5.2, listed 2025-12-10: confidence 88%, accuracy 75%</title>
+<circle cx="197.3" cy="122.3" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="197.3" cy="153.5" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-5.4, listed 2026-03-05: confidence 93%, accuracy 75%</title>
+<circle cx="210.2" cy="108.4" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="210.2" cy="154.9" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-5.5, listed 2026-04-24: confidence 93%, accuracy 81%</title>
+<circle cx="217.6" cy="109.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="217.6" cy="140.6" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>GPT-5.6 Sol, listed 2026-07-09: confidence 96%, accuracy 83%</title>
+<circle cx="229.0" cy="102.4" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="229.0" cy="134.2" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="264" y="88">Anthropic</text>
+<line x1="264" x2="464" y1="242.0" y2="242.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="264" x2="464" y1="192.0" y2="192.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="264" x2="464" y1="142.0" y2="142.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="264" x2="464" y1="92.0" y2="92.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="309.5" x2="309.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="309.5" y="258" text-anchor="middle">2024</text>
+<line x1="364.0" x2="364.0" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="364.0" y="258" text-anchor="middle">2025</text>
+<line x1="418.5" x2="418.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="418.5" y="258" text-anchor="middle">2026</text>
+<line x1="264" x2="464" y1="242" y2="242" stroke="#686866" stroke-width="1"/>
+<polyline points="320.3,109.4 385.3,114.5 404.5,114.9 407.0,130.7 425.4,131.4 445.5,136.6 454.9,114.7" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="320.3,197.2 385.3,124.5 404.5,124.0 407.0,135.4 425.4,121.6 445.5,123.2 454.9,113.7" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>Claude 3 Haiku, listed 2024-03-13: confidence 93%, accuracy 58%</title>
+<circle cx="320.3" cy="109.4" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="320.3" cy="197.2" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Claude Sonnet 4, listed 2025-05-22: confidence 91%, accuracy 87%</title>
+<circle cx="385.3" cy="114.5" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="385.3" cy="124.5" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Claude Sonnet 4.5, listed 2025-09-29: confidence 91%, accuracy 87%</title>
+<circle cx="404.5" cy="114.9" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="404.5" cy="124.0" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Claude Haiku 4.5, listed 2025-10-15: confidence 85%, accuracy 83%</title>
+<circle cx="407.0" cy="130.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="407.0" cy="135.4" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Claude Sonnet 4.6, listed 2026-02-17: confidence 84%, accuracy 88%</title>
+<circle cx="425.4" cy="131.4" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="425.4" cy="121.6" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Claude Sonnet 5, listed 2026-06-30: confidence 82%, accuracy 88%</title>
+<circle cx="445.5" cy="136.6" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="445.5" cy="123.2" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Claude Fable 5.1, listed 2026-09-01: confidence 91%, accuracy 91%</title>
+<circle cx="454.9" cy="114.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="454.9" cy="113.7" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="482" y="88">Google</text>
+<line x1="482" x2="682" y1="242.0" y2="242.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="482" x2="682" y1="192.0" y2="192.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="482" x2="682" y1="142.0" y2="142.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="482" x2="682" y1="92.0" y2="92.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="527.5" x2="527.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="527.5" y="258" text-anchor="middle">2024</text>
+<line x1="582.0" x2="582.0" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="582.0" y="258" text-anchor="middle">2025</text>
+<line x1="636.5" x2="636.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="636.5" y="258" text-anchor="middle">2026</text>
+<line x1="482" x2="682" y1="242" y2="242" stroke="#686866" stroke-width="1"/>
+<polyline points="556.5,109.6 592.7,108.0 607.1,102.3 634.3,100.5 645.9,99.0 670.1,102.5 673.1,105.1" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="556.5,182.8 592.7,179.7 607.1,145.9 634.3,115.5 645.9,143.9 670.1,111.3 673.1,112.0" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>Gemma 2 27B, listed 2024-07-13: confidence 93%, accuracy 64%</title>
+<circle cx="556.5" cy="109.6" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="556.5" cy="182.8" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Gemma 3 27B, listed 2025-03-12: confidence 94%, accuracy 65%</title>
+<circle cx="592.7" cy="108.0" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="592.7" cy="179.7" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Gemini 2.5 Flash, listed 2025-06-17: confidence 96%, accuracy 78%</title>
+<circle cx="607.1" cy="102.3" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="607.1" cy="145.9" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Gemini 3 Flash, listed 2025-12-17: confidence 97%, accuracy 91%</title>
+<circle cx="634.3" cy="100.5" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="634.3" cy="115.5" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Gemini 3.1 Flash-Lite, listed 2026-03-03: confidence 97%, accuracy 79%</title>
+<circle cx="645.9" cy="99.0" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="645.9" cy="143.9" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Gemini 3.7 Flash, listed 2026-08-13: confidence 96%, accuracy 92%</title>
+<circle cx="670.1" cy="102.5" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="670.1" cy="111.3" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Gemini 3.8 Flash, listed 2026-09-02: confidence 95%, accuracy 92%</title>
+<circle cx="673.1" cy="105.1" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="673.1" cy="112.0" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="700" y="88">DeepSeek</text>
+<line x1="700" x2="900" y1="242.0" y2="242.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="700" x2="900" y1="192.0" y2="192.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="700" x2="900" y1="142.0" y2="142.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="700" x2="900" y1="92.0" y2="92.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="745.5" x2="745.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="745.5" y="258" text-anchor="middle">2024</text>
+<line x1="800.0" x2="800.0" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="800.0" y="258" text-anchor="middle">2025</text>
+<line x1="854.5" x2="854.5" y1="242" y2="246" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="854.5" y="258" text-anchor="middle">2026</text>
+<line x1="700" x2="900" y1="242" y2="242" stroke="#686866" stroke-width="1"/>
+<polyline points="799.1,124.5 812.5,127.1 871.6,112.8 888.0,108.0" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="799.1,153.5 812.5,146.4 871.6,155.8 888.0,146.0" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>DeepSeek V3, listed 2024-12-26: confidence 87%, accuracy 75%</title>
+<circle cx="799.1" cy="124.5" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="799.1" cy="153.5" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>DeepSeek V3 0324, listed 2025-03-24: confidence 86%, accuracy 78%</title>
+<circle cx="812.5" cy="127.1" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="812.5" cy="146.4" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>DeepSeek V4 Flash, listed 2026-04-24: confidence 92%, accuracy 74%</title>
+<circle cx="871.6" cy="112.8" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="871.6" cy="155.8" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>DeepSeek V4 Pro, listed 2026-08-12: confidence 94%, accuracy 78%</title>
+<circle cx="888.0" cy="108.0" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="888.0" cy="146.0" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="46" y="292">Qwen</text>
+<line x1="46" x2="246" y1="446.0" y2="446.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="450.0" text-anchor="end">40%</text>
+<line x1="46" x2="246" y1="396.0" y2="396.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="400.0" text-anchor="end">60%</text>
+<line x1="46" x2="246" y1="346.0" y2="346.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="350.0" text-anchor="end">80%</text>
+<line x1="46" x2="246" y1="296.0" y2="296.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="300.0" text-anchor="end">100%</text>
+<line x1="91.5" x2="91.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="91.5" y="462" text-anchor="middle">2024</text>
+<line x1="146.0" x2="146.0" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="146.0" y="462" text-anchor="middle">2025</text>
+<line x1="200.5" x2="200.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="200.5" y="462" text-anchor="middle">2026</text>
+<line x1="46" x2="246" y1="446" y2="446" stroke="#686866" stroke-width="1"/>
+<polyline points="130.5,314.8 177.4,314.3 183.8,309.8" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="130.5,366.3 177.4,365.8 183.8,348.8" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>Qwen 2.5 72B, listed 2024-09-19: confidence 92%, accuracy 72%</title>
+<circle cx="130.5" cy="314.8" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="130.5" cy="366.3" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Qwen3 30B, listed 2025-07-29: confidence 93%, accuracy 72%</title>
+<circle cx="177.4" cy="314.3" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="177.4" cy="365.8" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Qwen3-Next 80B, listed 2025-09-11: confidence 94%, accuracy 79%</title>
+<circle cx="183.8" cy="309.8" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="183.8" cy="348.8" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="264" y="292">Mistral</text>
+<line x1="264" x2="464" y1="446.0" y2="446.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="264" x2="464" y1="396.0" y2="396.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="264" x2="464" y1="346.0" y2="346.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="264" x2="464" y1="296.0" y2="296.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="309.5" x2="309.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="309.5" y="462" text-anchor="middle">2024</text>
+<line x1="364.0" x2="364.0" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="364.0" y="462" text-anchor="middle">2025</text>
+<line x1="418.5" x2="418.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="418.5" y="462" text-anchor="middle">2026</text>
+<line x1="264" x2="464" y1="446" y2="446" stroke="#686866" stroke-width="1"/>
+<polyline points="317.7,315.7 383.1,308.4 414.0,315.6 436.4,308.1" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="317.7,361.9 383.1,368.7 414.0,362.9 436.4,366.3" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>Mistral Large, listed 2024-02-26: confidence 92%, accuracy 74%</title>
+<circle cx="317.7" cy="315.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="317.7" cy="361.9" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Mistral Medium 3, listed 2025-05-07: confidence 95%, accuracy 71%</title>
+<circle cx="383.1" cy="308.4" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="383.1" cy="368.7" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Mistral Large 2512, listed 2025-12-01: confidence 92%, accuracy 73%</title>
+<circle cx="414.0" cy="315.6" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="414.0" cy="362.9" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Mistral Medium 3.5, listed 2026-04-30: confidence 95%, accuracy 72%</title>
+<circle cx="436.4" cy="308.1" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="436.4" cy="366.3" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="482" y="292">Meta</text>
+<line x1="482" x2="682" y1="446.0" y2="446.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="482" x2="682" y1="396.0" y2="396.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="482" x2="682" y1="346.0" y2="346.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="482" x2="682" y1="296.0" y2="296.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="527.5" x2="527.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="527.5" y="462" text-anchor="middle">2024</text>
+<line x1="582.0" x2="582.0" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="582.0" y="462" text-anchor="middle">2025</text>
+<line x1="636.5" x2="636.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="636.5" y="462" text-anchor="middle">2026</text>
+<line x1="482" x2="682" y1="446" y2="446" stroke="#686866" stroke-width="1"/>
+<polyline points="578.2,310.7 596.2,305.1 596.2,303.3 669.5,327.8" fill="none" stroke="#7C2F55" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="578.2,373.4 596.2,338.8 596.2,357.7 669.5,330.0" fill="none" stroke="#8A8A86" stroke-width="2" stroke-linejoin="round"/>
+<g><title>Llama 3.3 70B, listed 2024-12-06: confidence 94%, accuracy 69%</title>
+<circle cx="578.2" cy="310.7" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="578.2" cy="373.4" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Llama 4 Maverick, listed 2025-04-05: confidence 96%, accuracy 83%</title>
+<circle cx="596.2" cy="305.1" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="596.2" cy="338.8" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Llama 4 Scout, listed 2025-04-05: confidence 97%, accuracy 75%</title>
+<circle cx="596.2" cy="303.3" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="596.2" cy="357.7" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<g><title>Muse Glimmer 30B, listed 2026-08-09: confidence 87%, accuracy 86%</title>
+<circle cx="669.5" cy="327.8" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="669.5" cy="330.0" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="700" y="292">Moonshot</text>
+<line x1="700" x2="900" y1="446.0" y2="446.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="700" x2="900" y1="396.0" y2="396.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="700" x2="900" y1="346.0" y2="346.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="700" x2="900" y1="296.0" y2="296.0" stroke="#E6E3DE" stroke-width="1"/>
+<line x1="745.5" x2="745.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="745.5" y="462" text-anchor="middle">2024</text>
+<line x1="800.0" x2="800.0" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="800.0" y="462" text-anchor="middle">2025</text>
+<line x1="854.5" x2="854.5" y1="446" y2="450" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="854.5" y="462" text-anchor="middle">2026</text>
+<line x1="700" x2="900" y1="446" y2="446" stroke="#686866" stroke-width="1"/>
+<g><title>Kimi K3, listed 2026-07-16: confidence 90%, accuracy 81%</title>
+<circle cx="884.0" cy="320.6" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="884.0" cy="344.3" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-p" x="46" y="496">NVIDIA</text>
+<line x1="46" x2="246" y1="650.0" y2="650.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="654.0" text-anchor="end">40%</text>
+<line x1="46" x2="246" y1="600.0" y2="600.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="604.0" text-anchor="end">60%</text>
+<line x1="46" x2="246" y1="550.0" y2="550.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="554.0" text-anchor="end">80%</text>
+<line x1="46" x2="246" y1="500.0" y2="500.0" stroke="#E6E3DE" stroke-width="1"/>
+<text class="mv-a" x="40" y="504.0" text-anchor="end">100%</text>
+<line x1="91.5" x2="91.5" y1="650" y2="654" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="91.5" y="666" text-anchor="middle">2024</text>
+<line x1="146.0" x2="146.0" y1="650" y2="654" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="146.0" y="666" text-anchor="middle">2025</text>
+<line x1="200.5" x2="200.5" y1="650" y2="654" stroke="#686866" stroke-width="1"/>
+<text class="mv-a" x="200.5" y="666" text-anchor="middle">2026</text>
+<line x1="46" x2="246" y1="650" y2="650" stroke="#686866" stroke-width="1"/>
+<g><title>Nemotron 3 Ultra, listed 2026-06-04: confidence 94%, accuracy 78%</title>
+<circle cx="223.7" cy="515.1" r="4" fill="#7C2F55" stroke="#7C2F55" stroke-width="1.8"/>
+<circle cx="223.7" cy="555.3" r="4" fill="#8A8A86" stroke="#8A8A86" stroke-width="1.8"/>
+</g>
+<text class="mv-a" x="24" y="690">Each point is one model; lines join a company's models in listing order. Tiers are mixed within a company (a Haiku beside a Sonnet, a Flash-Lite</text>
+<text class="mv-a" x="24" y="706">beside a Flash), which is why some lines zigzag. Hover a marker for the model, its date and both values.</text>
+<text class="mv-s" x="24" y="726">Accuracy and confidence are over usable responses (attempted, well formed, probability stated); denominators as in docs/data-dictionary.md.</text>
+<text class="mv-s" x="24" y="744">Older models that ignored the answer format in the pilot were not run and are absent; the CSV lists them.</text>
+</svg>

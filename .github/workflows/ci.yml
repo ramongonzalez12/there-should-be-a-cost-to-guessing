@@ -1,0 +1,78 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "${{ matrix.python }}" }
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      # Every published page must be reproducible from committed CSVs alone.
+      - run: python scripts/build_site.py
+      - run: python scripts/build_essay_page.py
+      - run: git diff --exit-code -- site/below-zero
+      # `git diff` cannot see files the build CREATED; untracked output under
+      # site/ means something needs committing.
+      - run: |
+          untracked=$(git status --porcelain -- site/below-zero)
+          if [ -n "$untracked" ]; then
+            echo "build produced files not in the committed site:"; echo "$untracked"; exit 1
+          fi
+
+  # The essay from graded rows: tables, figure CSVs, and key numbers rebuilt with
+  # no key and diffed against data/essay.
+  essay-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e ".[dev]"
+      - run: python scripts/essay_data_step.py --check
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e ".[dev]"
+      - run: ruff check src tests scripts
+
+  # The release invariants, enforced on every push so hand-edits to the
+  # public repository cannot reintroduce what the exporter scrubbed.
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: no absolute home paths
+        run: |
+          # The pattern is assembled so this workflow file cannot match itself.
+          pat="/Use"; pat="${pat}rs/"
+          if grep -rIl "$pat" --exclude-dir=.git .; then
+            echo "absolute home directory path found"; exit 1
+          fi
+      - name: no stray duplicate filenames
+        run: |
+          strays=$(find . -path ./.git -prune -o -regex '.* [0-9]+\.[^./]+' -print)
+          if [ -n "$strays" ]; then
+            echo "Finder-style duplicate files: $strays"; exit 1
+          fi

@@ -1,0 +1,311 @@
+{
+  "created_by": "scripts/build_battery_cohort.py",
+  "created_at": "2026-09-17T07:47:58.610876+00:00",
+  "git_commit": "cfe52c7adce6543165f913cbc0b7590b1d38e50d",
+  "benchmarks": [
+    "mmlu_pro",
+    "gpqa_parity",
+    "medmcqa",
+    "math500",
+    "boolq",
+    "truthfulqa_mc",
+    "ethics_hard",
+    "bbq"
+  ],
+  "items_per_benchmark": 100,
+  "sources_in_precedence_order": [
+    "runs/promptx_deepseek__deepseek-chat_recovery.db",
+    "runs/promptx_google__gemma-3-27b-it_recovery.db",
+    "runs/coverage_openai__gpt-4.1-mini_4k_20260913.db",
+    "runs/promptx_openai__gpt-4.1-mini.db",
+    "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+    "runs/promptx_google__gemini-2.5-pro_4k.db",
+    "runs/matched_prompt_interventions_8b20b_20260831.db",
+    "runs/coverage_google__gemini-3.1-pro-preview_20260913.db",
+    "runs/promptx_google__gemini-3.1-pro-preview.db",
+    "runs/coverage_x-ai__grok-4.3_20260913.db",
+    "runs/promptx_x-ai__grok-4.3.db",
+    "runs/coverage_x-ai__grok-4.5_20260913.db",
+    "runs/promptx_x-ai__grok-4.5.db",
+    "runs/coverage_openai__gpt-5.6-luna_20260913.db",
+    "runs/promptx_openai__gpt-5.6-luna.db",
+    "runs/coverage_anthropic__claude-opus-5_4k_20260913.db",
+    "runs/promptx_anthropic__claude-opus-5.db",
+    "runs/coverage_x-ai__grok-4.6_20260913.db",
+    "runs/promptx_x-ai__grok-4.6.db",
+    "runs/promptx_qwen__qwen3.8-flash_8k.db",
+    "runs/coverage_openai__gpt-6-astra_20260913.db",
+    "runs/promptx_openai__gpt-6-astra.db",
+    "runs/coverage_deepseek__deepseek-v4.1-flash_4k_20260913.db",
+    "runs/promptx_deepseek__deepseek-v4.1-flash.db",
+    "runs/gap_openai__o4-mini_low.db",
+    "runs/gap_openai__gpt-5.4-nano_off.db",
+    "runs/gap_google__gemma-4-31b-it_off.db",
+    "runs/leader_deepseek__deepseek-v4-flash-0731_off.db",
+    "runs/leader_tencent__hy3_off.db",
+    "runs/leader_z-ai__glm-5.2_off.db",
+    "runs/leader_anthropic__claude-opus-4.7_off.db",
+    "runs/leader_anthropic__claude-opus-4.8_off.db",
+    "runs/leader_openai__gpt-5.6-terra_off.db",
+    "runs/leader_z-ai__glm-5.3_low.db",
+    "runs/coverage_x-ai__grok-4.20_20260913.db",
+    "runs/prompt_arms_4k_20260912.db",
+    "runs/notation_rerun_20260827.db",
+    "runs/newmodels_notation_20260904.db",
+    "runs/oldmodels_prompt_only_20260905.db",
+    "runs/prompt_arm_ident_main_off_20260827.db",
+    "runs/prompt_arm_ident_main_low_20260827.db",
+    "runs/newmodels_prompt_arm_ident_20260904.db",
+    "runs/warning_extension_20260906.db"
+  ],
+  "inputs": [
+    {
+      "path": "runs/promptx_deepseek__deepseek-chat_recovery.db",
+      "sha256": "ff0ceada0206adae4ee4ee86c0d92fae279035f55d94e0ede491e4ce1b949d90"
+    },
+    {
+      "path": "runs/promptx_google__gemma-3-27b-it_recovery.db",
+      "sha256": "9cec77301121299775404e81c3275fd4cb33f68f17107b40e7c879aa8cdd8a0a"
+    },
+    {
+      "path": "runs/coverage_openai__gpt-4.1-mini_4k_20260913.db",
+      "sha256": "a9a3ade83cc1e0e4efa2eb78c42d37e25bb48a5504fd80cf1a89b386543a9290"
+    },
+    {
+      "path": "runs/promptx_openai__gpt-4.1-mini.db",
+      "sha256": "761dd82762ad3d205b1248319d9f8358cb5a17ec112c82a3a2f628bfa76e37f2"
+    },
+    {
+      "path": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+      "sha256": "9ab074f1625ffb6f09109896c1a07feca8c135d6975f5e7922b76cb147b1faa8"
+    },
+    {
+      "path": "runs/promptx_google__gemini-2.5-pro_4k.db",
+      "sha256": "9943df0d94daf59dfebc826db771f6dd337b283f10a173559e83258b2dbc4350"
+    },
+    {
+      "path": "runs/matched_prompt_interventions_8b20b_20260831.db",
+      "sha256": "9f6c81dbf794391770f83dde212c51304462deb5b6118cc20b1e95da55c7d152"
+    },
+    {
+      "path": "runs/coverage_google__gemini-3.1-pro-preview_20260913.db",
+      "sha256": "aea1abc747e24cdf829a73a8bee76de5940f36f7e885075505239c670744e206"
+    },
+    {
+      "path": "runs/promptx_google__gemini-3.1-pro-preview.db",
+      "sha256": "06b2b548b2f00760356b09f0d3b129940d81ec1f8d661684222bd17c021f96a8"
+    },
+    {
+      "path": "runs/coverage_x-ai__grok-4.3_20260913.db",
+      "sha256": "823eb0107a72b0fccab0a511bc95e3e6c52f1ac2e37040ad6c187abae80eef24"
+    },
+    {
+      "path": "runs/promptx_x-ai__grok-4.3.db",
+      "sha256": "2b73d1fb6a70fc4bd8f9bd14f7aadc18ede3107e57db240fc77c74f4dc4068da"
+    },
+    {
+      "path": "runs/coverage_x-ai__grok-4.5_20260913.db",
+      "sha256": "2c08d4f6cd4090ef00f3c77a918e397517d5ea47a641e7078b8c557848f4241f"
+    },
+    {
+      "path": "runs/promptx_x-ai__grok-4.5.db",
+      "sha256": "d6654cbf89605b9b64ba37bf06bc612137d53d7a6c95dfe9e618d956e1c4008b"
+    },
+    {
+      "path": "runs/coverage_openai__gpt-5.6-luna_20260913.db",
+      "sha256": "0f3322ac39e1948256c0d66c3538d1e864143af3ba2d454842310cbf9f6618d1"
+    },
+    {
+      "path": "runs/promptx_openai__gpt-5.6-luna.db",
+      "sha256": "3bbf9c74f02e9be6abbf69d07e32b605fd30f0c26eb42f8870e890f8ac10c540"
+    },
+    {
+      "path": "runs/coverage_anthropic__claude-opus-5_4k_20260913.db",
+      "sha256": "17b05c27a688c7d85b24b44597d33a0366af8585357b4e62e3ce241a79150323"
+    },
+    {
+      "path": "runs/promptx_anthropic__claude-opus-5.db",
+      "sha256": "941f8614870892bd168ccbe5563e0abe101650eda5c8889f7b1cfdd6cef015b4"
+    },
+    {
+      "path": "runs/coverage_x-ai__grok-4.6_20260913.db",
+      "sha256": "e93ef37d13eda3d8053bec6b60215ce56e60bcc2b5965f5b377672ba76c5c482"
+    },
+    {
+      "path": "runs/promptx_x-ai__grok-4.6.db",
+      "sha256": "875c9b81b15af9d10a9188c9237afb8672d5001693192dafeee4964f6802e45a"
+    },
+    {
+      "path": "runs/promptx_qwen__qwen3.8-flash_8k.db",
+      "sha256": "c0343bc3d18d1f6eaaf1309de236ba88ddedae19325f7f4330f418cbdeeb2a9f"
+    },
+    {
+      "path": "runs/coverage_openai__gpt-6-astra_20260913.db",
+      "sha256": "23f8512eef4fab5c339c74abe3cf913041e39dd2436e796525d87242b15900eb"
+    },
+    {
+      "path": "runs/promptx_openai__gpt-6-astra.db",
+      "sha256": "dd3373520a3de5710f7bda645fe6f83d4abb1ee4606cbb07697e536324085937"
+    },
+    {
+      "path": "runs/coverage_deepseek__deepseek-v4.1-flash_4k_20260913.db",
+      "sha256": "0e3904247102137cea089dacb4a91a8bbdf206de620c4be26a1b3ae2148e4e2c"
+    },
+    {
+      "path": "runs/promptx_deepseek__deepseek-v4.1-flash.db",
+      "sha256": "647b76ae98bca4546e35d0cbf3b47bebb283ea9002d3d98d4d06b56cf0049b04"
+    },
+    {
+      "path": "runs/gap_openai__o4-mini_low.db",
+      "sha256": "d53765c02e9e0f35890839a02dec300fbb737b3f541bd351d3815d8cda3a3b6d"
+    },
+    {
+      "path": "runs/gap_openai__gpt-5.4-nano_off.db",
+      "sha256": "1db44373fdc631b27b2380475760b3662b65bb0030452368ea4dc2b7c0f81941"
+    },
+    {
+      "path": "runs/gap_google__gemma-4-31b-it_off.db",
+      "sha256": "0d78a69f8b1e7c776a255a5c9d4538aa113fdefeef1f603c211577f1377535f2"
+    },
+    {
+      "path": "runs/leader_deepseek__deepseek-v4-flash-0731_off.db",
+      "sha256": "385b82aaa690aa6add803521898e5194d9677ff50303f6d798b8fa18e21aaa7d"
+    },
+    {
+      "path": "runs/leader_tencent__hy3_off.db",
+      "sha256": "69f296b0a2af0c219432f1b3ea48cfcfda51f06c6bb721ee5485dcf3ded5a14c"
+    },
+    {
+      "path": "runs/leader_z-ai__glm-5.2_off.db",
+      "sha256": "0436ab5f07510307585f305402728e3106df596bf45ed0c16f0753380a7db47b"
+    },
+    {
+      "path": "runs/leader_anthropic__claude-opus-4.7_off.db",
+      "sha256": "28b04fec04cd570fc47ba5486c299846911533acb6a4d446fa8bf2735d94cc44"
+    },
+    {
+      "path": "runs/leader_anthropic__claude-opus-4.8_off.db",
+      "sha256": "57a547dd04814b91a2f28ae89cecd42b88c1787f02ad1462e2e1af69fb95cd6f"
+    },
+    {
+      "path": "runs/leader_openai__gpt-5.6-terra_off.db",
+      "sha256": "8584d242580d18635018ddd39d8893bcfb5db058ea8ec64762403ecf1238fc7f"
+    },
+    {
+      "path": "runs/leader_z-ai__glm-5.3_low.db",
+      "sha256": "90240a03d7564b5a608c9c2b05df7f92ed63036a78c0b1ee493a14421989f207"
+    },
+    {
+      "path": "runs/coverage_x-ai__grok-4.20_20260913.db",
+      "sha256": "a5d1cea85662c34ec04582adf6d38d553a70d7c714305dfba92774c914d1cbc3"
+    },
+    {
+      "path": "runs/prompt_arms_4k_20260912.db",
+      "sha256": "f54f70fb6cf70a4d22d0d64301a046318f5e21360e481c1876004ffd253de5fe"
+    },
+    {
+      "path": "runs/notation_rerun_20260827.db",
+      "sha256": "d4734a53de11a0ec12f3980295f33a9d69db79af4ec3a1e6e06e90eea41e8907"
+    },
+    {
+      "path": "runs/newmodels_notation_20260904.db",
+      "sha256": "5039455d16126b6d121dd8c6be0e4af5bf7b35a00eb89b525dd071e84b2230f3"
+    },
+    {
+      "path": "runs/oldmodels_prompt_only_20260905.db",
+      "sha256": "456dcaa64eb17a9f08333cdcc4f4576543bbea43eff273f9c67cb504ce75917b"
+    },
+    {
+      "path": "runs/prompt_arm_ident_main_off_20260827.db",
+      "sha256": "ebd7c256ef3899b99655f519caec3cddf73715db5b8e772da20dad97bb761622"
+    },
+    {
+      "path": "runs/prompt_arm_ident_main_low_20260827.db",
+      "sha256": "ea3dd823fee2f03fe0e828032f34b1ab0489e6ed41f2538b989cff2b773c5bb9"
+    },
+    {
+      "path": "runs/newmodels_prompt_arm_ident_20260904.db",
+      "sha256": "084d6e02ff77cf2e8172c0009885d136d452738976e80e52e1574ba860d74981"
+    },
+    {
+      "path": "runs/warning_extension_20260906.db",
+      "sha256": "edb467b8921ad05891395e3c20775056e69f3be4d7c33140ccba4beabe101629"
+    }
+  ],
+  "catalog_sha256": "c01c72b9e0db13eac07dbbe6e4bf7b16c0e4c05b0a4d0ce636951a4d8748fbee",
+  "counts": {
+    "models": 66,
+    "control_admitted": 66,
+    "rule_admitted": 58,
+    "warning_admitted": 58,
+    "p": 58,
+    "two_rep_control": 9
+  },
+  "p_models": [
+    "mistralai/mistral-large",
+    "anthropic/claude-3-haiku",
+    "google/gemma-2-27b-it",
+    "qwen/qwen-2.5-72b-instruct",
+    "deepseek/deepseek-chat",
+    "google/gemma-3-27b-it",
+    "meta-llama/llama-4-maverick",
+    "openai/gpt-4.1",
+    "openai/gpt-4.1-mini",
+    "openai/o4-mini",
+    "qwen/qwen3-8b",
+    "mistralai/mistral-medium-3",
+    "anthropic/claude-sonnet-4",
+    "google/gemini-2.5-flash",
+    "google/gemini-2.5-pro",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen3-next-80b-a3b-instruct",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-haiku-4.5",
+    "openai/gpt-5.1",
+    "mistralai/mistral-large-2512",
+    "openai/gpt-5.2",
+    "google/gemini-3-flash-preview",
+    "anthropic/claude-sonnet-4.6",
+    "google/gemini-3.1-pro-preview",
+    "google/gemini-3.1-flash-lite-preview",
+    "openai/gpt-5.4",
+    "openai/gpt-5.4-nano",
+    "google/gemma-4-31b-it",
+    "anthropic/claude-opus-4.7",
+    "deepseek/deepseek-v4-flash",
+    "openai/gpt-5.5",
+    "mistralai/mistral-medium-3-5",
+    "x-ai/grok-4.3",
+    "anthropic/claude-opus-4.8",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "z-ai/glm-5.2",
+    "anthropic/claude-sonnet-5",
+    "tencent/hy3",
+    "x-ai/grok-4.5",
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "openai/gpt-5.6-terra",
+    "moonshotai/kimi-k3",
+    "anthropic/claude-opus-5",
+    "deepseek/deepseek-v4-flash-0731",
+    "meta/muse-glimmer-30b",
+    "deepseek/deepseek-v4-pro-0813",
+    "x-ai/grok-4.6",
+    "google/gemini-3.7-flash",
+    "z-ai/glm-5.3",
+    "qwen/qwen3.8-flash",
+    "anthropic/claude-fable-5.1",
+    "google/gemini-3.8-flash",
+    "openai/gpt-6-astra",
+    "deepseek/deepseek-v4.1-flash"
+  ],
+  "gate_notes": [
+    "notes/2026-09-06-vintage-rule-arm.md",
+    "notes/2026-09-06-warning-arm-extension.md",
+    "notes/2026-09-13-prompt-extension-results.md"
+  ],
+  "prompt_extension_selection": "data/processed/prompt_extension_selection.json",
+  "control_only_selection": "data/processed/model_coverage_extension_selection.json"
+}

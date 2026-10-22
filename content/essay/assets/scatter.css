@@ -1,0 +1,51 @@
+
+.draft-scatter-layout {
+  display: grid; grid-template-columns: minmax(360px, 1fr) 210px;
+  gap: 26px; align-items: center;
+}
+
+.draft-calibration-plot { display: block; width: 100%; height: auto; }
+
+.draft-scatter-grid { stroke: #e1e4e8; stroke-width: .85; }
+
+.draft-scatter-axis { stroke: #8e99a6; stroke-width: 1.2; }
+
+.draft-scatter-diagonal { stroke: #7d8792; stroke-width: 1.2; stroke-dasharray: 5 5; }
+
+.draft-scatter-label {
+  fill: #6b7280; font: 9.5px 'Inter', ui-sans-serif, sans-serif;
+}
+
+.draft-scatter-note {
+  fill: var(--accent-text); font: 650 10px 'Inter', ui-sans-serif, sans-serif;
+}
+
+.draft-scatter-dot { fill: #31577d; fill-opacity: .76; stroke: #fff; stroke-width: 1; }
+
+.draft-scatter-dot.treated { fill: var(--accent); fill-opacity: 1; }
+
+.draft-scatter-arrow { stroke: var(--accent); stroke-width: 2; marker-end: url(#draft-arrow); }
+
+.draft-scatter-summary {
+  padding-left: 22px; border-left: 1px solid #d8dfe7;
+}
+
+.draft-scatter-summary strong { display: block; font-size: 34px; line-height: 1; }
+
+.draft-scatter-summary > span {
+  display: block; margin: 5px 0 18px; color: var(--text-secondary); font-size: 11px;
+}
+
+.draft-scatter-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+}
+
+.draft-scatter-metrics b { display: block; font-size: 17px; }
+
+.draft-scatter-metrics small { color: var(--text-secondary); font-size: 9px; }
+
+  .draft-scatter-layout, .draft-training-layout { grid-template-columns: 1fr; }
+
+  .draft-scatter-summary {
+    padding: 14px 0 0; border-left: 0; border-top: 1px solid #d8dfe7;
+  }

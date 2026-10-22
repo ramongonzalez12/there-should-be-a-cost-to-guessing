@@ -1,0 +1,51 @@
+developer,model,model_name,listed_date,open_weight,stated_confidence_pct,accuracy_pct,overconfidence_gap_pts
+amazon,amazon/nova-pro-v1,Nova Pro,2024-12-05,no,90.8507,72.6361,18.2145
+anthropic,anthropic/claude-3-haiku,Claude 3 Haiku,2024-03-13,no,92.5634,54.4747,38.0887
+anthropic,anthropic/claude-sonnet-4,Claude Sonnet 4,2025-05-22,no,90.3565,84.9899,5.3666
+anthropic,anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,2025-09-29,no,90.6704,87.9299,2.7405
+anthropic,anthropic/claude-haiku-4.5,Claude Haiku 4.5,2025-10-15,no,84.3403,81.0466,3.2937
+anthropic,anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,2026-02-17,no,86.3519,88.8204,-2.4684
+anthropic,anthropic/claude-opus-4.7,Claude Opus 4.7,2026-04-16,no,88.8676,92.0779,-3.2103
+anthropic,anthropic/claude-opus-4.8,Claude Opus 4.8,2026-05-27,no,91.3787,91.4987,-0.12
+anthropic,anthropic/claude-sonnet-5,Claude Sonnet 5,2026-06-30,no,86.5227,91.4634,-4.9407
+anthropic,anthropic/claude-opus-5,Claude Opus 5,2026-07-24,no,92.6344,94.2372,-1.6028
+anthropic,anthropic/claude-fable-5.1,Claude Fable 5.1,2026-09-01,no,92.0054,94.7123,-2.7068
+anthropic,anthropic/claude-opus-5.5,Claude Opus 5.5,2026-09-22,no,89.9086,95.6097,-5.7011
+anthropic,anthropic/claude-haiku-5.5,Claude Haiku 5.5,2026-10-07,no,84.2299,88.2083,-3.9784
+cohere,cohere/command-r-plus-08-2024,Command R+,2024-08-30,yes,93.8582,60.4088,33.4494
+deepseek,deepseek/deepseek-v4-flash,DeepSeek V4 Flash,2026-04-24,yes,97.0936,90.2377,6.8558
+deepseek,deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,2026-08-12,yes,94.7505,81.8665,12.884
+deepseek,deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,2026-09-10,yes,96.2994,92.0079,4.2914
+google,google/gemma-2-27b-it,Gemma 2 27B,2024-07-13,yes,90.3912,63.1696,27.2215
+google,google/gemini-2.5-flash,Gemini 2.5 Flash,2025-06-17,no,97.1358,85.5693,11.5665
+google,google/gemini-3-flash-preview,Gemini 3 Flash,2025-12-17,no,98.3825,90.8712,7.5113
+google,google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,2026-02-19,no,98.8255,94.7599,4.0656
+google,google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,2026-03-03,no,97.7424,87.074,10.6684
+google,google/gemma-4-31b-it,Gemma 4 31B,2026-04-02,yes,97.7063,87.125,10.5813
+google,google/gemini-3.7-flash,Gemini 3.7 Flash,2026-08-13,no,97.9663,93.0,4.9662
+google,google/gemini-3.8-flash,Gemini 3.8 Flash,2026-09-02,no,97.4506,93.6035,3.8471
+meta,meta/muse-glimmer-30b,Muse Glimmer 30B,2026-08-09,yes,84.973,87.3266,-2.3537
+meta-llama,meta-llama/llama-4-maverick,Llama 4 Maverick,2025-04-05,yes,91.333,81.5935,9.7395
+mistralai,mistralai/mistral-medium-3,Mistral Medium 3,2025-05-07,no,94.1009,80.2058,13.8951
+mistralai,mistralai/mistral-medium-3-5,Mistral Medium 3.5,2026-04-30,yes,94.1093,80.2832,13.8261
+openai,openai/gpt-4o-mini,GPT-4o mini,2024-07-18,no,90.4188,71.625,18.7937
+openai,openai/gpt-4o-2024-08-06,GPT-4o,2024-08-06,no,92.6963,79.0,13.6962
+openai,openai/gpt-4.1,GPT-4.1,2025-04-14,no,97.4188,83.6162,13.8026
+openai,openai/gpt-4.1-mini,GPT-4.1 Mini,2025-04-14,no,94.0795,80.9659,13.1136
+openai,openai/o4-mini,o4-mini,2025-04-16,no,91.9564,87.0085,4.9479
+openai,openai/gpt-5.1,GPT-5.1,2025-11-13,no,93.0734,78.9735,14.0999
+openai,openai/gpt-5.2,GPT-5.2,2025-12-10,no,91.7925,89.4652,2.3273
+openai,openai/gpt-5.4,GPT-5.4,2026-03-05,no,95.5604,84.9306,10.6298
+openai,openai/gpt-5.4-nano,GPT-5.4 Nano,2026-03-17,no,77.7195,67.7279,9.9916
+openai,openai/gpt-5.5,GPT-5.5,2026-04-24,no,95.8665,91.7345,4.132
+openai,openai/gpt-5.6-luna,GPT-5.6 Luna,2026-07-09,no,97.4612,87.5,9.9612
+openai,openai/gpt-5.6-sol,GPT-5.6 Sol,2026-07-09,no,97.3563,91.5,5.8562
+openai,openai/gpt-5.6-terra,GPT-5.6 Terra,2026-07-09,no,96.5275,88.875,7.6525
+openai,openai/gpt-6-astra,GPT-6 Astra,2026-09-04,no,97.6125,93.125,4.4875
+openai,openai/gpt-6-luna,GPT-6 Luna,2026-09-22,no,96.8987,89.6162,7.2825
+openai,openai/gpt-6-luna-pro,GPT-6 Luna Pro,2026-09-22,no,96.6535,90.2399,6.4136
+openai,openai/gpt-6-sol,GPT-6 Sol,2026-09-22,no,96.3545,91.2336,5.1209
+openai,openai/gpt-6.1-sol,GPT-6.1 Sol,2026-09-29,no,97.6912,93.5,4.1912
+qwen,qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,2024-09-19,yes,89.74,74.9433,14.7967
+qwen,qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,2024-10-16,yes,91.279,62.7643,28.5147
+qwen,qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,2025-09-11,yes,95.9834,85.0455,10.9378

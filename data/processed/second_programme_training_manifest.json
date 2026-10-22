@@ -1,0 +1,16 @@
+{
+  "created_by": "scripts/export_second_programme_training.py",
+  "outputs": [
+    "data/processed/second_programme_trajectories.csv",
+    "data/processed/second_programme_prudence_levels.csv",
+    "data/processed/second_programme_prudence_contrasts.csv"
+  ],
+  "sources": {
+    "runs/finetune/second_programme_v1/gpt_oss/eval_prudence/summary.json": "6e050303820de89eb23c716855b733c1cc9d117bdd48add6fe92822d90cbc2e6",
+    "runs/finetune/second_programme_v1/gpt_oss/eval_trajectory/responses.jsonl": "b0bd8844f0b263562b37d6db15444f5693eebf76852ea385185048721a8f0b18",
+    "runs/finetune/second_programme_v1/nemotron/eval_prudence/summary.json": "2ab8ed4236d50e3e2fffd38ca726c6abfff7049eb50228d3075f7df7c3adb3a7",
+    "runs/finetune/second_programme_v1/nemotron/eval_trajectory/responses.jsonl": "046263bb6b8fdcb573ce61c69ca64851afc233249f792d694a253cd274224071",
+    "runs/finetune/second_programme_v1/qwen/eval_prudence/summary.json": "77c98397c424811e2c28a7508031df77a1ac78a7d417e8b2a89d341416b55c67",
+    "runs/finetune/second_programme_v1/qwen/eval_trajectory/responses.jsonl": "2ae69e2d02cefaeb73e148d6182e29690621e33ac4fc000bcd6eabc7f21b7eab"
+  }
+}

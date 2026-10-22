@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Below Zero — what survived a second training run</title>
+<meta name="description" content="The same three reward objectives trained twice from different random seeds, with the design matrix and the measurement floor stated before any result.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Below Zero — research instrument design system.
+   The paper surface and serif reading voice come from the project's editorial
+   roots. Plum carries identity and the scoring-curve motif; evidence blue,
+   valid green, and exclusion amber keep their analytical jobs. Rules and
+   whitespace do the grouping so the research pages never collapse into a
+   grid of generic content cards. */
+
+/* @tokens-start */
+:root {
+  /* These public tokens are the contract selected in the design lab.
+     Aliases below keep older component names readable while every semantic
+     use resolves to one centrally controlled value. */
+  --paper:          #f8f7f3;
+  --ink:            #1c1b19;
+  --plum:           #7a3a58;
+  --plum-dark:      #40283b;
+  --plum-tint:      #f1e6eb;
+  --on-plum:        #fffefa;
+  --evidence:       #2b4a6f;
+  --valid:          #217a5b;
+  --invalid:        #a8661a;
+  --on-evidence:    #ffffff;
+  --evidence-tint:  #eef2f6;
+  --invalid-tint:   #f6eee3;
+  --evidence-band:  #aebdcd;
+
+  --text:           var(--ink);
+  --text-secondary: #3d3d3d;
+  --text-muted:     #6b6b6b;
+  --bg:             var(--paper);
+  --bg-alt:         var(--evidence-tint);
+  --accent:         var(--plum);
+  --accent-text:    var(--plum);
+  --accent-tint:    var(--plum-tint);
+  --rule:           #d8d4cb;
+  --rule-strong:    #b9b4aa;
+  --ok:             var(--valid);
+  --warn:           var(--invalid);
+  --max-text:       680px;
+  --max-wide:       940px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:          #171a1d;
+    --ink:            #f2f1ec;
+    --plum:           #c592aa;
+    --plum-dark:      #2a2029;
+    --plum-tint:      #30252e;
+    --on-plum:        #fffefa;
+    --evidence:       #355d82;
+    --valid:          #69b58f;
+    --invalid:        #d1a15f;
+    --on-evidence:    #ffffff;
+    --evidence-tint:  #202a33;
+    --invalid-tint:   #33291f;
+    --evidence-band:  #5d7891;
+    --text:           #f2f1ee;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8f8e85;
+    --bg:             var(--paper);
+    --bg-alt:         var(--evidence-tint);
+    --accent:         var(--plum);
+    --accent-text:    var(--plum);
+    --accent-tint:    var(--plum-tint);
+    --rule:           #343a3f;
+    --rule-strong:    #4a5259;
+    --ok:             var(--valid);
+    --warn:           var(--invalid);
+  }
+}
+
+/* @tokens-end */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: var(--max-wide); margin: 0 auto; padding: 0 24px; }
+p, li, h1, h2, h3, .q, .a, .byline, .toc, .note, .cap, blockquote, .rule, details {
+  max-width: var(--max-text);
+}
+
+/* --- site menu -------------------------------------------------------------
+   Fixed to the top of every page and ALWAYS visible. An earlier version
+   revealed itself only after 320px of scrolling, which meant a reader landing
+   on any page saw no navigation at all until they happened to scroll.
+   The full plum field is the site's identity masthead. Evidence blue remains
+   reserved for analytical anchors and published ranges inside the page. */
+/* @nav-start */
+/* Scoped border-box. The global `* { box-sizing }` rule sits outside this
+   slice, so the hand-maintained page borrows the menu WITHOUT it and laid the
+   bar out 24px wider than the measure every other page uses. Declaring it on
+   the menu's own subtree keeps the two in line without reaching into that
+   page's chart layout. */
+.scroll-nav, .scroll-nav * { box-sizing: border-box; }
+.scroll-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 51px;
+  background: var(--plum-dark);
+  border-bottom: 1px solid color-mix(in srgb, var(--plum-dark) 72%, #000);
+  z-index: 100;
+}
+/* Content clears the fixed bar. This rule lives inside the nav slice on
+   purpose: the hand-maintained page borrows the same block, so it can never
+   receive the menu without also receiving the space the menu occupies. */
+body { padding-top: 51px; }
+/* The masthead is already a solid semantic field. Keep only a quiet top rail
+   so the navigation retains the same measured 51px geometry as before. */
+.scroll-nav-track {
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: color-mix(in srgb, var(--plum-dark) 78%, #000);
+}
+/* Progress reads along the BOTTOM edge instead, over the hairline rule. Drawn
+   there so it never competes with the masthead for the same 5px. */
+.scroll-nav-progress {
+  position: absolute; bottom: -1px; left: 0; height: 2px; width: 0%;
+  background: var(--on-plum); opacity: .86; transition: width .1s linear;
+}
+.scroll-nav-inner {
+  max-width: var(--max-wide); margin: 0 auto; padding: 5px 24px 0; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13px;
+}
+.scroll-nav-title {
+  font-weight: 700; color: var(--on-plum); text-decoration: none; white-space: nowrap;
+  letter-spacing: -0.005em; flex: none;
+}
+.scroll-nav-title:hover { color: var(--on-plum); }
+.scroll-nav-links {
+  display: flex; gap: 17px; min-width: 0;
+  letter-spacing: .01em;
+}
+.scroll-nav-links a {
+  color: color-mix(in srgb, var(--on-plum) 72%, transparent);
+  text-decoration: none; white-space: nowrap;
+  padding: 2px 0; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.scroll-nav-links a:hover { color: var(--on-plum); }
+.scroll-nav-links a.here {
+  color: var(--on-plum); font-weight: 600; border-bottom-color: var(--on-plum);
+}
+/* Group labels: small caps, dimmer than a link, never clickable. They exist
+   to let a reader see the menu's shape (read this / deep dives / reference)
+   and are dropped on narrow screens, where the abbreviated links alone fit. */
+.scroll-nav-links .nav-group {
+  color: color-mix(in srgb, var(--on-plum) 46%, transparent);
+  font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+  align-self: center; white-space: nowrap; margin-right: -6px;
+}
+.scroll-nav-links .nav-group:not(:first-child) { margin-left: 8px; }
+@media (max-width: 640px) { .scroll-nav-links .nav-group { display: none; } }
+/* Narrow screens shorten the labels instead of dropping links, so the menu
+   stays complete. Below the point where even short labels stop fitting, the
+   row scrolls sideways rather than hiding its tail.
+
+   The binding constraint is NOT the viewport. .scroll-nav-inner is capped at
+   --max-wide (940px) and centred, so a 4K monitor buys the menu exactly as much
+   room as a 1000px laptop: 798px, once the wordmark, the gap and the gutters
+   are taken out. Every earlier version of this rule tied the label swap to a
+   viewport breakpoint, which is why it kept going stale silently. It was
+   measuring the wrong thing, and it looked right on the machine it was written
+   on.
+
+   Against that fixed 798px, with 14 pages in SITE (re-measured 2026-08-25):
+       full labels  need well past 1500px -> never fit, at any screen size
+       short labels need  ~955px          -> overflow by ~157px, at any width
+   So the row now scrolls at every width, including desktop, and the fade
+   cue below is unconditional to match. Shortening abbreviations remains the
+   cheap lever if the scroll gets annoying; ~160px of savings would need
+   several renames, which is a deliberate decision, not a side effect.
+
+   Two abbreviations were shortened to get there ("Fine-tuning" to "Tuning",
+   "Why linear" to "Linear"), which is the cheap lever: this column exists to be
+   short, and one entry that repeated its long label was costing 40px on its own.
+
+   So the short labels are now unconditional, and the row scrolls at every
+   width rather than only below 920px. Scrolling is the documented fallback and
+   the fade script already targets .scroll-nav-links, so an overflowing tail
+   gets its cue automatically. The menu therefore stays COMPLETE by
+   construction: adding a page can make the row scroll further, which is a
+   graceful failure, but can no longer push a link off the edge with nothing to
+   say so. Widen --max-wide or shorten an abbreviation if the scroll becomes
+   long enough to be annoying; do not reintroduce a viewport breakpoint. */
+.nav-full { display: none; }
+.nav-abbr { display: inline; }
+.scroll-nav-links {
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+}
+.scroll-nav-links::-webkit-scrollbar { display: none; }
+@media (max-width: 920px) {
+  .scroll-nav-inner { gap: 14px; padding-left: 16px; padding-right: 16px; }
+  .scroll-nav-links { gap: 15px; }
+}
+/* Fade a cut edge, but ONLY where the row genuinely runs out of space.
+   Without the fade a half-cut word reads as a layout bug; with it, it reads as
+   "there is more of this row that way", which is the only cue a hidden
+   scrollbar leaves.
+
+   The fade width at each edge is a variable the script sets from the row's
+   actual scroll position, and the script zeroes both edges whenever the row
+   fits, so a fade can never claim hidden content that is not there. The
+   values declared here are the no-script state: right-faded / left-clear,
+   which matches how an overflowing row always loads (scrollLeft 0).
+
+   This used to sit inside a 600px media query, from when the short-label row
+   measured ~475px and only overflowed on phones. At 14 pages the row measures
+   ~955px against the fixed 798px budget above, so it overflows at EVERY
+   width, and the gate had turned into a lie the other way: on desktop the
+   row scrolled with no cue at all, and the auto-scroll that reveals the
+   current page's link was hiding the leftmost links behind a clean hard
+   edge. The gate is gone rather than re-measured; the script's measurement
+   is the condition now. If the menu ever shrinks back below the budget, the
+   no-script default over-claims by one fade, which is the cost of keeping
+   the cue honest everywhere scripts run. */
+.scroll-nav-links {
+  --fade-start: 0px;
+  --fade-end: 26px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+@media (max-width: 460px) {
+  .scroll-nav-inner { gap: 11px; padding-left: 13px; padding-right: 13px; }
+  .scroll-nav-links { gap: 13px; font-size: 12.5px; }
+  .scroll-nav-title { font-size: 12.5px; }
+}
+
+/* A distinct page-local rail for long articles. It remains in document flow
+   until it reaches the fixed site menu, then owns the next horizontal strip.
+   Separate nav landmarks and native anchors keep page changes and in-page
+   movement as different actions. */
+.section-nav, .section-nav * { box-sizing: border-box; }
+.section-nav {
+  position: sticky; top: 51px; z-index: 90;
+  height: 42px; background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: saturate(130%) blur(9px);
+  -webkit-backdrop-filter: saturate(130%) blur(9px);
+  border-bottom: 1px solid var(--rule);
+}
+.section-nav-inner {
+  max-width: var(--max-wide); height: 100%; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 18px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+.section-nav-label {
+  flex: none; color: var(--text-muted); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase;
+}
+.section-nav-links {
+  min-width: 0; display: flex; align-items: stretch; gap: 18px;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  /* Script-driven edge fades, like .table-wrap below: zero until the script
+     measures a real overflow, so a rail that fits (literature at phone
+     widths) never dims its last link. The rail used to carry a static
+     right-only mask below 640px instead, which lied in both directions once
+     the rail scrolled: it kept dimming the end after there was nothing past
+     it, and it never cued the items cut off on the left. */
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+.section-nav-links::-webkit-scrollbar { display: none; }
+.section-nav-links a {
+  flex: none; color: var(--text-muted); text-decoration: none; white-space: nowrap;
+  font-size: 12px; line-height: 42px; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.section-nav-links a:hover { color: var(--text); }
+.section-nav-links a.here {
+  color: var(--accent-text); font-weight: 600; border-bottom-color: var(--accent);
+}
+body.with-section-nav h2[id] { scroll-margin-top: 112px; }
+@media (max-width: 640px) {
+  .section-nav-inner { padding: 0 13px; gap: 0; }
+  .section-nav-label { display: none; }
+  .section-nav-links { width: 100%; gap: 16px; }
+}
+/* @nav-end */
+
+/* --- hero ---------------------------------------------------------------- */
+/* Only the front page carries a crumb now, pointing out of the site to the
+   projects index. Side pages dropped theirs: it linked to index.html, which the
+   fixed menu directly above it already does, and on a phone the two sat forty
+   pixels apart reading as a duplicate. */
+.crumb {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; color: var(--text-muted); padding-top: 30px; margin: 0 0 26px;
+}
+/* The crumb was the only thing holding a side page's title off the menu, so its
+   30px of padding and 26px of margin move here. Same measurement, one element
+   fewer; without it the h1 sat flush against the bar. */
+.wrap.side { padding-top: 56px; }
+/* Tables whose "value" columns are short phrases, not numbers: left-align
+   headers and cells alike so the header does not float away from its column. */
+table.text-cols th, table.text-cols td { text-align: left; }
+.page-dates-detail {
+  display: block; margin-top: 3px; font-size: 12px; color: var(--text-muted);
+}
+.superseded-banner {
+  margin: 0 0 22px; padding: 10px 14px; font-size: 14px; line-height: 1.5;
+  border-left: 3px solid var(--accent); background: var(--plot-field, #f6f5f2);
+  color: var(--text-secondary);
+}
+.superseded-banner a { color: var(--accent-text); }
+.crumb a { color: var(--text-muted); text-decoration: none; }
+.crumb a:hover { color: var(--accent-text); }
+h1 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 40px; font-weight: 700; line-height: 1.14; letter-spacing: -0.008em;
+  color: var(--plum-dark); margin: 0 0 18px; max-width: 880px;
+}
+@media (prefers-color-scheme: dark) { h1 { color: var(--plum); } }
+/* The question the page answers. Sized between the title and the body. */
+.q {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 23px; font-weight: 400; line-height: 1.35; color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+/* The answer, in the reader's first ten seconds. */
+.a { font-size: 19px; line-height: 1.55; margin: 0 0 24px; }
+.a b, .a strong { font-weight: 700; }
+.byline {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.55; color: var(--text-muted); letter-spacing: .01em;
+  border-top: 1px solid var(--rule);
+  padding: 11px 0 14px; margin: 0 0 36px;
+}
+.page-dates time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* When the stat strip follows the byline directly, close the gap so the two
+   read as one banded unit rather than as two floating rules. */
+.byline:has(+ .stats) { margin-bottom: 0; }
+.byline + .stats { margin-top: 0; }
+
+/* --- stat strip ---------------------------------------------------------- */
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  max-width: var(--max-text); margin: 30px 0 34px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.stats div {
+  padding: 24px 20px; border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 9px;
+}
+.stats div:last-child { border-right: none; }
+.stats div b {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 42px; font-weight: 700; line-height: 1; letter-spacing: -0.015em;
+  color: var(--evidence); font-variant-numeric: tabular-nums; display: block;
+}
+/* The tile's caption. Scoped to the DIRECT child so it cannot also style a
+   definition tooltip that happens to sit inside the caption: .dfnbody is a span
+   too, and the descendant form caught it, squeezing a 340px popover into the
+   26ch measure at caption size while every other tooltip on the site kept its
+   own. A tooltip is not a caption; it just happens to be nested in one. */
+.stats div > span {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; line-height: 1.45; color: var(--text-secondary);
+  max-width: 26ch; display: block; text-wrap: balance;
+}
+
+/* --- sections ------------------------------------------------------------ */
+/* @quadratic-motif
+   The divider is the curve: the q=.60 expected-score parabola from the site's
+   interactive explainer spans the full reading measure between sections. It
+   has no axis, observations, or labels, so it is a signature, not a result. */
+h2 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 27px; font-weight: 700; line-height: 1.22; letter-spacing: 0;
+  color: var(--text); margin: 3em 0 22px;
+}
+.quadratic-divider {
+  max-width: var(--max-text); margin: 54px 0 24px; line-height: 0;
+}
+.quadratic-divider svg {
+  display: block; width: 100%; height: 58px; overflow: visible;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+.quadratic-divider path {
+  fill: none; stroke: var(--plum); stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.quadratic-divider + h2 { margin-top: 0; }
+h3 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 19.5px; font-weight: 700; line-height: 1.3; margin: 2.1em 0 .5em;
+}
+p { margin: 0 0 18px; }
+
+/* Findings list: no bullet furniture, a bold accent lead-in per item. */
+ul.key { list-style: none; padding: 0; margin: 24px 0 28px;
+         display: flex; flex-direction: column; gap: 17px; }
+ul.key li { font-size: 17.5px; line-height: 1.55; padding-left: 17px;
+            position: relative; }
+ul.key li:before { content: ''; position: absolute; left: 0; top: .62em;
+                   width: 8px; height: 2px; background: var(--accent); }
+ul.key li b, ul.key li strong { font-weight: 700; }
+
+ol { padding-left: 22px; margin: 22px 0 26px; }
+ol li { margin-bottom: 13px; line-height: 1.55; }
+
+/* --- contents ------------------------------------------------------------ */
+.toc {
+  background: transparent; border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong); border-radius: 0;
+  padding: 18px 0 20px; margin: 32px 0;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 14px;
+}
+.toc b {
+  font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--text-muted); display: block; margin-bottom: 10px;
+}
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { margin-bottom: .35em; line-height: 1.45; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--accent-text); }
+
+/* --- tables -------------------------------------------------------------- */
+/* A table too wide for the viewport scrolls on its own axis rather than letting
+   its columns collapse. Same edge fade as the nav row, and for the same reason:
+   without a cue, a column cut at the wrapper's edge reads as a broken layout
+   rather than as "there is more of this table sideways". The fade widths default
+   to zero and are set by script from the wrapper's real scroll position, because
+   whether any given table overflows depends on the viewport, the font and the
+   data — none of which CSS can ask about. No script means no cue, which
+   understates but never misleads. */
+.table-wrap {
+  max-width: var(--max-wide); margin: 22px 0 26px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+table {
+  width: 100%; border-collapse: collapse; margin: 0;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 14px; font-variant-numeric: tabular-nums;
+}
+/* Below this the columns cannot hold their content; the wrapper scrolls
+   instead of the layout collapsing. */
+table { min-width: 460px; }
+table.narrow { min-width: 380px; }
+thead th {
+  text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--text-muted);
+  border-bottom: 1px solid var(--text); padding: 8px 12px 8px 0; vertical-align: bottom;
+}
+tbody td {
+  padding: 12px 12px 12px 0; border-bottom: 1px solid var(--rule);
+  color: var(--text); vertical-align: baseline;
+}
+td.n, th:not(:first-child) { text-align: right; }
+/* Tables with few, short columns look stretched at the wide measure; hold them
+   to the text column so the eye does not cross an empty gap. */
+table.narrow { max-width: var(--max-text); }
+
+/* The gap table is three columns of PROSE, not of numbers, so the defaults are
+   wrong for it in three ways: nothing right-aligns, cells align to their top
+   rather than to a first baseline they no longer share, and the question column
+   is pinned narrow so the two columns a reader actually compares get the room.
+   It is also the one table on the site that earns the wide measure, because the
+   comparison it supports is horizontal. */
+table.gaps { min-width: 640px; }
+table.gaps th, table.gaps td { text-align: left; }
+table.gaps td { vertical-align: top; line-height: 1.5; }
+table.gaps th:first-child, table.gaps td:first-child { width: 23%; }
+table.gaps th:nth-child(2), table.gaps td:nth-child(2) { width: 38.5%; }
+tbody td:last-child { padding-right: 0; }
+thead th:last-child { padding-right: 0; }
+
+.cap {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); margin: -14px 0 26px;
+}
+/* A qualifier inside a table cell: what the headline number in that row was
+   computed from, kept subordinate to it. */
+.sub {
+  display: block; font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 11.5px; line-height: 1.35; color: var(--text-muted); margin-top: 3px;
+  font-weight: 400;
+}
+
+/* --- callouts ------------------------------------------------------------ */
+.note {
+  background: var(--plum-tint); border-left: 3px solid var(--plum);
+  padding: 16px 20px; margin: 26px 0; font-size: 16px; line-height: 1.55;
+  color: var(--text-secondary);
+}
+.note.invalid-note {
+  background: var(--invalid-tint); border-left-color: var(--invalid);
+}
+.note.invalid-note b { color: var(--invalid); }
+.note b {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-text); display: block; margin-bottom: 7px;
+}
+.rule {
+  background: var(--bg-alt); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 18px 22px; margin: 22px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14.5px; line-height: 1.95;
+}
+blockquote {
+  margin: 26px 0; padding: 2px 0 2px 18px; border-left: 3px solid var(--accent);
+  font-style: italic; color: var(--text-secondary);
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em;
+  background: var(--bg-alt); border: 1px solid var(--rule);
+  padding: 1px 5px; border-radius: 3px;
+}
+a { color: var(--accent-text); text-underline-offset: 2px; }
+
+details { margin: 20px 0; font-size: 16px; }
+details summary {
+  cursor: pointer; color: var(--accent-text);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13.5px;
+  font-weight: 500;
+}
+details[open] summary { margin-bottom: 12px; }
+
+/* --- status labels ------------------------------------------------------- */
+.state {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .09em;
+  font-weight: 700; white-space: nowrap;
+}
+.state.done { color: var(--ok); }
+.state.now  { color: var(--accent-text); }
+.state.todo { color: var(--text-muted); }
+/* A gate verdict. "Invalid" is amber rather than red on purpose: an excluded
+   arm is a control working, not a result that came out badly. */
+.state.pass    { color: var(--ok); }
+.state.invalid { color: var(--warn); }
+.state small {
+  display: block; text-transform: none; letter-spacing: 0; font-weight: 400;
+  font-size: 10.5px; color: var(--text-muted); margin-top: 3px;
+}
+
+/* --- fine-tuning explainer ---------------------------------------------- */
+.tune-loop {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  max-width: var(--max-wide); margin: 26px 0 12px;
+  border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong);
+}
+.tune-step {
+  padding: 20px 18px 22px; border-right: 1px solid var(--rule);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13.5px; line-height: 1.48; color: var(--text-secondary);
+}
+.tune-step:last-child { border-right: none; }
+.tune-step b {
+  display: block; margin-bottom: 7px; color: var(--text); font-size: 14px;
+}
+.tune-step span {
+  display: block; color: var(--accent-text); font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px;
+}
+.loop-back {
+  max-width: var(--max-wide); margin: 0 0 28px; color: var(--text-muted);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; text-align: right;
+}
+.arm-table td:first-child { width: 19%; }
+.arm-table td:nth-child(2) { width: 38%; }
+/* This explanatory table contains prose in every column. Center its labels
+   over the full text columns instead of inheriting the numeric-table rule that
+   right-aligns non-first headers. */
+.experiment-map thead th { text-align: center; }
+.eval-matrix { min-width: 680px; }
+.eval-matrix td:first-child { width: 32%; }
+.eval-matrix th:not(:first-child), .eval-matrix td:not(:first-child) {
+  text-align: center;
+}
+
+/* --- the arm and rule catalogues -----------------------------------------
+   Both are reference tables of PROSE, so the numeric defaults are wrong for
+   them the same way they are wrong for .gaps: nothing right-aligns, and cells
+   must align to their tops because rows of different lengths no longer share a
+   first baseline. Both earn the wide measure, because what a reader does here
+   is compare across a row rather than read down a column.
+
+   The minimum widths are the point at which the two prose columns stop being
+   readable side by side, not a device size. Below it the wrapper scrolls, which
+   is the behaviour a data table should have; letting these squeeze instead
+   collapses the arm names, and an arm name broken mid-token reads as a bug. */
+.arm-map, .rule-map { min-width: 700px; }
+.arm-map th, .arm-map td, .rule-map th, .rule-map td { text-align: left; }
+.arm-map td, .rule-map td { vertical-align: top; line-height: 1.5; }
+.arm-map td:first-child { width: 15%; }
+.arm-map td:nth-child(2) { width: 30%; }
+.arm-map td:nth-child(3) { width: 40%; }
+/* The status column is a verdict, not prose. Keep it on one line so the column
+   reads as a scannable stripe down the right-hand edge. */
+.arm-map td:last-child { width: 15%; white-space: nowrap; }
+.arm-map code, .rule-map code { white-space: nowrap; }
+
+/* The rule table's two score columns are formulae: short, the thing being
+   compared, and they must not wrap mid-expression. Everything else yields width
+   to the notes column, which holds the only real prose in the table and so sets
+   every row's height. An earlier split gave the notes 28% and produced six-line
+   rows beside one-word cells, which is a lot of white space for a table whose
+   whole job is to be scanned across. */
+.rule-map td:first-child { width: 12%; }
+.rule-map td:nth-child(2), .rule-map td:nth-child(3) {
+  width: 13%; white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+}
+.rule-map td:nth-child(4) { width: 9%; }
+.rule-map td:nth-child(5) { width: 17%; }
+.rule-map td:last-child { width: 36%; }
+
+@media (max-width: 720px) {
+  .tune-loop { grid-template-columns: 1fr 1fr; }
+  .tune-step:nth-child(2) { border-right: none; }
+  .tune-step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+/* --- replication interval strip -------------------------------------------
+   One row per model: the range the published score implies, the published
+   score itself, and where this run landed. Drawn from CSS custom properties
+   the builder computes, so it is the same numbers as the columns beside it
+   rather than a hand-drawn illustration. Positions are on a shared 65-100%
+   scale, which is what makes the rows comparable to each other. */
+.pi { position: relative; height: 22px; min-width: 132px; }
+.pi:before {
+  content: ''; position: absolute; left: 0; right: 0; top: 10px;
+  height: 1px; background: var(--rule);
+}
+.pi i {
+  position: absolute; display: block; font-style: normal;
+}
+.pi .band {
+  left: var(--lo); width: calc(var(--hi) - var(--lo));
+  top: 7px; height: 8px; background: var(--evidence-band); border-radius: 1px;
+}
+.pi .pub { left: var(--pub); top: 2px; width: 1px; height: 18px; background: var(--evidence); }
+.pi .ours {
+  left: var(--ours); top: 6px; width: 10px; height: 10px; margin-left: -5px;
+  border-radius: 50%; background: var(--ok); border: 2px solid var(--bg);
+}
+.pi.miss .ours { background: var(--warn); }
+/* The legend uses the same three marks at the same sizes as the strip. */
+.pi-legend {
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12px; color: var(--text-secondary); margin: -12px 0 26px;
+}
+.pi-legend span { display: flex; gap: 7px; align-items: center; }
+.pi-legend em { display: block; font-style: normal; }
+.pi-legend .band { width: 24px; height: 8px; background: var(--evidence-band); border-radius: 1px; }
+.pi-legend .pub { width: 1px; height: 15px; background: var(--evidence); }
+.pi-legend .ours { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
+
+/* --- footnote popovers --------------------------------------------------- */
+.fn { position: relative; }
+.fn button {
+  font: inherit; font-size: 10px; line-height: 1; vertical-align: super;
+  border: 1px solid var(--rule-strong); background: var(--bg-alt);
+  color: var(--text-muted); border-radius: 50%; width: 16px; height: 16px;
+  padding: 0; cursor: pointer;
+}
+.fn button:hover { color: var(--accent-text); border-color: var(--accent); }
+.fn .fnbody { display: none; }
+.fn:focus-within .fnbody, .fn:hover .fnbody {
+  display: block; position: absolute; left: 0; top: 22px; width: min(340px, 72vw);
+  background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 12px 14px; z-index: 9; box-shadow: 0 6px 22px rgba(0,0,0,.13);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.5; font-style: normal; color: var(--text-secondary);
+}
+
+/* --- inline definitions ---------------------------------------------------
+   A dotted underline under a term of art. The cue is static because the claim
+   it makes is static: there IS a definition attached to this word, at every
+   viewport, whether or not anything is hovering it.
+
+   The body is clipped rather than display:none so it stays in the
+   accessibility tree; the open state is expressed by undoing the clip. Both
+   :hover and :focus are listed because the keyboard route is not optional, and
+   :focus-within catches focus landing on anything the definition may contain. */
+.dfn {
+  font-style: normal; position: relative; cursor: help;
+  border-bottom: 1px dotted var(--rule-strong);
+}
+.dfn:hover, .dfn:focus, .dfn:focus-within { border-bottom-color: var(--accent); }
+.dfn:focus { outline: none; }
+.dfn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dfnbody {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.dfn:hover .dfnbody, .dfn:focus .dfnbody, .dfn:focus-within .dfnbody {
+  left: 0; top: 1.75em; width: min(340px, 72vw); height: auto;
+  overflow: visible; clip-path: none; white-space: normal;
+  background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 12px 14px; z-index: 9; box-shadow: 0 6px 22px rgba(0,0,0,.13);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.5; font-style: normal; font-weight: 400;
+  color: var(--text-secondary);
+  /* A tooltip is a paragraph, and it reads the same wherever the term happens to
+     sit. Stated rather than inherited because a defined term can appear inside
+     centred furniture, such as a stat tile caption, where inheriting the
+     surrounding alignment would centre four lines of prose. */
+  text-align: left;
+}
+
+/* --- operational records --------------------------------------------------
+   The style guide names four registers this site writes in, and the operator
+   ledger is one of them: spend against a ceiling, what is authorized next, what
+   needs a human. That register kept leaking into narrative prose, where a
+   reader following an argument suddenly hits an authorization decision.
+
+   These blocks are folded and labelled rather than deleted. The numbers are
+   part of the argument that this work is auditable, so hiding them would cost
+   more than the interruption does. The heading and its id stay OUTSIDE the
+   details, so the section rail still lands on something visible and a fragment
+   link never scrolls to a collapsed box. */
+details.operational {
+  border: 1px solid var(--rule); border-left: 3px solid var(--text-muted);
+  background: var(--bg-alt); border-radius: 3px;
+  padding: 0 20px; margin: 22px 0; max-width: var(--max-text);
+}
+details.operational > summary {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-muted); cursor: pointer; padding: 13px 0; list-style: none;
+}
+details.operational > summary::-webkit-details-marker { display: none; }
+/* The marker is drawn rather than inherited so it can rotate, and because the
+   native triangle sits at a different baseline in every browser. */
+details.operational > summary::before {
+  content: '\25B8'; display: inline-block; margin-right: 9px;
+  transition: transform .12s ease; color: var(--text-muted);
+}
+details.operational[open] > summary::before { transform: rotate(90deg); }
+details.operational > summary:hover { color: var(--accent-text); }
+details.operational > summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+details.operational > *:not(summary) { font-size: 16px; }
+details.operational > *:last-child { margin-bottom: 18px; }
+details.operational .note { margin-left: 0; margin-right: 0; }
+
+/* The internal design lab is not part of the public argument, and the menu
+   should say so before a reader clicks it. */
+.scroll-nav a.internal .nav-full::after,
+.scroll-nav a.internal .nav-abbr::after {
+  content: 'INTERNAL'; display: inline-block; margin-left: 6px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: .09em;
+  padding: 1px 4px; border-radius: 2px; vertical-align: 1.5px;
+  border: 1px solid color-mix(in srgb, var(--on-plum) 40%, transparent);
+  color: color-mix(in srgb, var(--on-plum) 66%, transparent);
+}
+
+/* --- glossary -------------------------------------------------------------
+   A definition list, not a table: the terms are looked up one at a time rather
+   than compared down a column, and a table would invite a reader to scan for a
+   pattern across rows that is not there. */
+/* Definitions are prose and take the prose measure. A dl does not inherit the
+   max-width that p carries, so without this the glossary sets 25% wider than
+   every paragraph above it on the same page. */
+.glossary { margin: 26px 0 0; max-width: var(--max-text); }
+.glossary dt {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text); margin-top: 22px;
+}
+.glossary dd {
+  margin: 5px 0 0; font-size: 16.5px; line-height: 1.55;
+  color: var(--text-secondary);
+}
+.glossary dd code { font-size: .88em; }
+
+/* --- footer -------------------------------------------------------------- */
+footer {
+  border-top: 4px solid var(--plum); margin-top: 64px; padding: 32px 0 80px;
+  background: var(--plum-dark);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13.5px; line-height: 1.6;
+  color: color-mix(in srgb, var(--on-plum) 78%, transparent);
+}
+footer p { max-width: var(--max-text); margin: 0 0 12px; }
+footer b { color: var(--on-plum); }
+.footer-nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px;
+              padding-top: 16px; border-top: 1px solid rgba(255,255,255,.22); }
+.footer-nav a { color: color-mix(in srgb, var(--on-plum) 76%, transparent); text-decoration: none; }
+.footer-nav a:hover { color: var(--on-plum); }
+.cite {
+  background: rgba(255,255,255,.06); border-left: 3px solid var(--plum);
+  padding: 14px 18px; margin-top: 22px; font-size: 13px;
+  color: color-mix(in srgb, var(--on-plum) 78%, transparent);
+}
+
+/* --- reference lists ------------------------------------------------------
+   Citations are apparatus, not argument. They set in the metadata sans at a
+   smaller size so a reader following the thread can skip a whole block on
+   sight, and hang their first line so every entry starts with an author name
+   at the same left edge — which is the only thing anyone scans a reference
+   list for. Deliberately NOT numbered: nothing in the prose cites by number,
+   and numbering would imply a cross-reference the page does not have. */
+ul.refs {
+  list-style: none; padding: 0; margin: 16px 0 30px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+ul.refs li {
+  /* Hanging indent: pad the whole entry in, pull the first line back out. */
+  padding-left: 19px; text-indent: -19px;
+  margin-bottom: 9px;
+  font-size: 14px; line-height: 1.5; color: var(--text-secondary);
+}
+ul.refs li b { color: var(--text); font-weight: 600; }
+/* The gloss is what the work gives THIS project, and it is the part worth
+   reading if you read only one part, so it stays in the body colour while the
+   bibliographic detail around it recedes. */
+ul.refs li .gloss { color: var(--text); }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  h1 { font-size: 31px; }
+  h2 { font-size: 23px; }
+  .quadratic-divider { margin: 42px 0 20px; }
+  .quadratic-divider svg { height: 46px; }
+  .q { font-size: 20px; }
+  .stats { grid-template-columns: 1fr; }
+  .stats div { border-right: none; border-bottom: 1px solid var(--rule);
+               padding: 18px 0; }
+  .stats div:last-child { border-bottom: none; }
+  .stats div b { font-size: 40px; }
+  .crumb { padding-top: 22px; }
+  .wrap.side { padding-top: 48px; }
+  table { font-size: 13px; }
+  .cap { margin-top: -8px; }
+  .tune-loop { grid-template-columns: 1fr; }
+  .tune-step { border-right: none; border-bottom: 1px solid var(--rule); }
+  .tune-step:nth-child(2) { border-right: none; }
+  .tune-step:last-child { border-bottom: none; }
+  .loop-back { text-align: left; }
+  /* The gate table's verdict column is the whole point of the table, and at
+     this width the interval strip pushes it behind a horizontal scroll. Drop
+     the strip: it is a picture of the two number columns either side of it, so
+     nothing unique is lost, and the legend below explains its absence. */
+  table.gate { min-width: 0; }
+  table.gate th:nth-child(4), table.gate td:nth-child(4) { display: none; }
+  .pi-legend { display: none; }
+}
+
+
+.dose-chart { margin: 26px 0 34px; max-width: 720px; }
+.dose-chart svg { width: 100%; height: auto; overflow: visible; }
+.dose-chart figcaption {
+  margin-top: 10px; color: var(--text-secondary);
+  font-family: 'Inter', ui-sans-serif, sans-serif; font-size: 13px; line-height: 1.5;
+}
+.dc-grid { stroke: var(--rule); stroke-width: 1; }
+/* The baseline is a reference level, not a sixth series, so it is drawn lighter
+   and finer than any line. It previously shared the accuracy-only arm's grey,
+   which made the control look like its own benchmark. */
+.dc-base { stroke: #b9b3ad; stroke-width: 1; stroke-dasharray: 3 3; }
+.dc-baselabel, .dc-tick, .dc-axis {
+  font-family: 'Inter', ui-sans-serif, sans-serif; fill: var(--text-muted);
+}
+.dc-tick { font-size: 10px; }
+.dc-axis, .dc-baselabel { font-size: 10.5px; letter-spacing: .04em; }
+.dc-line { fill: none; stroke-width: 1.9; stroke-linejoin: round; stroke-linecap: round; }
+.dc-keys { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 12px; }
+.dc-key {
+  font-family: 'Inter', ui-sans-serif, sans-serif; font-size: 12px; font-weight: 500;
+  color: var(--text-secondary);
+}
+.dc-key::before {
+  content: ""; display: inline-block; width: 15px; height: 2px;
+  margin-right: 7px; vertical-align: middle; background: currentColor;
+}
+/* Five objectives, ordered from the accuracy-only control through increasing
+   assertion cost, so the palette reads as a scale rather than five unrelated
+   categories. */
+.dc-s0 { stroke: #57606b; color: #4d555f; }
+.dc-s1 { stroke: var(--accent); color: var(--accent-text); }
+.dc-s2 { stroke: #4c8f7a; color: #3d7a66; }
+.dc-s3 { stroke: #3f6ea8; color: #35608f; }
+.dc-s4 { stroke: #a8743f; color: #8f6135; }
+circle.dc-dot { stroke: none; }
+circle.dc-s0 { fill: #57606b; }
+/* The site right-aligns every header after the first, which is correct when
+   the column holds numbers and wrong when it holds sentences. These two tables
+   are all prose, so their headers follow their cells. Scoped rather than fixed
+   globally: every other table on the site is numeric and already correct. */
+.factor-table th:not(:first-child) { text-align: left; }
+.dl-zero { stroke: var(--text); stroke-width: 1.2; }
+.dl-rule { stroke: var(--rule); stroke-width: 1; }
+.dl-row, .dl-tick, .dl-better {
+  font-family: 'Inter', ui-sans-serif, sans-serif; fill: var(--text-secondary);
+}
+.dl-row { font-size: 12.5px; }
+.dl-tick { font-size: 10.5px; fill: var(--text-muted); }
+.dl-better { font-size: 10.5px; fill: var(--text-muted); letter-spacing: .04em; }
+/* Dose is encoded by fill darkness rather than hue, so the three marks read as
+   ordered stages of one thing instead of three unrelated categories. */
+.dl-key { font-family: 'Inter', ui-sans-serif, sans-serif; font-size: 12px; color: var(--text-secondary); }
+.dl-key::before {
+  content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  margin-right: 7px; vertical-align: middle; background: currentColor;
+}
+circle.dl-d0 { fill: #c9b3c2; } .dl-key.dl-d0 { color: #b498ab; }
+circle.dl-d1 { fill: #96738a; } .dl-key.dl-d1 { color: #8a6880; }
+circle.dl-d2 { fill: var(--accent); } .dl-key.dl-d2 { color: var(--accent-text); }
+circle.dc-s1 { fill: var(--accent); }
+circle.dc-s2 { fill: #4c8f7a; }
+circle.dc-s3 { fill: #3f6ea8; }
+circle.dc-s4 { fill: #a8743f; }
+
+.sp-noise { fill: #ece7e1; }
+.sp-link { stroke: #c3bcb4; stroke-width: 1.4; }
+.sp-a { fill: var(--accent); stroke: none; }
+.sp-b { fill: var(--bg); stroke: var(--accent); stroke-width: 1.9; }
+.sp-group, .sp-row {
+  font-family: 'Inter', ui-sans-serif, sans-serif; fill: var(--text-secondary);
+}
+.sp-group { font-size: 11px; font-weight: 700; letter-spacing: .09em;
+            text-transform: uppercase; fill: var(--text-muted); }
+.sp-row { font-size: 12px; }
+.sp-key { font-family: 'Inter', ui-sans-serif, sans-serif; font-size: 12px;
+          color: var(--text-secondary); }
+.sp-key::before {
+  content: ""; display: inline-block; width: 10px; height: 10px;
+  border-radius: 50%; margin-right: 7px; vertical-align: middle;
+}
+.sp-key-a::before { background: var(--accent); }
+.sp-key-b::before { background: var(--bg); box-shadow: inset 0 0 0 2px var(--accent); }
+.sp-key-n::before { background: #ece7e1; border-radius: 2px; }
+/* The two role tables are prose, not numbers, so their headers follow their
+   cells rather than the site's default right-alignment for data columns. */
+.role-table th:not(:first-child) { text-align: left; }
+/* A cell whose change is smaller than the repeat-measurement band. Marked
+   rather than hidden: the reader should see that the measurement was made and
+   came back inconclusive, which is different from it not being reported. */
+.within-noise { color: var(--text-muted); }
+/* The matrix has two rows per training objective, one per run, and the whole
+   point of the table is comparing those two rows to each other. Without a tint
+   the row rule between them reads as a separator between unrelated entries,
+   which is the opposite of what a reader should do with them. Banding by PAIR
+   rather than by row is what makes the unit of comparison visible. */
+.matrix-table tbody tr:nth-child(4n+1) td,
+.matrix-table tbody tr:nth-child(4n+2) td { background: var(--bg-alt); }
+</style></head>
+<body class="with-section-nav" data-created="2026-08-20 01:05 ET"
+      data-last-updated="2026-08-17 01:24 ET"
+      data-style-updated="2026-09-03 10:00 ET"
+      data-content-updated="2026-08-17 01:24 ET"
+      data-structure-updated="2026-09-03 10:00 ET"
+      data-commit="f64c8ca">
+
+<nav class="scroll-nav" id="scrollnav" aria-label="Site"><div class="scroll-nav-track"></div><div class="scroll-nav-progress" id="scrollprogress"></div><div class="scroll-nav-inner"><a class="scroll-nav-title" href="index.html">Below Zero</a><div class="scroll-nav-links"><a href="essay.html"><span class="nav-full">The essay</span><span class="nav-abbr">Essay</span></a><span class="nav-group" aria-hidden="true">Deep dives</span><a href="training.html"><span class="nav-full">Fine-tuning</span><span class="nav-abbr">Tuning</span></a><a href="dose-response.html"><span class="nav-full">Dose response</span><span class="nav-abbr">Dose</span></a><a href="replication.html" class="here" aria-current="page"><span class="nav-full">Replication</span><span class="nav-abbr">Seeds</span></a><a href="validation.html"><span class="nav-full">Harness validation</span><span class="nav-abbr">Validation</span></a><span class="nav-group" aria-hidden="true">Reference</span><a href="approach.html"><span class="nav-full">Approach &amp; glossary</span><span class="nav-abbr">Approach</span></a><a href="related-work.html"><span class="nav-full">What this builds on</span><span class="nav-abbr">Sources</span></a></div></div></nav>
+<nav class="section-nav" aria-label="On this page"><div class="section-nav-inner"><span class="section-nav-label">On this page</span><div class="section-nav-links"><a href="#design">Three roles</a><a href="#versions">Trained on</a><a href="#measures">Scored with</a><a href="#matrix">The matrix</a><a href="#replicated">What replicated</a><a href="#mechanism">Mechanism</a><a href="#limits">Limits</a></div></div></nav>
+
+<div class="wrap side">
+<h1>What survived a second training run</h1>
+<p class="q">Three reward objectives, each trained twice from a different random seed and measured against the untuned model it started from. The directions replicated. The magnitudes did not. This page states which is which, and separates what a model was trained on from what its answers were scored with, because conflating those two is how a result like this gets misread.</p>
+<p class="byline page-dates">By Ramon Gonzalez &middot; Created <time datetime="2026-08-20T01:05-04:00">2026-08-20 01:05 ET</time> &middot; Last updated <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time><span class="page-dates-detail">Content <time datetime="2026-08-17T01:24-04:00">2026-08-17 01:24 ET</time> &middot; Style <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time> &middot; Organization <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time></span></p>
+
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="design">A scoring rule can play three different roles</h2>
+<p>The same rule, say the quadratic score, can be the thing a model is
+<em>told</em> about, the thing it is <em>trained</em> on, or the thing its answers
+are <em>scored</em> with afterwards. Those are three separate questions with three
+separate answers, and most confusion about work like this comes from reading a
+result about one of them as a result about another.</p>
+<div class="table-wrap"><table class="choice-table role-table"><thead><tr><th>where a rule appears</th><th>the question that asks</th><th>on this page</th></tr></thead><tbody><tr><td><b>Announced in the prompt</b></td><td>Does telling a model how it will be scored change what it does?</td><td><b>Held fixed.</b> Nothing was announced. Every answer here was produced under a neutral prompt.</td></tr><tr><td><b>Used as the training reward</b></td><td>Does training against the rule change the policy itself?</td><td><b>Varies.</b> This is the experiment: three rewards, two runs each.</td></tr><tr><td><b>Applied to stored answers afterwards</b></td><td>How does the resulting policy score under any rule, including ones it never optimised?</td><td><b>Varies, and costs nothing.</b> Stored responses are rescored offline under four rules.</td></tr></tbody></table></div>
+<p>Because the third role is applied after generation to stored responses, it is free
+and it is unlimited: the same answers can be scored under any number of rules without
+running the model again. This page uses two of them, and only two. Everything below
+reports plain accuracy, which is what benchmarks do today, and the quadratic score,
+which is what this project argues they should do instead. Nothing here is managed,
+decided or stopped against any other rule, so putting more columns on the page would
+ask the reader to price numbers nobody acts on.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="versions">What each version was trained on</h2>
+<p>Three rewards were trained, twice each. The difference between the first two is
+exactly one thing: whether the probability the model states changes what it earns.</p>
+<div class="table-wrap"><table class="choice-table role-table"><thead><tr><th>version</th><th>reward for one answer</th><th>does the stated probability change the reward?</th><th>cost to assert</th><th>so the model is rewarded for</th></tr></thead><tbody><tr><td><b>Untuned base</b></td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>nothing. This is the model everything else started from.</td></tr><tr><td><b>Accuracy only</b></td><td>1 if the answer is right, 0 if wrong</td><td>No. It is ignored entirely.</td><td>None</td><td>answering correctly. Being wrong costs nothing, and saying &ldquo;I don't know&rdquo; earns the same 0 as a wrong answer.</td></tr><tr><td><b>Confidence-aware</b></td><td>2p &minus; p&sup2; if right, &minus;p&sup2; if wrong</td><td>Yes. It is the whole difference from the row above.</td><td>None</td><td>stating the probability it genuinely holds, and being right. Overstating confidence on a wrong answer is charged for.</td></tr><tr><td><b>Confidence-aware + assertion cost</b></td><td>the same, minus 0.09 for answering at all</td><td>Yes, and a flat charge applies on top.</td><td>0.09</td><td>the same, except every answer costs 0.09 whether or not it is right, so silence beats answering below about 30% confidence.</td></tr></tbody></table></div>
+<p>Each was trained twice, at five doses: 125, 250, 300, 375 and 500 steps. Same frozen
+training pool, same 100 held-out questions, same neutral prompt.</p>
+<p><b>What differs between the two runs is narrower than "the random seed", and saying
+so matters for how wide the gaps below should be read.</b> The two runs saw the same
+questions in the same order and started from the same weights. The provider's sampler
+draws the training rollouts without a fixed seed, deliberately: pinning one made all
+eight samples in a group come back identical, which erases the group-relative
+comparison the training method runs on. So the sampling stream is the only thing that
+diverged.</p>
+<p>That makes these two runs a <em>lower bound</em> on how much a retrained model
+moves. The two variance sources usually largest in this kind of training, which
+questions arrive in which order and how the adapter is initialised, are held at zero
+here. A reader should treat the gaps below as the least a rerun would produce, not the
+most. It also means neither run can be reproduced exactly, only repeated.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="measures">What a score change is measured with</h2>
+<p>Two measures, reported for every version at every dose. The distance between them
+is the argument: they agree about the confidence-aware versions and disagree about
+the accuracy-only one, and that disagreement is the whole result.</p>
+<p><b>Plain accuracy</b> is what benchmarks already report. A right answer scores 1,
+and a wrong answer and a silence both score 0. <b>The quadratic score</b> is the
+proposed replacement. It is strictly proper, which is a technical property with a
+plain meaning: a model gets its best expected score by reporting the probability it
+actually holds, so no confidence it can claim beats telling the truth.</p>
+<div class="table-wrap"><table class="choice-table role-table"><thead><tr><th>scoring rule</th><th>what it charges for</th><th>repeat-measurement band</th></tr></thead><tbody><tr><td><b>Plain accuracy</b></td><td>Nothing. A wrong answer and a silence both score 0.</td><td class="n">&plusmn;0.005</td></tr><tr><td><b>Quadratic</b></td><td>Confident errors, in proportion to the square of the confidence.</td><td class="n">&plusmn;0.011</td></tr></tbody></table></div>
+<p>The last column is the part that makes the rest of this page readable. The untuned
+base was re-evaluated once per stage: the same weights, the same 100 questions, the
+same prompt. It should have returned the same number every time. It did not.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>when the base was measured</th><th>Plain accuracy</th><th>Quadratic</th></tr></thead><tbody><tr><td>Run 1, at 125 steps</td><td class="n">0.560</td><td class="n">0.322</td></tr><tr><td>Run 1, at 250 steps</td><td class="n">0.560</td><td class="n">0.324</td></tr><tr><td>Run 1, at 500 steps</td><td class="n">0.550</td><td class="n">0.310</td></tr><tr><td>Run 2, at 125 steps</td><td class="n">0.550</td><td class="n">0.307</td></tr><tr><td>Run 2, at 250 steps</td><td class="n">0.560</td><td class="n">0.322</td></tr><tr><td>Run 2, at 300 steps</td><td class="n">0.560</td><td class="n">0.323</td></tr><tr><td>Run 2, at 375 steps</td><td class="n">0.560</td><td class="n">0.329</td></tr><tr><td>Run 2, at 500 steps</td><td class="n">0.560</td><td class="n">0.324</td></tr><tr><td><b>Spread across all 8</b></td><td class="n"><b>0.010</b></td><td class="n"><b>0.021</b></td></tr></tbody></table></div>
+<p><b>Both runs measured this independently and they agree.</b> Run 1 re-evaluated its
+base at three stages and spanned 0.014 on the quadratic score; run 2 did it at five and
+spanned 0.021. These are draws of the same quantity, because the untuned base is one
+fixed model answering one fixed set of questions, so all eight pool into a single floor:
+a standard deviation of 0.007 and a full range of 0.021. The floor is measured, not
+assumed.</p>
+<p>It is worth being exact about what this floor is, because it is not sampling
+randomness. Generation is greedy, at temperature zero, with a fixed seed, so these
+eight passes should have been identical. They differ because floating-point addition
+is not associative and the work is batched differently each time, which flips the
+answer on items where the top two options are nearly tied. The signature is visible in
+the responses: about 90 of the 100 items are identical every single time, and
+<b>two items carry roughly 85% of the spread</b>, one of them a single multiple-choice
+letter flipping from A to C. So this is a handful of coin flips on knife-edge
+questions rather than a smooth bell curve, and a &plusmn; band is a convenient summary
+of something lumpier than that notation suggests.</p>
+<p>Practically: a change of 0.02 in the quadratic column is roughly the size of the gap
+between measuring one unchanged model twice. <b>Any number smaller than its measure's
+band should be read as "no detectable change", not as a small effect.</b> The band is
+drawn on the charts further down and greyed in a table where it applies. Every averaged
+cell in the next section clears its band; several individual doses do not, which is a
+distinction a single averaged number would hide.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="matrix">Trained on, against scored by</h2>
+<p>Rows are what the model was trained on. Columns are what its stored answers were
+then scored with. Each cell is the change from that run's own untuned base,
+averaged over the five doses.</p>
+<div class="table-wrap"><table class="choice-table matrix-table"><thead><tr><th>trained on</th><th>run</th><th>Plain accuracy</th><th>Quadratic</th></tr></thead><tbody><tr><td><b>Accuracy only</b></td><td>Run 1</td><td class="n">+0.058</td><td class="n">-0.064</td></tr><tr><td></td><td>Run 2</td><td class="n">+0.016</td><td class="n">-0.105</td></tr><tr><td><b>Confidence-aware</b></td><td>Run 1</td><td class="n">+0.086</td><td class="n">+0.094</td></tr><tr><td></td><td>Run 2</td><td class="n">+0.038</td><td class="n">+0.050</td></tr><tr><td><b>Confidence-aware + assertion cost</b></td><td>Run 1</td><td class="n">+0.050</td><td class="n">+0.085</td></tr><tr><td></td><td>Run 2</td><td class="n">+0.018</td><td class="n">+0.035</td></tr></tbody></table></div>
+<p>Read down a column, not across a row. The two measures have different natural
+scales, so the accuracy and quadratic numbers in one row are not comparable to each
+other in size, only in sign.</p>
+<p>The top row-pair is the result, and it is the only place the two columns
+disagree. <b>Training on accuracy alone raises plain accuracy and lowers the
+quadratic score, in both runs.</b> A benchmark reporting only the first column would
+record that trade as an unambiguous improvement, and would be measuring a model that
+got worse at knowing what it knows.</p>
+<p>Both confidence-aware row-pairs are positive in both columns in both runs. Pricing
+confidence did not cost accuracy in either trajectory, which is the claim worth
+carrying forward: the trade the first row shows is a property of the accuracy-only
+reward, not a price every version pays.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="replicated">What replicated and what did not</h2>
+<p>The question a second run exists to answer is whether the direction holds, so that
+is what this counts: for each version, under each measure, how many of the five doses
+moved the same way in both runs.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>trained on</th><th>Plain accuracy</th><th>Quadratic</th></tr></thead><tbody><tr><td><b>Accuracy only</b></td><td class="n">5/5</td><td class="n">5/5</td></tr><tr><td><b>Confidence-aware</b></td><td class="n">5/5</td><td class="n">5/5</td></tr><tr><td><b>Confidence-aware + assertion cost</b></td><td class="n">4/5</td><td class="n">3/5</td></tr></tbody></table></div>
+<p>Now the same measurements drawn, so the gap between the runs is visible rather
+than summarised. The shaded band is the repeat-measurement floor from above.</p>
+<figure class="dose-chart" id="chart-seed-quadratic"><svg viewBox="0 0 680 561" role="img" aria-label="Every version at every dose, measured twice. The two runs differ only in the random seed the training used. Accuracy-only training lands left of zero in both runs at all five doses; the two confidence-aware versions land right of zero at eighteen of their twenty. The pairs are wide apart, so the size of the effect is a property of the run, not of the reward."><rect class="sp-noise" x="374.1" y="24" width="27.9" height="517" /><line class="dl-zero" x1="388.0" y1="24" x2="388.0" y2="539" /><text class="dl-tick" x="186.3" y="18" text-anchor="middle">-0.16</text><text class="dl-tick" x="388.0" y="18" text-anchor="middle">+0.00</text><text class="dl-tick" x="589.7" y="18" text-anchor="middle">+0.16</text><text class="dl-better" x="388.0" y="556" text-anchor="middle">quadratic score, change from that run&#x27;s own untuned base</text><text class="dl-better" x="589.7" y="556" text-anchor="middle">better &#8594;</text><text class="sp-group" x="20" y="58.0">Accuracy only</text><line class="dl-rule" x1="20" y1="64.0" x2="626" y2="64.0" /><text class="sp-row" x="136" y="87.5" text-anchor="end">125 steps</text><line class="sp-link" x1="286.6" y1="83.5" x2="291.7" y2="83.5" /><circle class="sp-a" cx="286.6" cy="83.5" r="4.6"><title>Accuracy only, 125 steps, Run 1 (seed 0): -0.078</title></circle><circle class="sp-b" cx="291.7" cy="83.5" r="4.6"><title>Accuracy only, 125 steps, Run 2 (seed 1): -0.074</title></circle><text class="sp-row" x="136" y="114.5" text-anchor="end">250 steps</text><line class="sp-link" x1="306.8" y1="110.5" x2="255.7" y2="110.5" /><circle class="sp-a" cx="306.8" cy="110.5" r="4.6"><title>Accuracy only, 250 steps, Run 1 (seed 0): -0.063</title></circle><circle class="sp-b" cx="255.7" cy="110.5" r="4.6"><title>Accuracy only, 250 steps, Run 2 (seed 1): -0.102</title></circle><text class="sp-row" x="136" y="141.5" text-anchor="end">300 steps</text><line class="sp-link" x1="331.5" y1="137.5" x2="254.3" y2="137.5" /><circle class="sp-a" cx="331.5" cy="137.5" r="4.6"><title>Accuracy only, 300 steps, Run 1 (seed 0): -0.043</title></circle><circle class="sp-b" cx="254.3" cy="137.5" r="4.6"><title>Accuracy only, 300 steps, Run 2 (seed 1): -0.103</title></circle><text class="sp-row" x="136" y="168.5" text-anchor="end">375 steps</text><line class="sp-link" x1="337.3" y1="164.5" x2="247.6" y2="164.5" /><circle class="sp-a" cx="337.3" cy="164.5" r="4.6"><title>Accuracy only, 375 steps, Run 1 (seed 0): -0.039</title></circle><circle class="sp-b" cx="247.6" cy="164.5" r="4.6"><title>Accuracy only, 375 steps, Run 2 (seed 1): -0.108</title></circle><text class="sp-row" x="136" y="195.5" text-anchor="end">500 steps</text><line class="sp-link" x1="264.4" y1="191.5" x2="210.3" y2="191.5" /><circle class="sp-a" cx="264.4" cy="191.5" r="4.6"><title>Accuracy only, 500 steps, Run 1 (seed 0): -0.095</title></circle><circle class="sp-b" cx="210.3" cy="191.5" r="4.6"><title>Accuracy only, 500 steps, Run 2 (seed 1): -0.137</title></circle><text class="sp-group" x="20" y="223.0">Confidence-aware</text><line class="dl-rule" x1="20" y1="229.0" x2="626" y2="229.0" /><text class="sp-row" x="136" y="252.5" text-anchor="end">125 steps</text><line class="sp-link" x1="511.2" y1="248.5" x2="449.7" y2="248.5" /><circle class="sp-a" cx="511.2" cy="248.5" r="4.6"><title>Confidence-aware, 125 steps, Run 1 (seed 0): +0.095</title></circle><circle class="sp-b" cx="449.7" cy="248.5" r="4.6"><title>Confidence-aware, 125 steps, Run 2 (seed 1): +0.047</title></circle><text class="sp-row" x="136" y="279.5" text-anchor="end">250 steps</text><line class="sp-link" x1="537.5" y1="275.5" x2="504.1" y2="275.5" /><circle class="sp-a" cx="537.5" cy="275.5" r="4.6"><title>Confidence-aware, 250 steps, Run 1 (seed 0): +0.115</title></circle><circle class="sp-b" cx="504.1" cy="275.5" r="4.6"><title>Confidence-aware, 250 steps, Run 2 (seed 1): +0.089</title></circle><text class="sp-row" x="136" y="306.5" text-anchor="end">300 steps</text><line class="sp-link" x1="557.0" y1="302.5" x2="436.5" y2="302.5" /><circle class="sp-a" cx="557.0" cy="302.5" r="4.6"><title>Confidence-aware, 300 steps, Run 1 (seed 0): +0.130</title></circle><circle class="sp-b" cx="436.5" cy="302.5" r="4.6"><title>Confidence-aware, 300 steps, Run 2 (seed 1): +0.037</title></circle><text class="sp-row" x="136" y="333.5" text-anchor="end">375 steps</text><line class="sp-link" x1="454.0" y1="329.5" x2="412.7" y2="329.5" /><circle class="sp-a" cx="454.0" cy="329.5" r="4.6"><title>Confidence-aware, 375 steps, Run 1 (seed 0): +0.051</title></circle><circle class="sp-b" cx="412.7" cy="329.5" r="4.6"><title>Confidence-aware, 375 steps, Run 2 (seed 1): +0.019</title></circle><text class="sp-row" x="136" y="360.5" text-anchor="end">500 steps</text><line class="sp-link" x1="490.1" y1="356.5" x2="461.8" y2="356.5" /><circle class="sp-a" cx="490.1" cy="356.5" r="4.6"><title>Confidence-aware, 500 steps, Run 1 (seed 0): +0.079</title></circle><circle class="sp-b" cx="461.8" cy="356.5" r="4.6"><title>Confidence-aware, 500 steps, Run 2 (seed 1): +0.057</title></circle><text class="sp-group" x="20" y="388.0">Confidence-aware + assertion cost</text><line class="dl-rule" x1="20" y1="394.0" x2="626" y2="394.0" /><text class="sp-row" x="136" y="417.5" text-anchor="end">125 steps</text><line class="sp-link" x1="589.7" y1="413.5" x2="425.8" y2="413.5" /><circle class="sp-a" cx="589.7" cy="413.5" r="4.6"><title>Confidence-aware + assertion cost, 125 steps, Run 1 (seed 0): +0.155</title></circle><circle class="sp-b" cx="425.8" cy="413.5" r="4.6"><title>Confidence-aware + assertion cost, 125 steps, Run 2 (seed 1): +0.029</title></circle><text class="sp-row" x="136" y="444.5" text-anchor="end">250 steps</text><line class="sp-link" x1="555.9" y1="440.5" x2="474.5" y2="440.5" /><circle class="sp-a" cx="555.9" cy="440.5" r="4.6"><title>Confidence-aware + assertion cost, 250 steps, Run 1 (seed 0): +0.129</title></circle><circle class="sp-b" cx="474.5" cy="440.5" r="4.6"><title>Confidence-aware + assertion cost, 250 steps, Run 2 (seed 1): +0.067</title></circle><text class="sp-row" x="136" y="471.5" text-anchor="end">300 steps</text><line class="sp-link" x1="526.2" y1="467.5" x2="402.6" y2="467.5" /><circle class="sp-a" cx="526.2" cy="467.5" r="4.6"><title>Confidence-aware + assertion cost, 300 steps, Run 1 (seed 0): +0.106</title></circle><circle class="sp-b" cx="402.6" cy="467.5" r="4.6"><title>Confidence-aware + assertion cost, 300 steps, Run 2 (seed 1): +0.011</title></circle><text class="sp-row" x="136" y="498.5" text-anchor="end">375 steps</text><line class="sp-link" x1="443.4" y1="494.5" x2="383.9" y2="494.5" /><circle class="sp-a" cx="443.4" cy="494.5" r="4.6"><title>Confidence-aware + assertion cost, 375 steps, Run 1 (seed 0): +0.043</title></circle><circle class="sp-b" cx="383.9" cy="494.5" r="4.6"><title>Confidence-aware + assertion cost, 375 steps, Run 2 (seed 1): -0.003</title></circle><text class="sp-row" x="136" y="525.5" text-anchor="end">500 steps</text><line class="sp-link" x1="378.1" y1="521.5" x2="480.5" y2="521.5" /><circle class="sp-a" cx="378.1" cy="521.5" r="4.6"><title>Confidence-aware + assertion cost, 500 steps, Run 1 (seed 0): -0.008</title></circle><circle class="sp-b" cx="480.5" cy="521.5" r="4.6"><title>Confidence-aware + assertion cost, 500 steps, Run 2 (seed 1): +0.071</title></circle></svg><div class="dc-keys"><span class="sp-key sp-key-a">Run 1 (seed 0)</span><span class="sp-key sp-key-b">Run 2 (seed 1)</span><span class="sp-key sp-key-n">repeat-measurement band, &plusmn;0.011</span></div><figcaption>Every version at every dose, measured twice. The two runs differ only in the random seed the training used. Accuracy-only training lands left of zero in both runs at all five doses; the two confidence-aware versions land right of zero at eighteen of their twenty. The pairs are wide apart, so the size of the effect is a property of the run, not of the reward.</figcaption></figure>
+<figure class="dose-chart" id="chart-seed-accuracy"><svg viewBox="0 0 680 561" role="img" aria-label="The same versions under the measure benchmarks already use. Run 2&#x27;s gain is smaller at fourteen of the fifteen doses, and accuracy-only training buys 0.2 points by 375 and 500 steps while still paying the full quadratic penalty shown above."><rect class="sp-noise" x="378.8" y="24" width="18.3" height="517" /><line class="dl-zero" x1="388.0" y1="24" x2="388.0" y2="539" /><text class="dl-tick" x="186.3" y="18" text-anchor="middle">-0.11</text><text class="dl-tick" x="388.0" y="18" text-anchor="middle">+0.00</text><text class="dl-tick" x="589.7" y="18" text-anchor="middle">+0.11</text><text class="dl-better" x="388.0" y="556" text-anchor="middle">plain accuracy, change from that run&#x27;s own untuned base</text><text class="dl-better" x="589.7" y="556" text-anchor="middle">better &#8594;</text><text class="sp-group" x="20" y="58.0">Accuracy only</text><line class="dl-rule" x1="20" y1="64.0" x2="626" y2="64.0" /><text class="sp-row" x="136" y="87.5" text-anchor="end">125 steps</text><line class="sp-link" x1="479.7" y1="83.5" x2="446.7" y2="83.5" /><circle class="sp-a" cx="479.7" cy="83.5" r="4.6"><title>Accuracy only, 125 steps, Run 1 (seed 0): +0.050</title></circle><circle class="sp-b" cx="446.7" cy="83.5" r="4.6"><title>Accuracy only, 125 steps, Run 2 (seed 1): +0.032</title></circle><text class="sp-row" x="136" y="114.5" text-anchor="end">250 steps</text><line class="sp-link" x1="498.0" y1="110.5" x2="428.3" y2="110.5" /><circle class="sp-a" cx="498.0" cy="110.5" r="4.6"><title>Accuracy only, 250 steps, Run 1 (seed 0): +0.060</title></circle><circle class="sp-b" cx="428.3" cy="110.5" r="4.6"><title>Accuracy only, 250 steps, Run 2 (seed 1): +0.022</title></circle><text class="sp-row" x="136" y="141.5" text-anchor="end">300 steps</text><line class="sp-link" x1="516.4" y1="137.5" x2="428.3" y2="137.5" /><circle class="sp-a" cx="516.4" cy="137.5" r="4.6"><title>Accuracy only, 300 steps, Run 1 (seed 0): +0.070</title></circle><circle class="sp-b" cx="428.3" cy="137.5" r="4.6"><title>Accuracy only, 300 steps, Run 2 (seed 1): +0.022</title></circle><text class="sp-row" x="136" y="168.5" text-anchor="end">375 steps</text><line class="sp-link" x1="516.4" y1="164.5" x2="391.7" y2="164.5" /><circle class="sp-a" cx="516.4" cy="164.5" r="4.6"><title>Accuracy only, 375 steps, Run 1 (seed 0): +0.070</title></circle><circle class="sp-b" cx="391.7" cy="164.5" r="4.6"><title>Accuracy only, 375 steps, Run 2 (seed 1): +0.002</title></circle><text class="sp-row" x="136" y="195.5" text-anchor="end">500 steps</text><line class="sp-link" x1="461.3" y1="191.5" x2="391.7" y2="191.5" /><circle class="sp-a" cx="461.3" cy="191.5" r="4.6"><title>Accuracy only, 500 steps, Run 1 (seed 0): +0.040</title></circle><circle class="sp-b" cx="391.7" cy="191.5" r="4.6"><title>Accuracy only, 500 steps, Run 2 (seed 1): +0.002</title></circle><text class="sp-group" x="20" y="223.0">Confidence-aware</text><line class="dl-rule" x1="20" y1="229.0" x2="626" y2="229.0" /><text class="sp-row" x="136" y="252.5" text-anchor="end">125 steps</text><line class="sp-link" x1="534.7" y1="248.5" x2="410.0" y2="248.5" /><circle class="sp-a" cx="534.7" cy="248.5" r="4.6"><title>Confidence-aware, 125 steps, Run 1 (seed 0): +0.080</title></circle><circle class="sp-b" cx="410.0" cy="248.5" r="4.6"><title>Confidence-aware, 125 steps, Run 2 (seed 1): +0.012</title></circle><text class="sp-row" x="136" y="279.5" text-anchor="end">250 steps</text><line class="sp-link" x1="534.7" y1="275.5" x2="465.0" y2="275.5" /><circle class="sp-a" cx="534.7" cy="275.5" r="4.6"><title>Confidence-aware, 250 steps, Run 1 (seed 0): +0.080</title></circle><circle class="sp-b" cx="465.0" cy="275.5" r="4.6"><title>Confidence-aware, 250 steps, Run 2 (seed 1): +0.042</title></circle><text class="sp-row" x="136" y="306.5" text-anchor="end">300 steps</text><line class="sp-link" x1="589.7" y1="302.5" x2="483.3" y2="302.5" /><circle class="sp-a" cx="589.7" cy="302.5" r="4.6"><title>Confidence-aware, 300 steps, Run 1 (seed 0): +0.110</title></circle><circle class="sp-b" cx="483.3" cy="302.5" r="4.6"><title>Confidence-aware, 300 steps, Run 2 (seed 1): +0.052</title></circle><text class="sp-row" x="136" y="333.5" text-anchor="end">375 steps</text><line class="sp-link" x1="534.7" y1="329.5" x2="446.7" y2="329.5" /><circle class="sp-a" cx="534.7" cy="329.5" r="4.6"><title>Confidence-aware, 375 steps, Run 1 (seed 0): +0.080</title></circle><circle class="sp-b" cx="446.7" cy="329.5" r="4.6"><title>Confidence-aware, 375 steps, Run 2 (seed 1): +0.032</title></circle><text class="sp-row" x="136" y="360.5" text-anchor="end">500 steps</text><line class="sp-link" x1="534.7" y1="356.5" x2="483.3" y2="356.5" /><circle class="sp-a" cx="534.7" cy="356.5" r="4.6"><title>Confidence-aware, 500 steps, Run 1 (seed 0): +0.080</title></circle><circle class="sp-b" cx="483.3" cy="356.5" r="4.6"><title>Confidence-aware, 500 steps, Run 2 (seed 1): +0.052</title></circle><text class="sp-group" x="20" y="388.0">Confidence-aware + assertion cost</text><line class="dl-rule" x1="20" y1="394.0" x2="626" y2="394.0" /><text class="sp-row" x="136" y="417.5" text-anchor="end">125 steps</text><line class="sp-link" x1="553.0" y1="413.5" x2="410.0" y2="413.5" /><circle class="sp-a" cx="553.0" cy="413.5" r="4.6"><title>Confidence-aware + assertion cost, 125 steps, Run 1 (seed 0): +0.090</title></circle><circle class="sp-b" cx="410.0" cy="413.5" r="4.6"><title>Confidence-aware + assertion cost, 125 steps, Run 2 (seed 1): +0.012</title></circle><text class="sp-row" x="136" y="444.5" text-anchor="end">250 steps</text><line class="sp-link" x1="461.3" y1="440.5" x2="483.3" y2="440.5" /><circle class="sp-a" cx="461.3" cy="440.5" r="4.6"><title>Confidence-aware + assertion cost, 250 steps, Run 1 (seed 0): +0.040</title></circle><circle class="sp-b" cx="483.3" cy="440.5" r="4.6"><title>Confidence-aware + assertion cost, 250 steps, Run 2 (seed 1): +0.052</title></circle><text class="sp-row" x="136" y="471.5" text-anchor="end">300 steps</text><line class="sp-link" x1="516.4" y1="467.5" x2="483.3" y2="467.5" /><circle class="sp-a" cx="516.4" cy="467.5" r="4.6"><title>Confidence-aware + assertion cost, 300 steps, Run 1 (seed 0): +0.070</title></circle><circle class="sp-b" cx="483.3" cy="467.5" r="4.6"><title>Confidence-aware + assertion cost, 300 steps, Run 2 (seed 1): +0.052</title></circle><text class="sp-row" x="136" y="498.5" text-anchor="end">375 steps</text><line class="sp-link" x1="406.3" y1="494.5" x2="355.0" y2="494.5" /><circle class="sp-a" cx="406.3" cy="494.5" r="4.6"><title>Confidence-aware + assertion cost, 375 steps, Run 1 (seed 0): +0.010</title></circle><circle class="sp-b" cx="355.0" cy="494.5" r="4.6"><title>Confidence-aware + assertion cost, 375 steps, Run 2 (seed 1): -0.018</title></circle><text class="sp-row" x="136" y="525.5" text-anchor="end">500 steps</text><line class="sp-link" x1="461.3" y1="521.5" x2="410.0" y2="521.5" /><circle class="sp-a" cx="461.3" cy="521.5" r="4.6"><title>Confidence-aware + assertion cost, 500 steps, Run 1 (seed 0): +0.040</title></circle><circle class="sp-b" cx="410.0" cy="521.5" r="4.6"><title>Confidence-aware + assertion cost, 500 steps, Run 2 (seed 1): +0.012</title></circle></svg><div class="dc-keys"><span class="sp-key sp-key-a">Run 1 (seed 0)</span><span class="sp-key sp-key-b">Run 2 (seed 1)</span><span class="sp-key sp-key-n">repeat-measurement band, &plusmn;0.005</span></div><figcaption>The same versions under the measure benchmarks already use. Run 2's gain is smaller at fourteen of the fifteen doses, and accuracy-only training buys 0.2 points by 375 and 500 steps while still paying the full quadratic penalty shown above.</figcaption></figure>
+<p>Two things are true at once here, and the page would be misleading if it printed
+only the first. <b>The directions replicated.</b> Accuracy-only training lowered the
+quadratic score in ten out of ten measurements across two runs; the confidence-aware
+versions raised it in eighteen of twenty, the exceptions being the assertion-cost
+version at 500 steps in run 1 and at 375 steps in run 2, both within a hair of zero.
+<b>The magnitudes did not.</b> Nine of the ten confidence-aware measurements came
+back smaller in run 2, and on plain accuracy fourteen of fifteen did. That is a
+systematic shift, not scatter, and far too large to be explained by the 0.008
+difference between the two runs' bases.</p>
+<p>Run 1 was the more favourable trajectory. Any single number quoted from it, such
+as the +0.155 that the cost-0.09 version reached at 125 steps, is a property of that
+trajectory: the same recipe with a different seed returned +0.029. Where an earlier
+page quoted such figures, read them as one draw.</p>
+<p>The ordering <em>within</em> the confidence-aware group did not survive either,
+and the earlier page said in advance that it should not be quoted. The assertion-cost
+version produced the single largest number in either run, +0.155 at 125 steps, and
+led at the two lowest doses of run 1. In run 2 it led at one dose out of five. The
+two versions are close enough that a rerun reorders them, so they should not be
+reported as distinguishable, and the assertion cost should not be presented as
+buying anything on this evidence.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="mechanism">The part that replicated most cleanly</h2>
+<p>Underneath the score changes is a behavioural one, and it is the most consistent
+result in either run.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>version</th><th>abstains, run 1</th><th>abstains, run 2</th><th>stated confidence, run 1</th><th>stated confidence, run 2</th></tr></thead><tbody><tr><td><b>Untuned base</b></td><td class="n">11%</td><td class="n">10%</td><td class="n">0.88</td><td class="n">0.88</td></tr><tr><td><b>Accuracy only</b></td><td class="n">0%</td><td class="n">0%</td><td class="n">0.96 to 0.97</td><td class="n">0.91 to 0.95</td></tr><tr><td><b>Confidence-aware</b></td><td class="n">0 to 1%</td><td class="n">0 to 2%</td><td class="n">0.72 to 0.87</td><td class="n">0.69 to 0.86</td></tr><tr><td><b>Confidence-aware + assertion cost</b></td><td class="n">2 to 9%</td><td class="n">0 to 14%</td><td class="n">0.54 to 0.89</td><td class="n">0.63 to 0.86</td></tr></tbody></table></div>
+<p><b>Training on accuracy alone drove abstention to exactly zero</b> in both runs at
+all five doses, ten out of ten measurements, from a base that declined to answer about
+one question in ten. It also pushed stated confidence up, from 0.88 to above 0.91
+everywhere. The model stopped saying it did not know, and became more certain while
+doing it.</p>
+<p>That is the finding this project began from, reproduced causally: a census of
+published benchmark responses found 0.68% ever say they don't know, and here is a
+reward that produces exactly that, from a model that started out willing to. It does
+not depend on which scoring rule you grade with, which is why it is the claim to
+carry rather than any of the score deltas above.</p>
+<p>The same thing shows up as a number, without needing a scoring rule at all.
+<b>The calibration gap</b> is how confident a version says it is, minus how often
+that confidence turns out to be right. Positive means overconfident. It is a
+subtraction rather than a rule, so nobody has to accept the quadratic score to read
+it.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>version</th><th>gap, run 1</th><th>gap, run 2</th><th>doses more overconfident than the base</th></tr></thead><tbody><tr><td><b>Untuned base</b></td><td class="n">+0.27</td><td class="n">+0.26</td><td class="n">&mdash;</td></tr><tr><td><b>Accuracy only</b></td><td class="n">+0.34 to +0.37</td><td class="n">+0.35 to +0.38</td><td class="n">10/10</td></tr><tr><td><b>Confidence-aware</b></td><td class="n">+0.09 to +0.24</td><td class="n">+0.08 to +0.24</td><td class="n">0/10</td></tr><tr><td><b>Confidence-aware + assertion cost</b></td><td class="n">-0.06 to +0.29</td><td class="n">+0.05 to +0.25</td><td class="n">1/10</td></tr></tbody></table></div>
+<p><b>Training on accuracy alone made the model more overconfident than it started, at
+every dose in both runs.</b> The base overstates itself by 0.26, and the two runs agree
+on that to within 0.006. Accuracy-only training pushes the gap to between 0.34 and
+0.38, ten measurements out of ten. Every confidence-aware measurement moves the other
+way, also ten out of ten. The assertion-cost version is the noisy one again, better
+than the base at nine of its ten.</p>
+<p>This is the cleanest statement of the result available, because it needs no
+argument about scoring. A benchmark that reports accuracy would show the accuracy-only
+version improving. It is, at the same time, further from knowing what it knows than
+the untuned model it started as.</p>
+<p>The confidence-aware versions do not restore abstention to base levels either. They
+keep it near zero while pulling stated confidence down to between 0.69 and 0.87, which
+is the calibration effect showing up as hedged answers rather than as silence. One exception
+appears in both runs and is unexplained: at 375 steps the assertion-cost version
+abstains far more than at any neighbouring dose, 9% in run 1 and 14% in run 2 against
+roughly 1% elsewhere. It is the only dose in the grid where a tuned version declines
+to answer more often than the untuned model.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="limits">What this still cannot tell you</h2>
+<p>Two runs. Two is enough to show that a magnitude moved between them and not enough
+to say what its distribution is, so nothing here is an interval. The right reading of a
+two-run agreement is "the direction is probably real", not "the effect is this big".
+And as the versions section says, these two runs differ only in the sampling stream, so
+even that is the narrowest version of the question.</p>
+<p><b>The step counts are not a matched dose across versions.</b> Training only learns
+from a batch when the eight sampled answers to a question disagree with each other;
+when all eight score the same there is nothing to compare, and the batch is skipped.
+Under the accuracy-only reward, where a response can only score 1 or 0, that happens
+almost every time: <b>8%</b> of its batches produce a learning signal on average,
+against <b>66%</b> for the confidence-aware versions, which can also separate answers
+by the probability attached to them. Counted over the full 500 steps, accuracy-only
+absorbs about <b>150</b> productive batches against about <b>1,300</b>, a factor of
+nearly nine. The pipeline already knows this and admits each version against its own
+floor for how many batches must have been productive. Read the doses as elapsed
+training, not as equal treatment.</p>
+<p>That asymmetry is not a flaw in the setup so much as a property of the reward being
+tested. A rule that scores only right-or-wrong has less to say about eight answers than
+one that also reads their stated confidence, and having less to say is part of what is
+being argued about it. But it does mean a dose-for-dose comparison flatters neither
+side cleanly, and no claim here should rest on the two versions having been trained
+equally hard.</p>
+<p>One 8B model and 100 held-out questions per cell. The repeat-measurement band
+above is the direct consequence of that sample size, and it is not small relative to
+several of these effects.</p>
+<p>The cost-0.04 and cost-0.16 versions from the <a href="dose-response.html">dose-response
+page</a> were not retrained, so they appear nowhere here and should be read as
+single-run results.</p>
+<p>This page scores under two rules because those are the two the project acts on.
+The stored responses are sufficient to rescore under any rule without running the
+model again, and the downloadable CSV carries seven of them, including the
+logarithmic and spherical scores. Nothing here was decided against those, so they
+are in the data rather than on the page.</p>
+<p>Every generation used a neutral prompt, so nothing on this page measures a model
+responding to an announced rule. That is the separate experiment on the
+<a href="index.html">findings page</a>.</p>
+<p>Run 2's base scores 0.321 on the quadratic rule and 56% on
+accuracy; run 1's scores 0.313 and 55%. Every delta on this
+page is measured against its own run's base for that reason. The stored responses
+behind run 2 hash to <code>a23945834aab</code>.</p>
+
+
+</div>
+
+<footer><div class="wrap">
+<p>Every figure here is rendered from the committed CSVs in data/processed. Two training seeds, five doses, one model. No checkpoint on this page was selected for winning, and the measurement floor is stated before the results rather than after them.</p>
+<div class="footer-nav"><a href="essay.html">The essay</a><a href="index.html">Overview</a><a href="training.html">Fine-tuning</a><a href="dose-response.html">Dose response</a><a href="validation.html">Harness validation</a><a href="approach.html">Approach &amp; glossary</a><a href="why-linear-fails.html">Why linear fails</a><a href="related-work.html">What this builds on</a><a href="literature.html">What is new here</a><a href="open-questions.html">Open questions</a></div>
+</div></footer>
+
+<script>
+(function () {
+  var bar = document.getElementById('scrollprogress');
+  if (bar) {
+    function update() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
+    }
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
+  // Fade whichever edge of a horizontal scroller actually has content hidden
+  // behind it, and neither edge when the content fits. Applied to every
+  // horizontal scroller with a hidden scrollbar (nav row, section rail, table
+  // wrappers, chart scroller), because the cue means the same thing in all of
+  // them and an unconditional fade would be a claim about hidden content that
+  // is false most of the time.
+  function fades(el) {
+    var max = el.scrollWidth - el.clientWidth;
+    // Cap the ramp near the actual overflow: a table hanging 8px over its box
+    // deserves an 8px whisper, not a 26px bite out of its last readable column.
+    var w = max > 1 ? Math.min(26, max + 6) + 'px' : '0px';
+    el.style.setProperty('--fade-start', el.scrollLeft > 1 ? w : '0px');
+    el.style.setProperty('--fade-end', el.scrollLeft < max - 1 ? w : '0px');
+  }
+  var scrollers = document.querySelectorAll(
+    '.scroll-nav-links, .section-nav-links, .table-wrap, .cal-chart-scroll');
+  function allFades() { scrollers.forEach(fades); }
+  scrollers.forEach(function (el) {
+    el.addEventListener('scroll', function () { fades(el); }, { passive: true });
+  });
+  addEventListener('resize', allFades);
+
+  var row = document.querySelector('.scroll-nav-links');
+  if (!row) { allFades(); return; }
+
+  // Bring the current page's link into view. On a phone the row is wider than
+  // the screen, so the marked link can sit off the right edge — leaving the one
+  // page the reader is actually on as the only one with no indicator. Set
+  // scrollLeft directly rather than calling scrollIntoView, which would also
+  // scroll the document and land the reader partway down the article.
+  //
+  // Measured from bounding rects rather than offsetLeft. The row is not a
+  // positioned element, so offsetLeft is relative to the fixed bar and silently
+  // includes the wordmark's width, which biases every comparison by however
+  // wide "Below Zero" happens to render.
+  var here = row.querySelector('.here');
+  // Must clear the 26px fade ramp with room to spare, or the reveal parks the
+  // current page's link inside the fade and the one marked link in the row
+  // renders dimmest. 16px looked fine while desktop had no fade to clear.
+  var pad = 34;
+  function reveal() {
+    if (!here) return;
+    var h = here.getBoundingClientRect(), r = row.getBoundingClientRect();
+    var delta = 0;
+    if (h.right + pad > r.right) delta = h.right + pad - r.right;
+    else if (h.left - pad < r.left) delta = h.left - pad - r.left;
+    if (delta) row.scrollLeft += delta;
+    fades(row);
+  }
+  reveal();
+
+  // Re-reveal on resize. Rotating a phone to landscape fits the whole row, and
+  // rotating back re-lays it out scrolled to the left, which drops the marker
+  // off the right edge again. The fade handler already runs here; without the
+  // marker running too, a rotate leaves the reader on the one page the bar does
+  // not indicate.
+  addEventListener('resize', reveal);
+
+  // And once webfonts land. This script runs at parse time, so it measures the
+  // row in the fallback face; when Inter arrives the links re-flow and the
+  // scroll position computed against the old metrics no longer frames the
+  // marker. Cheap to redo, and on a fast connection it is a no-op.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reveal);
+
+  allFades();
+})();
+(function () {
+  var rail = document.querySelector('.section-nav');
+  if (!rail) return;
+  var links = Array.prototype.slice.call(
+    rail.querySelectorAll('.section-nav-links a')
+  );
+  var pairs = links.map(function (link) {
+    return { link: link, heading: document.getElementById(link.hash.slice(1)) };
+  }).filter(function (pair) { return pair.heading; });
+
+  function updateSection() {
+    /* Keep this comfortably below the 112px anchor landing line. Reusing the
+       same boundary makes the active section depend on sub-pixel rounding. */
+    var threshold = rail.getBoundingClientRect().bottom + 28;
+    var active = null;
+    pairs.forEach(function (pair) {
+      if (pair.heading.getBoundingClientRect().top <= threshold) active = pair;
+    });
+    pairs.forEach(function (pair) {
+      var current = pair === active;
+      pair.link.classList.toggle('here', current);
+      if (current) pair.link.setAttribute('aria-current', 'location');
+      else pair.link.removeAttribute('aria-current');
+    });
+  }
+
+  addEventListener('scroll', updateSection, { passive: true });
+  addEventListener('resize', updateSection);
+  updateSection();
+})();
+</script>
+
+</body></html>

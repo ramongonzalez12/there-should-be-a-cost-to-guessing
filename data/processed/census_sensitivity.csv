@@ -1,0 +1,10 @@
+search_scope,phrase_list,n_responses,n_declines,decline_rate
+whole generation,narrow (3 phrases),13662,5,0.00037
+whole generation,moderate (7 phrases),13662,15,0.0011
+whole generation,"broad (~18 phrases, used)",13662,354,0.02591
+final 300 characters,narrow (3 phrases),13662,0,0.0
+final 300 characters,moderate (7 phrases),13662,6,0.00044
+final 300 characters,"broad (~18 phrases, used)",13662,40,0.00293
+final 100 characters,narrow (3 phrases),13662,0,0.0
+final 100 characters,moderate (7 phrases),13662,4,0.00029
+final 100 characters,"broad (~18 phrases, used)",13662,32,0.00234

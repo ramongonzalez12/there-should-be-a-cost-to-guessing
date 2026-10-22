@@ -1,0 +1,205 @@
+{
+  "bootstrap": {
+    "draws": 10000,
+    "scope": "paired held-out items; conditional on three seeds",
+    "seed": 20260824
+  },
+  "confidence_intervals_95": {
+    "coverage_change": {
+      "lower_95": -0.01833333333333333,
+      "upper_95": 0.010000000000000009
+    },
+    "gate_marginal_utility_change": {
+      "lower_95": -0.0042857142857143,
+      "upper_95": 0.0028571428571428636
+    },
+    "gate_marginal_wrong_change": {
+      "lower_95": -0.008333333333333331,
+      "upper_95": 0.0
+    },
+    "prompt_only_utility_change": {
+      "lower_95": -0.012619047619047594,
+      "upper_95": 0.06119047619047618
+    },
+    "prompt_only_wrong_change": {
+      "lower_95": -0.043333333333333335,
+      "upper_95": 0.013333333333333327
+    },
+    "utility_change": {
+      "lower_95": -0.013095238095238104,
+      "upper_95": 0.060952380952380945
+    },
+    "wrong_change": {
+      "lower_95": -0.04666666666666666,
+      "upper_95": 0.00833333333333334
+    }
+  },
+  "dose_consistency": {
+    "higher_utility": 10,
+    "independent_seeds": 3,
+    "lower_wrong_exposure": 9,
+    "seed_dose_cells": 15
+  },
+  "favorable_seed_counts": {
+    "higher_utility": 3,
+    "lower_wrong_exposure": 3,
+    "seeds": 3
+  },
+  "headline": {
+    "confidence_native_accuracy_when_answered": 0.6123337542087541,
+    "confidence_native_coverage": 0.9883333333333333,
+    "confidence_native_utility_per_question": 0.44071428571428567,
+    "confidence_native_wrong_per_question": 0.3833333333333333,
+    "coverage_change": -0.003333333333333336,
+    "embedded_accuracy_when_answered": 0.5980454675622201,
+    "embedded_coverage": 0.9866666666666667,
+    "embedded_format_failures": 12,
+    "embedded_utility_per_question": 0.42,
+    "embedded_wrong_per_question": 0.39666666666666667,
+    "gate_marginal_utility_change": -0.0002380952380952317,
+    "gate_marginal_wrong_change": -0.003333333333333336,
+    "prompt_only_utility_change": 0.020714285714285723,
+    "prompt_only_wrong_change": -0.013333333333333345,
+    "separated_accuracy_when_answered": 0.6136329098359173,
+    "separated_coverage": 0.9833333333333333,
+    "separated_format_failures": 0,
+    "separated_utility_per_question": 0.44047619047619047,
+    "separated_wrong_per_question": 0.38,
+    "utility_change": 0.02047619047619049,
+    "wrong_change": -0.01666666666666668
+  },
+  "primary_dose": 500,
+  "primary_threshold": 0.3,
+  "seed_dose_estimates": [
+    {
+      "coverage_change": 0.0050000000000000044,
+      "dose": 125,
+      "seed": 2,
+      "utility_change": 0.0050000000000000044,
+      "wrong_change": 0.0
+    },
+    {
+      "coverage_change": 0.0,
+      "dose": 250,
+      "seed": 2,
+      "utility_change": 0.0357142857142857,
+      "wrong_change": -0.024999999999999994
+    },
+    {
+      "coverage_change": -0.0050000000000000044,
+      "dose": 300,
+      "seed": 2,
+      "utility_change": 0.009285714285714258,
+      "wrong_change": -0.009999999999999981
+    },
+    {
+      "coverage_change": -0.010000000000000009,
+      "dose": 375,
+      "seed": 2,
+      "utility_change": 0.011428571428571399,
+      "wrong_change": -0.015000000000000013
+    },
+    {
+      "coverage_change": -0.0050000000000000044,
+      "dose": 500,
+      "seed": 2,
+      "utility_change": 0.037857142857142895,
+      "wrong_change": -0.030000000000000027
+    },
+    {
+      "coverage_change": 0.0,
+      "dose": 125,
+      "seed": 4,
+      "utility_change": -5.551115123125783e-17,
+      "wrong_change": 0.0
+    },
+    {
+      "coverage_change": 0.0050000000000000044,
+      "dose": 250,
+      "seed": 4,
+      "utility_change": 0.0050000000000000044,
+      "wrong_change": 0.0
+    },
+    {
+      "coverage_change": 0.0050000000000000044,
+      "dose": 300,
+      "seed": 4,
+      "utility_change": 0.012142857142857177,
+      "wrong_change": -0.0050000000000000044
+    },
+    {
+      "coverage_change": 0.0,
+      "dose": 375,
+      "seed": 4,
+      "utility_change": -5.551115123125783e-17,
+      "wrong_change": 0.0
+    },
+    {
+      "coverage_change": -0.010000000000000009,
+      "dose": 500,
+      "seed": 4,
+      "utility_change": 0.011428571428571455,
+      "wrong_change": -0.015000000000000013
+    },
+    {
+      "coverage_change": -0.014999999999999958,
+      "dose": 125,
+      "seed": 5,
+      "utility_change": -0.014999999999999986,
+      "wrong_change": -2.7755575615628914e-17
+    },
+    {
+      "coverage_change": 0.0,
+      "dose": 250,
+      "seed": 5,
+      "utility_change": -0.014285714285714263,
+      "wrong_change": 0.009999999999999981
+    },
+    {
+      "coverage_change": 0.0,
+      "dose": 300,
+      "seed": 5,
+      "utility_change": 0.0071428571428571175,
+      "wrong_change": -0.004999999999999977
+    },
+    {
+      "coverage_change": 0.0,
+      "dose": 375,
+      "seed": 5,
+      "utility_change": -0.014285714285714263,
+      "wrong_change": 0.009999999999999981
+    },
+    {
+      "coverage_change": 0.0050000000000000044,
+      "dose": 500,
+      "seed": 5,
+      "utility_change": 0.012142857142857122,
+      "wrong_change": -0.0050000000000000044
+    }
+  ],
+  "seed_estimates": {
+    "2": {
+      "coverage_change": -0.0050000000000000044,
+      "utility_change": 0.037857142857142895,
+      "wrong_change": -0.030000000000000027
+    },
+    "4": {
+      "coverage_change": -0.010000000000000009,
+      "utility_change": 0.011428571428571455,
+      "wrong_change": -0.015000000000000013
+    },
+    "5": {
+      "coverage_change": 0.0050000000000000044,
+      "utility_change": 0.012142857142857122,
+      "wrong_change": -0.0050000000000000044
+    }
+  },
+  "verdict": "DIRECTIONAL_PASS",
+  "well_formatted_pair_sensitivity": {
+    "coverage_change": -0.003350168350168344,
+    "paired_item_checkpoint_responses": 588,
+    "status": "post_result_mechanism_diagnostic_not_primary",
+    "utility_change": 0.01121912479055337,
+    "wrong_change": -0.010198505198505209
+  }
+}

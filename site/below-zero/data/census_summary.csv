@@ -1,0 +1,9 @@
+metric,value
+responses_scanned,1089024
+models,104
+benchmarks,36
+decline_phrase_count,7472
+decline_rate,0.00686
+stated_confidence_count,2766
+stated_confidence_rate,0.00254
+empty_generations,1217

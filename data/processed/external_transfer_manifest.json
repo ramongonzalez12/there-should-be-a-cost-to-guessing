@@ -1,0 +1,171 @@
+{
+  "committed_outputs": [
+    "data/processed/external_transfer_levels.csv",
+    "data/processed/external_transfer_contrasts.csv"
+  ],
+  "completed_at": "2026-08-23T03:08:49.788605+00:00",
+  "design": {
+    "checkpoints": {
+      "base": {
+        "arm": "base",
+        "dose": 0.0,
+        "label": "base",
+        "sampler_path": null
+      },
+      "seed0-binary": {
+        "arm": "binary",
+        "dose": 500.0,
+        "label": "seed0-binary",
+        "sampler_path": "tinker://33e3cd26-e54c-5b92-9ce8-e331626f4d5b:train:0/sampler_weights/000500",
+        "training_seed": 0
+      },
+      "seed0-quad_cost_0.09": {
+        "arm": "quad_cost_0.09",
+        "dose": 500.0,
+        "label": "seed0-quad_cost_0.09",
+        "sampler_path": "tinker://03153c2c-4564-5ee9-956d-6110ed4c646d:train:0/sampler_weights/000500",
+        "training_seed": 0
+      },
+      "seed0-quadratic": {
+        "arm": "quadratic",
+        "dose": 500.0,
+        "label": "seed0-quadratic",
+        "sampler_path": "tinker://2793f4e7-1688-545e-90d5-65277e28cf8a:train:0/sampler_weights/000500",
+        "training_seed": 0
+      },
+      "seed1-binary": {
+        "arm": "binary",
+        "dose": 500.0,
+        "label": "seed1-binary",
+        "sampler_path": "tinker://cc258e61-4044-5ada-951c-39657a96942a:train:0/sampler_weights/000500",
+        "training_seed": 1
+      },
+      "seed1-quad_cost_0.09": {
+        "arm": "quad_cost_0.09",
+        "dose": 500.0,
+        "label": "seed1-quad_cost_0.09",
+        "sampler_path": "tinker://cbd36f13-9b83-5aa9-8955-b58e2b31f1b5:train:0/sampler_weights/000500",
+        "training_seed": 1
+      },
+      "seed1-quadratic": {
+        "arm": "quadratic",
+        "dose": 500.0,
+        "label": "seed1-quadratic",
+        "sampler_path": "tinker://32947557-1b5b-5f4c-a342-bf3ab4430c55:train:0/sampler_weights/000500",
+        "training_seed": 1
+      },
+      "seed2-binary": {
+        "arm": "binary",
+        "dose": 500.0,
+        "label": "seed2-binary",
+        "sampler_path": "tinker://13745812-caa7-52a3-ac33-093fc0cf4e53:train:0/sampler_weights/000500",
+        "training_seed": 2
+      },
+      "seed2-quad_cost_0.09": {
+        "arm": "quad_cost_0.09",
+        "dose": 500.0,
+        "label": "seed2-quad_cost_0.09",
+        "sampler_path": "tinker://86c5c863-a999-5e1c-80b8-c3ad783e7af0:train:0/sampler_weights/000500",
+        "training_seed": 2
+      },
+      "seed2-quadratic": {
+        "arm": "quadratic",
+        "dose": 500.0,
+        "label": "seed2-quadratic",
+        "sampler_path": "tinker://0a72d860-3be1-515a-a199-a11c9789d852:train:0/sampler_weights/000500",
+        "training_seed": 2
+      },
+      "seed4-binary": {
+        "arm": "binary",
+        "dose": 500.0,
+        "label": "seed4-binary",
+        "sampler_path": "tinker://1cfbaa0a-5ac4-55b6-b0f2-a80f33d3e46c:train:0/sampler_weights/000500",
+        "training_seed": 4
+      },
+      "seed4-quad_cost_0.09": {
+        "arm": "quad_cost_0.09",
+        "dose": 500.0,
+        "label": "seed4-quad_cost_0.09",
+        "sampler_path": "tinker://5078c9ca-dbf2-5bed-a890-9fcbf4a48de6:train:0/sampler_weights/000500",
+        "training_seed": 4
+      },
+      "seed4-quadratic": {
+        "arm": "quadratic",
+        "dose": 500.0,
+        "label": "seed4-quadratic",
+        "sampler_path": "tinker://04b8d94d-c825-5e97-88dd-264922ba0631:train:0/sampler_weights/000500",
+        "training_seed": 4
+      },
+      "seed5-binary": {
+        "arm": "binary",
+        "dose": 500.0,
+        "label": "seed5-binary",
+        "sampler_path": "tinker://d0c59a97-9085-5013-a26b-cb01312b57bb:train:0/sampler_weights/000500",
+        "training_seed": 5
+      },
+      "seed5-quad_cost_0.09": {
+        "arm": "quad_cost_0.09",
+        "dose": 500.0,
+        "label": "seed5-quad_cost_0.09",
+        "sampler_path": "tinker://10025c96-ad03-5479-96f3-dd9ab6c40047:train:0/sampler_weights/000500",
+        "training_seed": 5
+      },
+      "seed5-quadratic": {
+        "arm": "quadratic",
+        "dose": 500.0,
+        "label": "seed5-quadratic",
+        "sampler_path": "tinker://189a7558-65b0-5655-a7ef-bcc59cf5dc96:train:0/sampler_weights/000500",
+        "training_seed": 5
+      }
+    },
+    "item_counts": {
+      "freeform": 450,
+      "iheval": 200,
+      "mask": 483
+    },
+    "item_hashes": {
+      "freeform": "53bd9110e39c24fecdc9e63d132512bc5d8249fb9722dd8ed56e0ddf4e30e347",
+      "iheval": "31197fee669119db07fb9ce2428dcba15776a83db2f57b9e9f64d9738cf59ee1",
+      "mask": "ae0955118eecdceffc3e5c547ed9e106b2cf63f7e467ee7b3eb9439889d581ec"
+    },
+    "max_tokens": 64,
+    "model": "Qwen/Qwen3-8B",
+    "renderer": "qwen3_disable_thinking",
+    "request_batch_size": 64,
+    "seed": 0,
+    "temperature": 0.0,
+    "workload": {
+      "checkpoints": 16,
+      "conservative_spend_ceiling_usd": 1.555547,
+      "generation_calls_upper_bound": 21472,
+      "generation_specs_per_checkpoint": 1342,
+      "max_prompt_tokens_upper_bound": 3748832,
+      "max_sampled_tokens_upper_bound": 1374208,
+      "max_spend_usd": 1.56,
+      "pricing_usd_per_million": {
+        "cached_prefill": 0.039,
+        "sample": 0.6,
+        "train": 0.44,
+        "uncached_prefill": 0.195
+      },
+      "status": "READY"
+    }
+  },
+  "raw_responses_sha256": "193f1948ef61963c9625f2a198d5d86466b47bd5dff39a5e892ef11a4e85c921",
+  "records": 21472,
+  "schema_version": 1,
+  "source_run": "runs/finetune/external_transfer_v1",
+  "spend": {
+    "cap_usd": 1.56,
+    "headroom_usd": 0.004453,
+    "ledger": "runs/finetune/external_transfer_v1/spend.jsonl",
+    "pricing_usd_per_million": {
+      "cached_prefill": 0.039,
+      "sample": 0.6,
+      "train": 0.44,
+      "uncached_prefill": 0.195
+    },
+    "rows": 336,
+    "spent_usd": 1.555547
+  }
+}

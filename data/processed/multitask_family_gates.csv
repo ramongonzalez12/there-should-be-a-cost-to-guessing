@@ -1,0 +1,4 @@
+model,stage,sample_size,invalid_rate,status,decision
+nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16,knowledge_free_format_checkpoint,4096,,COMPLETE,continue_to_full_profiles
+nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16,full_profile_seed101,1920,0.00625,GREEN,admit
+nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16,full_profile_seed202,1920,0.011458333333333333,RED,stop_before_reward_training

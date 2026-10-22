@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "belowzero"
+version = "0.1.0"
+description = "Scoring rules that can go below zero, and the experiment testing whether telling a model the rule changes what it does."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ramon Gonzalez" }]
+keywords = ["evaluation", "calibration", "scoring-rules", "benchmarks", "alignment"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+]
+
+# Deliberately zero runtime dependencies. Storage is stdlib sqlite3,
+# and every metric is computed in SQL. Anyone can
+# clone this and run it with a bare Python install — which matters when the
+# argument is "your scoring should be inspectable".
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff==0.17.0"]  # pinned: an unpinned ruff upgrade broke CI lint on 2026-10-11
+
+[project.urls]
+Homepage = "https://ramongonzalez.com/cost-to-guessing/"
+Source = "https://github.com/ramongonzalez12/there-should-be-a-cost-to-guessing"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+belowzero = ["metrics.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 96
+target-version = "py310"

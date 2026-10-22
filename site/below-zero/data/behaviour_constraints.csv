@@ -1,0 +1,5 @@
+reward,reward_label,n_cells,n_items,breaks_constraint,declines,unusable
+base,Untuned base,1,99,0.2121,0.4444,0.0303
+binary,Accuracy only,2,99,0.2727,0.3737,0.0354
+quadratic,Confidence-calibrated,2,99,0.2172,0.4091,0.0354
+quad_cost,Confidence-calibrated + fixed cost,2,99,0.2727,0.399,0.0404

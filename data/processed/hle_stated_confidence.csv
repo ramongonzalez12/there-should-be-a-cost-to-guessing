@@ -1,0 +1,7 @@
+model,n_responses,n_stated,mean_stated_confidence
+anthropic/claude-opus-4-20250514,2061,127,0.8930
+anthropic/claude-opus-4-5-20251101,755,57,0.8642
+anthropic/claude-opus-4-6,947,52,0.8883
+openai/gpt-5-2025-08-07,1031,1019,0.8470
+openai/gpt-5.2-2025-12-11,722,720,0.7350
+openai/gpt-5.4-2026-03-05,790,787,0.7976

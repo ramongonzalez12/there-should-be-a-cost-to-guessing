@@ -1,0 +1,22 @@
+{
+  "protocol": "notes/2026-08-27-prompt-arm-identification-protocol.md",
+  "databases": [
+    {
+      "path": "runs/prompt_arm_ident_main_off_20260827.db",
+      "sha256": "6dbdbc60b3e90deacb954fc731bd689b92b5b2bdf5c69e53fff7bea6ae857875"
+    },
+    {
+      "path": "runs/prompt_arm_ident_main_low_20260827.db",
+      "sha256": "32b458b47b31ba27984e0c0d74f3ad9f81c6d8d8218381bc08a8331a960f127e"
+    },
+    {
+      "path": "runs/newmodels_prompt_arm_ident_20260904.db",
+      "sha256": "084d6e02ff77cf2e8172c0009885d136d452738976e80e52e1574ba860d74981"
+    }
+  ],
+  "responses": 20800,
+  "total_cost_usd": 28.432,
+  "git_commit": "1c2324abf80acaf602cb80b1a12597fe89ec8917",
+  "baseline": "data/processed/prompt_only_calibration_cells.csv",
+  "limitation": "Contrasts are cell-level (104 model-benchmark cells), matching the integrated study's primary equal-cell weighting. The Aug 26 baseline and the Aug 27 arms were generated on different days, so the paired bootstrap understates between-run drift; the same-day re-run control contrast is reported alongside for that reason."
+}

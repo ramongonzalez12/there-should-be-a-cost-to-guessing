@@ -1,0 +1,2444 @@
+{
+  "study": "OpenRouter model coverage expansion, September 13, 2026",
+  "contract": "control",
+  "program_spend_usd": 25.016555936999964,
+  "recorded_call_spend_usd": 24.982719557,
+  "reconciliation_difference_usd": 0.033836379999964805,
+  "candidates": [
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "status": "pilot_failed",
+      "source": "runs/coverage_anthropic__claude-opus-4.5_20260913.db",
+      "reason": "Format gate failed: 139/160 malformed at 900 tokens; several cells had every response malformed, predominantly missing confidence.",
+      "program_cost_usd": 0.823,
+      "retained_request_rows_all_attempts": 160,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "status": "pilot_failed",
+      "source": "runs/coverage_anthropic__claude-opus-4.6_4k_20260913.db",
+      "reason": "Format gate failed after 4000-token replacement: GPQA 4/60 malformed, all normal finishes.",
+      "program_cost_usd": 2.723045,
+      "retained_request_rows_all_attempts": 400,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "anthropic/claude-opus-5",
+      "status": "complete",
+      "source": "runs/coverage_anthropic__claude-opus-5_4k_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 4.078365,
+      "retained_request_rows_all_attempts": 960,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "meta/muse-spark-1.1",
+      "status": "provider_blocked",
+      "source": "runs/coverage_meta__muse-spark-1.1_4k_20260913.db",
+      "reason": "Passed format pilot, then Meta returned HTTP 403 user_blocked during full generation; requests stopped. Partial data are not a complete assessment.",
+      "program_cost_usd": 0.93520075,
+      "retained_request_rows_all_attempts": 488,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "meta/muse-spark-1.2",
+      "status": "pilot_failed",
+      "source": "runs/coverage_meta__muse-spark-1.2_4k_20260913.db",
+      "reason": "Token ceiling gate failed after 4000-token replacement: GPQA 3/20 malformed, all truncated; stopped early.",
+      "program_cost_usd": 0.54846325,
+      "retained_request_rows_all_attempts": 133,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "meta/muse-spark-1.3",
+      "status": "provider_blocked",
+      "source": "runs/coverage_meta__muse-spark-1.3_4k_20260913.db",
+      "reason": "Passed format pilot, then Meta returned HTTP 403 user_blocked during full generation; requests stopped. Partial data are not a complete assessment.",
+      "program_cost_usd": 1.9332249,
+      "retained_request_rows_all_attempts": 845,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "status": "complete",
+      "source": "runs/coverage_google__gemini-2.5-pro_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 2.01600125,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "status": "complete",
+      "source": "runs/coverage_google__gemini-3.1-pro-preview_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 2.721706,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "status": "pilot_failed",
+      "source": "runs/coverage_deepseek__deepseek-r1_4k_20260913.db",
+      "reason": "Token ceiling gate failed: replacement MMLU-Pro pilot 4/20 malformed, all truncated at 4000 tokens; stopped early.",
+      "program_cost_usd": 0.3652156,
+      "retained_request_rows_all_attempts": 69,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "x-ai/grok-4.6",
+      "status": "complete",
+      "source": "runs/coverage_x-ai__grok-4.6_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 2.389764,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "z-ai/glm-5.3-flash",
+      "status": "pilot_failed",
+      "source": "runs/coverage_z-ai__glm-5.3-flash_20260913.db",
+      "reason": "Format gate failed: GPQA 3/20 malformed with normal finishes at 1500 tokens.",
+      "program_cost_usd": 0.01026291,
+      "retained_request_rows_all_attempts": 160,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "minimax/minimax-m3",
+      "status": "pilot_failed",
+      "source": "runs/coverage_minimax__minimax-m3_20260913.db",
+      "reason": "Format gate failed: BBQ 3/20 malformed with normal finishes at 900 tokens.",
+      "program_cost_usd": 0.032090398,
+      "retained_request_rows_all_attempts": 160,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "tencent/hy4-preview",
+      "status": "pilot_failed",
+      "source": "runs/coverage_tencent__hy4-preview_4k_20260913.db",
+      "reason": "Format gate failed after 4000-token replacement: MATH500 5/60 malformed, all normal finishes.",
+      "program_cost_usd": 0.156836015,
+      "retained_request_rows_all_attempts": 360,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "xiaomi/mimo-v2.5",
+      "status": "pilot_failed",
+      "source": "runs/coverage_xiaomi__mimo-v2.5_4k_20260913.db",
+      "reason": "Format/token ceiling gate failed after 4000-token replacement: MMLU-Pro 4/20 malformed (2 truncated); stopped early.",
+      "program_cost_usd": 0.026189101,
+      "retained_request_rows_all_attempts": 191,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "qwen/qwen3.8-flash",
+      "status": "complete",
+      "source": "runs/coverage_qwen__qwen3.8-flash_4k_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 0.05638186,
+      "retained_request_rows_all_attempts": 1040,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "complete",
+      "source": "runs/coverage_deepseek__deepseek-v4.1-flash_4k_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 0.168436923,
+      "retained_request_rows_all_attempts": 960,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "status": "complete",
+      "source": "runs/coverage_openai__gpt-5.6-luna_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 0.0423658,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "status": "complete",
+      "source": "runs/coverage_openai__gpt-4.1-mini_4k_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 0.2481492,
+      "retained_request_rows_all_attempts": 960,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "x-ai/grok-4.20",
+      "status": "complete",
+      "source": "runs/coverage_x-ai__grok-4.20_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 0.23363615,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "x-ai/grok-4.3",
+      "status": "complete",
+      "source": "runs/coverage_x-ai__grok-4.3_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 0.21836265,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "x-ai/grok-4.5",
+      "status": "complete",
+      "source": "runs/coverage_x-ai__grok-4.5_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 2.2376628,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "status": "complete",
+      "source": "runs/coverage_openai__gpt-6-astra_20260913.db",
+      "reason": "Completed frozen 8 x 100 control assessment",
+      "program_cost_usd": 3.01836,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "status": "reused",
+      "source": "runs/matched_prompt_interventions_8b20b_20260831.db",
+      "reason": "Existing untuned control; exact frozen items and prompts verified",
+      "program_cost_usd": 0,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "status": "reused",
+      "source": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+      "reason": "Existing untuned control; exact frozen items and prompts verified",
+      "program_cost_usd": 0,
+      "retained_request_rows_all_attempts": 800,
+      "other_arms_run_in_this_expansion": false
+    }
+  ],
+  "attempts": [
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "source": "runs/coverage_anthropic__claude-opus-4.5_20260913.db",
+      "sha256": "6bea26fb02a8f834afd0e8ececb83c26806753285a0f2dbe28cc83364e71a422",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.823,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 20,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 20,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 16,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 19,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 6,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 19,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 20,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 19,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "source": "runs/coverage_anthropic__claude-opus-4.6_20260913.db",
+      "sha256": "266640cc4e4be9e557714925282f6e847bdf9a924565bbc68fa68db9b8486fab",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.7716,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "source": "runs/coverage_anthropic__claude-opus-4.6_4k_20260913.db",
+      "sha256": "b6660367f7b32f9111053e3cce449bb8477f8f9e4ee26bd2c00b965a5bc383ac",
+      "retained_request_rows": 240,
+      "reported_cost_usd": 1.951445,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 60,
+          "completed_responses": 60,
+          "malformed": 4,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 60,
+          "completed_responses": 60,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "anthropic/claude-opus-5",
+      "source": "runs/coverage_anthropic__claude-opus-5_20260913.db",
+      "sha256": "ab5648416d02e19cc5a40da37dde0da331a5441586bbdb192af5443d1bf9b4ff",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.635215,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 4,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "anthropic/claude-opus-5",
+      "source": "runs/coverage_anthropic__claude-opus-5_4k_20260913.db",
+      "sha256": "17b05c27a688c7d85b24b44597d33a0366af8585357b4e62e3ce241a79150323",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 3.44315,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "meta/muse-spark-1.1",
+      "source": "runs/coverage_meta__muse-spark-1.1_20260913.db",
+      "sha256": "66d62d27730558f763393e9f44ac7ca3f43a9d9da4ede2c4010f00dd59c5ce72",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.3373835,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 7,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "meta/muse-spark-1.1",
+      "source": "runs/coverage_meta__muse-spark-1.1_4k_20260913.db",
+      "sha256": "1c50c082fcc8ae9365fa59bec3d217ae310b5d2b7a5f7181bb3a0d2b33fe10ed",
+      "retained_request_rows": 328,
+      "reported_cost_usd": 0.59781725,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 60,
+          "malformed": 2,
+          "provider_errors": 40
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 28,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 8
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 80
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "meta/muse-spark-1.2",
+      "source": "runs/coverage_meta__muse-spark-1.2_20260913.db",
+      "sha256": "62db796981199a47c87edfc99d407dbad9b52b786c7ffa2f0df4bd329df608bd",
+      "retained_request_rows": 78,
+      "reported_cost_usd": 0.280097,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 10,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 18,
+          "completed_responses": 18,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "meta/muse-spark-1.2",
+      "source": "runs/coverage_meta__muse-spark-1.2_4k_20260913.db",
+      "sha256": "cb58c0a522a791cbb8d085f2575babb0c56de15f3c205b805355c1682ae91a1c",
+      "retained_request_rows": 55,
+      "reported_cost_usd": 0.26836625,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 15,
+          "completed_responses": 15,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "meta/muse-spark-1.3",
+      "source": "runs/coverage_meta__muse-spark-1.3_20260913.db",
+      "sha256": "a162ca4a2380714d311fb69160eebe9ab0896546b5c3a5f8f7461710c96e00f5",
+      "retained_request_rows": 45,
+      "reported_cost_usd": 0.17709325,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 7,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 5,
+          "completed_responses": 5,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 2,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "meta/muse-spark-1.3",
+      "source": "runs/coverage_meta__muse-spark-1.3_4k_20260913.db",
+      "sha256": "eca9c5f3092889775a136d7a29ef6bf3d0ace48c8cb3f62db1472e79678615e9",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 1.75613165,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 80
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 80
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 80
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 99,
+          "malformed": 4,
+          "provider_errors": 1
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 92,
+          "malformed": 2,
+          "provider_errors": 8
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 99,
+          "malformed": 0,
+          "provider_errors": 1
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 80
+        }
+      ]
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "source": "runs/coverage_google__gemini-2.5-pro_20260913.db",
+      "sha256": "c50bea6a5dfbcb4eda655c96a771beb36a462e088fc5693df944fe136da562c8",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 2.01600125,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 4,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "source": "runs/coverage_google__gemini-3.1-pro-preview_20260913.db",
+      "sha256": "aea1abc747e24cdf829a73a8bee76de5940f36f7e885075505239c670744e206",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 2.721706,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "source": "runs/coverage_deepseek__deepseek-r1_20260913.db",
+      "sha256": "469cb4c90b151ffe530e76dba0b77bb694b7f9be5ddc7b5853332eae02e74169",
+      "retained_request_rows": 36,
+      "reported_cost_usd": 0.1329382,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 16,
+          "completed_responses": 16,
+          "malformed": 16,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 12,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "source": "runs/coverage_deepseek__deepseek-r1_4k_20260913.db",
+      "sha256": "caa4fed5036a19427d838a34535986493726ce29f149456e3546f7b3899b3ff1",
+      "retained_request_rows": 33,
+      "reported_cost_usd": 0.2322774,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 13,
+          "completed_responses": 13,
+          "malformed": 8,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 4,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "x-ai/grok-4.6",
+      "source": "runs/coverage_x-ai__grok-4.6_20260913.db",
+      "sha256": "e93ef37d13eda3d8053bec6b60215ce56e60bcc2b5965f5b377672ba76c5c482",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 2.389764,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "z-ai/glm-5.3-flash",
+      "source": "runs/coverage_z-ai__glm-5.3-flash_20260913.db",
+      "sha256": "e10d62ca400459d203052b5b81d6d99d01a72d251dca0ab6f27976feafae0a14",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.0102629095,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "minimax/minimax-m3",
+      "source": "runs/coverage_minimax__minimax-m3_20260913.db",
+      "sha256": "aa5a2ede5e1d3223505f6bf8aa000942a2bbe661582b6d699aa2228bd9ca857b",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.032090398,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "tencent/hy4-preview",
+      "source": "runs/coverage_tencent__hy4-preview_20260913.db",
+      "sha256": "fca84f25019f734aefac44166fe75931988d3e87f47271a87041004305ab92b7",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.052666592,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "tencent/hy4-preview",
+      "source": "runs/coverage_tencent__hy4-preview_4k_20260913.db",
+      "sha256": "4e269e27848734516b8bf5daa3c0876efbd4cb8f4608f1eaca40a9f27ac2f54d",
+      "retained_request_rows": 200,
+      "reported_cost_usd": 0.104169423,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 60,
+          "completed_responses": 60,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "xiaomi/mimo-v2.5",
+      "source": "runs/coverage_xiaomi__mimo-v2.5_20260913.db",
+      "sha256": "9708d17e463e589e773fa6e5ecb4b9a287b737666253cd25fec59b551929232f",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.0187635302,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 4,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 11,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 6,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "xiaomi/mimo-v2.5",
+      "source": "runs/coverage_xiaomi__mimo-v2.5_4k_20260913.db",
+      "sha256": "c6630a5e5544e55c9ebf401f34f9abfccf20c7c2ea926bda75ee1e169be30c59",
+      "retained_request_rows": 31,
+      "reported_cost_usd": 0.00742557116,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 11,
+          "completed_responses": 11,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 4,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "qwen/qwen3.8-flash",
+      "source": "runs/coverage_qwen__qwen3.8-flash_20260913.db",
+      "sha256": "dd42aacf4a249e5f05fb2a3265a8c16bd81c516d6178b0554b66ab57cb8fe811",
+      "retained_request_rows": 240,
+      "reported_cost_usd": 0.01254165,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 60,
+          "completed_responses": 60,
+          "malformed": 8,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 60,
+          "completed_responses": 60,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "qwen/qwen3.8-flash",
+      "source": "runs/coverage_qwen__qwen3.8-flash_4k_20260913.db",
+      "sha256": "bbd36e50bb19f23a65d01591c0c4488b25ef1cd7c22c9606482fd7334e927ff9",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 0.04384021,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "source": "runs/coverage_deepseek__deepseek-v4.1-flash_20260913.db",
+      "sha256": "cd125a1fde813d318a184b6b5b8beac3ae511f56aad9a0afd8c39e435b13027e",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.02254553,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "source": "runs/coverage_deepseek__deepseek-v4.1-flash_4k_20260913.db",
+      "sha256": "0e3904247102137cea089dacb4a91a8bbdf206de620c4be26a1b3ae2148e4e2c",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 0.145891393,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 9,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 3,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 5,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 3,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "source": "runs/coverage_openai__gpt-5.6-luna_20260913.db",
+      "sha256": "0f3322ac39e1948256c0d66c3538d1e864143af3ba2d454842310cbf9f6618d1",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 0.0423658,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": null
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "source": "runs/coverage_openai__gpt-4.1-mini_20260913.db",
+      "sha256": "1634cef623ae35546533079f63c990d302849e3d26ed6969e1d19deb1ef2dcae",
+      "retained_request_rows": 160,
+      "reported_cost_usd": 0.0345448,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": null,
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 4,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 20,
+          "completed_responses": 20,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "source": "runs/coverage_openai__gpt-4.1-mini_4k_20260913.db",
+      "sha256": "a9a3ade83cc1e0e4efa2eb78c42d37e25bb48a5504fd80cf1a89b386543a9290",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 0.2136044,
+      "inference_configurations": [
+        {
+          "max_tokens": 4000,
+          "reasoning": null,
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "x-ai/grok-4.20",
+      "source": "runs/coverage_x-ai__grok-4.20_20260913.db",
+      "sha256": "a5d1cea85662c34ec04582adf6d38d553a70d7c714305dfba92774c914d1cbc3",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 0.23363615,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 8,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "x-ai/grok-4.3",
+      "source": "runs/coverage_x-ai__grok-4.3_20260913.db",
+      "sha256": "823eb0107a72b0fccab0a511bc95e3e6c52f1ac2e37040ad6c187abae80eef24",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 0.21836265,
+      "inference_configurations": [
+        {
+          "max_tokens": 900,
+          "reasoning": {
+            "enabled": false
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "x-ai/grok-4.5",
+      "source": "runs/coverage_x-ai__grok-4.5_20260913.db",
+      "sha256": "2c08d4f6cd4090ef00f3c77a918e397517d5ea47a641e7078b8c557848f4241f",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 2.2376628,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": 0.0
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 2,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 1,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "source": "runs/coverage_openai__gpt-6-astra_20260913.db",
+      "sha256": "23f8512eef4fab5c339c74abe3cf913041e39dd2436e796525d87242b15900eb",
+      "retained_request_rows": 800,
+      "reported_cost_usd": 3.01836,
+      "inference_configurations": [
+        {
+          "max_tokens": 1500,
+          "reasoning": {
+            "effort": "low"
+          },
+          "temperature": null
+        }
+      ],
+      "cells": [
+        {
+          "benchmark": "bbq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "boolq",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "ethics_hard",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "gpqa_parity",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "math500",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "medmcqa",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "mmlu_pro",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        },
+        {
+          "benchmark": "truthfulqa_mc",
+          "request_rows": 100,
+          "completed_responses": 100,
+          "malformed": 0,
+          "provider_errors": 0
+        }
+      ]
+    }
+  ],
+  "catalog_snapshot_sha256": "c01c72b9e0db13eac07dbbe6e4bf7b16c0e4c05b0a4d0ce636951a4d8748fbee",
+  "selection_rule": "Format and cost gates only; outcome metrics were not inspected to decide admission",
+  "scope": "Descriptive control-only extension. No additional rule, warning, training, or robustness arm was run."
+}

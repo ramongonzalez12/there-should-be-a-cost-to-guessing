@@ -1,0 +1,4 @@
+outcome,chance_pct,report_0pct,report_60pct,report_100pct
+Right,60,0.0,0.84,1.0
+Wrong,40,0.0,-0.36,-1.0
+Expected points,,0.0,0.36,0.2

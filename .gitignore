@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Databases and caches are regenerable and large. Results are NOT ignored:
+# the published figures must be reproducible from the repo alone.
+*.db
+data/cache/
+data/raw/
+.env
+
+# Run directories may contain raw model responses; the committed CSVs in
+# data/processed/ and their manifests are the published record.
+runs/

@@ -1,0 +1,54 @@
+benchmark,phrase,responses_matching,share_of_matched_responses
+healthbench,unknown,637,0.7031
+healthbench,cannot determine,93,0.1026
+healthbench,i don't know,73,0.0806
+healthbench,i'm not sure,27,0.0298
+healthbench,impossible to know/determine,18,0.0199
+healthbench,not enough information,15,0.0166
+healthbench,no way to know,12,0.0132
+healthbench,not possible to determine,8,0.0088
+healthbench,insufficient information,7,0.0077
+healthbench,unable to determine,4,0.0044
+healthbench,can't answer,3,0.0033
+healthbench,i cannot answer,3,0.0033
+healthbench,unanswerable,2,0.0022
+healthbench,not attempted,1,0.0011
+healthbench,cannot be answered,1,0.0011
+healthbench,i do not know,1,0.0011
+healthbench,idk,1,0.0011
+lingoly_nocontext,cannot determine,67,0.4085
+lingoly_nocontext,insufficient information,43,0.2622
+lingoly_nocontext,unknown,23,0.1402
+lingoly_nocontext,impossible to know/determine,7,0.0427
+lingoly_nocontext,i don't know,6,0.0366
+lingoly_nocontext,not possible to determine,5,0.0305
+lingoly_nocontext,not enough information,5,0.0305
+lingoly_nocontext,i cannot answer,3,0.0183
+lingoly_nocontext,i'm not sure,2,0.0122
+lingoly_nocontext,i do not know,2,0.0122
+lingoly_nocontext,cannot be answered,1,0.0061
+lingoly_context,cannot determine,15,0.4839
+lingoly_context,unknown,6,0.1935
+lingoly_context,insufficient information,4,0.1290
+lingoly_context,not possible to determine,4,0.1290
+lingoly_context,impossible to know/determine,1,0.0323
+lingoly_context,i cannot answer,1,0.0323
+judgebench,cannot determine,545,0.6796
+judgebench,unknown,140,0.1746
+judgebench,i'm not sure,72,0.0898
+judgebench,unable to determine,28,0.0349
+judgebench,impossible to know/determine,7,0.0087
+judgebench,i don't know,6,0.0075
+judgebench,insufficient information,1,0.0012
+judgebench,not enough information,1,0.0012
+judgebench,no way to know,1,0.0012
+judgebench,can't answer,1,0.0012
+hle,cannot determine,166,0.6459
+hle,unable to determine,59,0.2296
+hle,unknown,13,0.0506
+hle,insufficient information,8,0.0311
+hle,impossible to know/determine,5,0.0195
+hle,i do not know,2,0.0078
+hle,unanswerable,2,0.0078
+hle,cannot be answered,1,0.0039
+hle,i don't know,1,0.0039

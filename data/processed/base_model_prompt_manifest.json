@@ -1,0 +1,22 @@
+{
+  "protocol": "notes/2026-08-31-matched-prompt-interventions-8b-20b.md",
+  "databases": [
+    {
+      "model": "qwen/qwen3-8b",
+      "path": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+      "sha256": "7bbf38a8ece4655117530b395cf2e7441b4b8d47016f9d086dd6391faba5d2fa"
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "path": "runs/matched_prompt_interventions_8b20b_20260831.db",
+      "sha256": "ae54df35209c4975d7e63ae251da1671e7969947566a02641622f55a732accbe"
+    }
+  ],
+  "model_catalog": {
+    "path": "data/models_catalog.csv",
+    "sha256": "ba6ef64af430358ce498717fdae3459494bb483db00265bcba30043a7602179f"
+  },
+  "responses": 4800,
+  "total_cost_usd": 0.2281,
+  "git_commit": "1c2324abf80acaf602cb80b1a12597fe89ec8917"
+}

@@ -1,0 +1,255 @@
+{
+ "source_id": "v638-lunajson-228f0788",
+ "graded_rows_sha256": "aba96531009a33d2fbd31bb4345497822f9008a544454429675cedc711078dc0",
+ "baseline_models": 50,
+ "paired_models": 50,
+ "figure_rows": {
+  "tbl-census": 1,
+  "tbl-census-benchmarks": 22,
+  "tbl-developers": 77,
+  "tbl-parity": 6,
+  "fig-scissors": 8,
+  "fig-confsplit": 5,
+  "fig-every-model": 50,
+  "fig-behaviour": 55,
+  "fig-vintage": 50,
+  "fig-students": 2,
+  "fig-score-build": 101,
+  "fig-payoff-curve": 101,
+  "tbl-ev-true": 3,
+  "fig-spread": 50,
+  "tbl-model-by-model": 50,
+  "tbl-measures": 51,
+  "fig-prompt-moves": 50,
+  "fig-training-summary": 6,
+  "fig-noreason-bars": 3,
+  "fig-noreason-attempts": 32,
+  "fig-noreason-runs": 14,
+  "fig-noreason-effort": 9,
+  "fig-noreason-approaches": 7,
+  "fig-safer-pushback": 9,
+  "fig-model-thresholds": 255
+ },
+ "files": {
+  "figures/fig-behaviour.csv": {
+   "sha256": "fe5a8df50ff5773c0d2e2960d74517c25bb521778e6182553809617c849361fa",
+   "status": "rebuilt"
+  },
+  "figures/fig-confsplit.csv": {
+   "sha256": "f6c029c8261bc5d465c017753049643c087e17f083c72c20cf9b3b62208b7e04",
+   "status": "rebuilt"
+  },
+  "figures/fig-every-model.csv": {
+   "sha256": "f41c9a7bab8306a1780f5b092624996fa5bc5f168b9a03cfc5a5d616363f2bd0",
+   "status": "rebuilt"
+  },
+  "figures/fig-model-thresholds.csv": {
+   "sha256": "5b4143949f6af701cc93d2e2a8fba822c4071eb3a0769be5d64f88ffd3ad3453",
+   "status": "rebuilt"
+  },
+  "figures/fig-noreason-approaches.csv": {
+   "sha256": "422837c9337681ea6488f772b6a138eeaf9bb1a1d2c052dad5093921cfd963fb",
+   "status": "rebuilt"
+  },
+  "figures/fig-noreason-attempts.csv": {
+   "sha256": "b60723f8be3ccfe6378c251995952c0db7d2e8337a847e031f6746ba5a1fd566",
+   "status": "rebuilt"
+  },
+  "figures/fig-noreason-bars.csv": {
+   "sha256": "faa4f13ca545730e07af3be8a5117806e8c1f31831263d81235af7da11002fd3",
+   "status": "rebuilt"
+  },
+  "figures/fig-noreason-effort.csv": {
+   "sha256": "fe88c7e97427111320ace7a7e1bb1410c6b32e37b0c4be792fb933f6842dd2bc",
+   "status": "rebuilt"
+  },
+  "figures/fig-noreason-runs.csv": {
+   "sha256": "4ccdc33450c37918036d80110672824244417c774c3b688eb10e3abb14bbdea9",
+   "status": "rebuilt"
+  },
+  "figures/fig-payoff-curve.csv": {
+   "sha256": "e63232c5f0855a3538bf1b98cc0ff7869de91f323b5c036f9ac780962e74c36a",
+   "status": "rebuilt"
+  },
+  "figures/fig-prompt-moves.csv": {
+   "sha256": "59e451ed828a3ab893d0a9b490ec1d56bfd138f277a299e0ed6502e885f0399f",
+   "status": "rebuilt"
+  },
+  "figures/fig-safer-pushback.csv": {
+   "sha256": "b55db9cebebfe27c0af1a83abbf5e4dc7f37460a323ae4631a240290f2714016",
+   "status": "rebuilt"
+  },
+  "figures/fig-scissors.csv": {
+   "sha256": "3f171b815cfdc115bfb7e22d34f3ec4eb875d6a03be8c83c28f162a5049e2575",
+   "status": "rebuilt"
+  },
+  "figures/fig-score-build.csv": {
+   "sha256": "72e3d8597453e0c46f324a3a416a97067f9c0e7ef58907e11b9ebde537b8040c",
+   "status": "rebuilt"
+  },
+  "figures/fig-spread.csv": {
+   "sha256": "cd1798ecaf3c6177ef9be4e608cef2d910deae3e557402279d9ce0c00542711a",
+   "status": "rebuilt"
+  },
+  "figures/fig-students.csv": {
+   "sha256": "313ede8fc99e05c4804257d4523343a09ca48401179d6a354ace2fb7ddc9ffad",
+   "status": "rebuilt"
+  },
+  "figures/fig-training-summary.csv": {
+   "sha256": "a72a146c03487c67a93f9e298a19dcf83d193744a581f7fcb873d544e4075a6c",
+   "status": "rebuilt"
+  },
+  "figures/fig-vintage.csv": {
+   "sha256": "460a67ada1e24d2656b637c1ce6f680d957dff92320bb02de59e63479e0d2bd9",
+   "status": "rebuilt"
+  },
+  "figures/tbl-census-benchmarks.csv": {
+   "sha256": "68828f1e7ae7b155b05795c29041297c1aba57d28051b7a871795ae25dff38a2",
+   "status": "rebuilt"
+  },
+  "figures/tbl-census.csv": {
+   "sha256": "9df2d68f61337a4b5f85597086170bb609193fcc605e0ad8517a92bf11e8b7da",
+   "status": "rebuilt"
+  },
+  "figures/tbl-developers.csv": {
+   "sha256": "89976d1f0e2796211a6039828c26c382b228c8a2c38b1a5b742dc8588a8fec79",
+   "status": "rebuilt"
+  },
+  "figures/tbl-ev-true.csv": {
+   "sha256": "97f9a9cfa5042dba7d551323e208e135f845b444fce7435abbf221bffeae95a5",
+   "status": "rebuilt"
+  },
+  "figures/tbl-measures.csv": {
+   "sha256": "da26b50f6311f0f33088f1b31d8d7930de7ae2d868527b7aed064621a9e424f5",
+   "status": "rebuilt"
+  },
+  "figures/tbl-model-by-model.csv": {
+   "sha256": "b2810873589f0fc5b906e6d28e05af8b557126e8f10d8f495dcb26e7e20eca00",
+   "status": "rebuilt"
+  },
+  "figures/tbl-parity.csv": {
+   "sha256": "2e6192316c5b36cc744a23c2d09e1b7dbd77afe5801b3b2a4cc011be80cb13eb",
+   "status": "rebuilt"
+  },
+  "key-numbers.json": {
+   "sha256": "128248479c6e4ec1101b485dcfa89a83e7313965b170b8a4c126615bc7f2ea1a",
+   "status": "rebuilt"
+  },
+  "tables/battery_cohort.csv": {
+   "sha256": "a0746562e78dccef6f974847ef80abf2160dc456fabef0930babb44cf8ec453b",
+   "status": "rebuilt"
+  },
+  "tables/battery_confidence_thresholds.csv": {
+   "sha256": "99b27c992f3bf154959193f3f8795507031a755b0566d09ec38772d102089beb",
+   "status": "rebuilt"
+  },
+  "tables/battery_confidence_thresholds_manifest.json": {
+   "sha256": "979c84d3590b04ff7e20ad9872188bc6141f6c6464748f3de8313dfa2fa0b49b",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/common_training_pooled_levels.csv": {
+   "sha256": "39351e867aa9ca7557f1af9a5716b038464eed9d7e0588a85de8fcfae55dca81",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/common_training_reliability_bins.csv": {
+   "sha256": "bc0b6786564ad259300892e57f26230e070b25b840f6a19b0f6c00d8c6327dc4",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/common_training_thresholds.csv": {
+   "sha256": "1a8ebfd9a181eb3be3c78b08590ae48752e62ce9ba007d78083c98651b5dc8ab",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/common_training_trajectories.csv": {
+   "sha256": "a5489686c01529117f1e0a0d060cefad10525896b81eff845d79194cb9ae3700",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/confidence_only_training_accuracy_cells.csv": {
+   "sha256": "eeafbda7cc2db9cf32aef7df8379d5c52c62de4e5151bda2be44d7619a4f5a55",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/confidence_only_training_accuracy_scope_summary.csv": {
+   "sha256": "66d8a068016507c1f29f731e0c01a714ddfa42e605cf4846f4233b6582485e23",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/confidence_only_training_manifest.json": {
+   "sha256": "03e0275786e355e624dff0bd62a8616be11b148c45fe34802cf2cea9013d78b7",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/confidence_only_untouched_base_prompts.csv": {
+   "sha256": "28d20dd79ea345eafc9e7e3a3fdf56fb750eadfe1913fba0be710805879c7221",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/design/gate-model-distributions.json": {
+   "sha256": "5e27bd05c2581f32559aef934af6304b0416bd04036e6ca99a75127681013f6c",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/design/gate-observed-distributions.json": {
+   "sha256": "74e12d0374cb2f5355d6a5aa1e37982fdb59b505e94ad583e1f5f449dc5ba3e6",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/design/v623-baseline-extension.json": {
+   "sha256": "205b42a59af52f3c525fec4558518b981dab85e17614a4d3089fd2dde2f5a225",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/essay_cohort_manifest.json": {
+   "sha256": "439d39d2ad26c84b2648f2456776fa6f996aa5ca2cf29b86f46ee2b3edaf7faf",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/model_assessment_history.csv": {
+   "sha256": "531e51f31749e40f061c79c14491e0e06d5b221c02699e42567b159cd6b148e3",
+   "status": "rebuilt"
+  },
+  "tables/model_coverage_extension_candidates.csv": {
+   "sha256": "5a173519f71b2be9bdc10da73b70c83f69ff7ac307cc0a4759700e8d1dd1173a",
+   "status": "rebuilt"
+  },
+  "tables/model_vintage_by_year.csv": {
+   "sha256": "5d51e67dc3f266452c6d17b6b1668ec3bb62a682307f24e2a58f76707af2daf3",
+   "status": "rebuilt"
+  },
+  "tables/model_vintage_calibration.csv": {
+   "sha256": "15657002b704c0c9689a9ba8ce0e48f991966aeb649166d436d2f85f6f051d6f",
+   "status": "rebuilt"
+  },
+  "tables/models_catalog.csv": {
+   "sha256": "936c2c84788da89f3b8707ca8ef9e72afbd01b448df03f6ee3eeb5893d1ba132",
+   "status": "carried (compared, not rebuilt)"
+  },
+  "tables/notation_artifact_cells.csv": {
+   "sha256": "a75578b4b46ea493a5a1ee6c3ce380a68f95e3679a65f8aa6af388e91672a603",
+   "status": "rebuilt"
+  },
+  "tables/notation_artifact_summary.json": {
+   "sha256": "e7ec3cd9c201631cc0666f8fae063064d6d7cd64e7f0e57e83499abe3da08b93",
+   "status": "rebuilt"
+  },
+  "tables/notation_rerun_benchmarks.csv": {
+   "sha256": "351f7cbe44c9237484e5070b4ee5269f4cb5b972ac40130583cbbb4dcbf24d7d",
+   "status": "rebuilt"
+  },
+  "tables/notation_rerun_cells.csv": {
+   "sha256": "7b7bae3224cf1598b8f831d9d43e20dc1e21f0eabaab8f40fad5b350b4f27792",
+   "status": "rebuilt"
+  },
+  "tables/notation_rerun_models.csv": {
+   "sha256": "1c201ea0c9ceb9cbe435a74d908ce0fead4095883a922c977dcd3913b23334de",
+   "status": "rebuilt"
+  },
+  "tables/notation_rerun_reliability_bins.csv": {
+   "sha256": "cd7d0a53b4d73b50f7d1fd794074262d742dcefb88c4f41f6ebc8cbd73b2141e",
+   "status": "rebuilt"
+  },
+  "tables/notation_rerun_reliability_bins_by_band.csv": {
+   "sha256": "26750b90ce5ebd31957b1025921f9961e93c0af717671cb3677bdbb382d05acb",
+   "status": "rebuilt"
+  },
+  "tables/notation_rerun_reliability_bins_by_model.csv": {
+   "sha256": "33bb0f87c27bd7f40a197ed71a1ffb257cb272a6d5981037994b6fe014a41c2f",
+   "status": "rebuilt"
+  },
+  "tables/warning_comparison_levels.csv": {
+   "sha256": "720aa29d11dbff71d71f84c7aa5d81d839d08126455c5c36fb582cbb2b754fb2",
+   "status": "rebuilt"
+  }
+ }
+}

@@ -1,0 +1,7 @@
+model,domain,stage,n,invalid_rate,status,gate_passed,reason
+DeepSeek-V3.1,math,format_pilot,64,0.0,COMPLETE,True,32 duplicate audit rows excluded by identity
+DeepSeek-V3.1,math,full_base_profile,1920,0.051041666666666666,FAILED_HEALTH_GATE,False,invalid_rate
+Qwen3.5-4B,medicine,format_pilot,64,0.0,COMPLETE,True,
+Qwen3.5-4B,medicine,full_base_profile,1920,0.011979166666666667,FAILED_HEALTH_GATE,False,invalid_rate
+Qwen3.5-4B,math,full_base_profile,1920,0.04010416666666667,FAILED_HEALTH_GATE,False,invalid_rate
+Qwen3.5-4B,ethics,full_base_profile,1920,0.027604166666666666,FAILED_HEALTH_GATE,False,invalid_rate

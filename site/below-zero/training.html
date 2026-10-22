@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Below Zero: what reward tuning changed</title>
+<meta name="description" content="The preregistered final result of a two-seed reward-comparison experiment, plus a plain-language explanation of how LoRA and group-relative reinforcement learning work.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Below Zero — research instrument design system.
+   The paper surface and serif reading voice come from the project's editorial
+   roots. Plum carries identity and the scoring-curve motif; evidence blue,
+   valid green, and exclusion amber keep their analytical jobs. Rules and
+   whitespace do the grouping so the research pages never collapse into a
+   grid of generic content cards. */
+
+/* @tokens-start */
+:root {
+  /* These public tokens are the contract selected in the design lab.
+     Aliases below keep older component names readable while every semantic
+     use resolves to one centrally controlled value. */
+  --paper:          #f8f7f3;
+  --ink:            #1c1b19;
+  --plum:           #7a3a58;
+  --plum-dark:      #40283b;
+  --plum-tint:      #f1e6eb;
+  --on-plum:        #fffefa;
+  --evidence:       #2b4a6f;
+  --valid:          #217a5b;
+  --invalid:        #a8661a;
+  --on-evidence:    #ffffff;
+  --evidence-tint:  #eef2f6;
+  --invalid-tint:   #f6eee3;
+  --evidence-band:  #aebdcd;
+
+  --text:           var(--ink);
+  --text-secondary: #3d3d3d;
+  --text-muted:     #6b6b6b;
+  --bg:             var(--paper);
+  --bg-alt:         var(--evidence-tint);
+  --accent:         var(--plum);
+  --accent-text:    var(--plum);
+  --accent-tint:    var(--plum-tint);
+  --rule:           #d8d4cb;
+  --rule-strong:    #b9b4aa;
+  --ok:             var(--valid);
+  --warn:           var(--invalid);
+  --max-text:       680px;
+  --max-wide:       940px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:          #171a1d;
+    --ink:            #f2f1ec;
+    --plum:           #c592aa;
+    --plum-dark:      #2a2029;
+    --plum-tint:      #30252e;
+    --on-plum:        #fffefa;
+    --evidence:       #355d82;
+    --valid:          #69b58f;
+    --invalid:        #d1a15f;
+    --on-evidence:    #ffffff;
+    --evidence-tint:  #202a33;
+    --invalid-tint:   #33291f;
+    --evidence-band:  #5d7891;
+    --text:           #f2f1ee;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8f8e85;
+    --bg:             var(--paper);
+    --bg-alt:         var(--evidence-tint);
+    --accent:         var(--plum);
+    --accent-text:    var(--plum);
+    --accent-tint:    var(--plum-tint);
+    --rule:           #343a3f;
+    --rule-strong:    #4a5259;
+    --ok:             var(--valid);
+    --warn:           var(--invalid);
+  }
+}
+
+/* @tokens-end */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: var(--max-wide); margin: 0 auto; padding: 0 24px; }
+p, li, h1, h2, h3, .q, .a, .byline, .toc, .note, .cap, blockquote, .rule, details {
+  max-width: var(--max-text);
+}
+
+/* --- site menu -------------------------------------------------------------
+   Fixed to the top of every page and ALWAYS visible. An earlier version
+   revealed itself only after 320px of scrolling, which meant a reader landing
+   on any page saw no navigation at all until they happened to scroll.
+   The full plum field is the site's identity masthead. Evidence blue remains
+   reserved for analytical anchors and published ranges inside the page. */
+/* @nav-start */
+/* Scoped border-box. The global `* { box-sizing }` rule sits outside this
+   slice, so the hand-maintained page borrows the menu WITHOUT it and laid the
+   bar out 24px wider than the measure every other page uses. Declaring it on
+   the menu's own subtree keeps the two in line without reaching into that
+   page's chart layout. */
+.scroll-nav, .scroll-nav * { box-sizing: border-box; }
+.scroll-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 51px;
+  background: var(--plum-dark);
+  border-bottom: 1px solid color-mix(in srgb, var(--plum-dark) 72%, #000);
+  z-index: 100;
+}
+/* Content clears the fixed bar. This rule lives inside the nav slice on
+   purpose: the hand-maintained page borrows the same block, so it can never
+   receive the menu without also receiving the space the menu occupies. */
+body { padding-top: 51px; }
+/* The masthead is already a solid semantic field. Keep only a quiet top rail
+   so the navigation retains the same measured 51px geometry as before. */
+.scroll-nav-track {
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: color-mix(in srgb, var(--plum-dark) 78%, #000);
+}
+/* Progress reads along the BOTTOM edge instead, over the hairline rule. Drawn
+   there so it never competes with the masthead for the same 5px. */
+.scroll-nav-progress {
+  position: absolute; bottom: -1px; left: 0; height: 2px; width: 0%;
+  background: var(--on-plum); opacity: .86; transition: width .1s linear;
+}
+.scroll-nav-inner {
+  max-width: var(--max-wide); margin: 0 auto; padding: 5px 24px 0; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13px;
+}
+.scroll-nav-title {
+  font-weight: 700; color: var(--on-plum); text-decoration: none; white-space: nowrap;
+  letter-spacing: -0.005em; flex: none;
+}
+.scroll-nav-title:hover { color: var(--on-plum); }
+.scroll-nav-links {
+  display: flex; gap: 17px; min-width: 0;
+  letter-spacing: .01em;
+}
+.scroll-nav-links a {
+  color: color-mix(in srgb, var(--on-plum) 72%, transparent);
+  text-decoration: none; white-space: nowrap;
+  padding: 2px 0; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.scroll-nav-links a:hover { color: var(--on-plum); }
+.scroll-nav-links a.here {
+  color: var(--on-plum); font-weight: 600; border-bottom-color: var(--on-plum);
+}
+/* Group labels: small caps, dimmer than a link, never clickable. They exist
+   to let a reader see the menu's shape (read this / deep dives / reference)
+   and are dropped on narrow screens, where the abbreviated links alone fit. */
+.scroll-nav-links .nav-group {
+  color: color-mix(in srgb, var(--on-plum) 46%, transparent);
+  font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+  align-self: center; white-space: nowrap; margin-right: -6px;
+}
+.scroll-nav-links .nav-group:not(:first-child) { margin-left: 8px; }
+@media (max-width: 640px) { .scroll-nav-links .nav-group { display: none; } }
+/* Narrow screens shorten the labels instead of dropping links, so the menu
+   stays complete. Below the point where even short labels stop fitting, the
+   row scrolls sideways rather than hiding its tail.
+
+   The binding constraint is NOT the viewport. .scroll-nav-inner is capped at
+   --max-wide (940px) and centred, so a 4K monitor buys the menu exactly as much
+   room as a 1000px laptop: 798px, once the wordmark, the gap and the gutters
+   are taken out. Every earlier version of this rule tied the label swap to a
+   viewport breakpoint, which is why it kept going stale silently. It was
+   measuring the wrong thing, and it looked right on the machine it was written
+   on.
+
+   Against that fixed 798px, with 14 pages in SITE (re-measured 2026-08-25):
+       full labels  need well past 1500px -> never fit, at any screen size
+       short labels need  ~955px          -> overflow by ~157px, at any width
+   So the row now scrolls at every width, including desktop, and the fade
+   cue below is unconditional to match. Shortening abbreviations remains the
+   cheap lever if the scroll gets annoying; ~160px of savings would need
+   several renames, which is a deliberate decision, not a side effect.
+
+   Two abbreviations were shortened to get there ("Fine-tuning" to "Tuning",
+   "Why linear" to "Linear"), which is the cheap lever: this column exists to be
+   short, and one entry that repeated its long label was costing 40px on its own.
+
+   So the short labels are now unconditional, and the row scrolls at every
+   width rather than only below 920px. Scrolling is the documented fallback and
+   the fade script already targets .scroll-nav-links, so an overflowing tail
+   gets its cue automatically. The menu therefore stays COMPLETE by
+   construction: adding a page can make the row scroll further, which is a
+   graceful failure, but can no longer push a link off the edge with nothing to
+   say so. Widen --max-wide or shorten an abbreviation if the scroll becomes
+   long enough to be annoying; do not reintroduce a viewport breakpoint. */
+.nav-full { display: none; }
+.nav-abbr { display: inline; }
+.scroll-nav-links {
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+}
+.scroll-nav-links::-webkit-scrollbar { display: none; }
+@media (max-width: 920px) {
+  .scroll-nav-inner { gap: 14px; padding-left: 16px; padding-right: 16px; }
+  .scroll-nav-links { gap: 15px; }
+}
+/* Fade a cut edge, but ONLY where the row genuinely runs out of space.
+   Without the fade a half-cut word reads as a layout bug; with it, it reads as
+   "there is more of this row that way", which is the only cue a hidden
+   scrollbar leaves.
+
+   The fade width at each edge is a variable the script sets from the row's
+   actual scroll position, and the script zeroes both edges whenever the row
+   fits, so a fade can never claim hidden content that is not there. The
+   values declared here are the no-script state: right-faded / left-clear,
+   which matches how an overflowing row always loads (scrollLeft 0).
+
+   This used to sit inside a 600px media query, from when the short-label row
+   measured ~475px and only overflowed on phones. At 14 pages the row measures
+   ~955px against the fixed 798px budget above, so it overflows at EVERY
+   width, and the gate had turned into a lie the other way: on desktop the
+   row scrolled with no cue at all, and the auto-scroll that reveals the
+   current page's link was hiding the leftmost links behind a clean hard
+   edge. The gate is gone rather than re-measured; the script's measurement
+   is the condition now. If the menu ever shrinks back below the budget, the
+   no-script default over-claims by one fade, which is the cost of keeping
+   the cue honest everywhere scripts run. */
+.scroll-nav-links {
+  --fade-start: 0px;
+  --fade-end: 26px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+@media (max-width: 460px) {
+  .scroll-nav-inner { gap: 11px; padding-left: 13px; padding-right: 13px; }
+  .scroll-nav-links { gap: 13px; font-size: 12.5px; }
+  .scroll-nav-title { font-size: 12.5px; }
+}
+
+/* A distinct page-local rail for long articles. It remains in document flow
+   until it reaches the fixed site menu, then owns the next horizontal strip.
+   Separate nav landmarks and native anchors keep page changes and in-page
+   movement as different actions. */
+.section-nav, .section-nav * { box-sizing: border-box; }
+.section-nav {
+  position: sticky; top: 51px; z-index: 90;
+  height: 42px; background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: saturate(130%) blur(9px);
+  -webkit-backdrop-filter: saturate(130%) blur(9px);
+  border-bottom: 1px solid var(--rule);
+}
+.section-nav-inner {
+  max-width: var(--max-wide); height: 100%; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 18px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+.section-nav-label {
+  flex: none; color: var(--text-muted); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase;
+}
+.section-nav-links {
+  min-width: 0; display: flex; align-items: stretch; gap: 18px;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  /* Script-driven edge fades, like .table-wrap below: zero until the script
+     measures a real overflow, so a rail that fits (literature at phone
+     widths) never dims its last link. The rail used to carry a static
+     right-only mask below 640px instead, which lied in both directions once
+     the rail scrolled: it kept dimming the end after there was nothing past
+     it, and it never cued the items cut off on the left. */
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+.section-nav-links::-webkit-scrollbar { display: none; }
+.section-nav-links a {
+  flex: none; color: var(--text-muted); text-decoration: none; white-space: nowrap;
+  font-size: 12px; line-height: 42px; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.section-nav-links a:hover { color: var(--text); }
+.section-nav-links a.here {
+  color: var(--accent-text); font-weight: 600; border-bottom-color: var(--accent);
+}
+body.with-section-nav h2[id] { scroll-margin-top: 112px; }
+@media (max-width: 640px) {
+  .section-nav-inner { padding: 0 13px; gap: 0; }
+  .section-nav-label { display: none; }
+  .section-nav-links { width: 100%; gap: 16px; }
+}
+/* @nav-end */
+
+/* --- hero ---------------------------------------------------------------- */
+/* Only the front page carries a crumb now, pointing out of the site to the
+   projects index. Side pages dropped theirs: it linked to index.html, which the
+   fixed menu directly above it already does, and on a phone the two sat forty
+   pixels apart reading as a duplicate. */
+.crumb {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; color: var(--text-muted); padding-top: 30px; margin: 0 0 26px;
+}
+/* The crumb was the only thing holding a side page's title off the menu, so its
+   30px of padding and 26px of margin move here. Same measurement, one element
+   fewer; without it the h1 sat flush against the bar. */
+.wrap.side { padding-top: 56px; }
+/* Tables whose "value" columns are short phrases, not numbers: left-align
+   headers and cells alike so the header does not float away from its column. */
+table.text-cols th, table.text-cols td { text-align: left; }
+.page-dates-detail {
+  display: block; margin-top: 3px; font-size: 12px; color: var(--text-muted);
+}
+.superseded-banner {
+  margin: 0 0 22px; padding: 10px 14px; font-size: 14px; line-height: 1.5;
+  border-left: 3px solid var(--accent); background: var(--plot-field, #f6f5f2);
+  color: var(--text-secondary);
+}
+.superseded-banner a { color: var(--accent-text); }
+.crumb a { color: var(--text-muted); text-decoration: none; }
+.crumb a:hover { color: var(--accent-text); }
+h1 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 40px; font-weight: 700; line-height: 1.14; letter-spacing: -0.008em;
+  color: var(--plum-dark); margin: 0 0 18px; max-width: 880px;
+}
+@media (prefers-color-scheme: dark) { h1 { color: var(--plum); } }
+/* The question the page answers. Sized between the title and the body. */
+.q {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 23px; font-weight: 400; line-height: 1.35; color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+/* The answer, in the reader's first ten seconds. */
+.a { font-size: 19px; line-height: 1.55; margin: 0 0 24px; }
+.a b, .a strong { font-weight: 700; }
+.byline {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.55; color: var(--text-muted); letter-spacing: .01em;
+  border-top: 1px solid var(--rule);
+  padding: 11px 0 14px; margin: 0 0 36px;
+}
+.page-dates time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* When the stat strip follows the byline directly, close the gap so the two
+   read as one banded unit rather than as two floating rules. */
+.byline:has(+ .stats) { margin-bottom: 0; }
+.byline + .stats { margin-top: 0; }
+
+/* --- stat strip ---------------------------------------------------------- */
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  max-width: var(--max-text); margin: 30px 0 34px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.stats div {
+  padding: 24px 20px; border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 9px;
+}
+.stats div:last-child { border-right: none; }
+.stats div b {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 42px; font-weight: 700; line-height: 1; letter-spacing: -0.015em;
+  color: var(--evidence); font-variant-numeric: tabular-nums; display: block;
+}
+/* The tile's caption. Scoped to the DIRECT child so it cannot also style a
+   definition tooltip that happens to sit inside the caption: .dfnbody is a span
+   too, and the descendant form caught it, squeezing a 340px popover into the
+   26ch measure at caption size while every other tooltip on the site kept its
+   own. A tooltip is not a caption; it just happens to be nested in one. */
+.stats div > span {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; line-height: 1.45; color: var(--text-secondary);
+  max-width: 26ch; display: block; text-wrap: balance;
+}
+
+/* --- sections ------------------------------------------------------------ */
+/* @quadratic-motif
+   The divider is the curve: the q=.60 expected-score parabola from the site's
+   interactive explainer spans the full reading measure between sections. It
+   has no axis, observations, or labels, so it is a signature, not a result. */
+h2 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 27px; font-weight: 700; line-height: 1.22; letter-spacing: 0;
+  color: var(--text); margin: 3em 0 22px;
+}
+.quadratic-divider {
+  max-width: var(--max-text); margin: 54px 0 24px; line-height: 0;
+}
+.quadratic-divider svg {
+  display: block; width: 100%; height: 58px; overflow: visible;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+.quadratic-divider path {
+  fill: none; stroke: var(--plum); stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.quadratic-divider + h2 { margin-top: 0; }
+h3 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 19.5px; font-weight: 700; line-height: 1.3; margin: 2.1em 0 .5em;
+}
+p { margin: 0 0 18px; }
+
+/* Findings list: no bullet furniture, a bold accent lead-in per item. */
+ul.key { list-style: none; padding: 0; margin: 24px 0 28px;
+         display: flex; flex-direction: column; gap: 17px; }
+ul.key li { font-size: 17.5px; line-height: 1.55; padding-left: 17px;
+            position: relative; }
+ul.key li:before { content: ''; position: absolute; left: 0; top: .62em;
+                   width: 8px; height: 2px; background: var(--accent); }
+ul.key li b, ul.key li strong { font-weight: 700; }
+
+ol { padding-left: 22px; margin: 22px 0 26px; }
+ol li { margin-bottom: 13px; line-height: 1.55; }
+
+/* --- contents ------------------------------------------------------------ */
+.toc {
+  background: transparent; border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong); border-radius: 0;
+  padding: 18px 0 20px; margin: 32px 0;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 14px;
+}
+.toc b {
+  font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--text-muted); display: block; margin-bottom: 10px;
+}
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { margin-bottom: .35em; line-height: 1.45; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--accent-text); }
+
+/* --- tables -------------------------------------------------------------- */
+/* A table too wide for the viewport scrolls on its own axis rather than letting
+   its columns collapse. Same edge fade as the nav row, and for the same reason:
+   without a cue, a column cut at the wrapper's edge reads as a broken layout
+   rather than as "there is more of this table sideways". The fade widths default
+   to zero and are set by script from the wrapper's real scroll position, because
+   whether any given table overflows depends on the viewport, the font and the
+   data — none of which CSS can ask about. No script means no cue, which
+   understates but never misleads. */
+.table-wrap {
+  max-width: var(--max-wide); margin: 22px 0 26px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+table {
+  width: 100%; border-collapse: collapse; margin: 0;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 14px; font-variant-numeric: tabular-nums;
+}
+/* Below this the columns cannot hold their content; the wrapper scrolls
+   instead of the layout collapsing. */
+table { min-width: 460px; }
+table.narrow { min-width: 380px; }
+thead th {
+  text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--text-muted);
+  border-bottom: 1px solid var(--text); padding: 8px 12px 8px 0; vertical-align: bottom;
+}
+tbody td {
+  padding: 12px 12px 12px 0; border-bottom: 1px solid var(--rule);
+  color: var(--text); vertical-align: baseline;
+}
+td.n, th:not(:first-child) { text-align: right; }
+/* Tables with few, short columns look stretched at the wide measure; hold them
+   to the text column so the eye does not cross an empty gap. */
+table.narrow { max-width: var(--max-text); }
+
+/* The gap table is three columns of PROSE, not of numbers, so the defaults are
+   wrong for it in three ways: nothing right-aligns, cells align to their top
+   rather than to a first baseline they no longer share, and the question column
+   is pinned narrow so the two columns a reader actually compares get the room.
+   It is also the one table on the site that earns the wide measure, because the
+   comparison it supports is horizontal. */
+table.gaps { min-width: 640px; }
+table.gaps th, table.gaps td { text-align: left; }
+table.gaps td { vertical-align: top; line-height: 1.5; }
+table.gaps th:first-child, table.gaps td:first-child { width: 23%; }
+table.gaps th:nth-child(2), table.gaps td:nth-child(2) { width: 38.5%; }
+tbody td:last-child { padding-right: 0; }
+thead th:last-child { padding-right: 0; }
+
+.cap {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); margin: -14px 0 26px;
+}
+/* A qualifier inside a table cell: what the headline number in that row was
+   computed from, kept subordinate to it. */
+.sub {
+  display: block; font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 11.5px; line-height: 1.35; color: var(--text-muted); margin-top: 3px;
+  font-weight: 400;
+}
+
+/* --- callouts ------------------------------------------------------------ */
+.note {
+  background: var(--plum-tint); border-left: 3px solid var(--plum);
+  padding: 16px 20px; margin: 26px 0; font-size: 16px; line-height: 1.55;
+  color: var(--text-secondary);
+}
+.note.invalid-note {
+  background: var(--invalid-tint); border-left-color: var(--invalid);
+}
+.note.invalid-note b { color: var(--invalid); }
+.note b {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-text); display: block; margin-bottom: 7px;
+}
+.rule {
+  background: var(--bg-alt); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 18px 22px; margin: 22px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14.5px; line-height: 1.95;
+}
+blockquote {
+  margin: 26px 0; padding: 2px 0 2px 18px; border-left: 3px solid var(--accent);
+  font-style: italic; color: var(--text-secondary);
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em;
+  background: var(--bg-alt); border: 1px solid var(--rule);
+  padding: 1px 5px; border-radius: 3px;
+}
+a { color: var(--accent-text); text-underline-offset: 2px; }
+
+details { margin: 20px 0; font-size: 16px; }
+details summary {
+  cursor: pointer; color: var(--accent-text);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13.5px;
+  font-weight: 500;
+}
+details[open] summary { margin-bottom: 12px; }
+
+/* --- status labels ------------------------------------------------------- */
+.state {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .09em;
+  font-weight: 700; white-space: nowrap;
+}
+.state.done { color: var(--ok); }
+.state.now  { color: var(--accent-text); }
+.state.todo { color: var(--text-muted); }
+/* A gate verdict. "Invalid" is amber rather than red on purpose: an excluded
+   arm is a control working, not a result that came out badly. */
+.state.pass    { color: var(--ok); }
+.state.invalid { color: var(--warn); }
+.state small {
+  display: block; text-transform: none; letter-spacing: 0; font-weight: 400;
+  font-size: 10.5px; color: var(--text-muted); margin-top: 3px;
+}
+
+/* --- fine-tuning explainer ---------------------------------------------- */
+.tune-loop {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  max-width: var(--max-wide); margin: 26px 0 12px;
+  border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong);
+}
+.tune-step {
+  padding: 20px 18px 22px; border-right: 1px solid var(--rule);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13.5px; line-height: 1.48; color: var(--text-secondary);
+}
+.tune-step:last-child { border-right: none; }
+.tune-step b {
+  display: block; margin-bottom: 7px; color: var(--text); font-size: 14px;
+}
+.tune-step span {
+  display: block; color: var(--accent-text); font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px;
+}
+.loop-back {
+  max-width: var(--max-wide); margin: 0 0 28px; color: var(--text-muted);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; text-align: right;
+}
+.arm-table td:first-child { width: 19%; }
+.arm-table td:nth-child(2) { width: 38%; }
+/* This explanatory table contains prose in every column. Center its labels
+   over the full text columns instead of inheriting the numeric-table rule that
+   right-aligns non-first headers. */
+.experiment-map thead th { text-align: center; }
+.eval-matrix { min-width: 680px; }
+.eval-matrix td:first-child { width: 32%; }
+.eval-matrix th:not(:first-child), .eval-matrix td:not(:first-child) {
+  text-align: center;
+}
+
+/* --- the arm and rule catalogues -----------------------------------------
+   Both are reference tables of PROSE, so the numeric defaults are wrong for
+   them the same way they are wrong for .gaps: nothing right-aligns, and cells
+   must align to their tops because rows of different lengths no longer share a
+   first baseline. Both earn the wide measure, because what a reader does here
+   is compare across a row rather than read down a column.
+
+   The minimum widths are the point at which the two prose columns stop being
+   readable side by side, not a device size. Below it the wrapper scrolls, which
+   is the behaviour a data table should have; letting these squeeze instead
+   collapses the arm names, and an arm name broken mid-token reads as a bug. */
+.arm-map, .rule-map { min-width: 700px; }
+.arm-map th, .arm-map td, .rule-map th, .rule-map td { text-align: left; }
+.arm-map td, .rule-map td { vertical-align: top; line-height: 1.5; }
+.arm-map td:first-child { width: 15%; }
+.arm-map td:nth-child(2) { width: 30%; }
+.arm-map td:nth-child(3) { width: 40%; }
+/* The status column is a verdict, not prose. Keep it on one line so the column
+   reads as a scannable stripe down the right-hand edge. */
+.arm-map td:last-child { width: 15%; white-space: nowrap; }
+.arm-map code, .rule-map code { white-space: nowrap; }
+
+/* The rule table's two score columns are formulae: short, the thing being
+   compared, and they must not wrap mid-expression. Everything else yields width
+   to the notes column, which holds the only real prose in the table and so sets
+   every row's height. An earlier split gave the notes 28% and produced six-line
+   rows beside one-word cells, which is a lot of white space for a table whose
+   whole job is to be scanned across. */
+.rule-map td:first-child { width: 12%; }
+.rule-map td:nth-child(2), .rule-map td:nth-child(3) {
+  width: 13%; white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+}
+.rule-map td:nth-child(4) { width: 9%; }
+.rule-map td:nth-child(5) { width: 17%; }
+.rule-map td:last-child { width: 36%; }
+
+@media (max-width: 720px) {
+  .tune-loop { grid-template-columns: 1fr 1fr; }
+  .tune-step:nth-child(2) { border-right: none; }
+  .tune-step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+/* --- replication interval strip -------------------------------------------
+   One row per model: the range the published score implies, the published
+   score itself, and where this run landed. Drawn from CSS custom properties
+   the builder computes, so it is the same numbers as the columns beside it
+   rather than a hand-drawn illustration. Positions are on a shared 65-100%
+   scale, which is what makes the rows comparable to each other. */
+.pi { position: relative; height: 22px; min-width: 132px; }
+.pi:before {
+  content: ''; position: absolute; left: 0; right: 0; top: 10px;
+  height: 1px; background: var(--rule);
+}
+.pi i {
+  position: absolute; display: block; font-style: normal;
+}
+.pi .band {
+  left: var(--lo); width: calc(var(--hi) - var(--lo));
+  top: 7px; height: 8px; background: var(--evidence-band); border-radius: 1px;
+}
+.pi .pub { left: var(--pub); top: 2px; width: 1px; height: 18px; background: var(--evidence); }
+.pi .ours {
+  left: var(--ours); top: 6px; width: 10px; height: 10px; margin-left: -5px;
+  border-radius: 50%; background: var(--ok); border: 2px solid var(--bg);
+}
+.pi.miss .ours { background: var(--warn); }
+/* The legend uses the same three marks at the same sizes as the strip. */
+.pi-legend {
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12px; color: var(--text-secondary); margin: -12px 0 26px;
+}
+.pi-legend span { display: flex; gap: 7px; align-items: center; }
+.pi-legend em { display: block; font-style: normal; }
+.pi-legend .band { width: 24px; height: 8px; background: var(--evidence-band); border-radius: 1px; }
+.pi-legend .pub { width: 1px; height: 15px; background: var(--evidence); }
+.pi-legend .ours { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
+
+/* --- footnote popovers --------------------------------------------------- */
+.fn { position: relative; }
+.fn button {
+  font: inherit; font-size: 10px; line-height: 1; vertical-align: super;
+  border: 1px solid var(--rule-strong); background: var(--bg-alt);
+  color: var(--text-muted); border-radius: 50%; width: 16px; height: 16px;
+  padding: 0; cursor: pointer;
+}
+.fn button:hover { color: var(--accent-text); border-color: var(--accent); }
+.fn .fnbody { display: none; }
+.fn:focus-within .fnbody, .fn:hover .fnbody {
+  display: block; position: absolute; left: 0; top: 22px; width: min(340px, 72vw);
+  background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 12px 14px; z-index: 9; box-shadow: 0 6px 22px rgba(0,0,0,.13);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.5; font-style: normal; color: var(--text-secondary);
+}
+
+/* --- inline definitions ---------------------------------------------------
+   A dotted underline under a term of art. The cue is static because the claim
+   it makes is static: there IS a definition attached to this word, at every
+   viewport, whether or not anything is hovering it.
+
+   The body is clipped rather than display:none so it stays in the
+   accessibility tree; the open state is expressed by undoing the clip. Both
+   :hover and :focus are listed because the keyboard route is not optional, and
+   :focus-within catches focus landing on anything the definition may contain. */
+.dfn {
+  font-style: normal; position: relative; cursor: help;
+  border-bottom: 1px dotted var(--rule-strong);
+}
+.dfn:hover, .dfn:focus, .dfn:focus-within { border-bottom-color: var(--accent); }
+.dfn:focus { outline: none; }
+.dfn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dfnbody {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.dfn:hover .dfnbody, .dfn:focus .dfnbody, .dfn:focus-within .dfnbody {
+  left: 0; top: 1.75em; width: min(340px, 72vw); height: auto;
+  overflow: visible; clip-path: none; white-space: normal;
+  background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 12px 14px; z-index: 9; box-shadow: 0 6px 22px rgba(0,0,0,.13);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.5; font-style: normal; font-weight: 400;
+  color: var(--text-secondary);
+  /* A tooltip is a paragraph, and it reads the same wherever the term happens to
+     sit. Stated rather than inherited because a defined term can appear inside
+     centred furniture, such as a stat tile caption, where inheriting the
+     surrounding alignment would centre four lines of prose. */
+  text-align: left;
+}
+
+/* --- operational records --------------------------------------------------
+   The style guide names four registers this site writes in, and the operator
+   ledger is one of them: spend against a ceiling, what is authorized next, what
+   needs a human. That register kept leaking into narrative prose, where a
+   reader following an argument suddenly hits an authorization decision.
+
+   These blocks are folded and labelled rather than deleted. The numbers are
+   part of the argument that this work is auditable, so hiding them would cost
+   more than the interruption does. The heading and its id stay OUTSIDE the
+   details, so the section rail still lands on something visible and a fragment
+   link never scrolls to a collapsed box. */
+details.operational {
+  border: 1px solid var(--rule); border-left: 3px solid var(--text-muted);
+  background: var(--bg-alt); border-radius: 3px;
+  padding: 0 20px; margin: 22px 0; max-width: var(--max-text);
+}
+details.operational > summary {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-muted); cursor: pointer; padding: 13px 0; list-style: none;
+}
+details.operational > summary::-webkit-details-marker { display: none; }
+/* The marker is drawn rather than inherited so it can rotate, and because the
+   native triangle sits at a different baseline in every browser. */
+details.operational > summary::before {
+  content: '\25B8'; display: inline-block; margin-right: 9px;
+  transition: transform .12s ease; color: var(--text-muted);
+}
+details.operational[open] > summary::before { transform: rotate(90deg); }
+details.operational > summary:hover { color: var(--accent-text); }
+details.operational > summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+details.operational > *:not(summary) { font-size: 16px; }
+details.operational > *:last-child { margin-bottom: 18px; }
+details.operational .note { margin-left: 0; margin-right: 0; }
+
+/* The internal design lab is not part of the public argument, and the menu
+   should say so before a reader clicks it. */
+.scroll-nav a.internal .nav-full::after,
+.scroll-nav a.internal .nav-abbr::after {
+  content: 'INTERNAL'; display: inline-block; margin-left: 6px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: .09em;
+  padding: 1px 4px; border-radius: 2px; vertical-align: 1.5px;
+  border: 1px solid color-mix(in srgb, var(--on-plum) 40%, transparent);
+  color: color-mix(in srgb, var(--on-plum) 66%, transparent);
+}
+
+/* --- glossary -------------------------------------------------------------
+   A definition list, not a table: the terms are looked up one at a time rather
+   than compared down a column, and a table would invite a reader to scan for a
+   pattern across rows that is not there. */
+/* Definitions are prose and take the prose measure. A dl does not inherit the
+   max-width that p carries, so without this the glossary sets 25% wider than
+   every paragraph above it on the same page. */
+.glossary { margin: 26px 0 0; max-width: var(--max-text); }
+.glossary dt {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text); margin-top: 22px;
+}
+.glossary dd {
+  margin: 5px 0 0; font-size: 16.5px; line-height: 1.55;
+  color: var(--text-secondary);
+}
+.glossary dd code { font-size: .88em; }
+
+/* --- footer -------------------------------------------------------------- */
+footer {
+  border-top: 4px solid var(--plum); margin-top: 64px; padding: 32px 0 80px;
+  background: var(--plum-dark);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13.5px; line-height: 1.6;
+  color: color-mix(in srgb, var(--on-plum) 78%, transparent);
+}
+footer p { max-width: var(--max-text); margin: 0 0 12px; }
+footer b { color: var(--on-plum); }
+.footer-nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px;
+              padding-top: 16px; border-top: 1px solid rgba(255,255,255,.22); }
+.footer-nav a { color: color-mix(in srgb, var(--on-plum) 76%, transparent); text-decoration: none; }
+.footer-nav a:hover { color: var(--on-plum); }
+.cite {
+  background: rgba(255,255,255,.06); border-left: 3px solid var(--plum);
+  padding: 14px 18px; margin-top: 22px; font-size: 13px;
+  color: color-mix(in srgb, var(--on-plum) 78%, transparent);
+}
+
+/* --- reference lists ------------------------------------------------------
+   Citations are apparatus, not argument. They set in the metadata sans at a
+   smaller size so a reader following the thread can skip a whole block on
+   sight, and hang their first line so every entry starts with an author name
+   at the same left edge — which is the only thing anyone scans a reference
+   list for. Deliberately NOT numbered: nothing in the prose cites by number,
+   and numbering would imply a cross-reference the page does not have. */
+ul.refs {
+  list-style: none; padding: 0; margin: 16px 0 30px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+ul.refs li {
+  /* Hanging indent: pad the whole entry in, pull the first line back out. */
+  padding-left: 19px; text-indent: -19px;
+  margin-bottom: 9px;
+  font-size: 14px; line-height: 1.5; color: var(--text-secondary);
+}
+ul.refs li b { color: var(--text); font-weight: 600; }
+/* The gloss is what the work gives THIS project, and it is the part worth
+   reading if you read only one part, so it stays in the body colour while the
+   bibliographic detail around it recedes. */
+ul.refs li .gloss { color: var(--text); }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  h1 { font-size: 31px; }
+  h2 { font-size: 23px; }
+  .quadratic-divider { margin: 42px 0 20px; }
+  .quadratic-divider svg { height: 46px; }
+  .q { font-size: 20px; }
+  .stats { grid-template-columns: 1fr; }
+  .stats div { border-right: none; border-bottom: 1px solid var(--rule);
+               padding: 18px 0; }
+  .stats div:last-child { border-bottom: none; }
+  .stats div b { font-size: 40px; }
+  .crumb { padding-top: 22px; }
+  .wrap.side { padding-top: 48px; }
+  table { font-size: 13px; }
+  .cap { margin-top: -8px; }
+  .tune-loop { grid-template-columns: 1fr; }
+  .tune-step { border-right: none; border-bottom: 1px solid var(--rule); }
+  .tune-step:nth-child(2) { border-right: none; }
+  .tune-step:last-child { border-bottom: none; }
+  .loop-back { text-align: left; }
+  /* The gate table's verdict column is the whole point of the table, and at
+     this width the interval strip pushes it behind a horizontal scroll. Drop
+     the strip: it is a picture of the two number columns either side of it, so
+     nothing unique is lost, and the legend below explains its absence. */
+  table.gate { min-width: 0; }
+  table.gate th:nth-child(4), table.gate td:nth-child(4) { display: none; }
+  .pi-legend { display: none; }
+}
+
+</style></head>
+<body class="with-section-nav" data-created="2026-08-16 10:54 ET"
+      data-last-updated="2026-08-17 01:25 ET"
+      data-style-updated="2026-09-03 10:00 ET"
+      data-content-updated="2026-08-17 01:25 ET"
+      data-structure-updated="2026-09-03 10:00 ET"
+      data-commit="c12ceea">
+
+<nav class="scroll-nav" id="scrollnav" aria-label="Site"><div class="scroll-nav-track"></div><div class="scroll-nav-progress" id="scrollprogress"></div><div class="scroll-nav-inner"><a class="scroll-nav-title" href="index.html">Below Zero</a><div class="scroll-nav-links"><a href="essay.html"><span class="nav-full">The essay</span><span class="nav-abbr">Essay</span></a><span class="nav-group" aria-hidden="true">Deep dives</span><a href="training.html" class="here" aria-current="page"><span class="nav-full">Fine-tuning</span><span class="nav-abbr">Tuning</span></a><a href="dose-response.html"><span class="nav-full">Dose response</span><span class="nav-abbr">Dose</span></a><a href="replication.html"><span class="nav-full">Replication</span><span class="nav-abbr">Seeds</span></a><a href="validation.html"><span class="nav-full">Harness validation</span><span class="nav-abbr">Validation</span></a><span class="nav-group" aria-hidden="true">Reference</span><a href="approach.html"><span class="nav-full">Approach &amp; glossary</span><span class="nav-abbr">Approach</span></a><a href="related-work.html"><span class="nav-full">What this builds on</span><span class="nav-abbr">Sources</span></a></div></div></nav>
+<nav class="section-nav" aria-label="On this page"><div class="section-nav-inner"><span class="section-nav-label">On this page</span><div class="section-nav-links"><a href="#final">Final result</a><a href="#family">Model family</a><a href="#replication">Development</a><a href="#pilot">Pilot evidence</a><a href="#idea">Fine-tuning</a><a href="#map">Experiment map</a><a href="#loop">Training loop</a><a href="#choices">Design choices</a><a href="#accentuation">Stronger signals</a><a href="#arms">Reward arms</a><a href="#plan">Run plan</a><a href="#evaluation">Evaluation</a><a href="#result">Success</a><a href="#automation">Automation</a><a href="#cost">Cost</a></div></div></nav>
+
+<div class="wrap side">
+<h1>What reward tuning changed</h1>
+<p class="q">The same reinforcement-learning method trained three identical copies under three reward objectives. In the frozen final test, confidence-aware training improved proper score by 0.105, mainly through better probabilities rather than abstention.</p>
+<p class="byline page-dates">By Ramon Gonzalez &middot; Created <time datetime="2026-08-16T10:54-04:00">2026-08-16 10:54 ET</time> &middot; Last updated <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time><span class="page-dates-detail">Content <time datetime="2026-08-17T01:25-04:00">2026-08-17 01:25 ET</time> &middot; Style <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time> &middot; Organization <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time></span></p>
+
+
+<div class="note"><b>Current status</b>
+The data pipeline, reward functions, base-model profiler, automatic question selector,
+hosted Tinker training loop, reward-scale calibration, and crossed checkpoint evaluator are
+complete. Two frozen training seeds have now run all three reward arms for one pass over the
+same 500 questions. The preregistered final test then generated 6,400 responses on 200 untouched
+items. Confidence-aware training beat accuracy-only training by 0.105 proper-score units,
+with a 95% interval from 0.036 to 0.175. Accuracy changed by -2.0 points, inside the prespecified
+safeguard. The added assertion cost produced no stable incremental benefit. Two further base
+model families have since replicated the confidence-aware training effect, GPT-OSS 20B and
+Nemotron 3 Nano 30B (an early Nemotron profiling attempt failed the untouched-base format
+gate; a syntax warm-up then cleared it and training completed). Across all three trained
+families, 29 of 33 matched pairs show the
+confidence-calibrated score improving.</div>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="final">The final test passed</h2>
+<p>The protocol, item hash, checkpoints, analysis, and $0.80 hard ceiling were merged before
+any final response was generated. Both frozen training seeds entered one complete analysis.
+The test used 200 new items, 40 from each of five benchmarks, and crossed four checkpoints
+with all four evaluation instructions. No response was manually inspected.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>predeclared gate</th><th>required</th><th>observed</th><th>result</th></tr></thead><tbody><tr><td>Combined proper-score effect</td><td class="n">Estimate and 95% lower bound above 0</td><td class="n">+0.105 (+0.036 to +0.175)</td><td class="n">PASS</td></tr><tr><td>Direction in each training seed</td><td class="n">Both point estimates above 0</td><td class="n">+0.067 and +0.142</td><td class="n">PASS</td></tr><tr><td>Combined accuracy safeguard</td><td class="n">Point estimate no worse than -3 points</td><td class="n">-2.0 points (-5.2 to +1.2)</td><td class="n">PASS by point rule</td></tr><tr><td>Per-seed accuracy safeguard</td><td class="n">Neither point estimate worse than -5 points</td><td class="n">-3.5 and -0.5 points</td><td class="n">PASS by point rule</td></tr><tr><td>Malformed-output safeguard</td><td class="n">Increase no greater than 1 point</td><td class="n">+0.0 points</td><td class="n">PASS</td></tr></tbody></table></div>
+<div class="note"><b>What passed means</b>
+Under the neutral prompt, the confidence-aware checkpoint improved the quadratic proper
+score by 0.105 relative to accuracy-only tuning. The paired 95% interval was +0.036 to +0.175,
+and both training seeds had positive point estimates. Accuracy fell by 2.0 points overall,
+inside the predeclared 3-point safeguard, and malformed output did not increase.</div>
+<p class="cap">The accuracy safeguard was a point-estimate decision rule, not a statistical
+noninferiority test. Its 95% item interval was -5.25 to +1.25 points and crossed the -3-point
+margin. The observed tradeoff passed the predeclared rule, but larger accuracy losses remain
+compatible with this sample.</p>
+
+<h3>The gain came from probabilities, not refusals</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>checkpoint under neutral instruction</th><th>accuracy</th><th>mean confidence</th><th>calibration gap</th><th>Brier</th><th>quadratic score</th><th>confidence AUROC</th><th>coverage</th></tr></thead><tbody><tr><td>Untouched base</td><td class="n">60.0%</td><td class="n">89.5%</td><td class="n">+21.7 points</td><td class="n">0.237</td><td class="n">0.390</td><td class="n">0.78</td><td class="n">88.5%</td></tr><tr><td>Accuracy-only RL</td><td class="n">65.2%</td><td class="n">95.7%</td><td class="n">+30.4 points</td><td class="n">0.314</td><td class="n">0.338</td><td class="n">0.62</td><td class="n">100.0%</td></tr><tr><td>Confidence-aware RL</td><td class="n">63.2%</td><td class="n">54.2%</td><td class="n">-9.0 points</td><td class="n">0.190</td><td class="n">0.443</td><td class="n">0.81</td><td class="n">100.0%</td></tr><tr><td>Confidence + cost RL</td><td class="n">64.5%</td><td class="n">73.6%</td><td class="n">+9.1 points</td><td class="n">0.202</td><td class="n">0.443</td><td class="n">0.80</td><td class="n">100.0%</td></tr></tbody></table></div>
+<p>Accuracy-only tuning answered every item with 95.7% mean confidence but was correct 65.3%
+of the time. Confidence-aware tuning also answered every item, lowered mean confidence to
+54.3%, and cut Brier loss from .314 to .190. Its 2.0-point accuracy loss was more than offset
+by a 12.5-point reduction in probability error. Confidence <dfn class="dfn" tabindex="0" aria-describedby="dfn-auroc">AUROC<span class="dfnbody" id="dfn-auroc" role="tooltip">Area under the ROC curve. The chance that a randomly chosen correct answer carried a higher stated probability than a randomly chosen wrong one. 0.5 is a coin flip, 1.0 is perfect separation. It measures whether the numbers rank right above wrong, not whether they are the right size.</span></dfn> rose from .62 to .81, so
+higher stated confidence also became more informative about which answers were correct.</p>
+<div class="note"><b>The abstention interpretation</b>
+All three tuned checkpoints retained 100% coverage. The confidence objective changed how
+uncertainty was reported without teaching the model to withhold low-confidence views. That
+is the useful behavior for this setting: share the best answer with calibrated confidence,
+and reserve literal abstention for rare cases below an explicit action threshold.</div>
+
+<h3>The assertion cost added no detectable value</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>neutral-prompt comparison</th><th>combined proper-score change</th><th>seed 0</th><th>seed 1</th><th>interpretation</th></tr></thead><tbody><tr><td>Confidence-aware versus accuracy-only</td><td class="n">+0.105</td><td class="n">+0.067</td><td class="n">+0.142</td><td class="n">Primary comparison passed</td></tr><tr><td>Confidence + cost versus accuracy-only</td><td class="n">+0.105</td><td class="n">+0.124</td><td class="n">+0.086</td><td class="n">Similar aggregate gain</td></tr><tr><td>Confidence + cost versus confidence-aware</td><td class="n">+0.000</td><td class="n">+0.056</td><td class="n">-0.056</td><td class="n">No stable incremental benefit</td></tr></tbody></table></div>
+<p>Confidence plus cost matched the confidence-aware arm almost exactly in aggregate. Its
+incremental proper-score effect was effectively zero, with equal and opposite seed effects.
+It also induced no abstentions. The final data support confidence-aware reward, but do not
+support a claim that subtracting 0.09 for every assertion improves this learned policy.</p>
+
+<h3>The aggregate effect hides useful heterogeneity</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>final benchmark</th><th>proper-score change</th><th>accuracy change</th><th>reading</th></tr></thead><tbody><tr><td>ARC</td><td class="n">-0.152</td><td class="n">-3.8 points</td><td class="n">Easy source; confidence became too cautious</td></tr><tr><td>BoolQ</td><td class="n">-0.087</td><td class="n">-1.2 points</td><td class="n">Easy source; accuracy-only was already strong</td></tr><tr><td>GPQA parity</td><td class="n">+0.497</td><td class="n">+5.0 points</td><td class="n">Largest gain on the hardest source</td></tr><tr><td>MedMCQA</td><td class="n">+0.072</td><td class="n">-1.2 points</td><td class="n">Modest calibration gain</td></tr><tr><td>MMLU-Pro</td><td class="n">+0.193</td><td class="n">-8.8 points</td><td class="n">Large calibration gain with lower accuracy</td></tr></tbody></table></div>
+<p>The calibration reward helped most on difficult sources where confident errors were
+common. It hurt proper score on ARC and BoolQ, where accuracy-only tuning was already strong
+and high confidence was often warranted. The causal result is credible for the frozen
+five-benchmark mixture, but one global confidence policy did not improve every domain.</p>
+
+<h3>The behavior persisted under every instruction</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>evaluation instruction</th><th>proper-score change</th><th>accuracy change</th></tr></thead><tbody><tr><td>No reward announced, primary</td><td class="n">+0.105</td><td class="n">-2.0 points</td></tr><tr><td>Accuracy announced</td><td class="n">+0.115</td><td class="n">-0.8 points</td></tr><tr><td>Confidence announced</td><td class="n">+0.126</td><td class="n">+0.5 points</td></tr><tr><td>Confidence + cost announced</td><td class="n">+0.108</td><td class="n">+0.2 points</td></tr></tbody></table></div>
+<p>The proper-score advantage stayed positive whether the evaluation prompt announced no
+reward, accuracy, confidence, or confidence plus cost. The neutral row is primary because it
+does not remind the model what its adapter was trained to optimize. Persistence there shows
+that the weights changed, not merely the response to a matching instruction.</p>
+<p class="cap">The final interval resamples 200 items 10,000 times while keeping the two
+training-seed observations for each item together. It measures item-sample uncertainty
+conditional on these two seeds. It does not precisely estimate the wider distribution of
+training-seed effects.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="family">The second model family exposed a format-robustness problem</h2>
+<p>The Qwen result justified a replication in a distinct open-weight family. The first
+question turned out to be more basic than reward choice: could another model reliably emit
+the exact two-line answer and probability grammar? Every screen was frozen and capped before
+its first paid response, and every failure stopped automatically without inspecting answer
+text.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>candidate</th><th>frozen screen</th><th>invalid output</th><th>decision</th></tr></thead><tbody><tr><td><b>Nemotron Nano, untouched</b></td><td>Seven of eight valid in smoke; 256 profile rollouts</td><td>3.13%</td><td>Stop before training</td></tr><tr><td><b>Nemotron Super, untouched</b></td><td>Seven of eight valid in smoke; 256 profile rollouts</td><td>28.9%</td><td>Stop before training</td></tr><tr><td><b>GPT-OSS-20B</b></td><td>Seven of eight valid in smoke; 256 profile rollouts</td><td>48.4%</td><td>Stop before training</td></tr><tr><td><b>Nano after 8 syntax steps</b></td><td>Eight of eight valid in smoke; 288 profile rollouts</td><td>1.04%</td><td>Stop at the 1% gate</td></tr><tr><td><b>Nano after 16 syntax steps</b></td><td>Eight of eight valid in smoke; full 4,000-rollout profile</td><td>0.575%</td><td>Advance to reward training</td></tr></tbody></table></div>
+<p>The untouched candidates all varied their answers and probabilities, but they did not
+follow the strict output contract reliably enough for training. Malformed text must count as
+incorrect rather than as abstention, so loosening the parser after seeing these results would
+change the experiment. A small common supervised lesson solved most of the problem. It used
+synthetic copy exercises such as &ldquo;answer letter C, probability 40&rdquo; and contained no
+benchmark questions or correct answers.</p>
+<div class="note"><b>The claim changed explicitly</b>
+The Nemotron comparison is reward choice after an identical knowledge-free syntax warm-up,
+not reward tuning from the untouched model. The crossed evaluation uses that shared warm
+checkpoint as its base control, so every reported difference still isolates what happened
+after the reward arms split.</div>
+
+<h3>Seed 0 was promising; seed 1 failed the technical gate</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>replicate</th><th>what completed</th><th>primary result</th><th>decision</th></tr></thead><tbody><tr><td><b>Seed 0</b></td><td>Three arms, 125 steps each; complete 100-item development matrix</td><td>Confidence proper score +.083 versus accuracy-only; accuracy -4 points; malformed output unchanged at 0%</td><td>Pass development gate</td></tr><tr><td><b>Seed 1</b></td><td>Primary arms reached the first 256-rollout health check</td><td>Accuracy-only invalid 2.34%; confidence-aware invalid 1.17%; both exceeded the frozen 1% ceiling</td><td>Stop before development and final</td></tr></tbody></table></div>
+<p>Seed 0 reproduced the mechanism seen in Qwen on development data. Accuracy-only training
+reported 100% confidence on every item, scored .300 under the quadratic rule, and had Brier
+loss .350. Confidence-aware training lowered mean confidence to 72.8%, raised proper score to
+.383, reduced Brier loss to .227, and increased confidence AUROC from .50 to .70. It answered
+every item and lost four points of accuracy, inside the predeclared five-point development
+limit. Confidence plus cost had the strongest seed-0 point estimates, but remained secondary.</p>
+<p>Seed 1 never reached an outcome comparison. Both primary arms exceeded the 1% malformed
+training ceiling at their first 256-rollout health check. The still-running cost arm was
+stopped because it could not rescue a failed primary pair. No seed-1 development responses
+or final-test responses were generated.</p>
+<div class="note"><b>Conclusion</b>
+The cross-family result is promising but not established. Seed 0 shows that the confidence
+reward can create meaningful differentiation in Nemotron after a shared syntax lesson.
+Seed 1 shows that the lesson was not robust enough to support the planned two-seed causal
+claim. Replacing the failed seed, relaxing the gate, or opening the final set would turn a
+technical failure into a post-result design change, so paid work stopped.</div>
+
+<h3>The next attempt should fail cheaply before it trains</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>next design choice</th><th>why it matters</th><th>recommendation</th></tr></thead><tbody><tr><td><b>Validate syntax twice before RL</b></td><td>One green profile did not predict a second stochastic training replicate's format stability.</td><td>Require two independent 4,000-rollout profiles below 0.5% invalid before spending on reward arms.</td></tr><tr><td><b>Run the primary pair first</b></td><td>Qwen found no stable incremental value from the assertion cost, and the cost arm cannot rescue the primary comparison.</td><td>Train accuracy-only and confidence-aware first. Add the cost arm only after the primary effect repeats.</td></tr><tr><td><b>Strengthen format control for every arm</b></td><td>Changing only a failed seed would make initialization another treatment.</td><td>Use a stronger shared syntax checkpoint or provider-supported grammar constraint, then restart every seed from that same state.</td></tr><tr><td><b>Keep the final slice sealed</b></td><td>Offsets 60 through 99 were reserved but never generated.</td><td>Reuse them only under a newly frozen protocol after the development replicates pass.</td></tr></tbody></table></div>
+<p class="cap">This redesign moves the stochastic format check ahead of the expensive
+optimizer work. It also drops the secondary cost arm from the first cross-family test,
+reducing training spend by one-third while preserving the primary scientific question.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="replication">What the development replications found</h2>
+<p>Both replications held the base model, LoRA rank, learning rate, question order, group
+size, and one-pass exposure constant. Only the reward changed. Every arm completed 125
+optimizer steps and saved 4,000 stochastic training responses. All six automated health
+verdicts were green.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>500-question training arm</th><th>seed 0 active groups</th><th>seed 1 active groups</th><th>seed 0 abstention</th><th>seed 1 abstention</th><th>health</th></tr></thead><tbody><tr><td>Accuracy-only</td><td class="n">37</td><td class="n">34</td><td class="n">1.8%</td><td class="n">2.1%</td><td class="n">GREEN / GREEN</td></tr><tr><td>Confidence-aware</td><td class="n">424</td><td class="n">442</td><td class="n">2.0%</td><td class="n">2.6%</td><td class="n">GREEN / GREEN</td></tr><tr><td>Confidence + cost</td><td class="n">453</td><td class="n">444</td><td class="n">2.2%</td><td class="n">1.5%</td><td class="n">GREEN / GREEN</td></tr></tbody></table></div>
+<p class="cap">An active group contains at least two sampled completions with different
+centered rewards. Accuracy-only training had little signal because identical answer outcomes
+receive identical rewards. Probability-sensitive rewards could distinguish completions that
+chose the same answer but stated different confidence.</p>
+
+<h3>The result that replicated</h3>
+<p>The primary comparison asks each final checkpoint the same 100 development questions under
+a neutral instruction, then scores the saved responses with the quadratic rule. The table
+shows each confidence-trained checkpoint relative to the accuracy-only checkpoint from the
+same training seed.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>paired comparison under neutral instruction</th><th>seed 0 change (95% interval)</th><th>seed 1 change (95% interval)</th><th>two-seed reading</th></tr></thead><tbody><tr><td>Confidence-aware versus accuracy-only</td><td class="n">+0.252 (+0.115 to +0.391)</td><td class="n">+0.172 (+0.092 to +0.257)</td><td class="n">Replicated in both seeds</td></tr><tr><td>Confidence + cost versus accuracy-only</td><td class="n">+0.271 (+0.185 to +0.362)</td><td class="n">+0.086 (-0.041 to +0.209)</td><td class="n">Positive twice; seed 1 unresolved</td></tr><tr><td>Confidence + cost versus confidence-aware</td><td class="n">+0.019 (-0.058 to +0.089)</td><td class="n">-0.086 (-0.173 to +0.004)</td><td class="n">Direction changed; no stable winner</td></tr></tbody></table></div>
+<div class="note"><b>Reading the result</b>
+The confidence-aware objective produced the cleanest differentiation. Its quadratic-score
+gain was +.252 in seed 0 and +.172 in seed 1, with both paired intervals above zero. Accuracy
+changed by +8 points in seed 0 and +1 point in seed 1. The gain therefore comes mainly from
+better probabilities, not from trading away correct answers. Confidence-plus-cost also beat
+accuracy-only in both point estimates, but seed 1 did not resolve that difference. The cost
+arm beat confidence-aware in seed 0 and lost to it in seed 1, so there is no stable evidence
+that the extra assertion cost improves the learned policy.</div>
+<p class="cap">Intervals are paired 95% bootstrap intervals over the same 100 development
+questions. They measure item-sample uncertainty within each seed. Two seeds reveal whether
+the direction repeats, but do not precisely estimate the full distribution of training-seed
+effects.</p>
+
+<h3>What each development checkpoint did</h3>
+<p>These tables show the complete neutral-prompt cells. Lower Brier is better. Higher
+quadratic score and confidence AUROC are better. A positive calibration gap means
+overconfidence; a negative gap means underconfidence.</p>
+<h4>Seed 0</h4>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>checkpoint under neutral instruction</th><th>coverage</th><th>accuracy</th><th>mean confidence</th><th>calibration gap</th><th>Brier</th><th>quadratic score</th><th>confidence AUROC</th></tr></thead><tbody><tr><td>Untouched base</td><td class="n">90%</td><td class="n">53%</td><td class="n">88.6%</td><td class="n">+29.7 points</td><td class="n">0.306</td><td class="n">0.255</td><td class="n">0.73</td></tr><tr><td>Accuracy-only</td><td class="n">100%</td><td class="n">56%</td><td class="n">95.0%</td><td class="n">+39.0 points</td><td class="n">0.397</td><td class="n">0.163</td><td class="n">0.54</td></tr><tr><td>Confidence-aware</td><td class="n">100%</td><td class="n">64%</td><td class="n">43.6%</td><td class="n">-20.4 points</td><td class="n">0.225</td><td class="n">0.415</td><td class="n">0.78</td></tr><tr><td>Confidence + cost</td><td class="n">100%</td><td class="n">62%</td><td class="n">66.7%</td><td class="n">+4.7 points</td><td class="n">0.186</td><td class="n">0.434</td><td class="n">0.81</td></tr></tbody></table></div>
+<h4>Seed 1</h4>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>checkpoint under neutral instruction</th><th>coverage</th><th>accuracy</th><th>mean confidence</th><th>calibration gap</th><th>Brier</th><th>quadratic score</th><th>confidence AUROC</th></tr></thead><tbody><tr><td>Untouched base</td><td class="n">90%</td><td class="n">55%</td><td class="n">88.0%</td><td class="n">+26.9 points</td><td class="n">0.286</td><td class="n">0.293</td><td class="n">0.73</td></tr><tr><td>Accuracy-only</td><td class="n">100%</td><td class="n">61%</td><td class="n">95.2%</td><td class="n">+34.2 points</td><td class="n">0.351</td><td class="n">0.259</td><td class="n">0.57</td></tr><tr><td>Confidence-aware</td><td class="n">100%</td><td class="n">62%</td><td class="n">62.0%</td><td class="n">+0.0 points</td><td class="n">0.189</td><td class="n">0.431</td><td class="n">0.78</td></tr><tr><td>Confidence + cost</td><td class="n">100%</td><td class="n">60%</td><td class="n">77.6%</td><td class="n">+17.6 points</td><td class="n">0.255</td><td class="n">0.345</td><td class="n">0.76</td></tr></tbody></table></div>
+<p class="cap">A positive calibration gap means overconfidence; a negative gap means
+underconfidence. Lower Brier is better. Higher quadratic score and confidence AUROC are
+better. The neutral prompt states no reward formula, so this is the cleanest test of what the
+weights learned.</p>
+<p>Accuracy-only training was remarkably consistent: it answered every question at about
+95% mean confidence while accuracy was 56% in seed 0 and 61% in seed 1. Confidence-aware
+training cut the Brier score from .397 to .225 in seed 0 and from .351 to .189 in seed 1.
+Its mean confidence was too low in seed 0, then exactly matched its 62% accuracy in seed 1.
+This is strong evidence that the reward changes probability reporting, but not evidence that
+one short run always lands on the same calibration level.</p>
+
+<h3>The effect depends on question difficulty</h3>
+<p>Each cell below is the quadratic-score change relative to accuracy-only training within
+the same seed. Positive numbers favor the confidence objective. Confidence-aware training
+won on four of five benchmarks in both seeds. BoolQ was the exception because accuracy-only
+training was already perfect and nearly certain. The largest, most repeatable gains came on
+GPQA parity, MedMCQA, and MMLU-Pro, where inaccurate high confidence is most costly.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>benchmark</th><th>confidence gain, seed 0</th><th>confidence gain, seed 1</th><th>cost gain, seed 0</th><th>cost gain, seed 1</th></tr></thead><tbody><tr><td>ARC</td><td class="n">-0.070</td><td class="n">+0.051</td><td class="n">+0.037</td><td class="n">+0.067</td></tr><tr><td>BoolQ</td><td class="n">-0.195</td><td class="n">-0.055</td><td class="n">-0.040</td><td class="n">-0.014</td></tr><tr><td>GPQA parity</td><td class="n">+0.804</td><td class="n">+0.459</td><td class="n">+0.636</td><td class="n">+0.186</td></tr><tr><td>MedMCQA</td><td class="n">+0.409</td><td class="n">+0.215</td><td class="n">+0.388</td><td class="n">+0.021</td></tr><tr><td>MMLU-Pro</td><td class="n">+0.312</td><td class="n">+0.191</td><td class="n">+0.334</td><td class="n">+0.170</td></tr></tbody></table></div>
+
+<h3>Rare abstention remains the intended policy</h3>
+<p>Both cost-trained checkpoints reported a substantive answer for all 100 neutral-prompt
+questions. Applying the predeclared c = .09 break-even threshold afterwards also retained all
+100 in each seed, because none carried less than 30% stated confidence. Low-confidence
+information is therefore still shared; a literal abstention remains reserved for the tail
+below the explicit action threshold.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>minimum confidence</th><th>seed 0 coverage / error</th><th>seed 1 coverage / error</th><th>role</th></tr></thead><tbody><tr><td>30%</td><td class="n">100% / 38.0%</td><td class="n">100% / 40.0%</td><td class="n">Predeclared c = .09 break-even policy</td></tr><tr><td>40%</td><td class="n">96% / 37.5%</td><td class="n">96% / 41.7%</td><td class="n">Post-hoc development diagnostic</td></tr><tr><td>70%</td><td class="n">47% / 8.5%</td><td class="n">86% / 37.2%</td><td class="n">Post-hoc development diagnostic</td></tr><tr><td>80%</td><td class="n">30% / 3.3%</td><td class="n">68% / 27.9%</td><td class="n">Post-hoc development diagnostic</td></tr><tr><td>90%</td><td class="n">12% / 0.0%</td><td class="n">40% / 10.0%</td><td class="n">Post-hoc development diagnostic</td></tr></tbody></table></div>
+<p class="cap">Each cell reports coverage followed by error among retained answers. Only the
+30% threshold was fixed by the training objective. The other rows are post-hoc development
+diagnostics, not selected operating policies.</p>
+
+<h3>The weights changed, not just the prompt response</h3>
+<p>The table reports each confidence arm's quadratic-score gain over accuracy-only training
+under all four evaluation instructions. Confidence-aware training stayed positive in every
+cell across both seeds. Matching the evaluation wording to the training reward is therefore
+not required for the learned behavior to appear. The cost arm was positive in seven of eight
+cells, with a near-zero seed-1 result under the accuracy instruction.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>evaluation instruction</th><th>confidence gain, seed 0</th><th>confidence gain, seed 1</th><th>cost gain, seed 0</th><th>cost gain, seed 1</th></tr></thead><tbody><tr><td>No reward announced</td><td class="n">+0.252</td><td class="n">+0.172</td><td class="n">+0.271</td><td class="n">+0.086</td></tr><tr><td>Accuracy announced</td><td class="n">+0.308</td><td class="n">+0.100</td><td class="n">+0.267</td><td class="n">+0.002</td></tr><tr><td>Confidence announced</td><td class="n">+0.192</td><td class="n">+0.109</td><td class="n">+0.159</td><td class="n">+0.086</td></tr><tr><td>Confidence + cost announced</td><td class="n">+0.144</td><td class="n">+0.088</td><td class="n">+0.115</td><td class="n">+0.095</td></tr></tbody></table></div>
+<div class="note"><b>Decision</b>
+These development results justified one frozen final test. That test has now run and passed.
+The cost arm remained a secondary mechanism comparison and did not rescue or alter the
+primary verdict. No development result changed the final sample, prompts, scoring, or
+checkpoint choice.</div>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="pilot">What the first live pilot found</h2>
+<p>This is development evidence, not the final result. The pilot used 100 source-interleaved
+training questions and 50 separate evaluation questions, 10 from each of five benchmarks.
+Every evaluation question was crossed with four checkpoints and four instructions. Items
+zero through nineteen in each benchmark are permanently development data. The final test
+used the untouched offsets 20 through 59.</p>
+
+<h3>The rewards really did send different signals</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>automated check</th><th>observed result</th><th>what it means</th></tr></thead><tbody><tr><td>Response health</td><td>800 responses; 0% invalid</td><td>The grammar and parser are usable without manual cleanup.</td></tr><tr><td>Base behavior</td><td>54.6% correct; 26.1% wrong; 19.2% abstained</td><td>The base samples all three relevant actions.</td></tr><tr><td>Probability support</td><td>60 of 100 groups</td><td>Confidence rewards can differ from binary accuracy.</td></tr><tr><td>Answer and abstention support</td><td>15 of 100 groups</td><td>An assertion cost can survive group centering.</td></tr><tr><td>Confidence versus cost, c = 0.09</td><td>6.6% of the binary reference signal</td><td>Identifiable, but modest.</td></tr><tr><td>Confidence versus cost, c = 0.16</td><td>11.8% of the binary reference signal</td><td>The first stress test nearly doubles this separation.</td></tr></tbody></table></div>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>one-pass training arm</th><th>active groups</th><th>mean scaled advantage RMS</th><th>training-rollout abstention</th></tr></thead><tbody><tr><td>Accuracy-only</td><td class="n">12</td><td class="n">0.100</td><td class="n">8.5%</td></tr><tr><td>Confidence-aware</td><td class="n">95</td><td class="n">0.086</td><td class="n">5.4%</td></tr><tr><td>Confidence + cost, c = 0.09</td><td class="n">92</td><td class="n">0.096</td><td class="n">8.9%</td></tr></tbody></table></div>
+<p class="cap">Active groups contain at least two responses with different centered rewards.
+The fixed multipliers kept average update magnitude comparable across arms even though the
+confidence objectives were active on many more questions.</p>
+
+<h3>The first question is calibration, not abstention</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>checkpoint under neutral instruction</th><th>coverage</th><th>accuracy</th><th>wrong assertion rate</th><th>Brier score</th></tr></thead><tbody><tr><td>Untouched base</td><td class="n">92%</td><td class="n">56%</td><td class="n">36%</td><td class="n">0.300</td></tr><tr><td>Accuracy-only</td><td class="n">100%</td><td class="n">60%</td><td class="n">40%</td><td class="n">0.312</td></tr><tr><td>Confidence-aware</td><td class="n">100%</td><td class="n">64%</td><td class="n">36%</td><td class="n">0.280</td></tr><tr><td>Confidence + cost, c = 0.09</td><td class="n">100%</td><td class="n">60%</td><td class="n">40%</td><td class="n">0.311</td></tr><tr><td>Confidence + cost, c = 0.16</td><td class="n">100%</td><td class="n">60%</td><td class="n">40%</td><td class="n">0.292</td></tr><tr><td>Confidence + cost, c = 0.16, two passes</td><td class="n">100%</td><td class="n">62%</td><td class="n">38%</td><td class="n">0.247</td></tr></tbody></table></div>
+<p class="cap">Coverage is the share of questions receiving a substantive answer. Lower
+Brier score is better. These are only 50 development items, so differences of a few questions
+remain noisy.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>checkpoint under neutral instruction</th><th>accuracy when answered</th><th>mean stated confidence</th><th>overconfidence gap</th><th>Brier score</th><th>confidence AUROC</th></tr></thead><tbody><tr><td>Untouched base</td><td class="n">61%</td><td class="n">89.5%</td><td class="n">28.6 points</td><td class="n">0.300</td><td class="n">0.74</td></tr><tr><td>Accuracy-only</td><td class="n">60%</td><td class="n">90.2%</td><td class="n">30.2 points</td><td class="n">0.312</td><td class="n">0.73</td></tr><tr><td>Confidence-aware</td><td class="n">64%</td><td class="n">90.3%</td><td class="n">26.3 points</td><td class="n">0.280</td><td class="n">0.78</td></tr><tr><td>Confidence + cost, c = 0.09</td><td class="n">60%</td><td class="n">89.3%</td><td class="n">29.3 points</td><td class="n">0.311</td><td class="n">0.70</td></tr><tr><td>Confidence + cost, c = 0.16</td><td class="n">60%</td><td class="n">88.0%</td><td class="n">28.0 points</td><td class="n">0.292</td><td class="n">0.79</td></tr><tr><td>Confidence + cost, c = 0.16, two passes</td><td class="n">62%</td><td class="n">82.7%</td><td class="n">20.7 points</td><td class="n">0.247</td><td class="n">0.75</td></tr></tbody></table></div>
+<p class="cap">Accuracy here is conditional on giving a substantive answer. The
+overconfidence gap is mean stated probability minus that accuracy; zero is ideal. Brier score
+measures probability error, with lower values better. Confidence AUROC asks whether higher
+probabilities distinguish correct answers from incorrect ones; 0.50 is chance and 1.00 is
+perfect ranking.</p>
+<div class="note"><b>Corrected interpretation</b>
+Under the pure quadratic score, any honest probability above zero carries information, so a
+low-confidence answer can still be better than silence. The assertion cost creates a separate
+decision threshold: c = 0.09 implies 30%, and c = 0.16 implies 40%. No neutral substantive
+answer from any checkpoint reported a probability below either threshold. Answering all 50
+questions was therefore consistent with the models' stated beliefs. The unresolved problem
+is overconfidence: the accuracy-only checkpoint reported 90.2% confidence while being right
+60% of the time. The two-pass cost canary reduced that gap from 30.2 points to 20.7 points,
+but it used twice the training exposure, so this is a promising mechanism signal rather than
+a causal reward-arm result.</div>
+
+<h3>Action policies can be applied after the model reports its belief</h3>
+<p>Once an answer and probability are saved, different users can impose different costs
+without retraining the model. The table applies four minimum-confidence policies to the same
+50 neutral responses from the two-pass cost canary.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>minimum confidence required to answer</th><th>coverage</th><th>error among answers</th><th>interpretation</th></tr></thead><tbody><tr><td>40%</td><td class="n">100%</td><td class="n">38%</td><td class="n">No answer falls below the 40% action threshold.</td></tr><tr><td>70%</td><td class="n">98%</td><td class="n">37%</td><td class="n">A downstream policy withholds lower-confidence answers.</td></tr><tr><td>80%</td><td class="n">62%</td><td class="n">26%</td><td class="n">A downstream policy withholds lower-confidence answers.</td></tr><tr><td>90%</td><td class="n">42%</td><td class="n">5%</td><td class="n">A downstream policy withholds lower-confidence answers.</td></tr></tbody></table></div>
+<p class="cap">The 90% row contains 21 answers and one error. That is encouraging evidence
+that confidence contains useful ranking information, not a stable estimate of a 5% error
+rate. The sample is too small, and the threshold was examined after seeing development data.</p>
+
+<div class="note"><b>What the paired comparison says</b>
+On the shared one-pass design, confidence-aware training beat accuracy-only training by
+4 percentage points of accuracy
+and 0.073 quadratic-score units.
+The paired 95% interval for the score change runs from
+-0.006 to
+0.185, crossing
+zero. The direction is worth replicating, but 50 items and one training seed do not establish
+meaningful differentiation.</div>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="idea">Fine-tuning, in one sentence</h2>
+<p>A pretrained model already knows how to answer questions. Fine-tuning gives it repeated
+practice under a particular definition of a good answer, then makes small adjustments so
+responses that earned more reward become more likely next time.</p>
+<p>We are not trying to teach the model medicine, science, or law. The questions come from
+subjects it already encountered during general training. We first want a better reported
+belief: which answer is best and how likely it is to be correct. A downstream decision policy
+can then use the same probability to decide whether an assertion is worth making under a
+particular cost.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="map">The whole experiment: tune, test, then score</h2>
+<div class="note"><b>There are not three different fine-tuning technologies.</b>
+We use the same off-the-shelf RL and LoRA process three times. Only the reward objective
+changes. After training ends, every resulting checkpoint goes through every evaluation
+instruction. Every saved response is then scored under every formula.</div>
+<div class="table-wrap"><table class="choice-table experiment-map"><thead><tr><th>stage</th><th>what we do</th><th>what varies</th><th>what comes out</th></tr></thead><tbody><tr><td><b>1. Tune</b></td><td>Run the same LoRA and reinforcement-learning process three times per seed on the same 500 questions, then repeat with a second seed</td><td>Only the reward: accuracy-only, confidence-aware, or confidence-plus-cost</td><td>Three tuned adapters, plus the untouched base control: four checkpoints total</td></tr><tr><td><b>2. Generate held-out answers</b></td><td>Ask every checkpoint every held-out question under every evaluation instruction</td><td>Four checkpoints crossed with four instructions: neutral, accuracy, confidence, and confidence-plus-cost</td><td>4 checkpoints &times; 4 instructions = 16 saved responses per held-out question</td></tr><tr><td><b>3. Score the saved answers</b></td><td>Apply each reward formula and the common behavioral metrics after the responses already exist</td><td>Three reward formulas; the saved answer does not change</td><td>16 responses &times; 3 formulas = 48 rule-score records per question, but still only 16 model generations</td></tr></tbody></table></div>
+<p class="cap">The untouched base is a fourth checkpoint, not a fourth tuning arm. Scoring
+a saved answer under another formula does not ask the model again and does not alter its
+weights.</p>
+
+<h3>A translation guide for the terms on this page</h3>
+<div class="table-wrap"><table class="narrow"><thead><tr><th>phrase</th><th>precise meaning here</th><th>does it update weights?</th></tr></thead><tbody><tr><td><b>Tuning approach</b></td><td>One of three reward objectives used inside the same RL and LoRA training process</td><td>Yes, during the training stage</td></tr><tr><td><b>Tuned checkpoint</b></td><td>The shared base model plus the adapter produced by one reward objective</td><td>No; this is the saved result of training</td></tr><tr><td><b>Evaluation instruction</b></td><td>The rule described in the prompt when a held-out question is asked</td><td>No; it changes the current prompt only</td></tr><tr><td><b>Scoring lens</b></td><td>A formula applied to a response after the model has produced and saved it</td><td>No; it requires no model call</td></tr></tbody></table></div>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="loop">What happens during one training step</h2>
+<div class="tune-loop" role="img" aria-label="Four-step fine-tuning loop: ask, sample, score, update">
+  <div class="tune-step"><span>Step 1</span><b>Ask</b>Give the model one multiple-choice
+  question with an explicit &ldquo;I don't know&rdquo; option.</div>
+  <div class="tune-step"><span>Step 2</span><b>Sample</b>Generate eight independent responses
+  to the same question, each with an answer and a stated probability.</div>
+  <div class="tune-step"><span>Step 3</span><b>Score</b>Apply the arm's reward rule
+  automatically. No human judges which response sounds better.</div>
+  <div class="tune-step"><span>Step 4</span><b>Update</b>Nudge a small adapter toward the
+  responses that scored better than the other responses in that group.</div>
+</div>
+<p class="loop-back">Repeat across the frozen training questions.</p>
+<p>The comparison within each group is why the candidate questions matter. If all eight
+responses are correct, or all eight are wrong, an accuracy reward gives them the same score
+and there is no learning signal. We first profile the unchanged base model, then
+automatically retain questions where its outcomes are mixed. The same final questions go to
+every arm.</p>
+
+<h3>One response, all the way from reward to weights</h3>
+<p>Suppose two of eight responses in the accuracy arm are correct. Their rewards are 1 and
+the other six rewards are 0, so the group average is 0.25. Each correct response gets a
+relative signal of +0.75; each incorrect response gets &minus;0.25. The confidence arms use
+continuous rewards, but the conversion is the same:</p>
+<div class="rule">relative signal = response reward &minus; average reward for that question<br>
+positive signal &rarr; make this completion more likely<br>
+negative signal &rarr; make this completion less likely</div>
+<ol>
+<li><b>The sampler records what the current model did.</b> Along with the answer, it saves
+the token sequence and the probability the current policy assigned to each sampled token.</li>
+<li><b>The reward becomes a sequence-level learning signal.</b> Prompt tokens receive zero.
+Every token in the short two-line completion receives that response's relative signal.</li>
+<li><b>Backpropagation measures responsibility.</b> Tinker computes how a tiny change to each
+trainable LoRA weight would have changed the likelihood of those sampled tokens. This is a
+gradient: a direction and magnitude, not an edited answer stored in the model.</li>
+<li><b>Adam takes a small step.</b> The optimizer combines the current gradient with recent
+gradient history, scales it by the learning rate, and updates only the adapter weights.
+Weights associated with positive-signal token patterns move up; negative ones move down.</li>
+<li><b>The next batch uses the updated adapter.</b> New responses are sampled from the new
+policy, scored again, and the loop repeats. Generalization occurs only if thousands of these
+local nudges add up to a behavior that also appears on unseen questions.</li>
+</ol>
+
+<h3>What actually changes in the model?</h3>
+<p>The base model has billions of learned weights. We leave those weights frozen and attach
+a much smaller set of trainable weights using LoRA. Those adapter weights learn the new
+behavior. This makes the run cheaper, lets every arm start from the exact same base, and
+leaves us with a small checkpoint that can be evaluated or removed independently.</p>
+<p>Think of the base model as an experienced analyst and the adapter as a new compensation
+policy. The analyst's underlying education does not change during this short experiment.
+What changes is which available behavior gets reinforced.</p>
+
+<h3>Are we using an off-the-shelf method?</h3>
+<p>Mostly. The GPU machinery is standard rather than a new learning algorithm. The hosted
+loop follows Thinking Machines' <a href="https://tinker-docs.thinkingmachines.ai/tutorials/basics/first-rl/">minimal group-relative RL recipe</a>:
+LoRA adapters, groups of sampled completions, group-centered advantages, an
+<a href="https://tinker-docs.thinkingmachines.ai/tinker/losses/">importance-sampling policy-gradient loss</a>, backpropagation, and Adam. Tinker runs the
+distributed GPU operations and checkpointing. We supply the prompts, deterministic rewards,
+strict parser, question selection, paired arms, health gates, and evaluation.</p>
+<p>There is no learned reward model, human preference labeling, or bespoke neural-network
+architecture. The custom part is the experiment: what counts as reward and how we keep that
+one difference identifiable.</p>
+
+<h3>Key design questions and our current decisions</h3>
+<ul class="key">
+<li><b>Reward shape versus update size.</b> Subtracting the group mean removes reward level,
+but not reward spread. The selector now uses the unchanged-base profile to calculate one
+fixed scale factor per arm, so the arms start with the same root mean square relative signal.
+A single positive multiplier preserves each rule's incentives and its differences across
+questions; normalizing every question separately would not. The manifest saves the raw and
+scaled spreads, and training stops if the calibration belongs to different data or a
+different assertion cost. A later raw-scale run is a declared sensitivity, not the primary
+comparison.</li>
+<li><b>How tightly to constrain policy drift.</b> The initial loop uses the standard
+importance-sampling loss because every rollout is nearly on-policy and receives one update.
+We should record divergence from the base model, entropy, and update norms. If a small pilot
+shows unstable ratios, switch all arms together to a clipped PPO or CISPO loss, or add the
+same reference-policy penalty to every arm.</li>
+<li><b>How much learning capacity to allow.</b> LoRA rank, learning rate, group size, and
+number of steps jointly determine how far the policy can move. Fix them across arms and use
+the smallest settings that create a measurable change on a separate validation slice without
+degrading general accuracy. The held-out test cannot choose these settings.</li>
+<li><b>Whether sequence-level credit is adequate.</b> One final reward is applied to every
+completion token, so the optimizer is not told whether the answer letter or probability
+caused the score. The exact two-line output keeps that ambiguity small. We should not add
+free-form reasoning to the training response unless we also redesign credit assignment.</li>
+<li><b>How to choose a checkpoint.</b> The primary comparison should use the final checkpoint
+at a step count fixed in advance. Selecting each arm's best checkpoint on the held-out test
+would give three chances to overfit. Intermediate checkpoints can guide a later run only on
+a separate validation slice.</li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="choices">Which choices could change the answer most?</h2>
+<p>These sensitivities were recorded before paid training and are design priors, not measured
+effects. They describe how strongly a choice can affect an experiment's conclusion. They do
+not estimate the final differences reported above.</p>
+<div class="table-wrap"><table class="narrow"><thead><tr><th>expected sensitivity</th><th>how to read it before we have results</th></tr></thead><tbody><tr><td><b>Dominant</b></td><td>Can reverse the answer to the experiment or make the comparison invalid.</td></tr><tr><td><b>High</b></td><td>Can materially change held-out behavior, not just make an estimate noisier.</td></tr><tr><td><b>Medium</b></td><td>Usually changes stability, efficiency, or effect size; less likely to reverse a healthy result.</td></tr><tr><td><b>Low after a threshold</b></td><td>Must be adequate, but extra capacity or precision beyond that point should add little.</td></tr></tbody></table></div>
+
+<h3>Training design and implementation</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>choice</th><th>our initial setting</th><th>expected sensitivity</th><th>rough magnitude or mechanism</th></tr></thead><tbody><tr><td><b>Reward definition</b></td><td>Accuracy, confidence, confidence + 0.09 assertion cost</td><td><b>Dominant</b></td><td>This is the treatment. It changes whether a low-confidence answer is rewarded, penalized, or tied with abstention.</td></tr><tr><td><b>Assertion cost</b></td><td>0.09</td><td><b>Dominant within the cost arm</b></td><td>The implied abstention threshold is the square root of the cost. Costs of 0.04, 0.09, and 0.25 imply thresholds of 20%, 30%, and 50%.</td></tr><tr><td><b>Base model</b></td><td>One Qwen3-8B checkpoint, fixed across arms</td><td><b>High or dominant</b></td><td>The model sets the knowledge ceiling and quality of self-assessed probability. A later model family is a replication, not a pooled treatment arm.</td></tr><tr><td><b>Question difficulty mix</b></td><td>500 source-stratified items with mixed base outcomes</td><td><b>High</b></td><td>Questions that are always right or always wrong provide no group-relative signal. Too many easy items can make every reward arm look the same.</td></tr><tr><td><b>Reward scale</b></td><td>One fixed multiplier per arm, calibrated to binary reward RMS</td><td><b>High for causal validity</b></td><td>The unchanged-base profile measures each arm's initial relative-signal spread. The code makes those spreads equal at step zero while preserving each rule's internal incentives.</td></tr><tr><td><b>Learning rate and steps</b></td><td>4e-5 for 125 steps, held equal</td><td><b>High</b></td><td>Doubling steps doubles training batches and roughly doubles cost. Doubling the learning rate doubles the nominal step before Adam's adaptation; behavioral change is nonlinear and can become unstable.</td></tr><tr><td><b>Group size</b></td><td>8 responses per question</td><td><b>Medium</b></td><td>Moving from 8 to 16 doubles sampling cost and, under independent sampling, reduces noise in a group mean by about 29%. It also raises the chance of seeing mixed outcomes.</td></tr><tr><td><b>LoRA rank</b></td><td>32</td><td><b>Medium, then low</b></td><td>Moving from rank 32 to 64 roughly doubles adapter parameters. It matters if rank 32 is a bottleneck; after enough capacity exists for this short policy shift, extra rank should matter much less.</td></tr><tr><td><b>Policy loss and drift control</b></td><td>On-policy importance sampling; same rule in every arm</td><td><b>Medium if stable, dominant if unstable</b></td><td>Clipping or a reference-policy penalty should affect all arms together. Extreme probability ratios or broad capability loss would invalidate an unclipped run.</td></tr><tr><td><b>Output grammar and renderer</b></td><td>Explicit Qwen3 direct-answer renderer and exact two-line response</td><td><b>Dominant for validity</b></td><td>The default thinking renderer exhausted a short output allowance before reaching the answer. The direct-answer renderer now fails closed by model family. A permissive parser could still turn formatting failures into apparent abstention.</td></tr></tbody></table></div>
+<p class="cap">The numerical comparisons describe workload, implied decision thresholds, or
+standard-error mechanics. Behavioral effects remain empirical. Settings stay identical
+across reward arms unless the table explicitly defines the treatment.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="accentuation">How to make the reward differences easier to see</h2>
+<p>There are two different ways to seek a larger effect. We can make sure the reward arms
+actually send different learning signals to the optimizer, or we can train harder on whatever
+signal already exists. The first is an identification requirement. The second is an effect-size
+choice. More steps, a higher learning rate, or a larger adapter cannot rescue reward arms whose
+post-centering signals are the same.</p>
+<div class="note"><b>The important mathematical trap</b>
+The optimizer never receives the raw reward by itself. It receives each response's reward
+minus the average reward in that eight-response group. Any reward term that is the same for
+all eight responses disappears. That means a larger assertion cost has no training effect in
+a group where every response still asserts an answer.</div>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>what appears in one sampled group</th><th>what group centering does</th><th>training consequence</th></tr></thead><tbody><tr><td>Every response answers</td><td>The same assertion cost is subtracted from every response, then disappears when the group average is subtracted.</td><td>Confidence and confidence-plus-cost can send identical advantages to the optimizer.</td></tr><tr><td>Every response reports the same probability</td><td>The confidence reward can become a positive rescaling of binary correctness.</td><td>Fixed RMS calibration can remove the scale difference, leaving the accuracy and confidence arms effectively identical.</td></tr><tr><td>Substantive answers report different probabilities</td><td>The confidence rule ranks some correct and incorrect responses differently from binary accuracy.</td><td>Accuracy and confidence can now teach different token patterns.</td></tr><tr><td>Some responses answer and some choose I DON'T KNOW</td><td>The assertion cost varies within the group, so it survives centering.</td><td>Confidence and confidence-plus-cost can now teach different policies.</td></tr></tbody></table></div>
+<p class="cap">The profile diagnostic now calculates these comparisons after group centering
+and after the fixed per-arm scale factors. It reports the exact residual difference between
+each pair of advantage vectors, rather than inferring separation from the reward formulas.</p>
+
+<h3>Accentuation options and their tradeoffs</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>option</th><th>what it changes</th><th>likely leverage</th><th>main tradeoff</th><th>recommendation</th></tr></thead><tbody><tr><td><b>Reward-divergence-aware question selection</b></td><td>Use unchanged-base rollouts to retain source-balanced questions whose final centered advantages actually differ across reward arms.</td><td><b>Dominant</b>: it can move the comparison from no identifiable treatment to a real one.</td><td>A pool chosen only for extreme divergence would be less representative, so selection needs a minimum gate rather than a contest for the largest possible difference.</td><td>Use in the primary design. Never use held-out test responses for selection.</td></tr><tr><td><b>More exploration</b></td><td>Raise training temperature modestly or move from 8 to 16 samples per question.</td><td><b>Medium to high</b> when the base produces too little probability variation for the rewards to differ.</td><td>Group size 16 roughly doubles sampling cost. Higher temperature adds variance and may increase malformed outputs.</td><td>Try only if the small profile shows inadequate support, and change it identically for every arm.</td></tr><tr><td><b>Shared probability-format warm-up</b></td><td>Before splitting the arms, give every copy the same short supervised lesson showing the exact answer and probability grammar.</td><td><b>Low here</b>: the current base already varies its probabilities in 60 of 100 profiled groups.</td><td>The claim becomes reward comparison after a common warm-up, not reward alone from the untouched model.</td><td>Do not add it to manufacture abstention. Use it only if a future model cannot express the required probability output.</td></tr><tr><td><b>Higher assertion cost</b></td><td>Move the break-even threshold from 30% at c = 0.09 to 40% at c = 0.16, or 50% at c = 0.25.</td><td><b>Potentially high</b> for a cost-policy mechanism test once groups straddle the action threshold; it is not needed to evaluate calibrated beliefs.</td><td>A larger cost tests a more interventionist policy and may encourage excessive refusal.</td><td>Keep c = 0.09 primary. Use c = 0.16 as the first stress-test sensitivity.</td></tr><tr><td><b>Two passes through the pool</b></td><td>Expose each arm to the same 500 questions twice.</td><td><b>High</b> if the arms already receive different gradients; zero for creating a missing contrast.</td><td>Roughly doubles training work and raises overfitting or capability-drift risk.</td><td>Use in the stress test after a smaller pilot shows stable learning.</td></tr><tr><td><b>Higher learning rate</b></td><td>Increase the size of each adapter update.</td><td><b>Medium to high</b>, but nonlinear.</td><td>Can make the effect easier to see or destabilize all three arms. Nominally equal learning rates do not guarantee equal realized drift.</td><td>Test one higher value on a development slice, never choose it using the final held-out set.</td></tr><tr><td><b>LoRA rank 64</b></td><td>Roughly double the trainable adapter parameters from rank 32.</td><td><b>Low to medium</b> unless rank 32 is demonstrably capacity-limited.</td><td>Adds capacity and storage without creating reward variation.</td><td>Leave at 32 initially.</td></tr></tbody></table></div>
+
+<h3>Recommendation: preserve a primary design and add a stress test</h3>
+<p>Running only an accentuated design would show that the mechanism can work, but not how much
+it matters under an ordinary tuning setup. Running only the ordinary design could produce a
+flat result because the sampled action support never let the rewards differ. The clean answer
+is to predeclare both designs and interpret them separately.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>design</th><th>what stays fixed</th><th>what is strengthened</th><th>what the result would mean</th></tr></thead><tbody><tr><td><b>Primary causal comparison</b></td><td>Qwen3-8B, one pass, group size 8, c = 0.09, paired questions and seeds, shared optimizer settings</td><td>Require enough post-centering reward separation to make every arm identifiable, while preserving source quotas and avoiding only the most extreme questions.</td><td>Estimates whether reward choice changes behavior under a reasonable, predeclared tuning setup.</td></tr><tr><td><b>Mechanism stress test</b></td><td>The same three reward arms, crossed held-out evaluation, and common endpoints</td><td>A difficulty-enriched diagnostic slice, c = 0.16 for the cost sensitivity, and possibly group size 16 or two passes. No warm-up is added merely to raise abstention.</td><td>Tests whether reported probabilities improve and whether a cost-trained policy follows its own threshold when the diagnostic includes threshold-adjacent cases.</td></tr></tbody></table></div>
+
+<h3>The decision sequence and completed gate</h3>
+<ol>
+<li><b>Complete: run a base profile.</b> Generate eight direct-answer responses per
+question with no optimizer update. Automatically measure formatting, mixed outcomes,
+probability variation, answer-versus-abstention support, and post-centering reward separation.</li>
+<li><b>Complete: test whether the signals differ.</b> Do not spend on three training arms when
+the diagnostic says their final advantage vectors are effectively identical.</li>
+<li><b>Complete: add only the missing source of variation.</b> If probabilities do not vary, modestly
+increase exploration. If no held-out probabilities fall near an action threshold, keep the
+representative evaluation primary and add a separately labeled difficulty-enriched diagnostic.
+Do not manufacture abstention merely to make its rate visible.</li>
+<li><b>Complete: run one paired training seed.</b> Use the same settings for all three arms and
+evaluate intermediate behavior only on a development slice.</li>
+<li><b>Complete: repeat the frozen design at seed 1.</b> No hyperparameters, questions,
+prompts, or stopping steps changed. The confidence-aware proper-score direction repeated.</li>
+<li><b>Complete: run the final test once.</b> Both frozen seeds used their predeclared
+step-125 checkpoints on offsets 20 through 59 under a separate $0.80 hard ceiling.</li>
+</ol>
+<details class="operational">
+<summary>Operational record: the immediate spending recommendation</summary>
+<div class="note"><b>Immediate spending recommendation</b>
+Stop paid tuning here. The Qwen final test established a causal result for that model and
+design. An early Nemotron profiling attempt then failed the untouched-base format gate before
+any training began. The next high-value spend is not a replacement seed. It is a new cross-family
+protocol that first passes two independent full format profiles, then trains the primary
+accuracy and confidence pair from one shared checkpoint. Rare abstention remains an
+acceptable outcome. <b>Update:</b> that protocol ran. A syntax warm-up cleared the format
+gate, and all 3 matched Nemotron pairs improved on gap, score, and
+near-certain errors.</div>
+</details>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="arms">One tuning method, three reward objectives</h2>
+<p>Every arm starts from the same base model and uses the same prompts, training questions,
+deterministic order, and sampling settings. Only the reward changes. Stochastic completions
+are independently generated and saved; setting one provider seed for an eight-sample call
+made all eight outputs identical and was rejected by the health gate. Each finished arm is a
+saved <em>checkpoint</em>: the unchanged base weights plus that arm's small <dfn class="dfn" tabindex="0" aria-describedby="dfn-lora">LoRA<span class="dfnbody" id="dfn-lora" role="tooltip">Low-rank adaptation. A small set of extra weights trained alongside a frozen base model, cheap to train and to store. When these results say the weights changed, it is the adapter that changed, not the base.</span></dfn> adapter.</p>
+<div class="table-wrap"><table class="arm-table"><thead><tr><th>training arm</th><th>what earns reward</th><th>behavior it should favor</th></tr></thead><tbody><tr><td><b>Accuracy-only RL baseline</b></td><td>Correct answer: 1<br>Wrong or &ldquo;I don't know&rdquo;: 0</td><td>Produce the right answer. A wrong answer is no worse than abstaining.</td></tr><tr><td><b>Confidence-aware RL</b></td><td>Correct: 2p &minus; p&sup2;<br>Wrong: &minus;p&sup2;<br>Abstain: 0</td><td>Report a probability that matches the chance of being right. There is still some expected gain from answering at any positive chance.</td></tr><tr><td><b>Confidence-plus-cost RL</b></td><td>The confidence score, minus 0.09 whenever the model asserts an answer</td><td>Calibrate confidence and abstain when the chance of being right is below 30%.</td></tr></tbody></table></div>
+<p class="cap"><code>p</code> is the probability the model reports for its own substantive
+answer. The fixed cost is charged for asserting even when reported confidence is zero.</p>
+<div class="note" id="accuracy-only"><b>What the accuracy-only RL baseline means</b>
+It is not the default form of all fine-tuning. It is the conventional comparator for
+reinforcement learning on questions with verifiable answers, and it mirrors the usual
+benchmark objective: correct earns 1; wrong or abstaining earns 0. The optimizer makes
+higher-reward completion patterns more likely. The model still reports a probability, but
+that number has no effect on this arm's reward. This short run supplies no explanatory
+lessons; using untouched held-out questions tests whether it learned a general policy rather
+than memorizing training answers.</div>
+
+<h3>A concrete example</h3>
+<p>Suppose the model can internally distinguish a question where it is 60% likely to be
+right from one where it is only 20% likely to be right. The reward rules imply different
+best behavior:</p>
+<div class="table-wrap"><table class="narrow"><thead><tr><th>model&#x27;s belief</th><th>accuracy reward</th><th>confidence reward</th><th>confidence + cost</th></tr></thead><tbody><tr><td>60% likely correct</td><td>Answer</td><td>Answer; report 60%</td><td>Answer; report 60%</td></tr><tr><td>20% likely correct</td><td>Answer</td><td>Answer; report 20%</td><td>Abstain</td></tr></tbody></table></div>
+<p class="cap">For the confidence-plus-cost rule, the break-even confidence is
+<code>&radic;0.09 = 30%</code>. Below that point, an honest answer has a negative expected
+score and explicit abstention scores zero.</p>
+<p>This is the causal question. Accuracy training may teach &ldquo;take the shot.&rdquo;
+Confidence training may teach &ldquo;say how difficult the shot is.&rdquo; Adding the assertion
+cost may teach &ldquo;do not take the shot when the odds are poor.&rdquo;</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="plan">What the completed development run used</h2>
+<div class="stats">
+  <div><b>10,000</b><span>licensed public training candidates</span></div>
+  <div><b>500</b><span>shared questions after base-model profiling</span></div>
+  <div><b>3</b><span>paired reward arms from the same base model</span></div>
+</div>
+<ol>
+<li><b>Build the candidate pool.</b> Draw deterministic multiple-choice questions from six
+public training splits. Reject malformed rows and exact or near matches to every held-out
+evaluation benchmark.</li>
+<li><b>Profile the unchanged model.</b> Generate eight responses for each candidate without
+updating the model. This identifies questions that can give all three arms a useful learning
+signal.</li>
+<li><b>Freeze one shared pool.</b> Select 500 mixed-outcome questions while preserving the
+source mix and balancing the correct answer across letter positions. Before training, require
+the saved post-centering diagnostic to show enough probability and abstention support for the
+reward arms to differ. The same automated step rescales each reward arm to the binary arm's
+initial relative-signal RMS and saves the calibration manifest.</li>
+<li><b>Train the three arms twice.</b> Each arm sees every shared question once per seed,
+producing 4,000 rollouts per arm and 24,000 across the six completed runs. Raw responses are
+saved before an optimizer update uses them.</li>
+<li><b>Generate the complete held-out grid.</b> Every one of the four checkpoints answers
+every frozen held-out question under the neutral instruction and all three announced-rule
+instructions. The neutral row is the primary persistence test; the other rows diagnose how
+new instructions interact with learned behavior.</li>
+<li><b>Score every saved response every way.</b> Apply all three reward formulas and the
+common accuracy, calibration, coverage, and error metrics to every response after generation.
+This last step changes no weights and makes no additional model calls.</li>
+</ol>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="evaluation">Cross each checkpoint with each evaluation instruction</h2>
+<div class="note"><b>Your summary is exactly the structure, with one terminology refinement.</b>
+We try three reward objectives during tuning. We then run the base and all three tuned
+checkpoints under all four evaluation instructions. Finally, we score every one of those
+responses under all three formulas. The evaluation instructions and scoring formulas are
+tests of a trained checkpoint; they are not additional tuning approaches.</div>
+<p>The phrase &ldquo;evaluate every model under every rule&rdquo; compresses three separate
+choices. A column selects the saved weights. A row selects the instruction shown with the
+held-out question. After the response is saved, three scoring formulas are applied without
+another model call.</p>
+<div class="table-wrap"><table class="narrow"><thead><tr><th>axis</th><th>when it is set</th><th>what changes</th><th>levels in this experiment</th></tr></thead><tbody><tr><td><b>Checkpoint</b><br><span class="sub">the columns</span></td><td>Before evaluation</td><td>Which saved weights generate the response</td><td>Untouched base, accuracy-only RL adapter, confidence-aware RL adapter, or confidence-plus-cost RL adapter</td></tr><tr><td><b>Evaluation instruction</b><br><span class="sub">the rows</span></td><td>When the held-out question is asked</td><td>What scoring rule the prompt tells the already-trained checkpoint to expect</td><td>No rule announced, accuracy, confidence, or confidence + cost</td></tr><tr><td><b>Scoring lens</b><br><span class="sub">after generation</span></td><td>After the response is saved</td><td>Only the reported metric; the model is not called again</td><td>Accuracy, confidence, and confidence + cost are all applied to every response</td></tr></tbody></table></div>
+
+<h3>What the four checkpoint columns mean</h3>
+<p>Fine-tuning has already ended before this table is run. Selecting a column only loads a
+different set of saved weights. It does not retrain the model on the held-out question.</p>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>evaluation column</th><th>which weights are loaded</th><th>what its fine-tuning rewarded</th></tr></thead><tbody><tr><td><b>Base checkpoint</b><br><span class="sub">no tuning</span></td><td>The original Qwen3-8B weights, with no reward-trained adapter attached</td><td>Nothing. This is the control that shows how the original model responds to each evaluation instruction.</td></tr><tr><td><b>Accuracy-only RL checkpoint</b><br><span class="sub">code name: binary</span></td><td>The same base plus a LoRA adapter updated on the shared 500 training questions</td><td>Correct completion: 1. Wrong completion or I DON'T KNOW: 0. The reported probability does not affect reward.</td></tr><tr><td><b>Confidence-aware RL checkpoint</b><br><span class="sub">code name: quadratic</span></td><td>The same base plus a separate LoRA adapter trained from the same starting point</td><td>Correct: 2p - p². Wrong: -p². I DON'T KNOW: 0. Honest reported probability maximizes expected reward.</td></tr><tr><td><b>Confidence-plus-cost RL checkpoint</b><br><span class="sub">code name: quad_cost</span></td><td>The same base plus a third LoRA adapter trained from the same starting point</td><td>The confidence reward minus 0.09 for any substantive answer. I DON'T KNOW scores 0, favoring abstention below 30% confidence.</td></tr></tbody></table></div>
+
+<h3>What the four instruction rows mean</h3>
+<p>Selecting a row changes the evaluation prompt, not the weights. This separates a durable
+habit learned during training from immediate compliance with a new instruction.</p>
+<div class="table-wrap"><table class="narrow"><thead><tr><th>evaluation row</th><th>what the already-trained checkpoint is told now</th></tr></thead><tbody><tr><td><b>Neutral instruction</b><br><span class="sub">primary test</span></td><td>Choose an answer or I DON'T KNOW and report a probability. No reward formula, penalty, or preferred threshold is disclosed.</td></tr><tr><td><b>Accuracy instruction</b></td><td>A correct substantive answer scores 1; a wrong answer or I DON'T KNOW scores 0. The prompt says a best guess maximizes this score.</td></tr><tr><td><b>Confidence instruction</b></td><td>The prompt states the quadratic formula and asks for an honest probability. I DON'T KNOW scores 0.</td></tr><tr><td><b>Confidence + cost instruction</b></td><td>The prompt states the same quadratic formula, subtracts 0.09 for asserting an answer, and explains the 30% break-even threshold.</td></tr></tbody></table></div>
+
+<h3>The 16 generation permutations</h3>
+<p>One cell combines one checkpoint column with one evaluation-instruction row. The base
+checkpoint is included in every row to measure the prompt-only effect.</p>
+<div class="table-wrap"><table class="eval-matrix"><thead><tr><th>evaluation instruction</th><th>base checkpoint</th><th>accuracy-only RL checkpoint</th><th>confidence-aware RL checkpoint</th><th>confidence-plus-cost RL checkpoint</th></tr></thead><tbody><tr><td><b>No reward announced</b><br><span class="sub">primary test</span></td><td>Generate once<br><span class="sub">primary</span></td><td>Generate once<br><span class="sub">primary</span></td><td>Generate once<br><span class="sub">primary</span></td><td>Generate once<br><span class="sub">primary</span></td></tr><tr><td>Accuracy rule announced</td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td></tr><tr><td>Confidence rule announced</td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td></tr><tr><td>Confidence + cost announced</td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td><td>Generate once<br><span class="sub">diagnostic</span></td></tr></tbody></table></div>
+<p class="cap">Four checkpoints by four prompt conditions make 16 generation cells for each
+held-out item. Every cell uses the same frozen questions, output grammar, and evaluation
+sampling settings. The implemented evaluator makes
+these cells explicit before any paid call.</p>
+<p><b>Concrete example.</b> The cell where the accuracy-only RL checkpoint meets the
+confidence + cost instruction loads weights learned from correct = 1 training, then tells
+that already-trained checkpoint that answers now face the quadratic score and a 0.09
+assertion cost. No additional fine-tuning occurs in that cell. Its response lets us test
+whether the new instruction overrides, combines with, or loses to the earlier training.</p>
+
+<h3>Scoring is a third axis, but it does not require more model calls</h3>
+<p>Every saved response contains an answer, a probability, and the explicit abstention
+choice. We can therefore score that one response afterwards under accuracy, confidence, and
+confidence-plus-cost. The full analysis is training reward &times; evaluation prompt &times;
+scoring lens. Only the first two axes require generation; applying all three scoring rules
+afterwards is deterministic and free.</p>
+<p>The reward-specific scores are useful, but they should not be the primary verdict. A model
+trained on one objective is expected to look best under that same objective. The common
+endpoints are harder to game: overall accuracy, coverage, incorrect assertions, calibration,
+and the full error-versus-coverage curve.</p>
+<div class="table-wrap"><table class="narrow"><thead><tr><th>comparison</th><th>what it identifies</th></tr></thead><tbody><tr><td>Base checkpoint across instructions</td><td>The prompt-only effect before any fine-tuning.</td></tr><tr><td>Each reward-trained checkpoint versus base under the neutral instruction</td><td>The behavior that training made persistent.</td></tr><tr><td>Each checkpoint across all four instructions</td><td>Whether later instructions override, amplify, or conflict with the learned policy.</td></tr><tr><td>Matching versus conflicting training and evaluation rules</td><td>Whether an adapter learned a general decision policy or only works when the current instruction agrees with its training history.</td></tr></tbody></table></div>
+
+<h3>The primary test and the secondary diagnostics</h3>
+<ul class="key">
+<li><b>Primary: persistence with no reward announced.</b> Compare all three adapters and the
+base model on identical untouched questions. This is the clean test of what training changed.</li>
+<li><b>Primary endpoints: belief quality and capability.</b> Compare quadratic proper score,
+Brier score, calibration gap, confidence AUROC, overall accuracy, and format failure. A model
+should report probabilities that correspond to correctness while preserving its ability to
+answer.</li>
+<li><b>Headline contrast.</b> Compare confidence-aware training with accuracy-only
+training under the neutral prompt. A practical win requires a reproducible proper-score or
+calibration improvement without a material loss of overall accuracy.</li>
+<li><b>Derived action policies.</b> Apply multiple confidence thresholds to every checkpoint's
+saved probabilities and report the resulting risk-coverage curves. These policies do not
+require retraining or more generation calls.</li>
+<li><b>Secondary: prompt-by-training interactions.</b> The three announced-rule rows show
+whether the learned policy remains flexible. A cost-trained adapter that abstains under every
+instruction may be rigid; one that changes appropriately with the announced objective has
+learned a more configurable policy.</li>
+<li><b>Paired uncertainty.</b> Compute item-level differences because every checkpoint sees
+the same questions, report uncertainty by held-out source, and require a promising first-seed
+effect to repeat in a second complete training seed before opening the final test.</li>
+<li><b>No test-driven checkpoint choice.</b> Freeze the held-out items and primary contrasts
+before training. The test set is opened once for the final comparison; it is not a dashboard
+for choosing learning rates or stopping steps.</li>
+<li><b>One declared success contrast.</b> The matrix creates many legitimate comparisons,
+but not many chances to declare victory. Before training, name the primary adapter contrast,
+common endpoint, and smallest effect worth replicating. Treat the rest as diagnostics with
+uncertainty, not as alternate routes to a positive result.</li>
+</ul>
+
+<h3>Evaluation choices and their likely leverage</h3>
+<div class="table-wrap"><table class="choice-table"><thead><tr><th>evaluation choice</th><th>our decision</th><th>expected sensitivity</th><th>cost or consequence</th></tr></thead><tbody><tr><td><b>Unchanged base control</b></td><td>Included in every prompt condition</td><td><b>Dominant</b></td><td>Without it, prompt effects and ordinary base behavior can be mistaken for fine-tuning effects.</td></tr><tr><td><b>Neutral prompt as primary</b></td><td>No reward is announced</td><td><b>Dominant for interpretation</b></td><td>This tests persistence. A matched reward announcement tests compliance with instructions, not what the adapter learned to do on its own.</td></tr><tr><td><b>Crossed prompt matrix</b></td><td>4 checkpoints by 4 prompts</td><td><b>High diagnostic value</b></td><td>It uses 16 calls per item, four times the neutral-only matrix, and reveals flexibility or conflict between prompting and training.</td></tr><tr><td><b>Three scoring lenses</b></td><td>Apply all three to every saved response</td><td><b>High interpretive value</b></td><td>It adds no generation calls. It shows whether an apparent win exists only under the objective that trained the model.</td></tr><tr><td><b>Paired held-out items</b></td><td>Every cell sees the same frozen questions</td><td><b>High</b></td><td>Pairing removes much item-difficulty noise. Doubling items roughly cuts standard error by 29% under independent-item assumptions, but doubles evaluation calls.</td></tr><tr><td><b>Risk and coverage endpoints</b></td><td>Error at matched coverage and coverage at matched error</td><td><b>Dominant for the verdict</b></td><td>Abstention rate alone rewards refusing everything. Accuracy alone rewards guessing. The curve requires both safety and usefulness.</td></tr><tr><td><b>Checkpoint selection</b></td><td>Final predeclared step; validation never held-out test</td><td><b>Dominant for bias control</b></td><td>Picking each arm's best held-out checkpoint creates several chances to overfit and breaks the paired causal comparison.</td></tr><tr><td><b>Training seeds</b></td><td>1 discovery seed, then 1 frozen replication seed</td><td><b>High for confidence</b></td><td>The second seed doubles training cost and tests whether the direction repeats. Two seeds do not precisely estimate between-seed variance.</td></tr><tr><td><b>Temperature and repetitions</b></td><td>Temperature 0 and one repetition initially</td><td><b>Medium</b></td><td>Higher temperature can expose policy differences but adds sampling variance. Each added repetition multiplies the entire 16-cell evaluation cost.</td></tr><tr><td><b>Held-out source mix</b></td><td>Five deterministic MC benchmarks</td><td><b>High for generalization</b></td><td>A result confined to one source may be a benchmark-specific habit. Source-stratified reporting prevents a large easy source from hiding that.</td></tr></tbody></table></div>
+<p class="cap">The automatic evaluator freezes the exact items before paid calls, resolves
+the final sampler checkpoint for each arm, resumes by response identity, saves one complete
+16-cell item matrix at a time, and writes calibration bins, risk-coverage curves, paired
+bootstrap intervals, source-specific results, and neutral-prompt contrasts.</p>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="result">What counted as meaningful differentiation?</h2>
+<p>A lower training loss did not count, and neither did a visible difference in training
+responses. The reward directly creates both. The evidence had to appear on questions the
+adapters never trained on. The final test met the first, second, and replication criteria
+below without relying on abstention.</p>
+<ul class="key">
+<li><b>Better probability quality.</b> The confidence-aware arm should improve the proper score
+and reduce probability error relative to accuracy-only training.</li>
+<li><b>Better calibration and ranking.</b> A stated 70% should be right about 70% of the time,
+and higher probabilities should reliably distinguish correct answers from incorrect ones.</li>
+<li><b>Useful derived policies.</b> Applying a downstream confidence threshold should reduce
+error as coverage falls. Rare abstention is acceptable when few beliefs fall below the chosen
+threshold.</li>
+<li><b>Cost-policy consistency.</b> A cost-trained model is a mechanism test: it should abstain
+when its own reported probability is below the announced break-even threshold and answer when
+above it. Raw abstention frequency is not a primary endpoint.</li>
+<li><b>Replication across seeds.</b> One seed is an inexpensive existence test. The development
+effect had to survive a second complete paired seed before it could justify a final test.
+Additional seeds and model families would be needed for a broad generalization claim.</li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="automation">What requires human attention?</h2>
+<details class="operational">
+<summary>Operational record: what is automatic and what needs a decision</summary>
+<p>Model-response inspection is not part of the operating plan. Parsing, answer grading,
+reward calculation, contamination checks, source quotas, answer-letter balance, question
+selection, rollout-health checks, spend bounds, and artifact saving are deterministic and
+automatic. A failed gate stops the run rather than asking someone to clean up rows by hand.</p>
+<p>The human decisions are substantive: authorize paid execution, choose the assertion cost,
+and decide whether the held-out effect is large enough to justify replication. Those are
+design and spending choices, not labeling work.</p>
+</details>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="cost">Scale and cost</h2>
+<details class="operational">
+<summary>Operational record: token ceilings and what has been authorized</summary>
+<p>The profile, one-pass three-arm pilot, c = 0.16 one-pass and two-pass cost sensitivities,
+all three early development matrices, both 500-question replications, and the final test are
+complete.
+Each stage used a saved worst-case token budget before it ran. At
+<a href="https://tinker-docs.thinkingmachines.ai/tinker/models/">current Tinker prices</a>,
+Qwen3-8B costs $0.195 per million uncached prefill tokens, $0.039 for cached prefill,
+$0.60 for sampled tokens, and $0.44 for training tokens.</p>
+<p>The conservative ceilings were $0.15 for the 100-question profile, $0.48 for the first
+three training arms, $0.08 for the first 800-cell development matrix, $0.17 for the stronger
+cost checkpoint, $0.04 for its partly reused evaluation, $0.32 for the two-pass canary, and
+$0.02 for its reused evaluation. Those early stages total about $1.26. The seed-0 replication
+had a separate $2.875 worst-case estimate and a $3.25 operational cap. Seed 1 reused the base
+profile, carried a $2.56 worst-case estimate, and had a $2.85 operational cap. The combined
+conservative pre-final ceilings were therefore about $6.70, not a claim about settled billing.
+The 6,400-call final test added a $0.614 no-caching upper bound and stayed below its separate
+$0.80 operational ceiling. The combined conservative ceilings are about $7.31. They assume
+no prompt caching and maximum-length completions. Applying new scoring formulas or thresholds
+to saved responses remains free. The $100 account balance is a limit, not a spending target.</p>
+<p>Paid tuning is now stopped. The first model-family replication did not pass its second-seed
+format gate. The next useful paid step is a formatting-robust restart that validates two
+independent full profiles before reward training, not a replacement seed or a larger Qwen3-8B
+run.</p>
+</details>
+
+
+</div>
+
+<footer><div class="wrap">
+<p>This page separates development evidence from the preregistered final result. The full audit summary is committed with the site source.</p>
+<div class="footer-nav"><a href="essay.html">The essay</a><a href="index.html">Overview</a><a href="dose-response.html">Dose response</a><a href="replication.html">Replication</a><a href="validation.html">Harness validation</a><a href="approach.html">Approach &amp; glossary</a><a href="why-linear-fails.html">Why linear fails</a><a href="related-work.html">What this builds on</a><a href="literature.html">What is new here</a><a href="open-questions.html">Open questions</a></div>
+</div></footer>
+
+<script>
+(function () {
+  var bar = document.getElementById('scrollprogress');
+  if (bar) {
+    function update() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
+    }
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
+  // Fade whichever edge of a horizontal scroller actually has content hidden
+  // behind it, and neither edge when the content fits. Applied to every
+  // horizontal scroller with a hidden scrollbar (nav row, section rail, table
+  // wrappers, chart scroller), because the cue means the same thing in all of
+  // them and an unconditional fade would be a claim about hidden content that
+  // is false most of the time.
+  function fades(el) {
+    var max = el.scrollWidth - el.clientWidth;
+    // Cap the ramp near the actual overflow: a table hanging 8px over its box
+    // deserves an 8px whisper, not a 26px bite out of its last readable column.
+    var w = max > 1 ? Math.min(26, max + 6) + 'px' : '0px';
+    el.style.setProperty('--fade-start', el.scrollLeft > 1 ? w : '0px');
+    el.style.setProperty('--fade-end', el.scrollLeft < max - 1 ? w : '0px');
+  }
+  var scrollers = document.querySelectorAll(
+    '.scroll-nav-links, .section-nav-links, .table-wrap, .cal-chart-scroll');
+  function allFades() { scrollers.forEach(fades); }
+  scrollers.forEach(function (el) {
+    el.addEventListener('scroll', function () { fades(el); }, { passive: true });
+  });
+  addEventListener('resize', allFades);
+
+  var row = document.querySelector('.scroll-nav-links');
+  if (!row) { allFades(); return; }
+
+  // Bring the current page's link into view. On a phone the row is wider than
+  // the screen, so the marked link can sit off the right edge — leaving the one
+  // page the reader is actually on as the only one with no indicator. Set
+  // scrollLeft directly rather than calling scrollIntoView, which would also
+  // scroll the document and land the reader partway down the article.
+  //
+  // Measured from bounding rects rather than offsetLeft. The row is not a
+  // positioned element, so offsetLeft is relative to the fixed bar and silently
+  // includes the wordmark's width, which biases every comparison by however
+  // wide "Below Zero" happens to render.
+  var here = row.querySelector('.here');
+  // Must clear the 26px fade ramp with room to spare, or the reveal parks the
+  // current page's link inside the fade and the one marked link in the row
+  // renders dimmest. 16px looked fine while desktop had no fade to clear.
+  var pad = 34;
+  function reveal() {
+    if (!here) return;
+    var h = here.getBoundingClientRect(), r = row.getBoundingClientRect();
+    var delta = 0;
+    if (h.right + pad > r.right) delta = h.right + pad - r.right;
+    else if (h.left - pad < r.left) delta = h.left - pad - r.left;
+    if (delta) row.scrollLeft += delta;
+    fades(row);
+  }
+  reveal();
+
+  // Re-reveal on resize. Rotating a phone to landscape fits the whole row, and
+  // rotating back re-lays it out scrolled to the left, which drops the marker
+  // off the right edge again. The fade handler already runs here; without the
+  // marker running too, a rotate leaves the reader on the one page the bar does
+  // not indicate.
+  addEventListener('resize', reveal);
+
+  // And once webfonts land. This script runs at parse time, so it measures the
+  // row in the fallback face; when Inter arrives the links re-flow and the
+  // scroll position computed against the old metrics no longer frames the
+  // marker. Cheap to redo, and on a fast connection it is a no-op.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reveal);
+
+  allFades();
+})();
+(function () {
+  var rail = document.querySelector('.section-nav');
+  if (!rail) return;
+  var links = Array.prototype.slice.call(
+    rail.querySelectorAll('.section-nav-links a')
+  );
+  var pairs = links.map(function (link) {
+    return { link: link, heading: document.getElementById(link.hash.slice(1)) };
+  }).filter(function (pair) { return pair.heading; });
+
+  function updateSection() {
+    /* Keep this comfortably below the 112px anchor landing line. Reusing the
+       same boundary makes the active section depend on sub-pixel rounding. */
+    var threshold = rail.getBoundingClientRect().bottom + 28;
+    var active = null;
+    pairs.forEach(function (pair) {
+      if (pair.heading.getBoundingClientRect().top <= threshold) active = pair;
+    });
+    pairs.forEach(function (pair) {
+      var current = pair === active;
+      pair.link.classList.toggle('here', current);
+      if (current) pair.link.setAttribute('aria-current', 'location');
+      else pair.link.removeAttribute('aria-current');
+    });
+  }
+
+  addEventListener('scroll', updateSection, { passive: true });
+  addEventListener('resize', updateSection);
+  updateSection();
+})();
+</script>
+
+</body></html>

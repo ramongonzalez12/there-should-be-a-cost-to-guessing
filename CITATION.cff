@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+title: "Below zero: scoring rules that price being wrong"
+message: "If you use this work, please cite it."
+type: software
+authors:
+  - family-names: Gonzalez
+    given-names: Ramon
+repository-code: "https://github.com/ramongonzalez12/there-should-be-a-cost-to-guessing"
+url: "https://ramongonzalez.com/cost-to-guessing/"
+abstract: >-
+  Across 1,089,024 published model responses spanning 104 models and 36
+  benchmarks, 0.69% contain any admission of not knowing and 0.25% state a
+  probability. This repository documents that census, proposes a strictly proper
+  scoring rule with a priced abstention threshold, and provides a pre-registered
+  experiment testing whether announcing the rule to the model changes its
+  behaviour.
+keywords:
+  - language models
+  - evaluation
+  - calibration
+  - proper scoring rules
+  - abstention
+license: MIT
+references:
+  - type: dataset
+    title: "Below zero: essay graded responses, tables, and figure data"
+    authors:
+      - family-names: Gonzalez
+        given-names: Ramon
+    abstract: >-
+      Graded responses of 77 language models to 800 questions from eight
+      benchmarks under four prompts (181,628 rows, no question text), with the
+      tables, per-figure CSVs, and key numbers of the essay, rebuildable with no
+      API key.
+    repository: "https://github.com/ramongonzalez12/there-should-be-a-cost-to-guessing"
+    license: CC-BY-4.0
+    notes: "data/essay/ in the repository"

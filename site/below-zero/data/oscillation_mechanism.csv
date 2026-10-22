@@ -1,0 +1,10 @@
+metric,value
+group_share_all_correct,0.7097
+group_push_all_correct,0.00271
+group_share_all_wrong,0.2363
+group_push_all_wrong,-0.00892
+group_share_mixed,0.054
+group_push_mixed,0.03618
+batch_difficulty_sd_file,0.2085
+batch_difficulty_sd_permuted,0.2082
+batch_difficulty_sd_balanced,0.0607

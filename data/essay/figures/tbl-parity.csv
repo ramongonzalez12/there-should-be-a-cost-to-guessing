@@ -1,0 +1,7 @@
+model,model_and_published_setup,published_accuracy_pct,our_accuracy_pct,questions,expected_range_low_pct,expected_range_high_pct
+openai/gpt-5.6-terra,GPT-5.6 Terra (max),92.5253,92.9293,198,88.8889,95.9596
+openai/gpt-5.6-luna,GPT-5.6 Luna (max),91.1111,89.899,198,86.8687,94.9495
+qwen/qwen3.6-plus,Qwen3.6 Plus (reasoning),88.1818,87.8788,198,83.3333,92.4242
+mistralai/mistral-small-2603,Mistral Small 4 (reasoning),76.8687,76.2626,198,70.7071,82.8283
+google/gemini-3.6-flash,Gemini 3.6 Flash (high),92.8283,93.4343,198,88.8889,95.9596
+minimax/minimax-m3,MiniMax M3 (default reasoning),92.9293,90.9091,198,89.3939,96.4646

@@ -1,0 +1,54 @@
+
+.reliability-figure {
+  max-width: var(--max-wide); margin: 18px 0 24px;
+}
+
+.reliability-figure h4 {
+  margin: 0 0 4px; font-family: 'Inter', ui-sans-serif, sans-serif;
+  font-size: 15px; line-height: 1.35;
+}
+
+.reliability-chart {
+  display: block; width: 100%; height: auto; margin-top: 8px;
+  background: transparent;
+}
+
+.reliability-figure figcaption {
+  margin-top: 8px; max-width: 820px; font-family: 'Inter', ui-sans-serif, sans-serif;
+  font-size: 12.5px; line-height: 1.5; color: var(--text-secondary);
+}
+
+.reliability-overconfident { fill: #f7f2f4; }
+
+.reliability-grid { stroke: #e8e5df; stroke-width: 1; }
+
+.reliability-perfect { stroke: #a7a29a; stroke-width: 1.2; stroke-dasharray: 5 5; }
+
+.reliability-axis { stroke: #5e5a55; stroke-width: 1.15; }
+
+.reliability-series { fill: none; stroke-width: 2; opacity: .9; }
+
+.reliability-point { stroke: #fff; stroke-width: 1.5; }
+
+.reliability-label { fill: #77736d; font: 10.5px 'Inter', ui-sans-serif, sans-serif; }
+
+.reliability-axis-title { fill: #403d39; font: 600 11.5px 'Inter', ui-sans-serif, sans-serif; }
+
+.reliability-panel-title { fill: #5e5a55; font: 650 10px 'Inter', ui-sans-serif, sans-serif;
+  letter-spacing: .05em; text-transform: uppercase; }
+
+.reliability-note { fill: #77736d; font: 10.5px 'Inter', ui-sans-serif, sans-serif; }
+
+.reliability-key { fill: #403d39; font: 600 11px 'Inter', ui-sans-serif, sans-serif; }
+
+.reliability-point-label { font: 650 10.5px 'Inter', ui-sans-serif, sans-serif; }
+
+.distribution-grid { stroke: #ece9e3; stroke-width: 1; }
+
+.distribution-bar { opacity: .88; }
+
+.distribution-value { font: 650 10px 'Inter', ui-sans-serif, sans-serif; }
+
+  /* Keep the evidence legible without widening the page. The stat strip
+     recomposes for mobile; only the dense row chart scrolls horizontally. */
+  .reliability-chart { width: 720px; min-width: 720px; }

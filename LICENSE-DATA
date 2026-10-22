@@ -1,0 +1,24 @@
+Data license
+
+The data in this repository's data/ folder (including data/essay/: the essay's
+figure CSVs, tables, graded rows, judge receipts, and inputs) is licensed under
+the Creative Commons Attribution 4.0 International License (CC BY 4.0):
+
+    https://creativecommons.org/licenses/by/4.0/
+    Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Copyright (c) 2026 Ramon Gonzalez.
+
+You may share and adapt the data for any purpose, provided you give
+appropriate credit (see CITATION.cff), link to the license, and indicate if
+changes were made.
+
+Exceptions. Benchmark item ids and reference answers remain subject to each
+benchmark's own terms, listed in NOTICE and in data/essay/README.md. No
+benchmark question text is included. Model outputs recorded in the graded
+rows (parsed answers and stated confidences) were produced by models served
+through OpenRouter, under each provider's terms; NOTICE lists the duties some
+model licenses attach to training on their outputs.
+
+The code in this repository is licensed separately under the MIT License
+(LICENSE).

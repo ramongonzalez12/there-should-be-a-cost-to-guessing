@@ -1,0 +1,1969 @@
+{
+  "program": "leader-triples-20260915",
+  "date": "2026-09-15",
+  "protocol": "notes/2026-09-15-leader-triples-protocol.md",
+  "source_code_commit": "e8044be",
+  "budget_cap_usd": 50,
+  "reported_attempt_cost_usd": 20.991219014990964,
+  "reconciled_program_cost_usd": 21.04774814199999,
+  "account_usage_change_usd": 21.04774814199999,
+  "original_baseline_models": [
+    "anthropic/claude-3-haiku",
+    "anthropic/claude-fable-5.1",
+    "anthropic/claude-haiku-4.5",
+    "anthropic/claude-opus-5",
+    "anthropic/claude-sonnet-4",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-sonnet-4.6",
+    "anthropic/claude-sonnet-5",
+    "deepseek/deepseek-chat",
+    "deepseek/deepseek-chat-v3-0324",
+    "deepseek/deepseek-v4-flash",
+    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
+    "google/gemini-2.5-flash",
+    "google/gemini-2.5-pro",
+    "google/gemini-3-flash-preview",
+    "google/gemini-3.1-flash-lite-preview",
+    "google/gemini-3.1-pro-preview",
+    "google/gemini-3.7-flash",
+    "google/gemini-3.8-flash",
+    "google/gemma-2-27b-it",
+    "google/gemma-3-27b-it",
+    "meta-llama/llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "meta/muse-glimmer-30b",
+    "mistralai/mistral-large",
+    "mistralai/mistral-large-2512",
+    "mistralai/mistral-medium-3",
+    "mistralai/mistral-medium-3-5",
+    "moonshotai/kimi-k3",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "openai/gpt-3.5-turbo",
+    "openai/gpt-4",
+    "openai/gpt-4-turbo",
+    "openai/gpt-4.1",
+    "openai/gpt-4.1-mini",
+    "openai/gpt-4o-2024-08-06",
+    "openai/gpt-5.1",
+    "openai/gpt-5.2",
+    "openai/gpt-5.4",
+    "openai/gpt-5.5",
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "openai/gpt-6-astra",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen-2.5-72b-instruct",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "qwen/qwen3-8b",
+    "qwen/qwen3-next-80b-a3b-instruct",
+    "qwen/qwen3.8-flash",
+    "x-ai/grok-4.20",
+    "x-ai/grok-4.3",
+    "x-ai/grok-4.5",
+    "x-ai/grok-4.6"
+  ],
+  "original_paired_models": [
+    "anthropic/claude-3-haiku",
+    "anthropic/claude-fable-5.1",
+    "anthropic/claude-haiku-4.5",
+    "anthropic/claude-opus-5",
+    "anthropic/claude-sonnet-4",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-sonnet-4.6",
+    "anthropic/claude-sonnet-5",
+    "deepseek/deepseek-chat",
+    "deepseek/deepseek-v4-flash",
+    "deepseek/deepseek-v4-pro-0813",
+    "deepseek/deepseek-v4.1-flash",
+    "google/gemini-2.5-flash",
+    "google/gemini-2.5-pro",
+    "google/gemini-3-flash-preview",
+    "google/gemini-3.1-flash-lite-preview",
+    "google/gemini-3.1-pro-preview",
+    "google/gemini-3.7-flash",
+    "google/gemini-3.8-flash",
+    "google/gemma-2-27b-it",
+    "google/gemma-3-27b-it",
+    "meta-llama/llama-4-maverick",
+    "meta/muse-glimmer-30b",
+    "mistralai/mistral-large",
+    "mistralai/mistral-large-2512",
+    "mistralai/mistral-medium-3",
+    "mistralai/mistral-medium-3-5",
+    "moonshotai/kimi-k3",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "openai/gpt-4.1",
+    "openai/gpt-4.1-mini",
+    "openai/gpt-5.1",
+    "openai/gpt-5.2",
+    "openai/gpt-5.4",
+    "openai/gpt-5.5",
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "openai/gpt-6-astra",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen-2.5-72b-instruct",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "qwen/qwen3-8b",
+    "qwen/qwen3-next-80b-a3b-instruct",
+    "qwen/qwen3.8-flash",
+    "x-ai/grok-4.3",
+    "x-ai/grok-4.5",
+    "x-ai/grok-4.6"
+  ],
+  "accepted_models": [
+    "anthropic/claude-opus-4.7",
+    "anthropic/claude-opus-4.8",
+    "deepseek/deepseek-v4-flash-0731",
+    "openai/gpt-5.6-terra",
+    "tencent/hy3",
+    "z-ai/glm-5.2",
+    "z-ai/glm-5.3"
+  ],
+  "candidates": [
+    {
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "name": "DeepSeek V4 Flash 0731",
+      "status": "complete",
+      "reason": "All three frozen pilots passed; exact 800-item arms graded and independently validated with shared inference settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "1",
+        "current_7d_rank": "3",
+        "capability_rank": "",
+        "historical_months": "2026-08",
+        "screenshot_rank": "1"
+      },
+      "fresh_triple_scenario_usd": [
+        0.0864,
+        0.4896
+      ],
+      "source": "runs/leader_deepseek__deepseek-v4-flash-0731_off.db",
+      "reported_cost_usd": 0.070793573934,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "deepseek/deepseek-v4-flash-0731",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "deepseek/deepseek-v4-flash-0731",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "deepseek/deepseek-v4-flash-0731",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 1
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "tencent/hy3",
+      "name": "Hy3",
+      "status": "complete",
+      "reason": "All three frozen pilots passed; exact 800-item arms graded and independently validated with shared inference settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "7",
+        "current_7d_rank": "8",
+        "capability_rank": "",
+        "historical_months": "2026-07; 2026-08",
+        "screenshot_rank": "3"
+      },
+      "fresh_triple_scenario_usd": [
+        0.25344,
+        2.02752
+      ],
+      "source": "runs/leader_tencent__hy3_off.db",
+      "reported_cost_usd": 0.086392126,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "tencent/hy3",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "tencent/hy3",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "tencent/hy3",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "z-ai/glm-5.2",
+      "name": "GLM 5.2",
+      "status": "complete",
+      "reason": "All three frozen pilots passed; exact 800-item arms graded and independently validated with shared inference settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "10",
+        "current_7d_rank": "15",
+        "capability_rank": "",
+        "historical_months": "2026-07; 2026-08",
+        "screenshot_rank": "11"
+      },
+      "fresh_triple_scenario_usd": [
+        2.4,
+        17.184
+      ],
+      "source": "runs/leader_z-ai__glm-5.2_off.db",
+      "reported_cost_usd": 0.72471603873,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "z-ai/glm-5.2",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "z-ai/glm-5.2",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "z-ai/glm-5.2",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-max-0902",
+      "name": "Qwen3.8 Max (0902)",
+      "status": "pilot_failed",
+      "reason": "Reasoning off was rejected. At low reasoning and 4000 tokens, the GPQA baseline pilot failed with 3 of 20 malformed responses, all truncated. No larger ceiling tried.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "2",
+        "historical_months": "",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        3.36,
+        23.52
+      ],
+      "reported_cost_usd": 0.348138
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro 0423",
+      "status": "pilot_failed",
+      "reason": "The Ethics baseline had exactly 2 malformed responses out of 20. Its frozen 60-item extension failed with 6 malformed, all ordinary finishes, at 4000 tokens.",
+      "selection_evidence": {
+        "current_30d_rank": "16",
+        "current_7d_rank": "19",
+        "capability_rank": "",
+        "historical_months": "2026-05; 2026-06; 2026-07; 2026-08",
+        "screenshot_rank": "13"
+      },
+      "fresh_triple_scenario_usd": [
+        2.304,
+        13.056
+      ],
+      "reported_cost_usd": 0.056217648464499996
+    },
+    {
+      "model": "google/gemini-2.5-flash-lite",
+      "name": "Gemini 2.5 Flash Lite",
+      "status": "pilot_failed",
+      "reason": "The MATH-500 baseline had exactly 2 malformed responses out of 20. Its frozen 60-item extension failed with 9 malformed responses, including 1 truncated response, at 4000 tokens.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2025-10; 2025-11; 2025-12; 2026-01",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        0.192,
+        1.536
+      ],
+      "reported_cost_usd": 0.01064
+    },
+    {
+      "model": "minimax/minimax-m2.5",
+      "name": "MiniMax M2.5",
+      "status": "pilot_failed",
+      "reason": "Reasoning off was rejected. At low reasoning and 4000 tokens, the GPQA baseline failed with 9 of 20 malformed responses, all truncated. Two retained completions also reported 4002 output tokens. Stopped without another ceiling experiment.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2026-02; 2026-03; 2026-04",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        0.5184,
+        4.1472
+      ],
+      "reported_cost_usd": 0.125577515
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "name": "Claude Opus 4.7",
+      "status": "complete",
+      "reason": "All three frozen pilots passed; exact 800-item arms graded and independently validated with shared inference settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2026-05; 2026-06; 2026-07",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        10.8,
+        94.8
+      ],
+      "source": "runs/leader_anthropic__claude-opus-4.7_off.db",
+      "reported_cost_usd": 9.299745,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "anthropic/claude-opus-4.7",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": null
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "anthropic/claude-opus-4.7",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": null
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "anthropic/claude-opus-4.7",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": null
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "tencent/hy3-preview",
+      "name": "Hy3 preview",
+      "status": "pilot_failed",
+      "reason": "The 4000-token GPQA baseline failed with 7 of 20 malformed responses, all truncated. Remaining pilot stopped; no larger ceiling tried.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2026-05; 2026-06",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        0.3168,
+        2.3328
+      ],
+      "reported_cost_usd": 0.03144846
+    },
+    {
+      "model": "mistralai/mistral-nemo",
+      "name": "Mistral Nemo",
+      "status": "pilot_failed",
+      "reason": "The 4000-token baseline failed on BoolQ (4 of 20), TruthfulQA (4 of 20) and Ethics (3 of 20); malformed responses had ordinary finishes. A separate provider timeout was retained without retry because the format decision was already final.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2025-01; 2025-02",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        0.02544,
+        0.12624
+      ],
+      "reported_cost_usd": 0.000721066
+    },
+    {
+      "model": "moonshotai/kimi-k2.5",
+      "name": "Kimi K2.5",
+      "status": "pilot_failed",
+      "reason": "The 4000-token GPQA baseline accumulated 3 malformed responses within its first 20 frozen items, making failure conclusive. The pilot stopped after 31 total responses; a separate timeout remains recorded.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2026-02; 2026-03",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        0.972,
+        8.532
+      ],
+      "reported_cost_usd": 0.07381928
+    },
+    {
+      "model": "moonshotai/kimi-k2.6",
+      "name": "Kimi K2.6",
+      "status": "not_run",
+      "reason": "The provider reported 15278 output tokens despite the requested 4000-token ceiling. Stopped after 26 responses to protect the budget; no alternate route or ceiling repair tried. This is an operational exclusion, not a format-gate or capability verdict.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2026-04; 2026-05",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        1.872,
+        15.312
+      ],
+      "reported_cost_usd": 0.12922380941
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "name": "Claude Opus 4.8",
+      "status": "complete",
+      "reason": "All three frozen pilots passed; exact 800-item arms graded and independently validated with shared inference settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2026-06; 2026-07",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        10.8,
+        94.8
+      ],
+      "source": "runs/leader_anthropic__claude-opus-4.8_off.db",
+      "reported_cost_usd": 6.6516,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "anthropic/claude-opus-4.8",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "anthropic/claude-opus-4.8",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "anthropic/claude-opus-4.8",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "deepseek/deepseek-r1-0528",
+      "name": "R1 0528",
+      "status": "not_run",
+      "reason": "Reasoning off was rejected. The low-reasoning pilot saved only 11 of 160 responses in 10 minutes, then made no progress for over 5 minutes despite a 180-second read timeout. Stopped as operationally incomplete, without route repair. This is not a failed format gate.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "",
+        "historical_months": "2025-07; 2025-08",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        0.996,
+        8.22
+      ],
+      "reported_cost_usd": 0.045415177
+    },
+    {
+      "model": "openai/gpt-5.6-terra",
+      "name": "GPT-5.6 Terra",
+      "status": "complete",
+      "reason": "All three frozen pilots passed; exact 800-item arms graded and independently validated with shared inference settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "",
+        "current_7d_rank": "",
+        "capability_rank": "10",
+        "historical_months": "",
+        "screenshot_rank": ""
+      },
+      "fresh_triple_scenario_usd": [
+        8.16,
+        68.64
+      ],
+      "source": "runs/leader_openai__gpt-5.6-terra_off.db",
+      "reported_cost_usd": 1.587266,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "openai/gpt-5.6-terra",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": null
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "openai/gpt-5.6-terra",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": null
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "openai/gpt-5.6-terra",
+            "provider": null,
+            "reasoning": {
+              "enabled": false
+            },
+            "temperature": null
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "name": "GLM 5.3",
+      "status": "complete",
+      "reason": "All three frozen pilots passed, including the baseline GPQA extension to 60. Exact 800-item arms graded and independently validated with shared low-reasoning settings and no unresolved provider errors.",
+      "selection_evidence": {
+        "current_30d_rank": "13",
+        "current_7d_rank": "11",
+        "capability_rank": "7",
+        "historical_months": "",
+        "screenshot_rank": "18"
+      },
+      "fresh_triple_scenario_usd": [
+        2.4,
+        17.184
+      ],
+      "source": "runs/leader_z-ai__glm-5.3_low.db",
+      "reported_cost_usd": 1.749505320452465,
+      "evidence": {
+        "control": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "z-ai/glm-5.3",
+            "provider": null,
+            "reasoning": {
+              "effort": "low"
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 60,
+              "malformed": 3
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 1
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "quad_score_only": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "z-ai/glm-5.3",
+            "provider": null,
+            "reasoning": {
+              "effort": "low"
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        },
+        "hedge_placebo": {
+          "configuration": {
+            "max_tokens": 4000,
+            "model": "z-ai/glm-5.3",
+            "provider": null,
+            "reasoning": {
+              "effort": "low"
+            },
+            "temperature": 0.0
+          },
+          "pilot": [
+            {
+              "benchmark": "mmlu_pro",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "gpqa_parity",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "medmcqa",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "math500",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "boolq",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "truthfulqa_mc",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "ethics_hard",
+              "n": 20,
+              "malformed": 0
+            },
+            {
+              "benchmark": "bbq",
+              "n": 20,
+              "malformed": 0
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "path": "runs/leader_anthropic__claude-opus-4.7_off.db",
+      "sha256": "28b04fec04cd570fc47ba5486c299846911533acb6a4d446fa8bf2735d94cc44",
+      "model": "anthropic/claude-opus-4.7",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 3,
+      "over_ceiling_rows": 0,
+      "attempts": 2415,
+      "reported_cost_usd": 9.299745,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "anthropic/claude-opus-4.7",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": null
+      }
+    },
+    {
+      "path": "runs/leader_anthropic__claude-opus-4.8_off.db",
+      "sha256": "57a547dd04814b91a2f28ae89cecd42b88c1787f02ad1462e2e1af69fb95cd6f",
+      "model": "anthropic/claude-opus-4.8",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 0,
+      "over_ceiling_rows": 0,
+      "attempts": 2413,
+      "reported_cost_usd": 6.6516,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "anthropic/claude-opus-4.8",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_deepseek__deepseek-r1-0528_low.db",
+      "sha256": "a181b9f4dd4498d08e7010fa4110acf7b06c7f1bda2f9706e1eac26190afbbaf",
+      "model": "deepseek/deepseek-r1-0528",
+      "retained_rows": 11,
+      "provider_errors": 0,
+      "malformed_including_errors": 0,
+      "over_ceiling_rows": 0,
+      "attempts": 11,
+      "reported_cost_usd": 0.045415177,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "deepseek/deepseek-r1-0528",
+        "provider": null,
+        "reasoning": {
+          "effort": "low"
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_deepseek__deepseek-r1-0528_off.db",
+      "sha256": "8086b85c95f9a1213f4934ec817e1fda28d88621988aba13071d0d86866255d5",
+      "model": "deepseek/deepseek-r1-0528",
+      "retained_rows": 160,
+      "provider_errors": 160,
+      "malformed_including_errors": 160,
+      "over_ceiling_rows": 0,
+      "attempts": 160,
+      "reported_cost_usd": 0,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "deepseek/deepseek-r1-0528",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_deepseek__deepseek-v4-flash-0731_off.db",
+      "sha256": "385b82aaa690aa6add803521898e5194d9677ff50303f6d798b8fa18e21aaa7d",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 9,
+      "over_ceiling_rows": 0,
+      "attempts": 2413,
+      "reported_cost_usd": 0.070793573934,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "deepseek/deepseek-v4-flash-0731",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_deepseek__deepseek-v4-pro_off.db",
+      "sha256": "978149b54fd360ec64b43fea5606211501a86e03a27425d4ac8867266886ee48",
+      "model": "deepseek/deepseek-v4-pro",
+      "retained_rows": 200,
+      "provider_errors": 0,
+      "malformed_including_errors": 7,
+      "over_ceiling_rows": 0,
+      "attempts": 201,
+      "reported_cost_usd": 0.056217648464499996,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "deepseek/deepseek-v4-pro",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_google__gemini-2.5-flash-lite_off.db",
+      "sha256": "f7aec4eb4f8065e3b83f299be3687729f9efd23800efb80ced931439753eb5ea",
+      "model": "google/gemini-2.5-flash-lite",
+      "retained_rows": 200,
+      "provider_errors": 0,
+      "malformed_including_errors": 9,
+      "over_ceiling_rows": 0,
+      "attempts": 200,
+      "reported_cost_usd": 0.01064,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "google/gemini-2.5-flash-lite",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_minimax__minimax-m2.5_low.db",
+      "sha256": "021e534503a721f42bc492be9a8fadf943a1012bce7538b984ace670279a14be",
+      "model": "minimax/minimax-m2.5",
+      "retained_rows": 66,
+      "provider_errors": 0,
+      "malformed_including_errors": 12,
+      "over_ceiling_rows": 2,
+      "attempts": 66,
+      "reported_cost_usd": 0.125577515,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "minimax/minimax-m2.5",
+        "provider": null,
+        "reasoning": {
+          "effort": "low"
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_minimax__minimax-m2.5_off.db",
+      "sha256": "b0b40ddcdaeec959b743227957cec12d05c53e61fb5fa41bee26b8bae1a70219",
+      "model": "minimax/minimax-m2.5",
+      "retained_rows": 160,
+      "provider_errors": 160,
+      "malformed_including_errors": 160,
+      "over_ceiling_rows": 0,
+      "attempts": 160,
+      "reported_cost_usd": 0,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "minimax/minimax-m2.5",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_mistralai__mistral-nemo_off.db",
+      "sha256": "28b567e96c18a975ea35a553e131b08d170aca3800b13c914caaa456f1486049",
+      "model": "mistralai/mistral-nemo",
+      "retained_rows": 160,
+      "provider_errors": 1,
+      "malformed_including_errors": 12,
+      "over_ceiling_rows": 0,
+      "attempts": 160,
+      "reported_cost_usd": 0.000721066,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "mistralai/mistral-nemo",
+        "provider": null,
+        "reasoning": null,
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_moonshotai__kimi-k2.5_off.db",
+      "sha256": "6360ac16fec794bdb231b52cf4507119029f165c9ab265544ed748bfbffeb987",
+      "model": "moonshotai/kimi-k2.5",
+      "retained_rows": 31,
+      "provider_errors": 1,
+      "malformed_including_errors": 4,
+      "over_ceiling_rows": 0,
+      "attempts": 31,
+      "reported_cost_usd": 0.07381928,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "moonshotai/kimi-k2.5",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_moonshotai__kimi-k2.6_off.db",
+      "sha256": "9e44195c73cb224e8447a07a78f1fb060804044928ef851b2d381cd674cea747",
+      "model": "moonshotai/kimi-k2.6",
+      "retained_rows": 26,
+      "provider_errors": 0,
+      "malformed_including_errors": 1,
+      "over_ceiling_rows": 1,
+      "attempts": 26,
+      "reported_cost_usd": 0.12922380941,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "moonshotai/kimi-k2.6",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_openai__gpt-5.6-terra_off.db",
+      "sha256": "8584d242580d18635018ddd39d8893bcfb5db058ea8ec64762403ecf1238fc7f",
+      "model": "openai/gpt-5.6-terra",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 0,
+      "over_ceiling_rows": 0,
+      "attempts": 2415,
+      "reported_cost_usd": 1.587266,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "openai/gpt-5.6-terra",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": null
+      }
+    },
+    {
+      "path": "runs/leader_qwen__qwen3.8-max-0902_low.db",
+      "sha256": "ae8bb41f4b0a4e9fb20f506ba52d3aa6a2b4df91acfa4837cb0dc5daad43a82a",
+      "model": "qwen/qwen3.8-max-0902",
+      "retained_rows": 63,
+      "provider_errors": 0,
+      "malformed_including_errors": 4,
+      "over_ceiling_rows": 0,
+      "attempts": 63,
+      "reported_cost_usd": 0.348138,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "qwen/qwen3.8-max-0902",
+        "provider": null,
+        "reasoning": {
+          "effort": "low"
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_qwen__qwen3.8-max-0902_off.db",
+      "sha256": "30ae584bc50f602182657c623808a643b9c7fff935a60daa143dc3f182569bf6",
+      "model": "qwen/qwen3.8-max-0902",
+      "retained_rows": 160,
+      "provider_errors": 160,
+      "malformed_including_errors": 160,
+      "over_ceiling_rows": 0,
+      "attempts": 160,
+      "reported_cost_usd": 0,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "qwen/qwen3.8-max-0902",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_tencent__hy3-preview_off.db",
+      "sha256": "1d530caf8a3bc6737dc9167f7008adb26170d2f4a9b8ed85cac642553d6a84c2",
+      "model": "tencent/hy3-preview",
+      "retained_rows": 51,
+      "provider_errors": 0,
+      "malformed_including_errors": 8,
+      "over_ceiling_rows": 0,
+      "attempts": 51,
+      "reported_cost_usd": 0.03144846,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "tencent/hy3-preview",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_tencent__hy3_off.db",
+      "sha256": "69f296b0a2af0c219432f1b3ea48cfcfda51f06c6bb721ee5485dcf3ded5a14c",
+      "model": "tencent/hy3",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 1,
+      "over_ceiling_rows": 0,
+      "attempts": 2406,
+      "reported_cost_usd": 0.086392126,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "tencent/hy3",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_z-ai__glm-5.2_off.db",
+      "sha256": "0436ab5f07510307585f305402728e3106df596bf45ed0c16f0753380a7db47b",
+      "model": "z-ai/glm-5.2",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 0,
+      "over_ceiling_rows": 0,
+      "attempts": 2405,
+      "reported_cost_usd": 0.72471603873,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "z-ai/glm-5.2",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_z-ai__glm-5.3_low.db",
+      "sha256": "90240a03d7564b5a608c9c2b05df7f92ed63036a78c0b1ee493a14421989f207",
+      "model": "z-ai/glm-5.3",
+      "retained_rows": 2400,
+      "provider_errors": 0,
+      "malformed_including_errors": 19,
+      "over_ceiling_rows": 0,
+      "attempts": 2411,
+      "reported_cost_usd": 1.749505320452465,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "z-ai/glm-5.3",
+        "provider": null,
+        "reasoning": {
+          "effort": "low"
+        },
+        "temperature": 0.0
+      }
+    },
+    {
+      "path": "runs/leader_z-ai__glm-5.3_off.db",
+      "sha256": "f4a5a8b7327ea20e8f966ab8697be563d249d032bb6e8306613d8164df200d9f",
+      "model": "z-ai/glm-5.3",
+      "retained_rows": 160,
+      "provider_errors": 160,
+      "malformed_including_errors": 160,
+      "over_ceiling_rows": 0,
+      "attempts": 160,
+      "reported_cost_usd": 0,
+      "configuration": {
+        "max_tokens": 4000,
+        "model": "z-ai/glm-5.3",
+        "provider": null,
+        "reasoning": {
+          "enabled": false
+        },
+        "temperature": 0.0
+      }
+    }
+  ],
+  "frozen_slice_hashes": {
+    "truthfulqa_mc_100.json": "069d403698339580b12e9b9def09f6206f415f616903ee32cecb2d5550257597",
+    "boolq_100.json": "6c5960c8c844285c980c4b32de9bfead7e4136523f5aa735d63b3700514a0ac5",
+    "medmcqa_100.json": "69ab650791e0e30b1ed9832813edd125f01d4359eb85e6762507553ef678ecf3",
+    "arc_100.json": "217769cabd1084735b8bec9b20881ad9862b5921072ef2aff8e4caad00aa59f1",
+    "gpqa_parity_100.json": "9da754cb9fd66cf3ccfe917093274be951410df5e0cf109a2f341c6554f75645",
+    "bbq_100.json": "5857729cb2655d38a823e751120580be53fe5550c843195261e3296a87ad2a20",
+    "mmlu_pro_100.json": "a90fad86e814db550b36481eaaf54f9fff6ef3cf0be1df528491d7bc574d138a",
+    "ethics_hard_100.json": "04284b0c0ffff9b569f146508b8eeca7c4875f900372b172134f133d93508523",
+    "math500_100.json": "99b8a079e91e90c5371a13640fb3ed9f234133353fe30c5ada6844f3d0df2d51"
+  },
+  "generation_code_commits": [
+    "1ca841e",
+    "332a468",
+    "6bd825b",
+    "ab5ec1c"
+  ],
+  "catalogue_sha256": "e01a8aa6245b308d1ee8b6da362b5076bff51f0b43dc26efe74a16f5142371e3"
+}

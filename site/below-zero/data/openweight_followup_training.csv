@@ -1,0 +1,2 @@
+model,planned_pairs,complete_pairs,failed_pairs,evaluated_checkpoints
+GPT-OSS 20B after shared syntax lesson,5,4,1,9

@@ -1,0 +1,157 @@
+{
+  "analysis_seed": 20260826,
+  "arm_estimates": [
+    {
+      "accuracy": 0.829075356007628,
+      "answer_rate": 0.9666346153846154,
+      "arm": "control",
+      "calibrated_score": 0.6372068125,
+      "confidence": 0.9209848775595096,
+      "confidence_gap": 0.09190952155188162,
+      "high_confidence_error_90_rate": 0.09985576923076923,
+      "mean_absolute_confidence_gap": 0.11157258119870707,
+      "model_benchmark_cells": 104,
+      "parse_failure_rate": 0.01533653846153846,
+      "usable_confidence_rate": 0.951298076923077
+    },
+    {
+      "accuracy": 0.828532076831542,
+      "answer_rate": 0.9690384615384615,
+      "arm": "quad_score_only",
+      "calibrated_score": 0.6428307067307693,
+      "confidence": 0.9141602775985318,
+      "confidence_gap": 0.0856282007669898,
+      "high_confidence_error_90_rate": 0.09096153846153847,
+      "mean_absolute_confidence_gap": 0.10690317595060955,
+      "model_benchmark_cells": 104,
+      "parse_failure_rate": 0.016346153846153847,
+      "usable_confidence_rate": 0.9526923076923077
+    }
+  ],
+  "benchmarks": [
+    "mmlu_pro",
+    "gpqa_parity",
+    "medmcqa",
+    "math500",
+    "boolq",
+    "truthfulqa_mc",
+    "ethics_hard",
+    "bbq"
+  ],
+  "bootstrap_95_intervals_for_change": {
+    "accuracy": {
+      "high": 0.010466964484482743,
+      "low": -0.009689796659842202
+    },
+    "answer_rate": {
+      "high": 0.014423076923076764,
+      "low": -0.01100961538461521
+    },
+    "calibrated_score": {
+      "high": 0.03321389915865393,
+      "low": -0.019329547115384503
+    },
+    "confidence": {
+      "high": 0.0015383448541930796,
+      "low": -0.017268829940883815
+    },
+    "confidence_gap": {
+      "high": 0.006967999767838575,
+      "low": -0.021858414252475256
+    },
+    "mean_absolute_confidence_gap": {
+      "high": 0.006850714966939396,
+      "low": -0.02082623751695361
+    }
+  },
+  "bootstrap_samples": 10000,
+  "created_at": "2026-09-12T23:57:08.050087+00:00",
+  "design": {
+    "benchmarks": 8,
+    "calls_per_permutation": 2,
+    "models": 13,
+    "primary_cells_per_arm": 104,
+    "primary_unit": "model-by-benchmark cell",
+    "prompt_conditions": 2,
+    "responses": 41600,
+    "unique_questions_per_benchmark": 100
+  },
+  "experiment_spend_usd": 49.91082965045,
+  "generation_spend_usd": 49.61990223255,
+  "models": [
+    "openai/gpt-5.6-sol",
+    "anthropic/claude-sonnet-5",
+    "deepseek/deepseek-v4-pro-0813",
+    "moonshotai/kimi-k3",
+    "mistralai/mistral-medium-3-5",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "meta-llama/llama-4-maverick",
+    "google/gemini-3.7-flash",
+    "openai/gpt-oss-120b",
+    "google/gemini-3.8-flash",
+    "anthropic/claude-fable-5.1",
+    "meta/muse-glimmer-30b"
+  ],
+  "paired_change": {
+    "accuracy": -0.0005432791760860978,
+    "answer_rate": 0.0024038461538461453,
+    "calibrated_score": 0.005623894230769255,
+    "cells_gap_improved": 54,
+    "cells_score_improved": 52,
+    "confidence": -0.00682459996097784,
+    "confidence_gap": -0.006281320784891811,
+    "control_cells_overconfident": 83,
+    "gap_closed_share": 0.06834243807205649,
+    "high_confidence_error_90_rate": -0.008894230769230765,
+    "mean_absolute_confidence_gap": -0.004669405248097516,
+    "parse_failure_rate": 0.0010096153846153866,
+    "treatment_cells_overconfident": 82,
+    "usable_confidence_rate": 0.001394230769230731
+  },
+  "pilot_spend_usd": 0.29092741790000004,
+  "repeatability": {
+    "mean_absolute_confidence_difference": 0.01832488868417012,
+    "paired_items": 20800,
+    "same_correctness_rate": 0.9694457239367419,
+    "usable_probability_pairs": 19539
+  },
+  "response_weighted_sensitivity": {
+    "arm_estimates": [
+      {
+        "accuracy": 0.8306463839894881,
+        "answer_rate": 0.9666346153846154,
+        "arm": "control",
+        "calibrated_score": 0.6372068125,
+        "confidence": 0.921608631930055,
+        "confidence_gap": 0.09096224794056695,
+        "high_confidence_error_90_rate": 0.09985576923076923,
+        "parse_failure_rate": 0.015336538461538462,
+        "responses": 20800.0,
+        "usable_confidence_rate": 0.9512980769230769
+      },
+      {
+        "accuracy": 0.8309446911586597,
+        "answer_rate": 0.9690384615384615,
+        "arm": "quad_score_only",
+        "calibrated_score": 0.6428307067307693,
+        "confidence": 0.9146240411788453,
+        "confidence_gap": 0.08367935002018567,
+        "high_confidence_error_90_rate": 0.09096153846153845,
+        "parse_failure_rate": 0.016346153846153847,
+        "responses": 20800.0,
+        "usable_confidence_rate": 0.9526923076923077
+      }
+    ],
+    "paired_change": {
+      "accuracy": 0.0002983071691715633,
+      "answer_rate": 0.0024038461538461453,
+      "calibrated_score": 0.005623894230769255,
+      "confidence": -0.006984590751209718,
+      "confidence_gap": -0.007282897920381282,
+      "gap_closed_share": 0.08006506089361151,
+      "parse_failure_rate": 0.0010096153846153848,
+      "usable_confidence_rate": 0.001394230769230842
+    }
+  }
+}

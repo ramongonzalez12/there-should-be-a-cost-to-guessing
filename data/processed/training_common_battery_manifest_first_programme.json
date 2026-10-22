@@ -1,0 +1,1141 @@
+{
+  "protocol": "notes/2026-08-31-matched-prompt-interventions-8b-20b.md",
+  "prompt_database": {
+    "path": "runs/matched_prompt_interventions_8b20b_20260831.db",
+    "sha256": "ae54df35209c4975d7e63ae251da1671e7969947566a02641622f55a732accbe"
+  },
+  "common_items": 800,
+  "item_identity_matches_prompt_run": true,
+  "sources": [
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "math500",
+      "run_dir": "runs/evaluations/training_common_battery_qwen_math4096_20260831",
+      "responses": 1100,
+      "spent_usd": 2.733624,
+      "cap_usd": 2.74,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://c90517cb-b940-5ece-a489-84a6e1c010ed:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://c9ea03f0-c33e-5465-97bf-a0882299bad6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://0e09199c-8ca8-5530-b2b1-2e09652bd471:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed3": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed3",
+          "sampler_path": "tinker://45c0d95b-d97b-5d44-832a-c4b6c19ce6e6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://a7642a9c-a581-5ec1-b5d3-3b85258fc130:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://44923353-f304-59e1-9564-0d721a8d8414:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://934196cf-38ef-5a07-b7d1-b92b03065781:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://5739539e-2837-5ad1-b029-a6f071a69737:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed3": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed3",
+          "sampler_path": "tinker://39179679-1fd0-5c67-983f-b10674b85ad7:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://29f10d3b-4eb0-5cab-aba7-ec96195a94a2:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "4a31ff1e26f5a15f35ccc834cf39ec9c0abe0860daa294be34e473325f4fd16d",
+      "max_tokens": 4096,
+      "responses_sha256": "180a20cdbe631bd8a31a42ea88a04ebb8b99a2378b7176272d22dfb736c18093",
+      "evaluation_sha256": "b879709bb556f13b31f34679b45c9d2229f0cd38a5f3804382932052128c7137"
+    },
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_training_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_common_battery_qwen_native2048_20260831",
+      "responses": 8800,
+      "spent_usd": 11.178774,
+      "cap_usd": 11.18,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://c90517cb-b940-5ece-a489-84a6e1c010ed:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://c9ea03f0-c33e-5465-97bf-a0882299bad6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://0e09199c-8ca8-5530-b2b1-2e09652bd471:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed3": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed3",
+          "sampler_path": "tinker://45c0d95b-d97b-5d44-832a-c4b6c19ce6e6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://a7642a9c-a581-5ec1-b5d3-3b85258fc130:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://44923353-f304-59e1-9564-0d721a8d8414:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://934196cf-38ef-5a07-b7d1-b92b03065781:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://5739539e-2837-5ad1-b029-a6f071a69737:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed3": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed3",
+          "sampler_path": "tinker://39179679-1fd0-5c67-983f-b10674b85ad7:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://29f10d3b-4eb0-5cab-aba7-ec96195a94a2:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 2048,
+      "responses_sha256": "ea37e6db97e21687864691c655bbbce947e35a3a41fa0844e40dfc796e6dff6c",
+      "evaluation_sha256": "e07f4fbb53064ac48fc72113f82a7077cc6dc5a6f32ce5f666240c5211a46a63"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "ethics_hard",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_ethics_s0_20260831",
+      "responses": 306,
+      "spent_usd": 0.083569,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "7e80f8aecec8968c9c2b6db1ff491fbb7678ffc8166c02f5bf6014e42ab3d483",
+      "max_tokens": 512,
+      "responses_sha256": "db1424807cdf688b74dea7fe60f6aae2dbc463baf3f9bcac2b0a1f4c6c8e0fdf",
+      "evaluation_sha256": "ed1900756c8fa3cbb01392f75521439f96e60a316f1aefaac52312844df1373c"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "ethics_hard",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_ethics_s1_20260831",
+      "responses": 297,
+      "spent_usd": 0.079299,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "7216224424d800fc37aeb8bd2e78b6f5f3f071bb00b4c889bd799a31746e6a7b",
+      "max_tokens": 512,
+      "responses_sha256": "d523abe60b4dbd2167737adc8b3bb1b5f9f7010be6b7de768552d1e7f7d503ac",
+      "evaluation_sha256": "bade95292d07615153ac6d68fd6979ace1ead2246b6b27da3ef6cfa9b4ca300c"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "ethics_hard",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_ethics_s2_20260831",
+      "responses": 297,
+      "spent_usd": 0.079437,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "d2f27516d94cfc5fae21e68a48fc84bb48ad364d84fedb8d0b13ab8007cfb30f",
+      "max_tokens": 512,
+      "responses_sha256": "dbcc7526c7b188d9dcd1056bd13b202e0b3711962fe043078d93b2aabcd7d560",
+      "evaluation_sha256": "581726891e384043449db294f35fc03ae0254621642d16929c432a07e49c9f88"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "ethics_hard",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_ethics_missing_20260831",
+      "responses": 342,
+      "spent_usd": 0.096529,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "cf015c973995e024202f4e0809fbd2d822a0f9bbe90fdffa3e132f5fef3f54cb",
+      "max_tokens": 512,
+      "responses_sha256": "d9953bb9fa26c8a211c0f80db067ec7a2ba312fe627280ac6c4930bb26bd34c5",
+      "evaluation_sha256": "93a9c591463c1f5cb3c393b394975dad2ccaaf971bbc6a429378a5a7d220d279"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "bbq",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_bbq_s0_20260831",
+      "responses": 306,
+      "spent_usd": 0.083594,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "e8b3169afcf3f86e1b9d9c9db1404821b515999b03c5f21da2492437c852a5cf",
+      "max_tokens": 512,
+      "responses_sha256": "81161da8bdfedcad6ef91a44e6dcf8e526ec5276f9bfa72593e5e57d2b1e0dd6",
+      "evaluation_sha256": "7a138d23f67385138c11f45ac19735500a13cd844353deb2fb37304a3a06f1f7"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "bbq",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_bbq_s1_20260831",
+      "responses": 297,
+      "spent_usd": 0.081275,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "e755819e8687a4e0b64cd418c64c715437a7bbf6cfd8f7fe9fdb95c220b606bf",
+      "max_tokens": 512,
+      "responses_sha256": "107840304644614cc433f54f606c68edf0b77a43042a46ec931d496e1e84a5f4",
+      "evaluation_sha256": "ebb9336d133455cd80aa6f4d995b27b030e3617490d6644f7c8d382f3436a4d0"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "bbq",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_bbq_s2_20260831",
+      "responses": 297,
+      "spent_usd": 0.08105,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "e993b3d4a44dc21e954c5b137fec17172abd930bd2c676c90de3ca77ebfa4bc3",
+      "max_tokens": 512,
+      "responses_sha256": "e70d51335eefb5a30846db421fa36dd6c5c008c751f839636ac57bf0f7b92408",
+      "evaluation_sha256": "72fae67d7a34bfb98c2aa4afe764550a01326a036bed9bf181938c8b059f5b9f"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "bbq",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_bbq_missing_20260831",
+      "responses": 324,
+      "spent_usd": 0.088489,
+      "cap_usd": 0.1,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "96e9235d4bd9ea9540ab742ad55602013b143b6707a281226b9a1bde11cfbee6",
+      "max_tokens": 512,
+      "responses_sha256": "6f9f5fbefe1111c30996870d607c68ef3a6ea34f8820934172c728ecf38411d9",
+      "evaluation_sha256": "9f0379176c67cb865d6f73852e3210d49663e1ede2ac8065494c9d15b7d39989"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_partial_battery_with_complete_overrides",
+      "status": "STARTED",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_common_battery_gptoss_native_20260831",
+      "responses": 5805,
+      "spent_usd": 1.622833,
+      "cap_usd": 2.0,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://46157e75-fc9a-52c1-82f6-ed1824e81bfb:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://415a54a6-d953-5323-b2be-56a8433969f6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://2a7d11a1-44f1-5175-94f3-7aa55800e076:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://12686053-f7a5-5551-aafc-2b9a09f92931:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://d41a759a-caa0-5fe3-93f3-dd4ddfd569b3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://71b45495-c9be-5271-8b36-0c06145de5e8:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://15d71642-dbf0-5ccb-b022-24271e875582:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://aea262f5-a4ff-50be-bc52-be891b364678:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "c916a3a69e8e216d6f994a7da24ae5203663fd2a39c8b2b25f9c483add64c59f",
+      "evaluation_sha256": "bdfd9c8b34a232cc469cc7689f83398b3509746b79f66942935c8176bfd523ab"
+    },
+    {
+      "model_family": "Nemotron 3 Nano 30B",
+      "study": "tinker_native_training_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_common_battery_nemotron_20260906",
+      "responses": 5600,
+      "spent_usd": 3.315525,
+      "cap_usd": 3.5,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://952fe5cb-857f-5b96-8b7e-913ef7f56377:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://74ce8aad-9f08-57cd-8049-5a4c2d389441:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://d0993585-19e7-5103-9299-3233ef5a8484:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://8a214ac5-31c7-5d91-a1c7-a061920bb52a:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://149b53a4-2894-5423-92eb-2aa2715384a0:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://54d213a6-2583-58ef-8b94-ea112a7a95ae:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://31ecf33d-20c9-5d60-b845-6561b5df933e:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "157d9001cde765f4975013f8a9aa083ebef1cf2b40cbbad40e703e6a3795db32",
+      "evaluation_sha256": "5034b17cc0d633060363ba1f4466adae3485d095005cac1733a89e3fb5aadcb8"
+    },
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_prompt_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "math500",
+      "run_dir": "runs/evaluations/training_prompt_common_battery_qwen_math4096_20260831",
+      "responses": 300,
+      "spent_usd": 0.749453,
+      "cap_usd": 0.75,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        }
+      },
+      "items_sha256": "4a31ff1e26f5a15f35ccc834cf39ec9c0abe0860daa294be34e473325f4fd16d",
+      "max_tokens": 4096,
+      "responses_sha256": "cfd56fbdb58275de3ee40443541e3f48ebf571dd883104f2bf5e0f3d86bbfade",
+      "evaluation_sha256": "6f7f2327095ff64eac89ccbf55b45a4558352d315ae3bc02dd3c82ef03d2b923"
+    },
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_prompt_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_prompt_common_battery_qwen_native2048_20260831",
+      "responses": 2400,
+      "spent_usd": 3.081205,
+      "cap_usd": 3.09,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 2048,
+      "responses_sha256": "26733b64d10ca6b503f4063d72d6699dc126e9e25695e3e8a7ecdf7be5f28ea5",
+      "evaluation_sha256": "7264607aa19983d09626122d0d49b8b870402b964a595269dece2b55c1a01463"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_prompt_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_prompt_common_battery_gptoss_native_20260831",
+      "responses": 2400,
+      "spent_usd": 0.695936,
+      "cap_usd": 0.7,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "eb0a7f90c7dca7c20118b5637e5365a6c645b20ac184839345273c76f9f2083b",
+      "evaluation_sha256": "7a917c33b9883c9a459cd3dda5d06ce200ca1652b4a1a7a71c18167b2bb5265c"
+    }
+  ],
+  "git_commit": "1c2324abf80acaf602cb80b1a12597fe89ec8917"
+}

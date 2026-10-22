@@ -1,0 +1,7 @@
+setup,runs_per_model,arm,effort_tokens,accuracy_pct,stated_confidence_pct,overconfidence_gap_pts,adjusted_accuracy_pts
+Without reasoning,4,Before training,116.75,53.355,95.395,40.755,10.735
+Without reasoning,4,Accuracy-only training,114.4375,52.575,93.2,39.16,11.405
+Without reasoning,4,Honest-confidence training,121.3125,53.91,81.09,26.05,20.105
+With reasoning,3,Before training,116.75,53.355,95.395,40.755,10.735
+With reasoning,3,Accuracy-only training,177.5833,60.745,94.995,33.255,25.7933
+With reasoning,3,Honest-confidence training,189.75,59.165,93.195,32.805,24.2867

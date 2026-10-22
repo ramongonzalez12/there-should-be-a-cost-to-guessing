@@ -1,0 +1,47 @@
+{
+  "analysis_date": "2026-08-24",
+  "analysis_git_head": "2a1b79aa2427b069384e2e7a7f50ad12feabfab5",
+  "analysis_script_sha256": "aa8edc5ccfd74611cec17d5db4dde2296fe396656353a316d04b49b0de1a4971",
+  "arms": [
+    "quadratic",
+    "quad_cost_0.09"
+  ],
+  "benchmarks": {
+    "bbq": 500,
+    "ethics_hard": 200,
+    "truthfulqa_mc": 200
+  },
+  "cost_usd": 0.0,
+  "excluded_seed": {
+    "reason": "failed technical training gate",
+    "seed": 3
+  },
+  "full_preserved_matrix_responses": 16200,
+  "malformed_attempts_forced_wrong": 1,
+  "model_family": "Qwen3 8B",
+  "protocol": "notes/2026-08-24-external-threshold-policy-protocol.md",
+  "relevant_responses": 9000,
+  "schema_version": 1,
+  "source_files": {
+    "bbq": "below-zero-recovery-20260821-final/raw/broader-eval/tuned_bbq_500/responses.jsonl",
+    "truth_ethics": "below-zero-recovery-20260821-final/raw/broader-eval/tuned_truth_ethics_200/responses.jsonl"
+  },
+  "source_sha256": {
+    "bbq": "8978d9f6c24b0eeee8d4464db01d0cbfa457947ae55e06d6e0b607f67149bd34",
+    "truth_ethics": "14bde0a80b8eb51b3c5734d935afe65d473dc292f2115ed76eaf2f3908985795"
+  },
+  "thresholds": [
+    0.3,
+    0.5,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "training_seeds": [
+    0,
+    1,
+    2,
+    4,
+    5
+  ]
+}

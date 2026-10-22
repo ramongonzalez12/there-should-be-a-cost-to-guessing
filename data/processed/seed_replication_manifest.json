@@ -1,0 +1,112 @@
+{
+  "base_draws": 8,
+  "inputs": {
+    "seed1_evaluation_step_125_neutral": {
+      "path": ".worktrees/finetune/runs/finetune/qwen_seed_replication_seed1/evaluation_step_125_neutral/responses.jsonl",
+      "sha256": "a23945834aab67f43c4c6f54365105756d7dcebc3ec6d0742892834989453468"
+    },
+    "seed1_evaluation_step_250_neutral": {
+      "path": ".worktrees/finetune/runs/finetune/qwen_seed_replication_seed1/evaluation_step_250_neutral/responses.jsonl",
+      "sha256": "c27d1dc5b64a4cb92b0c0fc154dc4e03a4b6d27629faa81c102178e7a659d185"
+    },
+    "seed1_evaluation_step_300_neutral": {
+      "path": ".worktrees/finetune/runs/finetune/qwen_seed_replication_seed1/evaluation_step_300_neutral/responses.jsonl",
+      "sha256": "5b540b6e05d869c1bf19155185075fe510010726d8dd545352773396d385b93e"
+    },
+    "seed1_evaluation_step_375_neutral": {
+      "path": ".worktrees/finetune/runs/finetune/qwen_seed_replication_seed1/evaluation_step_375_neutral/responses.jsonl",
+      "sha256": "8b680ae86750dcf89e6d3c914a3f680bdfd4485af9aa1e9c996dcafc38c52e78"
+    },
+    "seed1_evaluation_step_500_neutral": {
+      "path": ".worktrees/finetune/runs/finetune/qwen_seed_replication_seed1/evaluation_step_500_neutral/responses.jsonl",
+      "sha256": "088860954f897486b4d582a2e381998be52219d0c63ff5d66ae1473a86b1400d"
+    }
+  },
+  "noise_floor": {
+    "accuracy": {
+      "max": 0.56,
+      "mean": 0.5575000000000001,
+      "min": 0.55,
+      "range": 0.010000000000000009,
+      "sd": 0.004629100498862762
+    },
+    "binary": {
+      "max": 0.56,
+      "mean": 0.5575000000000001,
+      "min": 0.55,
+      "range": 0.010000000000000009,
+      "sd": 0.004629100498862762
+    },
+    "log": {
+      "max": -0.16745039004335727,
+      "mean": -0.18020997185953722,
+      "min": -0.19745039004335727,
+      "range": 0.03,
+      "sd": 0.009331531143072452
+    },
+    "quad_cost_0.04": {
+      "max": 0.293025,
+      "mean": 0.28414375,
+      "min": 0.27117499999999994,
+      "range": 0.021850000000000036,
+      "sd": 0.007461325882748423
+    },
+    "quad_cost_0.09": {
+      "max": 0.24852500000000002,
+      "mean": 0.23920625,
+      "min": 0.22617500000000004,
+      "range": 0.02234999999999998,
+      "sd": 0.007547939051726065
+    },
+    "quad_cost_0.16": {
+      "max": 0.18622499999999997,
+      "mean": 0.17629374999999997,
+      "min": 0.163175,
+      "range": 0.023049999999999987,
+      "sd": 0.0076743979521895645
+    },
+    "quadratic": {
+      "max": 0.32862499999999994,
+      "mean": 0.32009375,
+      "min": 0.30717500000000003,
+      "range": 0.021449999999999914,
+      "sd": 0.007394348107072807
+    },
+    "spherical": {
+      "max": 0.6351208387938319,
+      "mean": 0.6318848274813614,
+      "min": 0.6265009715857616,
+      "range": 0.008619867208070287,
+      "sd": 0.002790716199959839
+    }
+  },
+  "replicated_objectives": [
+    "binary",
+    "quadratic",
+    "quad_cost_0.09"
+  ],
+  "replication_runs": {
+    "1": {
+      "doses": [
+        125,
+        250,
+        300,
+        375,
+        500
+      ],
+      "path": ".worktrees/finetune/runs/finetune/qwen_seed_replication_seed1",
+      "status": "COMPLETE"
+    }
+  },
+  "schema_version": 2,
+  "scoring_rules": [
+    "binary",
+    "quadratic",
+    "quad_cost_0.04",
+    "quad_cost_0.09",
+    "quad_cost_0.16",
+    "log",
+    "spherical"
+  ],
+  "seed0_knowledge_sha256": "4d3c077d04c5fb5a9a8007de5bf86c6fe2f5170a0aa75cff8b4e17cb25897b39"
+}

@@ -1,0 +1,60 @@
+{
+  "analysis_script_sha256": "229fb9a9cf53683b71bf3774538936661ee398735e9b959f47701a4af95cfded",
+  "created_at": "2026-09-12T23:57:08.050087+00:00",
+  "git_commit": "1c2324abf80acaf602cb80b1a12597fe89ec8917",
+  "input_databases": [
+    {
+      "bytes": 133332992,
+      "path": "runs/prompt_only_main_off_20260826.db",
+      "sha256": "10c3f2d472c2a7de5c881b71de31d402cf1f6a53ba95f85eadd53162d1d99657"
+    },
+    {
+      "bytes": 29790208,
+      "path": "runs/prompt_only_main_low_20260826.db",
+      "sha256": "5f0a9ec4c374237e77c79455bb8499b8308d31e44ce82bdff8fa03defa6e4c8b"
+    },
+    {
+      "bytes": 50249728,
+      "path": "runs/newmodels_prompt_only_20260904.db",
+      "sha256": "ff3afa84d390a5b5c599eb2df817a2a5c66c31079212befd8e14a060c9afd38c"
+    },
+    {
+      "bytes": 540672,
+      "path": "runs/prompt_only_pilot_20260826.db",
+      "sha256": "58654fa2d89c0d5d830b0f7d0db92aefdf824435f4a3108b6462a7b1ecd41f9d"
+    },
+    {
+      "bytes": 241664,
+      "path": "runs/prompt_only_pilot_reasoning_low_20260826.db",
+      "sha256": "0d4b5db845f5b01c9bfc7eb2db9c786be7e8528a22b8e855682629470ef0d394"
+    },
+    {
+      "bytes": 196608,
+      "path": "runs/prompt_only_pilot_substitutes_20260826.db",
+      "sha256": "99a72fac39230096fc6cb7811224f9585a8b61a47a9e0e45ad526c42d764cfb2"
+    },
+    {
+      "bytes": 225280,
+      "path": "runs/prompt_only_pilot_openweight_20260826.db",
+      "sha256": "f18a5d96ea966bfd5bedc629430d8db6a55df3c8bed789dc1eddacf18ccaa1c3"
+    },
+    {
+      "bytes": 94208,
+      "path": "runs/prompt_only_pilot_gptoss_low_20260826.db",
+      "sha256": "d86a8aa17f13aff86468461773b95936e5f7e1fa700f6e06191158cf064f7c57"
+    }
+  ],
+  "output_files": [
+    "prompt_only_calibration_benchmarks.csv",
+    "prompt_only_calibration_cells.csv",
+    "prompt_only_calibration_composition_bridge.csv",
+    "prompt_only_calibration_difficulty_sensitivity.csv",
+    "prompt_only_calibration_effect_bridge.csv",
+    "prompt_only_calibration_headline.csv",
+    "prompt_only_calibration_interpretation.json",
+    "prompt_only_calibration_manifest.json",
+    "prompt_only_calibration_models.csv",
+    "prompt_only_calibration_reliability_bins.csv",
+    "prompt_only_calibration_summary.json"
+  ]
+}

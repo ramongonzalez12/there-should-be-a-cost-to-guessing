@@ -1,0 +1,11 @@
+{
+  "profiles": [],
+  "source_sha256": {
+    "responses.jsonl.gz": "228f078855ac7c7db339b430dd3bdabdd2b919ea6e5633b764cf5497ef40a173"
+  },
+  "registry_sha256": "31e1deaf92cc9ab35626d37a9b4b7efcb03044be06ac324c28d393cf802f2e2b",
+  "cells_sha256": "7b7bae3224cf1598b8f831d9d43e20dc1e21f0eabaab8f40fad5b350b4f27792",
+  "validation": "Baseline-only models (complete baseline, incomplete rule or warning arm); every threshold row reproduced exactly.",
+  "weighting": "Pool questions within each model; weight models equally when combining distributions.",
+  "new_generation_cost_usd": 0
+}

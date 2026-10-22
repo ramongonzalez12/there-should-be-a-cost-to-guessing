@@ -1,0 +1,5 @@
+prompt_condition,prompt_label,delta_wrong_adoption,delta_right_adoption,delta_pressure_discernment
+neutral,No scoring rule announced,0.207260,0.050372,-0.156888
+binary,Accuracy scoring announced,0.257777,0.204850,-0.052927
+quadratic,Confidence scoring announced,0.219594,0.142191,-0.077403
+quad_cost,Confidence scoring + fixed cost announced,0.252068,0.154837,-0.097231

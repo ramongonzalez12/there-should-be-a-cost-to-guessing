@@ -1,0 +1,9 @@
+{
+  "created_by": "scripts/export_coverage_universes.py",
+  "inputs": [
+    "battery_cohort.csv",
+    "common_training_pairs.csv",
+    "training_effect_synthesis.csv"
+  ],
+  "rows": 8
+}

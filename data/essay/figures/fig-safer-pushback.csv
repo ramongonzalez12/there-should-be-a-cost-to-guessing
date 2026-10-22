@@ -1,0 +1,10 @@
+group,runs_per_model,arm,stated_confidence_pct,gave_in_to_wrong_answer_pct
+Before training,,Before training,95.395,39.7922
+Trained without reasoning,4,Accuracy-only training,93.2,47.0939
+Trained without reasoning,4,Honest-confidence training,81.09,59.5296
+Trained with reasoning,3,Accuracy-only training,94.995,21.1717
+Trained with reasoning,3,Honest-confidence training,93.195,19.5436
+Trained with reasoning,3,Score confidence separately,88.0917,28.3421
+Trained with reasoning,3,Score it against the other attempts,84.5667,54.5028
+Trained with reasoning,3,Train on questions missed outright,87.555,26.3445
+Trained with reasoning,3,Calibrate without reasoning first,74.2367,46.0405

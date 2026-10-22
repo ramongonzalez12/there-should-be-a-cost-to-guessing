@@ -1,0 +1,50 @@
+{
+  "admitted_qwen_training_pairs": 7,
+  "created_at": "2026-08-23T12:59:01.910871+00:00",
+  "failed_qwen_training_pairs": 2,
+  "observed_qwen_contrasts": 21,
+  "outputs": [
+    "data/processed/domain_replication_contrasts.csv",
+    "data/processed/domain_replication_summary.csv",
+    "data/processed/domain_replication_model_gates.csv"
+  ],
+  "planned_qwen_contrasts": 27,
+  "planned_qwen_training_pairs": 9,
+  "primary_sample": "300 new exact-ID-disjoint items per evaluation domain",
+  "qwen_evaluation_responses": 13500,
+  "schema_version": 1,
+  "sources": {
+    "runs/finetune/domain_replication_v2/deepseek/math/base_profile/arm.json": "bd90c5a1fa627c56c8162535ca9623cdd751850316f458df29f6485028851ed5",
+    "runs/finetune/domain_replication_v2/manifest.json": "f71048bec100924500d896e4f98f746e49ddb1daa914fc0ac8926805b206b943",
+    "runs/finetune/domain_replication_v2/qwen35/ethics/base_profile/arm.json": "a1ce9a95eacec243f56a44bf1430968187f4cd0524a4c7682a9a4348ec36fb3b",
+    "runs/finetune/domain_replication_v2/qwen35/math/base_profile/arm.json": "ac076a30a7591debcf2bb996fc8ee6760f64bad8340907bba1d61a97daa36fbc",
+    "runs/finetune/domain_replication_v2/qwen35/medicine/base_profile/arm.json": "b97533b6468484d42cfe7f18e67f0fdb0fb639f485b7205a7ac8eccf9de59451",
+    "runs/finetune/domain_replication_v2/qwen_checkpoints.json": "5336febaccbc82e2417cc6be4074f17f03944a9bf2727ec87761a6c0ad10d0bd",
+    "runs/finetune/domain_replication_v2/qwen_evaluation/manifest.json": "7f75129205df5f11fe9567527a17fe2d4b53d46382a1a1baa3f35d1cb0a1a8da",
+    "runs/finetune/domain_replication_v2/qwen_evaluation/responses.jsonl": "3e5374733f5beed13b0898f0a5c1991dff2371106ee9d3cf33d572883610868c",
+    "runs/finetune/domain_replication_v2/qwen_evaluation/summary.json": "e7b310399231a9ffd40ff1906e4fb11d6d4bd012b26ccb3002acd2c7d6bab708"
+  },
+  "spend": {
+    "components_usd": {
+      "completed_qwen_training_recorded": 1.708955,
+      "deepseek_failed_profile_cap": 1.3,
+      "deepseek_pilot_recorded": 0.031815,
+      "qwen35_pilot_recorded": 0.004314,
+      "qwen_evaluation_recorded": 1.04282,
+      "three_qwen35_failed_profile_caps": 0.81,
+      "two_failed_qwen_training_caps": 0.98
+    },
+    "conservative_liability_usd": 5.877904,
+    "failed_dispatch_caps_usd": {
+      "deepseek_math_base_profile": 1.3,
+      "qwen35_ethics_base_profile": 0.26,
+      "qwen35_math_base_profile": 0.31,
+      "qwen35_medicine_base_profile": 0.24,
+      "qwen_math_binary_seed2": 0.49,
+      "qwen_math_quadratic_seed1": 0.49
+    },
+    "program_hard_cap_usd": 20.0,
+    "recorded_raw_ledger_spend_usd": 4.190967,
+    "rule": "Completed runs use recorded spend; failed runs without a final summary use the full pre-dispatch cap."
+  }
+}

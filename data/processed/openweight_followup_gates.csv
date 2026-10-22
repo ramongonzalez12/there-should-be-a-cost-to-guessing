@@ -1,0 +1,7 @@
+model_stage,responses,max_tokens,malformed_count,malformed_rate,gate
+"GPT-OSS untouched, 512 tokens",1920,512,529,0.2755208333333333,fail
+"GPT-OSS after syntax lesson, seed 101",1920,512,14,0.007291666666666667,pass
+"GPT-OSS after syntax lesson, seed 202",1920,512,11,0.005729166666666666,pass
+"Kimi after syntax lesson, seed 101",224,64,73,0.32589285714285715,fail
+DeepSeek prior failures replayed at 512 tokens,24,512,6,0.25,fail
+"DeepSeek after syntax lesson, prior failures at 512 tokens",8,512,8,1.0,fail

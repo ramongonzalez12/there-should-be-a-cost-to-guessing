@@ -1,0 +1,52 @@
+model,model_name,overconfidence_gap_pts,wrong_at_90_plus_per_100,accuracy_pct,adjusted_accuracy_pts
+,All 50 models,8.5348,9.8325,83.7469,69.6723
+amazon/nova-pro-v1,Nova Pro,18.2145,22.0051,72.2361,49.636
+anthropic/claude-3-haiku,Claude 3 Haiku,38.0887,42.25,54.375,15.0818
+anthropic/claude-fable-5.1,Claude Fable 5.1,-2.7068,1.1301,94.352,89.4695
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,3.2937,3.375,80.625,67.8558
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,-3.9784,0.625,87.875,79.1385
+anthropic/claude-opus-4.7,Claude Opus 4.7,-3.2103,1.1275,91.3712,84.3221
+anthropic/claude-opus-4.8,Claude Opus 4.8,-0.12,2.5,91.375,84.4835
+anthropic/claude-opus-5,Claude Opus 5,-1.6028,0.875,93.875,89.2198
+anthropic/claude-opus-5.5,Claude Opus 5.5,-5.7011,0.25,95.4847,91.308
+anthropic/claude-sonnet-4,Claude Sonnet 4,5.3666,2.75,84.875,73.438
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,2.7405,3.0051,87.8112,79.038
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,-2.4684,1.0,88.5,80.2442
+anthropic/claude-sonnet-5,Claude Sonnet 5,-4.9407,0.625,88.7298,79.0229
+cohere/command-r-plus-08-2024,Command R+,33.4494,35.25,59.0,16.3913
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,6.8558,7.625,81.625,64.4592
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,12.884,12.625,81.5,65.6139
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,4.2914,5.0,86.125,73.4376
+google/gemini-2.5-flash,Gemini 2.5 Flash,11.5665,13.0202,81.5972,62.5713
+google/gemini-3-flash-preview,Gemini 3 Flash,7.5113,7.875,90.75,82.2422
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,10.6684,11.1402,86.4836,74.2962
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,4.0656,5.0,91.125,82.6154
+google/gemini-3.7-flash,Gemini 3.7 Flash,4.9662,5.625,93.0,86.7999
+google/gemini-3.8-flash,Gemini 3.8 Flash,3.8471,4.625,93.25,87.3868
+google/gemma-2-27b-it,Gemma 2 27B,27.2215,31.6793,62.8169,29.1541
+google/gemma-4-31b-it,Gemma 4 31B,10.5813,10.375,87.125,75.5472
+meta-llama/llama-4-maverick,Llama 4 Maverick,9.7395,9.375,81.0,64.4575
+meta/muse-glimmer-30b,Muse Glimmer 30B,-2.3537,2.0,84.25,72.3134
+mistralai/mistral-medium-3,Mistral Medium 3,13.8951,16.375,80.125,61.2553
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,13.8261,16.375,80.125,61.1512
+openai/gpt-4.1,GPT-4.1,13.8026,14.75,83.5,68.2658
+openai/gpt-4.1-mini,GPT-4.1 Mini,13.1136,17.0,80.75,64.2088
+openai/gpt-4o-2024-08-06,GPT-4o,13.6962,15.125,79.0,60.618
+openai/gpt-4o-mini,GPT-4o mini,18.7937,18.75,71.625,47.8447
+openai/gpt-5.1,GPT-5.1,14.0999,12.375,78.875,61.7819
+openai/gpt-5.2,GPT-5.2,2.3273,4.375,89.0,79.9528
+openai/gpt-5.4,GPT-5.4,10.6298,10.2639,84.7197,71.6378
+openai/gpt-5.4-nano,GPT-5.4 Nano,9.9916,8.125,67.375,42.3017
+openai/gpt-5.5,GPT-5.5,4.132,4.875,91.375,84.2555
+openai/gpt-5.6-luna,GPT-5.6 Luna,9.9612,10.375,87.5,76.3149
+openai/gpt-5.6-sol,GPT-5.6 Sol,5.8562,7.125,91.5,83.8312
+openai/gpt-5.6-terra,GPT-5.6 Terra,7.6525,7.75,88.875,79.546
+openai/gpt-6-astra,GPT-6 Astra,4.4875,5.125,93.125,87.0687
+openai/gpt-6-luna,GPT-6 Luna,7.2825,8.375,89.5,80.2764
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,6.4136,7.0,90.125,81.2343
+openai/gpt-6-sol,GPT-6 Sol,5.1209,4.75,91.125,84.0193
+openai/gpt-6.1-sol,GPT-6.1 Sol,4.1912,5.0,93.5,87.8983
+openai/o4-mini,o4-mini,4.9479,8.0,86.125,74.6684
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,14.7967,13.25,74.75,52.4819
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,28.5147,21.0,60.625,26.0109
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,10.9378,12.7513,82.9949,67.4481

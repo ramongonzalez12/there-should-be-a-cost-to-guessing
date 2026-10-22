@@ -1,0 +1,50 @@
+{
+  "training_families": {
+    "qwen": {
+      "responses_with_probability_token": 27449,
+      "fraction_notation_tokens": 0,
+      "overall_accuracy": 0.47823235819155524,
+      "below_5pct_stated": {
+        "base": {
+          "n": 25,
+          "accuracy": 0.04
+        },
+        "binary": {
+          "n": 45,
+          "accuracy": 0.1111111111111111
+        },
+        "quadratic": {
+          "n": 118,
+          "accuracy": 0.1864406779661017
+        }
+      }
+    },
+    "gpt_oss": {
+      "responses_with_probability_token": 9882,
+      "fraction_notation_tokens": 0,
+      "overall_accuracy": 0.4797611819469743,
+      "below_5pct_stated": {
+        "base": {
+          "n": 3,
+          "accuracy": 0.0
+        },
+        "binary": {
+          "n": 1048,
+          "accuracy": 0.49713740458015265
+        }
+      }
+    }
+  },
+  "corrected_rerun_bins": {
+    "control": 0.0,
+    "quad_score_only": 0.0
+  },
+  "artifact_census_fractions": {
+    "base_models:control": 0,
+    "base_models:quad_score_only": 0,
+    "identification:hedge_placebo": 4,
+    "identification:quad_worked_example": 205,
+    "rerun:control": 11,
+    "rerun:quad_score_only": 235
+  }
+}

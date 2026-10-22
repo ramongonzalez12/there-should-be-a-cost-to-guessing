@@ -1,0 +1,23 @@
+{
+  "admitted_training_pairs": 3,
+  "created_at": "2026-09-01T23:02:25.236468+00:00",
+  "evaluation_domains": [
+    "ethics",
+    "math",
+    "medicine",
+    "gpqa"
+  ],
+  "failed_training_pairs": 3,
+  "model_family": "GPT-OSS 20B",
+  "outputs": [
+    "data/processed/gptoss_subject_transfer_pairs.csv"
+  ],
+  "pair_rows": 3,
+  "planned_training_pairs": 6,
+  "schema_version": 1,
+  "sources": {
+    "runs/finetune/gptoss_domain_replication/evaluation/summary.json": "94316c38938c36f454e97229d2c77a32618685e5acc538c11bb2acb17507a205",
+    "runs/finetune/gptoss_domain_replication/evaluation_ethics_seed1_supplement/summary.json": "190f7a64d682571598f2192efc0c8011976aabdd7f10fe8587f35ee901ebf722",
+    "runs/finetune/gptoss_domain_replication/gptoss_checkpoints.json": "af92dbf55a938adce8b9c00607123b317a47b3d1dcce874c128394eb36f9b969"
+  }
+}

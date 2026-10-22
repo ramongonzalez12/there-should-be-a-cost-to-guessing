@@ -1,0 +1,684 @@
+{
+  "protocol": "notes/2026-09-13-prompt-extension-protocol.md",
+  "budget_cap_usd": 65,
+  "target_models": 54,
+  "prior_paired_models": 33,
+  "candidates": [
+    {
+      "model": "openai/gpt-4-turbo",
+      "status": "format_failure",
+      "arm_outcomes": {
+        "quad_score_only": {
+          "status": "format_failure",
+          "reason": "MATH-500 rule pilot failed at 4000 tokens: 7 of 20 malformed, all ordinary finishes. The replacement baseline also failed (3 of 20)."
+        },
+        "hedge_placebo": {
+          "status": "not_run",
+          "reason": "The warning pilot passed at 4000 tokens, but a full matching triple was not run after the baseline and rule failures."
+        }
+      }
+    },
+    {
+      "model": "openai/gpt-4o-2024-08-06",
+      "status": "format_failure",
+      "arm_outcomes": {
+        "quad_score_only": {
+          "status": "format_failure",
+          "reason": "MATH-500 rule pilot failed at 8000 tokens: 3 of 20 malformed, all ordinary finishes. Earlier 900- and 4000-token pilots also failed."
+        },
+        "hedge_placebo": {
+          "status": "not_run",
+          "reason": "The warning pilot passed at 8000 tokens, but a full matching triple was not run after the rule failure."
+        }
+      }
+    },
+    {
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "status": "retained_format_failure",
+      "reason": "Repeated ordinary-finish format omissions in the retained pilots; no duplicate generation purchased.",
+      "prior_reason": "rule: GPQA 4/20 (length), MATH-500 4/20 (3 stop, 1 length) and MMLU-Pro 2/20 (length) at 900 tokens; re-piloted 2026-09-12 at 4,000: MATH-500 5/19 (all stop), fails again (notes/2026-09-06-vintage-rule-arm.md) | warning: rule arm failed its gate; the warning was never in scope (notes/2026-09-06-warning-arm-extension.md)"
+    },
+    {
+      "model": "deepseek/deepseek-chat",
+      "status": "complete",
+      "sources": {
+        "control": "runs/promptx_deepseek__deepseek-chat_recovery.db",
+        "quad_score_only": "runs/promptx_deepseek__deepseek-chat_recovery.db",
+        "hedge_placebo": "runs/promptx_deepseek__deepseek-chat_recovery.db"
+      }
+    },
+    {
+      "model": "google/gemma-3-27b-it",
+      "status": "complete",
+      "sources": {
+        "control": "runs/promptx_google__gemma-3-27b-it_recovery.db",
+        "quad_score_only": "runs/promptx_google__gemma-3-27b-it_recovery.db",
+        "hedge_placebo": "runs/promptx_google__gemma-3-27b-it_recovery.db"
+      }
+    },
+    {
+      "model": "deepseek/deepseek-chat-v3-0324",
+      "status": "format_failure",
+      "arm_outcomes": {
+        "quad_score_only": {
+          "status": "format_failure",
+          "reason": "The earlier rule pilot failed at 4000 tokens. At 8000 tokens the replacement baseline already had 4 malformed, truncated MATH-500 responses among 19 of 20 pilot items, making failure unavoidable; the remaining pilot was stopped."
+        },
+        "hedge_placebo": {
+          "status": "not_run",
+          "reason": "No complete matching warning arm after the replacement baseline failed at 8000 tokens."
+        }
+      }
+    },
+    {
+      "model": "meta-llama/llama-4-scout",
+      "status": "retained_format_failure",
+      "reason": "Repeated ordinary-finish format omissions in the retained pilots; no duplicate generation purchased.",
+      "prior_reason": "rule: GPQA 9/20 and MMLU-Pro 4/20, all stop, at 4,000 tokens (the control arm was itself re-piloted to 4,000) (notes/2026-09-06-vintage-rule-arm.md) | warning: rule arm failed its gate; the warning was never in scope (notes/2026-09-06-warning-arm-extension.md)"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_openai__gpt-4.1-mini_4k_20260913.db",
+        "quad_score_only": "runs/promptx_openai__gpt-4.1-mini.db",
+        "hedge_placebo": "runs/promptx_openai__gpt-4.1-mini.db"
+      }
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "status": "reused",
+      "sources": {
+        "control": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+        "quad_score_only": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+        "hedge_placebo": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db"
+      }
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "status": "complete",
+      "sources": {
+        "control": "runs/promptx_google__gemini-2.5-pro_4k.db",
+        "quad_score_only": "runs/promptx_google__gemini-2.5-pro_4k.db",
+        "hedge_placebo": "runs/promptx_google__gemini-2.5-pro_4k.db"
+      }
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "status": "reused",
+      "sources": {
+        "control": "runs/matched_prompt_interventions_8b20b_20260831.db",
+        "quad_score_only": "runs/matched_prompt_interventions_8b20b_20260831.db",
+        "hedge_placebo": "runs/matched_prompt_interventions_8b20b_20260831.db"
+      }
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_google__gemini-3.1-pro-preview_20260913.db",
+        "quad_score_only": "runs/promptx_google__gemini-3.1-pro-preview.db",
+        "hedge_placebo": "runs/promptx_google__gemini-3.1-pro-preview.db"
+      }
+    },
+    {
+      "model": "x-ai/grok-4.20",
+      "status": "format_failure",
+      "arm_outcomes": {
+        "quad_score_only": {
+          "status": "format_failure",
+          "reason": "Rule pilot failed at 900 tokens (GPQA 8/20 and MATH-500 7/20 malformed, all truncated). The 4000-token replacement also failed GPQA (4/20, all truncated)."
+        },
+        "hedge_placebo": {
+          "status": "not_run",
+          "reason": "The replacement pilot was stopped after the rule gate failed; no complete matching warning arm."
+        }
+      }
+    },
+    {
+      "model": "x-ai/grok-4.3",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_x-ai__grok-4.3_20260913.db",
+        "quad_score_only": "runs/promptx_x-ai__grok-4.3.db",
+        "hedge_placebo": "runs/promptx_x-ai__grok-4.3.db"
+      }
+    },
+    {
+      "model": "x-ai/grok-4.5",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_x-ai__grok-4.5_20260913.db",
+        "quad_score_only": "runs/promptx_x-ai__grok-4.5.db",
+        "hedge_placebo": "runs/promptx_x-ai__grok-4.5.db"
+      }
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_openai__gpt-5.6-luna_20260913.db",
+        "quad_score_only": "runs/promptx_openai__gpt-5.6-luna.db",
+        "hedge_placebo": "runs/promptx_openai__gpt-5.6-luna.db"
+      }
+    },
+    {
+      "model": "anthropic/claude-opus-5",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_anthropic__claude-opus-5_4k_20260913.db",
+        "quad_score_only": "runs/promptx_anthropic__claude-opus-5.db",
+        "hedge_placebo": "runs/promptx_anthropic__claude-opus-5.db"
+      }
+    },
+    {
+      "model": "x-ai/grok-4.6",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_x-ai__grok-4.6_20260913.db",
+        "quad_score_only": "runs/promptx_x-ai__grok-4.6.db",
+        "hedge_placebo": "runs/promptx_x-ai__grok-4.6.db"
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-flash",
+      "status": "complete",
+      "sources": {
+        "control": "runs/promptx_qwen__qwen3.8-flash_8k.db",
+        "quad_score_only": "runs/promptx_qwen__qwen3.8-flash_8k.db",
+        "hedge_placebo": "runs/promptx_qwen__qwen3.8-flash_8k.db"
+      }
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_openai__gpt-6-astra_20260913.db",
+        "quad_score_only": "runs/promptx_openai__gpt-6-astra.db",
+        "hedge_placebo": "runs/promptx_openai__gpt-6-astra.db"
+      }
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "complete",
+      "sources": {
+        "control": "runs/coverage_deepseek__deepseek-v4.1-flash_4k_20260913.db",
+        "quad_score_only": "runs/promptx_deepseek__deepseek-v4.1-flash.db",
+        "hedge_placebo": "runs/promptx_deepseek__deepseek-v4.1-flash.db"
+      }
+    },
+    {
+      "model": "openai/o4-mini",
+      "status": "complete",
+      "reason": "All three exact frozen arms passed the strict validator.",
+      "sources": {
+        "control": "runs/gap_openai__o4-mini_low.db",
+        "quad_score_only": "runs/gap_openai__o4-mini_low.db",
+        "hedge_placebo": "runs/gap_openai__o4-mini_low.db"
+      },
+      "arms": {
+        "control": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 0
+        },
+        "quad_score_only": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 0
+        },
+        "hedge_placebo": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 1
+        }
+      },
+      "recorded_cost_usd": 3.8397755,
+      "saved_call_attempts": 2400,
+      "saved_failed_attempts": 0,
+      "failed_attempts": [],
+      "input_tokens": 586813,
+      "output_tokens_including_reasoning": 725973,
+      "reasoning": "low",
+      "max_tokens": 4000,
+      "database_sha256": "d53765c02e9e0f35890839a02dec300fbb737b3f541bd351d3815d8cda3a3b6d"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "status": "complete",
+      "reason": "All three exact frozen arms passed the strict validator.",
+      "sources": {
+        "control": "runs/gap_openai__gpt-5.4-nano_off.db",
+        "quad_score_only": "runs/gap_openai__gpt-5.4-nano_off.db",
+        "hedge_placebo": "runs/gap_openai__gpt-5.4-nano_off.db"
+      },
+      "arms": {
+        "control": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 0
+        },
+        "quad_score_only": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 0
+        },
+        "hedge_placebo": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 0
+        }
+      },
+      "recorded_cost_usd": 0.16075385,
+      "saved_call_attempts": 2400,
+      "saved_failed_attempts": 0,
+      "failed_attempts": [],
+      "input_tokens": 586813,
+      "output_tokens_including_reasoning": 34713,
+      "reasoning": "off",
+      "max_tokens": 4000,
+      "database_sha256": "1db44373fdc631b27b2380475760b3662b65bb0030452368ea4dc2b7c0f81941"
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "status": "complete",
+      "reason": "All three exact frozen arms passed the strict validator.",
+      "sources": {
+        "control": "runs/gap_google__gemma-4-31b-it_off.db",
+        "quad_score_only": "runs/gap_google__gemma-4-31b-it_off.db",
+        "hedge_placebo": "runs/gap_google__gemma-4-31b-it_off.db"
+      },
+      "arms": {
+        "control": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 2
+        },
+        "quad_score_only": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 1
+        },
+        "hedge_placebo": {
+          "rows": 800,
+          "errors": 0,
+          "malformed": 0
+        }
+      },
+      "recorded_cost_usd": 0.179294148,
+      "saved_call_attempts": 2401,
+      "saved_failed_attempts": 1,
+      "failed_attempts": [
+        {
+          "key": "87686d07981a13ffd03a489a1a4a50edddc29bda",
+          "error": "AMBIGUOUS JSONDecodeError: Expecting value: line 43 column 1 (char 231)",
+          "response_id": null,
+          "reported_cost_usd": null,
+          "messages_sha256": "5196f2757982e9d38d8e2aa552556f2bf04908d060d290c375f2695c38fc0e82"
+        }
+      ],
+      "input_tokens": 639056,
+      "output_tokens_including_reasoning": 330185,
+      "reasoning": "off",
+      "max_tokens": 4000,
+      "database_sha256": "0d78a69f8b1e7c776a255a5c9d4538aa113fdefeef1f603c211577f1377535f2"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_deepseek__deepseek-v4-flash-0731_off.db",
+        "quad_score_only": "runs/leader_deepseek__deepseek-v4-flash-0731_off.db",
+        "hedge_placebo": "runs/leader_deepseek__deepseek-v4-flash-0731_off.db"
+      }
+    },
+    {
+      "model": "tencent/hy3",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_tencent__hy3_off.db",
+        "quad_score_only": "runs/leader_tencent__hy3_off.db",
+        "hedge_placebo": "runs/leader_tencent__hy3_off.db"
+      }
+    },
+    {
+      "model": "z-ai/glm-5.2",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_z-ai__glm-5.2_off.db",
+        "quad_score_only": "runs/leader_z-ai__glm-5.2_off.db",
+        "hedge_placebo": "runs/leader_z-ai__glm-5.2_off.db"
+      }
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_anthropic__claude-opus-4.7_off.db",
+        "quad_score_only": "runs/leader_anthropic__claude-opus-4.7_off.db",
+        "hedge_placebo": "runs/leader_anthropic__claude-opus-4.7_off.db"
+      }
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_anthropic__claude-opus-4.8_off.db",
+        "quad_score_only": "runs/leader_anthropic__claude-opus-4.8_off.db",
+        "hedge_placebo": "runs/leader_anthropic__claude-opus-4.8_off.db"
+      }
+    },
+    {
+      "model": "openai/gpt-5.6-terra",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_openai__gpt-5.6-terra_off.db",
+        "quad_score_only": "runs/leader_openai__gpt-5.6-terra_off.db",
+        "hedge_placebo": "runs/leader_openai__gpt-5.6-terra_off.db"
+      }
+    },
+    {
+      "model": "z-ai/glm-5.3",
+      "status": "complete",
+      "sources": {
+        "control": "runs/leader_z-ai__glm-5.3_low.db",
+        "quad_score_only": "runs/leader_z-ai__glm-5.3_low.db",
+        "hedge_placebo": "runs/leader_z-ai__glm-5.3_low.db"
+      }
+    }
+  ],
+  "original_paired_models": [
+    "mistralai/mistral-large",
+    "anthropic/claude-3-haiku",
+    "google/gemma-2-27b-it",
+    "qwen/qwen-2.5-72b-instruct",
+    "meta-llama/llama-4-maverick",
+    "openai/gpt-4.1",
+    "mistralai/mistral-medium-3",
+    "anthropic/claude-sonnet-4",
+    "google/gemini-2.5-flash",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "openai/gpt-oss-120b",
+    "qwen/qwen3-next-80b-a3b-instruct",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-haiku-4.5",
+    "openai/gpt-5.1",
+    "mistralai/mistral-large-2512",
+    "openai/gpt-5.2",
+    "google/gemini-3-flash-preview",
+    "anthropic/claude-sonnet-4.6",
+    "google/gemini-3.1-flash-lite-preview",
+    "openai/gpt-5.4",
+    "deepseek/deepseek-v4-flash",
+    "openai/gpt-5.5",
+    "mistralai/mistral-medium-3-5",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "anthropic/claude-sonnet-5",
+    "openai/gpt-5.6-sol",
+    "moonshotai/kimi-k3",
+    "meta/muse-glimmer-30b",
+    "deepseek/deepseek-v4-pro-0813",
+    "google/gemini-3.7-flash",
+    "anthropic/claude-fable-5.1",
+    "google/gemini-3.8-flash"
+  ],
+  "target_model_ids": [
+    "mistralai/mistral-large",
+    "anthropic/claude-3-haiku",
+    "openai/gpt-4-turbo",
+    "google/gemma-2-27b-it",
+    "openai/gpt-4o-2024-08-06",
+    "qwen/qwen-2.5-72b-instruct",
+    "meta-llama/llama-3.3-70b-instruct",
+    "deepseek/deepseek-chat",
+    "google/gemma-3-27b-it",
+    "deepseek/deepseek-chat-v3-0324",
+    "meta-llama/llama-4-maverick",
+    "meta-llama/llama-4-scout",
+    "openai/gpt-4.1",
+    "openai/gpt-4.1-mini",
+    "qwen/qwen3-8b",
+    "mistralai/mistral-medium-3",
+    "anthropic/claude-sonnet-4",
+    "google/gemini-2.5-flash",
+    "google/gemini-2.5-pro",
+    "qwen/qwen3-30b-a3b-instruct-2507",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "qwen/qwen3-next-80b-a3b-instruct",
+    "anthropic/claude-sonnet-4.5",
+    "anthropic/claude-haiku-4.5",
+    "openai/gpt-5.1",
+    "mistralai/mistral-large-2512",
+    "openai/gpt-5.2",
+    "google/gemini-3-flash-preview",
+    "anthropic/claude-sonnet-4.6",
+    "google/gemini-3.1-pro-preview",
+    "google/gemini-3.1-flash-lite-preview",
+    "openai/gpt-5.4",
+    "x-ai/grok-4.20",
+    "deepseek/deepseek-v4-flash",
+    "openai/gpt-5.5",
+    "mistralai/mistral-medium-3-5",
+    "x-ai/grok-4.3",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "anthropic/claude-sonnet-5",
+    "x-ai/grok-4.5",
+    "openai/gpt-5.6-luna",
+    "openai/gpt-5.6-sol",
+    "moonshotai/kimi-k3",
+    "anthropic/claude-opus-5",
+    "meta/muse-glimmer-30b",
+    "deepseek/deepseek-v4-pro-0813",
+    "x-ai/grok-4.6",
+    "google/gemini-3.7-flash",
+    "qwen/qwen3.8-flash",
+    "anthropic/claude-fable-5.1",
+    "google/gemini-3.8-flash",
+    "openai/gpt-6-astra",
+    "deepseek/deepseek-v4.1-flash"
+  ],
+  "execution": {
+    "budget_cap_usd": 65,
+    "reported_attempt_cost_usd": 56.0034773889,
+    "runs": [
+      {
+        "path": "runs/promptx_anthropic__claude-opus-5.db",
+        "sha256": "941f8614870892bd168ccbe5563e0abe101650eda5c8889f7b1cfdd6cef015b4",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 9,
+        "attempts": 1600,
+        "reported_cost_usd": 8.0028
+      },
+      {
+        "path": "runs/promptx_deepseek__deepseek-chat-v3-0324_recovery.db",
+        "sha256": "16535cfdba0d1d126c9becce6fbaf93b8089bf045823a415ec566456ed5519dd",
+        "retained_rows": 203,
+        "provider_errors": 0,
+        "malformed_including_errors": 4,
+        "attempts": 203,
+        "reported_cost_usd": 0.08356967
+      },
+      {
+        "path": "runs/promptx_deepseek__deepseek-chat_recovery.db",
+        "sha256": "ff0ceada0206adae4ee4ee86c0d92fae279035f55d94e0ede491e4ce1b949d90",
+        "retained_rows": 2400,
+        "provider_errors": 0,
+        "malformed_including_errors": 16,
+        "attempts": 2400,
+        "reported_cost_usd": 0.3986538379
+      },
+      {
+        "path": "runs/promptx_deepseek__deepseek-v4.1-flash.db",
+        "sha256": "647b76ae98bca4546e35d0cbf3b47bebb283ea9002d3d98d4d06b56cf0049b04",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 20,
+        "attempts": 1605,
+        "reported_cost_usd": 0.345133982
+      },
+      {
+        "path": "runs/promptx_google__gemini-2.5-pro.db",
+        "sha256": "df03bb17cea65078189d5f8d8b30286f881b13aadb727a93f5614e6fa330de14",
+        "retained_rows": 139,
+        "provider_errors": 0,
+        "malformed_including_errors": 6,
+        "attempts": 139,
+        "reported_cost_usd": 0.4792925
+      },
+      {
+        "path": "runs/promptx_google__gemini-2.5-pro_4k.db",
+        "sha256": "9943df0d94daf59dfebc826db771f6dd337b283f10a173559e83258b2dbc4350",
+        "retained_rows": 2400,
+        "provider_errors": 0,
+        "malformed_including_errors": 7,
+        "attempts": 2417,
+        "reported_cost_usd": 18.57215875
+      },
+      {
+        "path": "runs/promptx_google__gemini-3.1-pro-preview.db",
+        "sha256": "06b2b548b2f00760356b09f0d3b129940d81ec1f8d661684222bd17c021f96a8",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 5,
+        "attempts": 1600,
+        "reported_cost_usd": 6.27242
+      },
+      {
+        "path": "runs/promptx_google__gemma-3-27b-it_recovery.db",
+        "sha256": "9cec77301121299775404e81c3275fd4cb33f68f17107b40e7c879aa8cdd8a0a",
+        "retained_rows": 2400,
+        "provider_errors": 0,
+        "malformed_including_errors": 6,
+        "attempts": 2400,
+        "reported_cost_usd": 0.084511451
+      },
+      {
+        "path": "runs/promptx_openai__gpt-4-turbo_recovery.db",
+        "sha256": "ea14441c7fe2c85a0cdb8cb9d3dba5c4e1c058bea7c4af14560280e4a5b3d7df",
+        "retained_rows": 480,
+        "provider_errors": 0,
+        "malformed_including_errors": 10,
+        "attempts": 480,
+        "reported_cost_usd": 2.07324
+      },
+      {
+        "path": "runs/promptx_openai__gpt-4.1-mini.db",
+        "sha256": "761dd82762ad3d205b1248319d9f8358cb5a17ec112c82a3a2f628bfa76e37f2",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 8,
+        "attempts": 1600,
+        "reported_cost_usd": 0.6193048
+      },
+      {
+        "path": "runs/promptx_openai__gpt-4o-2024-08-06_recovery.db",
+        "sha256": "3aca2ad7b0f2694724b258017a2cfde9da8ed1cc99cd3e01f65a283f1834601d",
+        "retained_rows": 480,
+        "provider_errors": 0,
+        "malformed_including_errors": 4,
+        "attempts": 480,
+        "reported_cost_usd": 0.461785
+      },
+      {
+        "path": "runs/promptx_openai__gpt-5.6-luna.db",
+        "sha256": "3bbf9c74f02e9be6abbf69d07e32b605fd30f0c26eb42f8870e890f8ac10c540",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 0,
+        "attempts": 1600,
+        "reported_cost_usd": 0.1167436
+      },
+      {
+        "path": "runs/promptx_openai__gpt-6-astra.db",
+        "sha256": "dd3373520a3de5710f7bda645fe6f83d4abb1ee4606cbb07697e536324085937",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 15,
+        "attempts": 1600,
+        "reported_cost_usd": 8.09662
+      },
+      {
+        "path": "runs/promptx_qwen__qwen3.8-flash.db",
+        "sha256": "971cbdd209057780b2a5e765b592c71b60fe6b86f3478029d86d9965fc882210",
+        "retained_rows": 360,
+        "provider_errors": 0,
+        "malformed_including_errors": 7,
+        "attempts": 364,
+        "reported_cost_usd": 0.04621335
+      },
+      {
+        "path": "runs/promptx_qwen__qwen3.8-flash_8k.db",
+        "sha256": "c0343bc3d18d1f6eaaf1309de236ba88ddedae19325f7f4330f418cbdeeb2a9f",
+        "retained_rows": 2400,
+        "provider_errors": 0,
+        "malformed_including_errors": 7,
+        "attempts": 2410,
+        "reported_cost_usd": 0.189017898
+      },
+      {
+        "path": "runs/promptx_x-ai__grok-4.20.db",
+        "sha256": "3c6d512a9c88b2700dfe11b4bb91fdc5a2a1a98e20d08d90afd795f61957a3ea",
+        "retained_rows": 143,
+        "provider_errors": 0,
+        "malformed_including_errors": 18,
+        "attempts": 143,
+        "reported_cost_usd": 0.11067145
+      },
+      {
+        "path": "runs/promptx_x-ai__grok-4.20_4k.db",
+        "sha256": "6373dd9b9269e7b62469b236225e9cc530e58705df4f23427aca3e713e81aa87",
+        "retained_rows": 183,
+        "provider_errors": 0,
+        "malformed_including_errors": 7,
+        "attempts": 183,
+        "reported_cost_usd": 0.160187
+      },
+      {
+        "path": "runs/promptx_x-ai__grok-4.3.db",
+        "sha256": "2b73d1fb6a70fc4bd8f9bd14f7aadc18ede3107e57db240fc77c74f4dc4068da",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 0,
+        "attempts": 1600,
+        "reported_cost_usd": 0.4996061
+      },
+      {
+        "path": "runs/promptx_x-ai__grok-4.5.db",
+        "sha256": "d6654cbf89605b9b64ba37bf06bc612137d53d7a6c95dfe9e618d956e1c4008b",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 1,
+        "attempts": 1600,
+        "reported_cost_usd": 4.520296
+      },
+      {
+        "path": "runs/promptx_x-ai__grok-4.6.db",
+        "sha256": "875c9b81b15af9d10a9188c9237afb8672d5001693192dafeee4964f6802e45a",
+        "retained_rows": 1600,
+        "provider_errors": 0,
+        "malformed_including_errors": 2,
+        "attempts": 1600,
+        "reported_cost_usd": 4.871252
+      }
+    ],
+    "reconciled_program_cost_usd": 56.008830203
+  },
+  "supplementary_protocols": [
+    "notes/2026-09-17-gap-triples-protocol.md",
+    "notes/2026-09-15-leader-triples-protocol.md"
+  ],
+  "supplementary_target_model_ids": [
+    "openai/o4-mini",
+    "openai/gpt-5.4-nano",
+    "google/gemma-4-31b-it",
+    "deepseek/deepseek-v4-flash-0731",
+    "tencent/hy3",
+    "z-ai/glm-5.2",
+    "anthropic/claude-opus-4.7",
+    "anthropic/claude-opus-4.8",
+    "openai/gpt-5.6-terra",
+    "z-ai/glm-5.3"
+  ]
+}

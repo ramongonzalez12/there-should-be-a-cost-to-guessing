@@ -1,0 +1,78 @@
+model,developer,display_name,display_name_source,openrouter_name,listed_date,listed_date_source,registry_cohort,open_weight,in_comparison,exclusion_reason
+amazon/nova-pro-v1,amazon,Nova Pro,essay page,Amazon: Nova Pro 1.0,2024-12-05,openrouter_listing,added,0,1,
+anthropic/claude-3-haiku,anthropic,Claude 3 Haiku,essay page,,2024-03-13,historical_registry,added,0,1,
+anthropic/claude-fable-5.1,anthropic,Claude Fable 5.1,essay page,Anthropic: Claude Fable 5.1,2026-09-01,historical_registry,added,0,1,
+anthropic/claude-haiku-4.5,anthropic,Claude Haiku 4.5,essay page,Anthropic: Claude Haiku 4.5,2025-10-15,historical_registry,added,0,1,
+anthropic/claude-haiku-5.5,anthropic,Claude Haiku 5.5,essay page,Anthropic: Claude Haiku 5.5,2026-10-07,openrouter_listing,added,0,1,
+anthropic/claude-opus-4.7,anthropic,Claude Opus 4.7,essay page,Anthropic: Claude Opus 4.7,2026-04-16,historical_registry,added,0,1,
+anthropic/claude-opus-4.8,anthropic,Claude Opus 4.8,essay page,Anthropic: Claude Opus 4.8,2026-05-27,historical_registry,added,0,1,
+anthropic/claude-opus-5,anthropic,Claude Opus 5,essay page,Anthropic: Claude Opus 5,2026-07-24,historical_registry,added,0,1,
+anthropic/claude-opus-5.5,anthropic,Claude Opus 5.5,essay page,Anthropic: Claude Opus 5.5,2026-09-22,openrouter_listing,added,0,1,
+anthropic/claude-sonnet-4,anthropic,Claude Sonnet 4,essay page,Anthropic: Claude Sonnet 4,2025-05-22,historical_registry,added,0,1,
+anthropic/claude-sonnet-4.5,anthropic,Claude Sonnet 4.5,essay page,Anthropic: Claude Sonnet 4.5,2025-09-29,historical_registry,added,0,1,
+anthropic/claude-sonnet-4.6,anthropic,Claude Sonnet 4.6,essay page,Anthropic: Claude Sonnet 4.6,2026-02-17,historical_registry,added,0,1,
+anthropic/claude-sonnet-5,anthropic,Claude Sonnet 5,essay page,Anthropic: Claude Sonnet 5,2026-06-30,historical_registry,preregistered,0,1,
+cohere/command-a-plus,cohere,Command A+,essay page roster,Cohere: Command A+,2026-09-22,openrouter_listing,added,,0,Usability check: hidden reasoning that cannot be switched off ran past the output limit.
+cohere/command-r-plus-08-2024,cohere,Command R+,essay page,Cohere: Command R+ (08-2024),2024-08-30,openrouter_listing,added,1,1,
+deepseek/deepseek-chat,deepseek,DeepSeek V3,essay page roster,DeepSeek: DeepSeek V3,2024-12-26,historical_registry,added,,0,Provider failure on its OpenRouter route: repeated rate limits from DeepInfra until its resume limit (730 of 800 responses by the October 8 freeze).
+deepseek/deepseek-v4-flash,deepseek,DeepSeek V4 Flash,essay page,DeepSeek: DeepSeek V4 Flash 0423,2026-04-24,historical_registry,added,1,1,
+deepseek/deepseek-v4-flash-0731,deepseek,DeepSeek V4 Flash 0731,essay page roster,DeepSeek: DeepSeek V4 Flash 0731,2026-07-31,historical_registry,added,,0,Usability check: GPQA answers in the first 50 ran past the output limit (400 of 800 responses by the October 8 freeze).
+deepseek/deepseek-v4-pro-0813,deepseek,DeepSeek V4 Pro,essay page,DeepSeek: DeepSeek V4 Pro 0813,2026-08-12,historical_registry,preregistered,1,1,
+deepseek/deepseek-v4.1-flash,deepseek,DeepSeek V4.1 Flash,essay page,DeepSeek: DeepSeek V4.1 Flash,2026-09-10,historical_registry,added,1,1,
+google/gemini-2.5-flash,google,Gemini 2.5 Flash,essay page,Google: Gemini 2.5 Flash,2025-06-17,historical_registry,added,0,1,
+google/gemini-2.5-pro,google,Gemini 2.5 Pro,essay page roster,Google: Gemini 2.5 Pro,2025-06-17,historical_registry,added,,0,Usability check: too few usable GPQA answers in the first 50 (400 of 800 responses by the October 8 freeze).
+google/gemini-3-flash-preview,google,Gemini 3 Flash,essay page,Google: Gemini 3 Flash Preview,2025-12-17,historical_registry,added,0,1,
+google/gemini-3.1-flash-lite-preview,google,Gemini 3.1 Flash-Lite,essay page,Google: Gemini 3.1 Flash Lite Preview,2026-03-03,historical_registry,added,0,1,
+google/gemini-3.1-pro-preview,google,Gemini 3.1 Pro Preview,essay page,Google: Gemini 3.1 Pro Preview,2026-02-19,historical_registry,added,0,1,
+google/gemini-3.7-flash,google,Gemini 3.7 Flash,essay page,Google: Gemini 3.7 Flash,2026-08-13,historical_registry,preregistered,0,1,
+google/gemini-3.8-flash,google,Gemini 3.8 Flash,essay page,Google: Gemini 3.8 Flash,2026-09-02,historical_registry,added,0,1,
+google/gemma-2-27b-it,google,Gemma 2 27B,essay page,Google: Gemma 2 27B,2024-07-13,historical_registry,added,1,1,
+google/gemma-3-27b-it,google,Gemma 3 27B,essay page roster,Google: Gemma 3 27B,2025-03-12,historical_registry,added,,0,Provider failure on its OpenRouter route: repeated rate limits from DeepInfra (682 of 800 responses by the October 8 freeze).
+google/gemma-4-31b-it,google,Gemma 4 31B,essay page,Google: Gemma 4 31B,2026-04-02,historical_registry,added,1,1,
+meta-llama/llama-3.1-70b-instruct,meta-llama,Llama 3.1 70B Instruct,essay page roster,Meta: Llama 3.1 70B Instruct,2024-07-23,openrouter_listing,added,,0,"Usability check: incoherent on its first route, and after a reroute it omitted the confidence in the first 10 (80 of 800 responses by the October 8 freeze)."
+meta-llama/llama-3.3-70b-instruct,meta-llama,Llama 3.3 70B,essay page roster,Meta: Llama 3.3 70B Instruct,2024-12-06,historical_registry,added,,0,Provider failure on its OpenRouter route: errors persisted until it was dropped (37 of 800 responses by the October 8 freeze).
+meta-llama/llama-4-maverick,meta-llama,Llama 4 Maverick,essay page,Meta: Llama 4 Maverick,2025-04-05,historical_registry,preregistered,1,1,
+meta/muse-glimmer-30b,meta,Muse Glimmer 30B,essay page,Meta: Muse Glimmer 30B,2026-08-09,historical_registry,added,1,1,
+mistralai/mistral-large,mistralai,Mistral Large,essay page roster,Mistral Large,2024-02-26,historical_registry,added,,0,"Provider failure on its OpenRouter route: rate-limited, then dropped (9 of 800 responses by the October 8 freeze)."
+mistralai/mistral-large-2512,mistralai,Mistral Large 2512,essay page roster,Mistral: Mistral Large 3 2512,2025-12-01,historical_registry,added,,0,Provider failure on its OpenRouter route: repeated rate limits on the Mistral route (0 of 800 responses by the October 8 freeze).
+mistralai/mistral-large-4-0,mistralai,Mistral Large 4,essay page roster,Mistral: Mistral Large 4,2026-10-06,openrouter_listing,added,,0,"Usability check: hidden reasoning that cannot be switched off ran past the output limit, even at a doubled limit."
+mistralai/mistral-medium-3,mistralai,Mistral Medium 3,essay page,Mistral: Mistral Medium 3,2025-05-07,historical_registry,added,0,1,
+mistralai/mistral-medium-3-5,mistralai,Mistral Medium 3.5,essay page,Mistral: Mistral Medium 3.5,2026-04-30,historical_registry,preregistered,1,1,
+mistralai/mixtral-8x22b-instruct,mistralai,Mixtral 8x22B Instruct,essay page roster,Mistral: Mixtral 8x22B Instruct,2024-04-17,openrouter_listing,added,,0,Provider failure on its OpenRouter route: errors exhausted its retries (7 of 800 responses by the October 8 freeze).
+moonshotai/kimi-k3,moonshotai,Kimi K3,essay page roster,MoonshotAI: Kimi K3,2026-07-16,historical_registry,preregistered,,0,Provider failure on its OpenRouter route: errors with no stated cause (98 of 800 responses by the October 8 freeze).
+nvidia/nemotron-3-nano-30b-a3b,nvidia,Nemotron 3 Nano 30B A3B,essay page roster,NVIDIA: Nemotron 3 Nano 30B A3B,2025-12-14,openrouter_listing,added,,0,"Usability check: answers to the first 10 GPQA questions ran past the output limit without a confidence (80 of 800 responses by the October 8 freeze). Trained and tested on Tinker instead, from its open weights ([3.B])."
+nvidia/nemotron-3-ultra-550b-a55b,nvidia,Nemotron 3 Ultra,essay page roster,NVIDIA: Nemotron 3 Ultra,2026-06-04,historical_registry,preregistered,,0,Usability check: too few usable GPQA answers in the first 50 (400 of 800 responses by the October 8 freeze).
+openai/gpt-4.1,openai,GPT-4.1,essay page,OpenAI: GPT-4.1,2025-04-14,historical_registry,added,0,1,
+openai/gpt-4.1-mini,openai,GPT-4.1 Mini,essay page,OpenAI: GPT-4.1 Mini,2025-04-14,historical_registry,added,0,1,
+openai/gpt-4o-2024-08-06,openai,GPT-4o,essay page,OpenAI: GPT-4o (2024-08-06),2024-08-06,historical_registry,added,0,1,
+openai/gpt-4o-mini,openai,GPT-4o mini,essay page,OpenAI: GPT-4o-mini,2024-07-18,openrouter_listing,added,0,1,
+openai/gpt-5.1,openai,GPT-5.1,essay page,OpenAI: GPT-5.1,2025-11-13,historical_registry,added,0,1,
+openai/gpt-5.2,openai,GPT-5.2,essay page,OpenAI: GPT-5.2,2025-12-10,historical_registry,added,0,1,
+openai/gpt-5.4,openai,GPT-5.4,essay page,OpenAI: GPT-5.4,2026-03-05,historical_registry,added,0,1,
+openai/gpt-5.4-nano,openai,GPT-5.4 Nano,essay page,OpenAI: GPT-5.4 Nano,2026-03-17,historical_registry,added,0,1,
+openai/gpt-5.5,openai,GPT-5.5,essay page,OpenAI: GPT-5.5,2026-04-24,historical_registry,added,0,1,
+openai/gpt-5.6-luna,openai,GPT-5.6 Luna,essay page,OpenAI: GPT-5.6 Luna,2026-07-09,historical_registry,added,0,1,
+openai/gpt-5.6-sol,openai,GPT-5.6 Sol,essay page,OpenAI: GPT-5.6 Sol,2026-07-09,historical_registry,preregistered,0,1,
+openai/gpt-5.6-terra,openai,GPT-5.6 Terra,essay page,OpenAI: GPT-5.6 Terra,2026-07-09,historical_registry,added,0,1,
+openai/gpt-6-astra,openai,GPT-6 Astra,essay page,OpenAI: GPT-6 Astra,2026-09-04,historical_registry,added,0,1,
+openai/gpt-6-luna,openai,GPT-6 Luna,essay page,OpenAI: GPT-6 Luna,2026-09-22,openrouter_listing,added,0,1,
+openai/gpt-6-luna-pro,openai,GPT-6 Luna Pro,essay page,OpenAI: GPT-6 Luna Pro,2026-09-22,openrouter_listing,added,0,1,
+openai/gpt-6-sol,openai,GPT-6 Sol,essay page,OpenAI: GPT-6 Sol,2026-09-22,openrouter_listing,added,0,1,
+openai/gpt-6-sol-pro,openai,GPT-6 Sol Pro,essay page roster,OpenAI: GPT-6 Sol Pro,2026-09-22,openrouter_listing,added,,0,Unfinished at the freeze: collection was deferred (356 of 800 responses by the October 8 freeze).
+openai/gpt-6.1-sol,openai,GPT-6.1 Sol,essay page,OpenAI: GPT-6.1 Sol,2026-09-29,openrouter_listing,added,0,1,
+openai/gpt-oss-120b,openai,GPT-OSS 120B,essay page roster,OpenAI: gpt-oss-120b,2025-08-05,historical_registry,preregistered,,0,Provider failure on its OpenRouter route: repeated rate limits from AkashML (77 of 800 responses by the October 8 freeze).
+openai/gpt-oss-20b,openai,GPT-OSS 20B,essay page roster,OpenAI: gpt-oss-20b,2025-08-05,historical_registry,added,,0,"Provider failure on its OpenRouter route: its route through Darkbloom kept returning rate-limit errors until retries ran out (95 of 800 responses by the October 8 freeze). Trained and tested on Tinker instead, from its open weights ([3.D])."
+openai/o4-mini,openai,o4-mini,essay page,OpenAI: o4 Mini,2025-04-16,historical_registry,added,0,1,
+qwen/qwen-2.5-72b-instruct,qwen,Qwen 2.5 72B,essay page,Qwen2.5 72B Instruct,2024-09-19,historical_registry,added,1,1,
+qwen/qwen-2.5-7b-instruct,qwen,Qwen 2.5 7B,essay page,Qwen: Qwen2.5 7B Instruct,2024-10-16,openrouter_listing,added,1,1,
+qwen/qwen3-30b-a3b-instruct-2507,qwen,Qwen3 30B,essay page roster,Qwen: Qwen3 30B A3B Instruct 2507,2025-07-29,historical_registry,preregistered,,0,Provider failure on its OpenRouter route: repeated rate limits from StreamLake (68 of 800 responses by the October 8 freeze).
+qwen/qwen3-8b,qwen,Qwen3 8B,essay page roster,Qwen: Qwen3 8B,2025-04-28,historical_registry,added,,0,"Provider failure on its OpenRouter route: its only route, through Alibaba, billed reasoning beyond the output allowance, so the route was excluded (36 of 800 responses by the October 8 freeze). Trained and tested on Tinker instead, from its open weights ([3.B])."
+qwen/qwen3-next-80b-a3b-instruct,qwen,Qwen3-Next 80B,essay page,Qwen: Qwen3 Next 80B A3B Instruct,2025-09-11,historical_registry,added,1,1,
+qwen/qwen3.8-flash,qwen,Qwen3.8 Flash,essay page roster,Qwen: Qwen3.8 Flash,2026-08-26,historical_registry,added,,0,Provider failure on its OpenRouter route: rate-limited on its first requests (0 of 800 responses by the October 8 freeze).
+tencent/hy3,tencent,Hy3,essay page roster,Tencent: Hy3,2026-07-06,historical_registry,added,,0,Usability check: too few usable answers in the first 10 GPQA questions (80 of 800 responses by the October 8 freeze).
+x-ai/grok-4.3,x-ai,Grok 4.3,essay page roster,SpaceXAI: Grok 4.3,2026-04-30,historical_registry,added,,0,Usability check: too few usable confidence answers in the first 10 (80 of 800 responses by the October 8 freeze).
+x-ai/grok-4.5,x-ai,Grok 4.5,essay page roster,SpaceXAI: Grok 4.5,2026-07-08,historical_registry,added,,0,Provider failure on its OpenRouter route: billing overruns closed the xAI route (337 of 800 responses by the October 8 freeze).
+x-ai/grok-4.6,x-ai,Grok 4.6,essay page roster,SpaceXAI: Grok 4.6,2026-08-12,historical_registry,added,,0,Provider failure on its OpenRouter route: the xAI route closed after Grok 4.5’s overruns (257 of 800 responses by the October 8 freeze).
+x-ai/grok-4.7,x-ai,Grok 4.7,essay page roster,SpaceXAI: Grok 4.7,2026-09-21,openrouter_listing,added,,0,Provider failure on its OpenRouter route: the xAI route closed after Grok 4.5’s overruns (153 of 800 responses by the October 8 freeze).
+z-ai/glm-5.2,z-ai,GLM 5.2,essay page roster,Z.ai: GLM 5.2,2026-06-16,historical_registry,added,,0,Usability check: too few usable GPQA answers in the first 50 (387 of 800 responses by the October 8 freeze).
+z-ai/glm-5.3,z-ai,GLM 5.3,essay page roster,Z.ai: GLM 5.3,2026-08-18,historical_registry,added,,0,Provider failure on its OpenRouter route: its route rejected the price limit (59 of 800 responses by the October 8 freeze).

@@ -1,0 +1,12 @@
+{
+  "script": "scripts/export_untuned_transfer_levels.py",
+  "git_commit": "1c2324a",
+  "sources": {
+    "runs/finetune/multitask_family_agentic_v1/qwen_evaluation/responses.jsonl": "728f3a8939f2a70e8b007d424b97d1402321cbd94d69ae9a4fe1c63f272726a8",
+    "runs/finetune/gptoss_domain_replication/evaluation/responses.jsonl": "a3e67d7606d20b8d4f93bb5ded5556285c97976c8ab8ce05da92ad0c1d48d809"
+  },
+  "outputs": [
+    "data/processed/untuned_transfer_levels.csv"
+  ],
+  "rows": 10
+}

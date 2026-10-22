@@ -1,0 +1,78 @@
+developer,model,model_name,status,listed_date,baseline_responses_returned,baseline_responses_scheduled,why_not_included
+amazon,amazon/nova-pro-v1,Nova Pro,included,2024-12-05,799,799,
+anthropic,anthropic/claude-3-haiku,Claude 3 Haiku,included,2024-03-13,800,800,
+anthropic,anthropic/claude-sonnet-4,Claude Sonnet 4,included,2025-05-22,800,800,
+anthropic,anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,included,2025-09-29,798,798,
+anthropic,anthropic/claude-haiku-4.5,Claude Haiku 4.5,included,2025-10-15,800,800,
+anthropic,anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,included,2026-02-17,800,800,
+anthropic,anthropic/claude-opus-4.7,Claude Opus 4.7,included,2026-04-16,799,799,
+anthropic,anthropic/claude-opus-4.8,Claude Opus 4.8,included,2026-05-27,800,800,
+anthropic,anthropic/claude-sonnet-5,Claude Sonnet 5,included,2026-06-30,799,799,
+anthropic,anthropic/claude-opus-5,Claude Opus 5,included,2026-07-24,800,800,
+anthropic,anthropic/claude-fable-5.1,Claude Fable 5.1,included,2026-09-01,798,798,
+anthropic,anthropic/claude-opus-5.5,Claude Opus 5.5,included,2026-09-22,798,798,
+anthropic,anthropic/claude-haiku-5.5,Claude Haiku 5.5,included,2026-10-07,800,800,
+cohere,cohere/command-r-plus-08-2024,Command R+,included,2024-08-30,800,800,
+deepseek,deepseek/deepseek-v4-flash,DeepSeek V4 Flash,included,2026-04-24,800,800,
+deepseek,deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,included,2026-08-12,800,800,
+deepseek,deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,included,2026-09-10,800,800,
+google,google/gemma-2-27b-it,Gemma 2 27B,included,2024-07-13,799,799,
+google,google/gemini-2.5-flash,Gemini 2.5 Flash,included,2025-06-17,799,799,
+google,google/gemini-3-flash-preview,Gemini 3 Flash,included,2025-12-17,800,800,
+google,google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,included,2026-02-19,800,800,
+google,google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,included,2026-03-03,799,799,
+google,google/gemma-4-31b-it,Gemma 4 31B,included,2026-04-02,800,800,
+google,google/gemini-3.7-flash,Gemini 3.7 Flash,included,2026-08-13,800,800,
+google,google/gemini-3.8-flash,Gemini 3.8 Flash,included,2026-09-02,800,800,
+meta,meta/muse-glimmer-30b,Muse Glimmer 30B,included,2026-08-09,800,800,
+meta-llama,meta-llama/llama-4-maverick,Llama 4 Maverick,included,2025-04-05,800,800,
+mistralai,mistralai/mistral-medium-3,Mistral Medium 3,included,2025-05-07,800,800,
+mistralai,mistralai/mistral-medium-3-5,Mistral Medium 3.5,included,2026-04-30,800,800,
+openai,openai/gpt-4o-mini,GPT-4o mini,included,2024-07-18,800,800,
+openai,openai/gpt-4o-2024-08-06,GPT-4o,included,2024-08-06,800,800,
+openai,openai/gpt-4.1,GPT-4.1,included,2025-04-14,800,800,
+openai,openai/gpt-4.1-mini,GPT-4.1 Mini,included,2025-04-14,800,800,
+openai,openai/o4-mini,o4-mini,included,2025-04-16,800,800,
+openai,openai/gpt-5.1,GPT-5.1,included,2025-11-13,800,800,
+openai,openai/gpt-5.2,GPT-5.2,included,2025-12-10,800,800,
+openai,openai/gpt-5.4,GPT-5.4,included,2026-03-05,799,799,
+openai,openai/gpt-5.4-nano,GPT-5.4 Nano,included,2026-03-17,800,800,
+openai,openai/gpt-5.5,GPT-5.5,included,2026-04-24,800,800,
+openai,openai/gpt-5.6-luna,GPT-5.6 Luna,included,2026-07-09,800,800,
+openai,openai/gpt-5.6-sol,GPT-5.6 Sol,included,2026-07-09,800,800,
+openai,openai/gpt-5.6-terra,GPT-5.6 Terra,included,2026-07-09,800,800,
+openai,openai/gpt-6-astra,GPT-6 Astra,included,2026-09-04,800,800,
+openai,openai/gpt-6-luna,GPT-6 Luna,included,2026-09-22,800,800,
+openai,openai/gpt-6-luna-pro,GPT-6 Luna Pro,included,2026-09-22,800,800,
+openai,openai/gpt-6-sol,GPT-6 Sol,included,2026-09-22,800,800,
+openai,openai/gpt-6.1-sol,GPT-6.1 Sol,included,2026-09-29,800,800,
+qwen,qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,included,2024-09-19,800,800,
+qwen,qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,included,2024-10-16,800,800,
+qwen,qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,included,2025-09-11,799,799,
+cohere,cohere/command-a-plus,Command A+,not included,2026-09-22,262,800,Usability check: hidden reasoning that cannot be switched off ran past the output limit.
+deepseek,deepseek/deepseek-chat,DeepSeek V3,not included,2024-12-26,730,800,Provider failure on its OpenRouter route: repeated rate limits from DeepInfra until its resume limit (730 of 800 responses by the October 8 freeze).
+deepseek,deepseek/deepseek-v4-flash-0731,DeepSeek V4 Flash 0731,not included,2026-07-31,400,800,Usability check: GPQA answers in the first 50 ran past the output limit (400 of 800 responses by the October 8 freeze).
+google,google/gemma-3-27b-it,Gemma 3 27B,not included,2025-03-12,682,800,Provider failure on its OpenRouter route: repeated rate limits from DeepInfra (682 of 800 responses by the October 8 freeze).
+google,google/gemini-2.5-pro,Gemini 2.5 Pro,not included,2025-06-17,400,800,Usability check: too few usable GPQA answers in the first 50 (400 of 800 responses by the October 8 freeze).
+meta-llama,meta-llama/llama-3.1-70b-instruct,Llama 3.1 70B Instruct,not included,2024-07-23,80,800,"Usability check: incoherent on its first route, and after a reroute it omitted the confidence in the first 10 (80 of 800 responses by the October 8 freeze)."
+meta-llama,meta-llama/llama-3.3-70b-instruct,Llama 3.3 70B,not included,2024-12-06,37,800,Provider failure on its OpenRouter route: errors persisted until it was dropped (37 of 800 responses by the October 8 freeze).
+mistralai,mistralai/mistral-large,Mistral Large,not included,2024-02-26,9,800,"Provider failure on its OpenRouter route: rate-limited, then dropped (9 of 800 responses by the October 8 freeze)."
+mistralai,mistralai/mixtral-8x22b-instruct,Mixtral 8x22B Instruct,not included,2024-04-17,7,800,Provider failure on its OpenRouter route: errors exhausted its retries (7 of 800 responses by the October 8 freeze).
+mistralai,mistralai/mistral-large-2512,Mistral Large 2512,not included,2025-12-01,0,800,Provider failure on its OpenRouter route: repeated rate limits on the Mistral route (0 of 800 responses by the October 8 freeze).
+mistralai,mistralai/mistral-large-4-0,Mistral Large 4,not included,2026-10-06,242,800,"Usability check: hidden reasoning that cannot be switched off ran past the output limit, even at a doubled limit."
+moonshotai,moonshotai/kimi-k3,Kimi K3,not included,2026-07-16,98,800,Provider failure on its OpenRouter route: errors with no stated cause (98 of 800 responses by the October 8 freeze).
+nvidia,nvidia/nemotron-3-nano-30b-a3b,Nemotron 3 Nano 30B A3B,not included,2025-12-14,80,800,"Usability check: answers to the first 10 GPQA questions ran past the output limit without a confidence (80 of 800 responses by the October 8 freeze). Trained and tested on Tinker instead, from its open weights ([3.B])."
+nvidia,nvidia/nemotron-3-ultra-550b-a55b,Nemotron 3 Ultra,not included,2026-06-04,400,800,Usability check: too few usable GPQA answers in the first 50 (400 of 800 responses by the October 8 freeze).
+openai,openai/gpt-oss-120b,GPT-OSS 120B,not included,2025-08-05,77,800,Provider failure on its OpenRouter route: repeated rate limits from AkashML (77 of 800 responses by the October 8 freeze).
+openai,openai/gpt-oss-20b,GPT-OSS 20B,not included,2025-08-05,95,800,"Provider failure on its OpenRouter route: its route through Darkbloom kept returning rate-limit errors until retries ran out (95 of 800 responses by the October 8 freeze). Trained and tested on Tinker instead, from its open weights ([3.D])."
+openai,openai/gpt-6-sol-pro,GPT-6 Sol Pro,not included,2026-09-22,356,800,Unfinished at the freeze: collection was deferred (356 of 800 responses by the October 8 freeze).
+qwen,qwen/qwen3-8b,Qwen3 8B,not included,2025-04-28,36,800,"Provider failure on its OpenRouter route: its only route, through Alibaba, billed reasoning beyond the output allowance, so the route was excluded (36 of 800 responses by the October 8 freeze). Trained and tested on Tinker instead, from its open weights ([3.B])."
+qwen,qwen/qwen3-30b-a3b-instruct-2507,Qwen3 30B,not included,2025-07-29,68,800,Provider failure on its OpenRouter route: repeated rate limits from StreamLake (68 of 800 responses by the October 8 freeze).
+qwen,qwen/qwen3.8-flash,Qwen3.8 Flash,not included,2026-08-26,0,800,Provider failure on its OpenRouter route: rate-limited on its first requests (0 of 800 responses by the October 8 freeze).
+tencent,tencent/hy3,Hy3,not included,2026-07-06,80,800,Usability check: too few usable answers in the first 10 GPQA questions (80 of 800 responses by the October 8 freeze).
+x-ai,x-ai/grok-4.3,Grok 4.3,not included,2026-04-30,80,800,Usability check: too few usable confidence answers in the first 10 (80 of 800 responses by the October 8 freeze).
+x-ai,x-ai/grok-4.5,Grok 4.5,not included,2026-07-08,337,800,Provider failure on its OpenRouter route: billing overruns closed the xAI route (337 of 800 responses by the October 8 freeze).
+x-ai,x-ai/grok-4.6,Grok 4.6,not included,2026-08-12,257,800,Provider failure on its OpenRouter route: the xAI route closed after Grok 4.5’s overruns (257 of 800 responses by the October 8 freeze).
+x-ai,x-ai/grok-4.7,Grok 4.7,not included,2026-09-21,153,800,Provider failure on its OpenRouter route: the xAI route closed after Grok 4.5’s overruns (153 of 800 responses by the October 8 freeze).
+z-ai,z-ai/glm-5.2,GLM 5.2,not included,2026-06-16,387,800,Usability check: too few usable GPQA answers in the first 50 (387 of 800 responses by the October 8 freeze).
+z-ai,z-ai/glm-5.3,GLM 5.3,not included,2026-08-18,59,800,Provider failure on its OpenRouter route: its route rejected the price limit (59 of 800 responses by the October 8 freeze).

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a linear scoring rule can't elicit an honest probability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0; padding: 0 24px 48px;
+    font: 15px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f8f7f3; color: #1c1b19;
+  }
+  /* The site menu, its design tokens, and its script are injected by
+     scripts/build_site.py between the NAV markers below, sliced out of the one
+     stylesheet, so this page cannot drift out of the site's navigation. That
+     slice also supplies the masthead band and the body padding that clears the
+     fixed bar, which is why neither is declared here. */
+  /* This page used to open with a "← Below Zero" crumb. The injected menu links
+     to the same place from directly above it, so the crumb was a duplicate; its
+     top spacing is what .viz-root's padding-top replaces, matching the 56px the
+     generated side pages use. */
+  .viz-root {
+    color-scheme: light;
+    padding-top: 56px;
+    --surface-1:      #f8f7f3;
+    --text-primary:   #1c1b19;
+    --text-secondary: #52514e;
+    --text-muted:     #86857f;
+    --grid:           #d8d4cb;
+    --series-1:       #a8661a;  /* linear: failure mode */
+    --series-2:       #7a3a58;  /* quadratic: the primary scoring curve */
+    --series-3:       #2b4a6f;  /* quadratic + cost: analytical variant */
+    max-width: 860px; margin: 0 auto;
+  }
+  /* 48px below 640px, tracking the generated pages' own narrow step. Must sit
+     after the base rule: a media query adds no specificity, so declared first it
+     would simply lose to the 56px above at every width. */
+  @media (max-width: 640px) {
+    .viz-root { padding-top: 48px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) body { background: #171a1d; color: #f2f1ec; }
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #171a1d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #8f8e85;
+      --grid:           #343a3f;
+      --series-1:       #d1a15f;
+      --series-2:       #c592aa;
+      --series-3:       #7fa4c5;
+    }
+  }
+  /* Headline and lede match the rest of the site's type scale; the chart's own
+     labels stay sans-serif, which is correct for data. */
+  h1 { font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+       font-size: 27px; font-weight: 700; line-height: 1.2; margin: 0 0 10px;
+       letter-spacing: -0.005em; color: #40283b; }
+  .sub { font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+         font-size: 17.5px; line-height: 1.55; color: #3d3d3d;
+         margin: 0 0 24px; max-width: 62ch; }
+  .page-dates {
+    margin: 0 0 24px; padding: 10px 0 0;
+    border-top: 1px solid var(--grid);
+    font: 12.5px/1.55 'Inter', ui-sans-serif, sans-serif;
+    color: var(--text-muted); letter-spacing: .01em;
+  }
+  .page-dates time {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  @media (prefers-color-scheme: dark) {
+    h1 { color: #c592aa; }
+    .sub { color: #c3c2b7; }
+  }
+  .controls {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    margin: 0 0 18px; padding: 12px 0;
+    border-top: 1px solid var(--grid); border-bottom: 1px solid var(--grid);
+  }
+  .controls label { font-size: 13px; color: var(--text-secondary); }
+  input[type=range] { width: 260px; accent-color: var(--series-2); }
+  .qval { font-variant-numeric: tabular-nums; font-weight: 620; font-size: 15px; }
+  button {
+    font: inherit; font-size: 13px; padding: 5px 11px; cursor: pointer;
+    background: transparent; color: var(--text-secondary);
+    border: 1px solid var(--grid); border-radius: 7px;
+  }
+  button:hover { color: var(--text-primary); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin: 4px 0 8px; font-size: 13px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; color: var(--text-secondary); }
+  .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .ax { font-size: 11px; fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .axtitle { font-size: 12px; fill: var(--text-secondary); }
+  .dlabel { font-size: 12px; font-weight: 600; }
+  .note {
+    margin-top: 18px; padding: 14px 16px; border-left: 3px solid var(--series-2);
+    background: color-mix(in srgb, var(--series-2) 7%, transparent);
+    border-radius: 0; font-size: 14px; color: var(--text-primary);
+  }
+  .note b { font-weight: 640; }
+  table { border-collapse: collapse; font-size: 13px; margin-top: 16px; width: 100%; }
+  th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--grid);
+           font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--text-secondary); font-weight: 600; }
+  .hidden { display: none; }
+  #tip {
+    position: fixed; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--surface-1); border: 1px solid var(--grid); border-radius: 8px;
+    padding: 8px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.13);
+    font-variant-numeric: tabular-nums; z-index: 10; color: var(--text-primary);
+  }
+  code { font-size: 13px; background: color-mix(in srgb, var(--grid) 55%, transparent);
+         padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body data-created="2026-08-15 14:19 ET" data-last-updated="2026-09-02 14:10 ET" data-style-updated="2026-09-02 14:10 ET" data-content-updated="2026-09-02 14:10 ET" data-structure-updated="2026-09-03 10:00 ET" data-commit="f64c8ca">
+<!--NAV--><style>
+:root {
+  /* These public tokens are the contract selected in the design lab.
+     Aliases below keep older component names readable while every semantic
+     use resolves to one centrally controlled value. */
+  --paper:          #f8f7f3;
+  --ink:            #1c1b19;
+  --plum:           #7a3a58;
+  --plum-dark:      #40283b;
+  --plum-tint:      #f1e6eb;
+  --on-plum:        #fffefa;
+  --evidence:       #2b4a6f;
+  --valid:          #217a5b;
+  --invalid:        #a8661a;
+  --on-evidence:    #ffffff;
+  --evidence-tint:  #eef2f6;
+  --invalid-tint:   #f6eee3;
+  --evidence-band:  #aebdcd;
+
+  --text:           var(--ink);
+  --text-secondary: #3d3d3d;
+  --text-muted:     #6b6b6b;
+  --bg:             var(--paper);
+  --bg-alt:         var(--evidence-tint);
+  --accent:         var(--plum);
+  --accent-text:    var(--plum);
+  --accent-tint:    var(--plum-tint);
+  --rule:           #d8d4cb;
+  --rule-strong:    #b9b4aa;
+  --ok:             var(--valid);
+  --warn:           var(--invalid);
+  --max-text:       680px;
+  --max-wide:       940px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:          #171a1d;
+    --ink:            #f2f1ec;
+    --plum:           #c592aa;
+    --plum-dark:      #2a2029;
+    --plum-tint:      #30252e;
+    --on-plum:        #fffefa;
+    --evidence:       #355d82;
+    --valid:          #69b58f;
+    --invalid:        #d1a15f;
+    --on-evidence:    #ffffff;
+    --evidence-tint:  #202a33;
+    --invalid-tint:   #33291f;
+    --evidence-band:  #5d7891;
+    --text:           #f2f1ee;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8f8e85;
+    --bg:             var(--paper);
+    --bg-alt:         var(--evidence-tint);
+    --accent:         var(--plum);
+    --accent-text:    var(--plum);
+    --accent-tint:    var(--plum-tint);
+    --rule:           #343a3f;
+    --rule-strong:    #4a5259;
+    --ok:             var(--valid);
+    --warn:           var(--invalid);
+  }
+}
+/* Scoped border-box. The global `* { box-sizing }` rule sits outside this
+   slice, so the hand-maintained page borrows the menu WITHOUT it and laid the
+   bar out 24px wider than the measure every other page uses. Declaring it on
+   the menu's own subtree keeps the two in line without reaching into that
+   page's chart layout. */
+.scroll-nav, .scroll-nav * { box-sizing: border-box; }
+.scroll-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 51px;
+  background: var(--plum-dark);
+  border-bottom: 1px solid color-mix(in srgb, var(--plum-dark) 72%, #000);
+  z-index: 100;
+}
+/* Content clears the fixed bar. This rule lives inside the nav slice on
+   purpose: the hand-maintained page borrows the same block, so it can never
+   receive the menu without also receiving the space the menu occupies. */
+body { padding-top: 51px; }
+/* The masthead is already a solid semantic field. Keep only a quiet top rail
+   so the navigation retains the same measured 51px geometry as before. */
+.scroll-nav-track {
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: color-mix(in srgb, var(--plum-dark) 78%, #000);
+}
+/* Progress reads along the BOTTOM edge instead, over the hairline rule. Drawn
+   there so it never competes with the masthead for the same 5px. */
+.scroll-nav-progress {
+  position: absolute; bottom: -1px; left: 0; height: 2px; width: 0%;
+  background: var(--on-plum); opacity: .86; transition: width .1s linear;
+}
+.scroll-nav-inner {
+  max-width: var(--max-wide); margin: 0 auto; padding: 5px 24px 0; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13px;
+}
+.scroll-nav-title {
+  font-weight: 700; color: var(--on-plum); text-decoration: none; white-space: nowrap;
+  letter-spacing: -0.005em; flex: none;
+}
+.scroll-nav-title:hover { color: var(--on-plum); }
+.scroll-nav-links {
+  display: flex; gap: 17px; min-width: 0;
+  letter-spacing: .01em;
+}
+.scroll-nav-links a {
+  color: color-mix(in srgb, var(--on-plum) 72%, transparent);
+  text-decoration: none; white-space: nowrap;
+  padding: 2px 0; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.scroll-nav-links a:hover { color: var(--on-plum); }
+.scroll-nav-links a.here {
+  color: var(--on-plum); font-weight: 600; border-bottom-color: var(--on-plum);
+}
+/* Group labels: small caps, dimmer than a link, never clickable. They exist
+   to let a reader see the menu's shape (read this / deep dives / reference)
+   and are dropped on narrow screens, where the abbreviated links alone fit. */
+.scroll-nav-links .nav-group {
+  color: color-mix(in srgb, var(--on-plum) 46%, transparent);
+  font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+  align-self: center; white-space: nowrap; margin-right: -6px;
+}
+.scroll-nav-links .nav-group:not(:first-child) { margin-left: 8px; }
+@media (max-width: 640px) { .scroll-nav-links .nav-group { display: none; } }
+/* Narrow screens shorten the labels instead of dropping links, so the menu
+   stays complete. Below the point where even short labels stop fitting, the
+   row scrolls sideways rather than hiding its tail.
+
+   The binding constraint is NOT the viewport. .scroll-nav-inner is capped at
+   --max-wide (940px) and centred, so a 4K monitor buys the menu exactly as much
+   room as a 1000px laptop: 798px, once the wordmark, the gap and the gutters
+   are taken out. Every earlier version of this rule tied the label swap to a
+   viewport breakpoint, which is why it kept going stale silently. It was
+   measuring the wrong thing, and it looked right on the machine it was written
+   on.
+
+   Against that fixed 798px, with 14 pages in SITE (re-measured 2026-08-25):
+       full labels  need well past 1500px -> never fit, at any screen size
+       short labels need  ~955px          -> overflow by ~157px, at any width
+   So the row now scrolls at every width, including desktop, and the fade
+   cue below is unconditional to match. Shortening abbreviations remains the
+   cheap lever if the scroll gets annoying; ~160px of savings would need
+   several renames, which is a deliberate decision, not a side effect.
+
+   Two abbreviations were shortened to get there ("Fine-tuning" to "Tuning",
+   "Why linear" to "Linear"), which is the cheap lever: this column exists to be
+   short, and one entry that repeated its long label was costing 40px on its own.
+
+   So the short labels are now unconditional, and the row scrolls at every
+   width rather than only below 920px. Scrolling is the documented fallback and
+   the fade script already targets .scroll-nav-links, so an overflowing tail
+   gets its cue automatically. The menu therefore stays COMPLETE by
+   construction: adding a page can make the row scroll further, which is a
+   graceful failure, but can no longer push a link off the edge with nothing to
+   say so. Widen --max-wide or shorten an abbreviation if the scroll becomes
+   long enough to be annoying; do not reintroduce a viewport breakpoint. */
+.nav-full { display: none; }
+.nav-abbr { display: inline; }
+.scroll-nav-links {
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+}
+.scroll-nav-links::-webkit-scrollbar { display: none; }
+@media (max-width: 920px) {
+  .scroll-nav-inner { gap: 14px; padding-left: 16px; padding-right: 16px; }
+  .scroll-nav-links { gap: 15px; }
+}
+/* Fade a cut edge, but ONLY where the row genuinely runs out of space.
+   Without the fade a half-cut word reads as a layout bug; with it, it reads as
+   "there is more of this row that way", which is the only cue a hidden
+   scrollbar leaves.
+
+   The fade width at each edge is a variable the script sets from the row's
+   actual scroll position, and the script zeroes both edges whenever the row
+   fits, so a fade can never claim hidden content that is not there. The
+   values declared here are the no-script state: right-faded / left-clear,
+   which matches how an overflowing row always loads (scrollLeft 0).
+
+   This used to sit inside a 600px media query, from when the short-label row
+   measured ~475px and only overflowed on phones. At 14 pages the row measures
+   ~955px against the fixed 798px budget above, so it overflows at EVERY
+   width, and the gate had turned into a lie the other way: on desktop the
+   row scrolled with no cue at all, and the auto-scroll that reveals the
+   current page's link was hiding the leftmost links behind a clean hard
+   edge. The gate is gone rather than re-measured; the script's measurement
+   is the condition now. If the menu ever shrinks back below the budget, the
+   no-script default over-claims by one fade, which is the cost of keeping
+   the cue honest everywhere scripts run. */
+.scroll-nav-links {
+  --fade-start: 0px;
+  --fade-end: 26px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+@media (max-width: 460px) {
+  .scroll-nav-inner { gap: 11px; padding-left: 13px; padding-right: 13px; }
+  .scroll-nav-links { gap: 13px; font-size: 12.5px; }
+  .scroll-nav-title { font-size: 12.5px; }
+}
+
+/* A distinct page-local rail for long articles. It remains in document flow
+   until it reaches the fixed site menu, then owns the next horizontal strip.
+   Separate nav landmarks and native anchors keep page changes and in-page
+   movement as different actions. */
+.section-nav, .section-nav * { box-sizing: border-box; }
+.section-nav {
+  position: sticky; top: 51px; z-index: 90;
+  height: 42px; background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: saturate(130%) blur(9px);
+  -webkit-backdrop-filter: saturate(130%) blur(9px);
+  border-bottom: 1px solid var(--rule);
+}
+.section-nav-inner {
+  max-width: var(--max-wide); height: 100%; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 18px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+.section-nav-label {
+  flex: none; color: var(--text-muted); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase;
+}
+.section-nav-links {
+  min-width: 0; display: flex; align-items: stretch; gap: 18px;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  /* Script-driven edge fades, like .table-wrap below: zero until the script
+     measures a real overflow, so a rail that fits (literature at phone
+     widths) never dims its last link. The rail used to carry a static
+     right-only mask below 640px instead, which lied in both directions once
+     the rail scrolled: it kept dimming the end after there was nothing past
+     it, and it never cued the items cut off on the left. */
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+.section-nav-links::-webkit-scrollbar { display: none; }
+.section-nav-links a {
+  flex: none; color: var(--text-muted); text-decoration: none; white-space: nowrap;
+  font-size: 12px; line-height: 42px; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.section-nav-links a:hover { color: var(--text); }
+.section-nav-links a.here {
+  color: var(--accent-text); font-weight: 600; border-bottom-color: var(--accent);
+}
+body.with-section-nav h2[id] { scroll-margin-top: 112px; }
+@media (max-width: 640px) {
+  .section-nav-inner { padding: 0 13px; gap: 0; }
+  .section-nav-label { display: none; }
+  .section-nav-links { width: 100%; gap: 16px; }
+}
+</style><nav class="scroll-nav" id="scrollnav" aria-label="Site"><div class="scroll-nav-track"></div><div class="scroll-nav-progress" id="scrollprogress"></div><div class="scroll-nav-inner"><a class="scroll-nav-title" href="index.html">Below Zero</a><div class="scroll-nav-links"><a href="essay.html"><span class="nav-full">The essay</span><span class="nav-abbr">Essay</span></a><span class="nav-group" aria-hidden="true">Deep dives</span><a href="training.html"><span class="nav-full">Fine-tuning</span><span class="nav-abbr">Tuning</span></a><a href="dose-response.html"><span class="nav-full">Dose response</span><span class="nav-abbr">Dose</span></a><a href="replication.html"><span class="nav-full">Replication</span><span class="nav-abbr">Seeds</span></a><a href="validation.html"><span class="nav-full">Harness validation</span><span class="nav-abbr">Validation</span></a><span class="nav-group" aria-hidden="true">Reference</span><a href="approach.html"><span class="nav-full">Approach &amp; glossary</span><span class="nav-abbr">Approach</span></a><a href="related-work.html"><span class="nav-full">What this builds on</span><span class="nav-abbr">Sources</span></a></div></div></nav><script>
+(function () {
+  var bar = document.getElementById('scrollprogress');
+  if (bar) {
+    function update() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
+    }
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
+  // Fade whichever edge of a horizontal scroller actually has content hidden
+  // behind it, and neither edge when the content fits. Applied to every
+  // horizontal scroller with a hidden scrollbar (nav row, section rail, table
+  // wrappers, chart scroller), because the cue means the same thing in all of
+  // them and an unconditional fade would be a claim about hidden content that
+  // is false most of the time.
+  function fades(el) {
+    var max = el.scrollWidth - el.clientWidth;
+    // Cap the ramp near the actual overflow: a table hanging 8px over its box
+    // deserves an 8px whisper, not a 26px bite out of its last readable column.
+    var w = max > 1 ? Math.min(26, max + 6) + 'px' : '0px';
+    el.style.setProperty('--fade-start', el.scrollLeft > 1 ? w : '0px');
+    el.style.setProperty('--fade-end', el.scrollLeft < max - 1 ? w : '0px');
+  }
+  var scrollers = document.querySelectorAll(
+    '.scroll-nav-links, .section-nav-links, .table-wrap, .cal-chart-scroll');
+  function allFades() { scrollers.forEach(fades); }
+  scrollers.forEach(function (el) {
+    el.addEventListener('scroll', function () { fades(el); }, { passive: true });
+  });
+  addEventListener('resize', allFades);
+
+  var row = document.querySelector('.scroll-nav-links');
+  if (!row) { allFades(); return; }
+
+  // Bring the current page's link into view. On a phone the row is wider than
+  // the screen, so the marked link can sit off the right edge — leaving the one
+  // page the reader is actually on as the only one with no indicator. Set
+  // scrollLeft directly rather than calling scrollIntoView, which would also
+  // scroll the document and land the reader partway down the article.
+  //
+  // Measured from bounding rects rather than offsetLeft. The row is not a
+  // positioned element, so offsetLeft is relative to the fixed bar and silently
+  // includes the wordmark's width, which biases every comparison by however
+  // wide "Below Zero" happens to render.
+  var here = row.querySelector('.here');
+  // Must clear the 26px fade ramp with room to spare, or the reveal parks the
+  // current page's link inside the fade and the one marked link in the row
+  // renders dimmest. 16px looked fine while desktop had no fade to clear.
+  var pad = 34;
+  function reveal() {
+    if (!here) return;
+    var h = here.getBoundingClientRect(), r = row.getBoundingClientRect();
+    var delta = 0;
+    if (h.right + pad > r.right) delta = h.right + pad - r.right;
+    else if (h.left - pad < r.left) delta = h.left - pad - r.left;
+    if (delta) row.scrollLeft += delta;
+    fades(row);
+  }
+  reveal();
+
+  // Re-reveal on resize. Rotating a phone to landscape fits the whole row, and
+  // rotating back re-lays it out scrolled to the left, which drops the marker
+  // off the right edge again. The fade handler already runs here; without the
+  // marker running too, a rotate leaves the reader on the one page the bar does
+  // not indicate.
+  addEventListener('resize', reveal);
+
+  // And once webfonts land. This script runs at parse time, so it measures the
+  // row in the fallback face; when Inter arrives the links re-flow and the
+  // scroll position computed against the old metrics no longer frames the
+  // marker. Cheap to redo, and on a fast connection it is a no-op.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reveal);
+
+  allFades();
+})();
+(function () {
+  var rail = document.querySelector('.section-nav');
+  if (!rail) return;
+  var links = Array.prototype.slice.call(
+    rail.querySelectorAll('.section-nav-links a')
+  );
+  var pairs = links.map(function (link) {
+    return { link: link, heading: document.getElementById(link.hash.slice(1)) };
+  }).filter(function (pair) { return pair.heading; });
+
+  function updateSection() {
+    /* Keep this comfortably below the 112px anchor landing line. Reusing the
+       same boundary makes the active section depend on sub-pixel rounding. */
+    var threshold = rail.getBoundingClientRect().bottom + 28;
+    var active = null;
+    pairs.forEach(function (pair) {
+      if (pair.heading.getBoundingClientRect().top <= threshold) active = pair;
+    });
+    pairs.forEach(function (pair) {
+      var current = pair === active;
+      pair.link.classList.toggle('here', current);
+      if (current) pair.link.setAttribute('aria-current', 'location');
+      else pair.link.removeAttribute('aria-current');
+    });
+  }
+
+  addEventListener('scroll', updateSection, { passive: true });
+  addEventListener('resize', updateSection);
+  updateSection();
+})();
+</script><!--/NAV-->
+<div class="viz-root">
+
+  <h1>Why a linear scoring rule can't elicit an honest probability</h1>
+  <p class="sub">
+    A model privately believes its answer is right with probability <b>q</b>. It then
+    reports some probability <b>p</b>. Each curve shows what it <em>expects to earn</em>
+    for every possible report. Honest reporting only happens if the curve peaks at p&nbsp;=&nbsp;q.
+  </p>
+  <!--PAGE-DATES--><p class="byline page-dates">Created <time datetime="2026-08-15T14:19-04:00">2026-08-15 14:19 ET</time> &middot; Last updated <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time><span class="page-dates-detail">Content <time datetime="2026-08-17T01:24-04:00">2026-08-17 01:24 ET</time> &middot; Style <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time> &middot; Organization <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time></span></p><!--/PAGE-DATES-->
+
+  <div class="controls">
+    <label for="q">Model's true belief&nbsp;&nbsp;<span class="qval" id="qval">0.60</span></label>
+    <input type="range" id="q" min="0.02" max="0.98" step="0.01" value="0.60">
+    <button id="toggle">Show table</button>
+  </div>
+
+  <div class="legend" id="legend"></div>
+
+  <svg id="chart" viewBox="0 0 760 420" role="img"
+       aria-label="Expected score against reported probability for three scoring rules"></svg>
+
+  <div class="note" id="note"></div>
+
+  <div id="tableWrap" class="hidden"></div>
+
+  <p class="sub" style="margin-top:26px; font-size:13.5px">
+    <code>linear</code> +p if right, −p if wrong &nbsp;·&nbsp;
+    <code>quadratic</code> 2p−p² if right, −p² if wrong &nbsp;·&nbsp;
+    <code>quadratic + cost</code> the same, minus c = 0.09 for answering at all.
+    All three score 0 for &ldquo;I don't know&rdquo;.
+  </p>
+</div>
+
+<div id="tip"></div>
+
+<script>
+// ---------------------------------------------------------------------------
+// The three rules. `correct` is a bool; p is the reported probability.
+// ---------------------------------------------------------------------------
+const C = 0.09;                                  // assertion cost -> threshold sqrt(c) = 0.30
+const RULES = [
+  { key: "linear",    name: "linear (+p / −p)",        color: "var(--series-1)",
+    f: (p, ok) => ok ? p : -p },
+  { key: "quadratic", name: "quadratic (2p−p² / −p²)", color: "var(--series-2)",
+    f: (p, ok) => ok ? 2*p - p*p : -p*p },
+  { key: "quadcost",  name: "quadratic + cost c",      color: "var(--series-3)",
+    f: (p, ok) => p <= 0 ? 0 : (ok ? 2*p - p*p : -p*p) - C },
+];
+
+const ev = (rule, p, q) => q * rule.f(p, true) + (1 - q) * rule.f(p, false);
+
+// Geometry
+const W = 760, H = 420, M = { t: 18, r: 96, b: 46, l: 56 };
+const IW = W - M.l - M.r, IH = H - M.t - M.b;
+const YMIN = -1, YMAX = 1;
+const x = p => M.l + p * IW;
+const y = v => M.t + (YMAX - v) / (YMAX - YMIN) * IH;
+
+const svg = document.getElementById("chart");
+const tip = document.getElementById("tip");
+const NS = "http://www.w3.org/2000/svg";
+const el = (n, a) => { const e = document.createElementNS(NS, n);
+                       for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+// Legend is always present for >= 2 series; series are also direct-labelled,
+// so identity never rests on colour alone.
+document.getElementById("legend").innerHTML = RULES.map(r =>
+  `<span><i class="swatch" style="background:${r.color}"></i>${r.name}</span>`).join("");
+
+function optimum(rule, q) {
+  let best = 0, bv = -Infinity;
+  for (let i = 0; i <= 1000; i++) {
+    const p = i / 1000, v = ev(rule, p, q);
+    if (v > bv + 1e-12) { bv = v; best = p; }
+  }
+  return { p: best, v: bv };
+}
+
+function draw(q) {
+  svg.textContent = "";
+
+  // --- grid + axes (recessive) --------------------------------------------
+  for (let v = -1; v <= 1.0001; v += 0.5) {
+    svg.appendChild(el("line", { x1: M.l, x2: M.l + IW, y1: y(v), y2: y(v),
+      stroke: "var(--grid)", "stroke-width": v === 0 ? 1.5 : 1 }));
+    const t = el("text", { x: M.l - 10, y: y(v) + 4, "text-anchor": "end", class: "ax" });
+    t.textContent = v.toFixed(1); svg.appendChild(t);
+  }
+  for (let p = 0; p <= 1.0001; p += 0.25) {
+    const t = el("text", { x: x(p), y: M.t + IH + 20, "text-anchor": "middle", class: "ax" });
+    t.textContent = p.toFixed(2); svg.appendChild(t);
+  }
+  let a = el("text", { x: M.l + IW / 2, y: H - 8, "text-anchor": "middle", class: "axtitle" });
+  a.textContent = "reported probability  p"; svg.appendChild(a);
+  a = el("text", { x: 14, y: M.t + IH / 2, class: "axtitle", "text-anchor": "middle",
+                   transform: `rotate(-90 14 ${M.t + IH / 2})` });
+  a.textContent = "expected score"; svg.appendChild(a);
+
+  // --- the honest report, p = q -------------------------------------------
+  svg.appendChild(el("line", { x1: x(q), x2: x(q), y1: M.t, y2: M.t + IH,
+    stroke: "var(--text-muted)", "stroke-width": 1, "stroke-dasharray": "4 4" }));
+  const hl = el("text", { x: x(q), y: M.t - 4, "text-anchor": "middle", class: "ax" });
+  hl.textContent = "honest report  p = q"; svg.appendChild(hl);
+
+  // --- curves --------------------------------------------------------------
+  // End-of-line labels collide whenever two rules happen to pay the same at
+  // p = 1 (they do at q = 0.5 exactly, and near it). Collect the anchors first,
+  // then push them apart before drawing.
+  const anchors = RULES.map(r => ({ r, y: y(ev(r, 1, q)) }));
+  anchors.sort((a, b) => a.y - b.y);
+  const MINGAP = 17;
+  for (let i = 1; i < anchors.length; i++)
+    if (anchors[i].y - anchors[i - 1].y < MINGAP) anchors[i].y = anchors[i - 1].y + MINGAP;
+  const labelY = new Map(anchors.map(a => [a.r.key, a.y]));
+
+  RULES.forEach(r => {
+    let d = "";
+    for (let i = 0; i <= 200; i++) {
+      const p = i / 200;
+      d += (i ? "L" : "M") + x(p).toFixed(2) + " " + y(ev(r, p, q)).toFixed(2) + " ";
+    }
+    svg.appendChild(el("path", { d, fill: "none", stroke: r.color, "stroke-width": 2,
+                                 "stroke-linecap": "round" }));
+
+    // optimum marker, with a 2px surface ring so overlapping marks stay legible
+    const o = optimum(r, q);
+    svg.appendChild(el("circle", { cx: x(o.p), cy: y(o.v), r: 6,
+      fill: r.color, stroke: "var(--surface-1)", "stroke-width": 2 }));
+
+    // direct label at the right edge (relief for the low-contrast slot),
+    // with a leader line when it has been nudged off its true position
+    const ly = labelY.get(r.key), ty = y(ev(r, 1, q));
+    if (Math.abs(ly - ty) > 1)
+      svg.appendChild(el("line", { x1: M.l + IW + 3, x2: M.l + IW + 8, y1: ty, y2: ly,
+        stroke: r.color, "stroke-width": 1, opacity: 0.5 }));
+    const t = el("text", { x: M.l + IW + 12, y: ly + 4, class: "dlabel", fill: r.color });
+    t.textContent = r.key === "quadcost" ? "quad + cost" : r.key;
+    svg.appendChild(t);
+  });
+
+  // --- hover crosshair -----------------------------------------------------
+  const hover = el("rect", { x: M.l, y: M.t, width: IW, height: IH,
+                             fill: "transparent", style: "cursor:crosshair" });
+  const cross = el("line", { y1: M.t, y2: M.t + IH, stroke: "var(--text-muted)",
+                             "stroke-width": 1, opacity: 0 });
+  svg.appendChild(cross); svg.appendChild(hover);
+  hover.addEventListener("mousemove", e => {
+    const box = svg.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, ((e.clientX - box.left) / box.width * W - M.l) / IW));
+    cross.setAttribute("x1", x(p)); cross.setAttribute("x2", x(p));
+    cross.setAttribute("opacity", 1);
+    tip.innerHTML = `<b>report p = ${p.toFixed(2)}</b><br>` + RULES.map(r =>
+      `<span style="color:${r.color}">■</span> ${r.key}: ${ev(r, p, q) >= 0 ? "+" : ""}${ev(r, p, q).toFixed(3)}`
+    ).join("<br>");
+    tip.style.left = (e.clientX + 16) + "px";
+    tip.style.top = (e.clientY - 10) + "px";
+    tip.style.opacity = 1;
+  });
+  hover.addEventListener("mouseleave", () => {
+    tip.style.opacity = 0; cross.setAttribute("opacity", 0);
+  });
+}
+
+function narrate(q) {
+  const lin = optimum(RULES[0], q), quad = optimum(RULES[1], q);
+  const honest = ev(RULES[0], q, q), corner = ev(RULES[0], lin.p, q);
+  const gap = corner - honest;
+  const up = q > 0.5;
+  const dir = up ? "claim <b>certainty</b> (p = 1.00)" : "report <b>nothing</b> (p = 0)";
+  const verb = up ? "overclaiming" : "understating";
+  // For quad+cost the interesting comparison is the best REAL answer versus
+  // silence, so search p > 0 rather than reporting the trivial p = 0 optimum.
+  let bestAns = -Infinity, bestP = 0;
+  for (let i = 1; i <= 1000; i++) {
+    const p = i / 1000, v = ev(RULES[2], p, q);
+    if (v > bestAns) { bestAns = v; bestP = p; }
+  }
+  return `
+    The model believes <b>q = ${q.toFixed(2)}</b>.
+    <br><br>
+    Under <b style="color:var(--series-1)">linear</b> its best move is to ${dir} —
+    reporting honestly earns ${honest.toFixed(3)}, ${verb} earns
+    ${corner.toFixed(3)} — a free <b>${gap >= 0 ? "+" : ""}${gap.toFixed(3)}</b> for misreporting.
+    The curve is a straight line, so the best point is always an end point. There is
+    no interior peak, ever, for any q.
+    <br><br>
+    Under <b style="color:var(--series-2)">quadratic</b> the peak sits at
+    <b>p = ${quad.p.toFixed(2)}</b> — exactly its true belief. Overclaiming to p = 1
+    would drop it from ${quad.v.toFixed(3)} to ${ev(RULES[1], 1, q).toFixed(3)}.
+    <br><br>
+    <b style="color:var(--series-3)">Quadratic + cost</b> peaks in the same place but
+    the whole curve is pushed down by c = ${C}, so below q = ${Math.sqrt(C).toFixed(2)}
+    the best answer is worth less than silence and the model should abstain.
+    Here the best possible answer is worth <b>${bestAns >= 0 ? "+" : ""}${bestAns.toFixed(3)}</b>
+    (at p = ${bestP.toFixed(2)}), so the model should
+    ${bestAns > 0 ? "<b>answer</b> — that beats staying silent, which scores 0."
+                  : "<b>stay silent</b> — every answer it could give is worth less than 0."}
+  `;
+}
+
+function table(q) {
+  const ps = [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1];
+  return `<table><caption class="sub" style="text-align:left;margin:8px 0">
+      Expected score at q = ${q.toFixed(2)}</caption>
+    <thead><tr><th>reported p</th>${RULES.map(r => `<th>${r.key}</th>`).join("")}</tr></thead>
+    <tbody>${ps.map(p => `<tr><td>${p.toFixed(2)}</td>${
+      RULES.map(r => {
+        const v = ev(r, p, q), best = Math.abs(p - optimum(r, q).p) < 0.005;
+        return `<td${best ? ' style="font-weight:700"' : ''}>${v >= 0 ? "+" : ""}${v.toFixed(3)}</td>`;
+      }).join("")}</tr>`).join("")}</tbody></table>
+    <p class="sub" style="font-size:12.5px">Bold = the model's best report under that rule.</p>`;
+}
+
+const slider = document.getElementById("q");
+function render() {
+  const q = +slider.value;
+  document.getElementById("qval").textContent = q.toFixed(2);
+  draw(q);
+  document.getElementById("note").innerHTML = narrate(q);
+  document.getElementById("tableWrap").innerHTML = table(q);
+}
+slider.addEventListener("input", render);
+document.getElementById("toggle").addEventListener("click", e => {
+  const w = document.getElementById("tableWrap");
+  w.classList.toggle("hidden");
+  e.target.textContent = w.classList.contains("hidden") ? "Show table" : "Hide table";
+});
+render();
+</script>
+</body>
+</html>

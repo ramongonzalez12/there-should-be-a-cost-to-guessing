@@ -1,0 +1,8 @@
+group,approach,effort_tokens,accuracy_pct,stated_confidence_pct,overconfidence_gap_pts
+Baselines,Before training,116.75,53.355,95.395,40.755
+Baselines,Accuracy-only training,177.5833,60.7433,94.995,33.2567
+Baselines,Honest-confidence training,189.75,59.165,93.195,32.805
+Variations with reasoning,Score confidence separately,151.25,59.5217,88.0917,27.72
+Variations with reasoning,Score it against the other attempts,133.25,58.23,84.5667,25.3717
+Variations with reasoning,Train on questions missed outright,152.25,59.95,87.555,26.52
+"Trained without, then with reasoning",Calibrate without reasoning first,149.8333,59.7283,74.2367,13.7933

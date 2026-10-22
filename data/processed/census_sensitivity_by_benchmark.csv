@@ -1,0 +1,46 @@
+benchmark,search_scope,phrase_list,n_responses,n_declines,decline_rate
+healthbench,whole generation,narrow (3 phrases),15299,74,0.00484
+healthbench,whole generation,moderate (7 phrases),15299,161,0.01052
+healthbench,whole generation,"broad (~18 phrases, used)",15299,816,0.05334
+healthbench,final 300 characters,narrow (3 phrases),15299,6,0.00039
+healthbench,final 300 characters,moderate (7 phrases),15299,11,0.00072
+healthbench,final 300 characters,"broad (~18 phrases, used)",15299,72,0.00471
+healthbench,final 100 characters,narrow (3 phrases),15299,1,0.00007
+healthbench,final 100 characters,moderate (7 phrases),15299,3,0.00020
+healthbench,final 100 characters,"broad (~18 phrases, used)",15299,14,0.00092
+lingoly_nocontext,whole generation,narrow (3 phrases),3061,8,0.00261
+lingoly_nocontext,whole generation,moderate (7 phrases),3061,117,0.03822
+lingoly_nocontext,whole generation,"broad (~18 phrases, used)",3061,155,0.05064
+lingoly_nocontext,final 300 characters,narrow (3 phrases),3061,8,0.00261
+lingoly_nocontext,final 300 characters,moderate (7 phrases),3061,91,0.02973
+lingoly_nocontext,final 300 characters,"broad (~18 phrases, used)",3061,125,0.04084
+lingoly_nocontext,final 100 characters,narrow (3 phrases),3061,3,0.00098
+lingoly_nocontext,final 100 characters,moderate (7 phrases),3061,78,0.02548
+lingoly_nocontext,final 100 characters,"broad (~18 phrases, used)",3061,101,0.03300
+lingoly_context,whole generation,narrow (3 phrases),2653,0,0.00000
+lingoly_context,whole generation,moderate (7 phrases),2653,18,0.00678
+lingoly_context,whole generation,"broad (~18 phrases, used)",2653,29,0.01093
+lingoly_context,final 300 characters,narrow (3 phrases),2653,0,0.00000
+lingoly_context,final 300 characters,moderate (7 phrases),2653,17,0.00641
+lingoly_context,final 300 characters,"broad (~18 phrases, used)",2653,27,0.01018
+lingoly_context,final 100 characters,narrow (3 phrases),2653,0,0.00000
+lingoly_context,final 100 characters,moderate (7 phrases),2653,11,0.00415
+lingoly_context,final 100 characters,"broad (~18 phrases, used)",2653,19,0.00716
+judgebench,whole generation,narrow (3 phrases),19250,6,0.00031
+judgebench,whole generation,moderate (7 phrases),19250,550,0.02857
+judgebench,whole generation,"broad (~18 phrases, used)",19250,731,0.03797
+judgebench,final 300 characters,narrow (3 phrases),19250,0,0.00000
+judgebench,final 300 characters,moderate (7 phrases),19250,21,0.00109
+judgebench,final 300 characters,"broad (~18 phrases, used)",19250,33,0.00171
+judgebench,final 100 characters,narrow (3 phrases),19250,0,0.00000
+judgebench,final 100 characters,moderate (7 phrases),19250,2,0.00010
+judgebench,final 100 characters,"broad (~18 phrases, used)",19250,3,0.00016
+hle,whole generation,narrow (3 phrases),6306,3,0.00048
+hle,whole generation,moderate (7 phrases),6306,168,0.02664
+hle,whole generation,"broad (~18 phrases, used)",6306,222,0.03520
+hle,final 300 characters,narrow (3 phrases),6306,3,0.00048
+hle,final 300 characters,moderate (7 phrases),6306,86,0.01364
+hle,final 300 characters,"broad (~18 phrases, used)",6306,120,0.01903
+hle,final 100 characters,narrow (3 phrases),6306,0,0.00000
+hle,final 100 characters,moderate (7 phrases),6306,36,0.00571
+hle,final 100 characters,"broad (~18 phrases, used)",6306,53,0.00840

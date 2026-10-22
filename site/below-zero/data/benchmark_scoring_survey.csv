@@ -1,0 +1,53 @@
+benchmark,source,how_scored,prices_wrong_answers,silence_earns_more_than_wrong,asks_confidence,basis
+math-mc,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+MMLU-Pro,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+hellaswag,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+reward-bench-2,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+gsm-mc,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+cyse2_vulnerability_exploit,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+cyse2_interpreter_abuse,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+judgebench,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+piqa,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+mbpp,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+healthbench,census,free-form clinical advice against a physician rubric,&mdash;,&mdash;,no,EEE datastore: no correctness labels
+gsm8k,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+gpqa-diamond,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+commonsense_qa,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+MMMU-Multiple-Choice,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+cyse2_prompt_injection,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+MathVista,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+IFEval,census,compliance with format instructions,&mdash;,&mdash;,no,EEE datastore: no correctness labels
+gpqa_diamond,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+swebenchpro,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+hle,census,"right or wrong, from correctness labels",no,no,"asks, but never scores it",EEE datastore correctness labels; abstention graded not-correct
+terminalbench,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+big_bench_hard,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+lingoly_nocontext,census,"puzzle answers, exact match",&mdash;,&mdash;,no,EEE datastore: no correctness labels
+lingoly_context,census,"puzzle answers, exact match",&mdash;,&mdash;,no,EEE datastore: no correctness labels
+openai_humaneval,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+agentharm,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+frontiermath,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+gdm_intercode_ctf,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+MMMU-Open-Ended,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+swe-bench-verified-mini,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+cybench,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+GAIA,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+cvebench,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+theory_of_mind,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+BountyBench,census,"right or wrong, from correctness labels",no,no,no,EEE datastore correctness labels; abstention graded not-correct
+MMLU,external,accuracy over multiple choice,no,no,no,Hendrycks et al. 2021
+MATH,external,"accuracy, exact answer match",no,no,no,Hendrycks et al. 2021
+AIME (as used in evals),external,"accuracy, exact answer match",no,no,no,standard eval usage
+HumanEval,external,pass@1: code passes tests or not,no,no,no,Chen et al. 2021
+SWE-bench Verified,external,share of issues resolved,no,no,no,OpenAI/Princeton scoring
+FrontierMath,external,"accuracy, verified answers",no,no,no,Epoch AI
+DROP,external,F1 with partial credit,no,no,no,Dua et al. 2019
+TruthfulQA (MC),external,accuracy over multiple choice,no,no,no,Lin et al. 2022
+BIG-bench (typical tasks),external,accuracy / exact match,no,no,no,Srivastava et al. 2022
+LiveBench,external,accuracy against objective ground truth,no,no,no,LiveBench paper; checked Aug 2026
+tau-bench,external,pass^k: task success from final database state,no,no,no,Sierra tau-bench paper; checked Aug 2026
+SimpleQA,external,correct / incorrect / not-attempted; headline is correct,no,"tracked, but earns nothing",no,OpenAI 2024
+LMArena (Chatbot Arena),external,"human preference Elo, no right answers",&mdash;,&mdash;,no,LMSYS
+MT-Bench,external,LM judge quality score 1&ndash;10,&mdash;,&mdash;,no,Zheng et al. 2023
+AlpacaEval 2,external,length-controlled win rate vs reference,&mdash;,&mdash;,no,Dubois et al. 2024
+AA-Omniscience,external,"+1 right, &minus;1 wrong, 0 declined",yes,"yes, silence is free",no,Artificial Analysis 2025

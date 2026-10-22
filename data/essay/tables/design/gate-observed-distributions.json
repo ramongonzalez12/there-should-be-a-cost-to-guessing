@@ -1,0 +1,981 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "label": "Open-weight study: before training",
+      "score": 20.848622558922557,
+      "models": [
+        "GPT-OSS 20B",
+        "Nemotron 3 Nano 30B",
+        "Qwen3 8B"
+      ],
+      "tests": "Math, medicine, ethics and GPQA; equal subject and model weights, three seeds.",
+      "source": "common_training_pooled_levels.csv",
+      "states": [
+        {
+          "confidence": null,
+          "outcome": "INVALID",
+          "score": -1.0,
+          "weight": 0.029604377104377105
+        },
+        {
+          "confidence": 0.0,
+          "outcome": "INCORRECT",
+          "score": -0.0,
+          "weight": 0.0002777777777777778
+        },
+        {
+          "confidence": 0.05,
+          "outcome": "CORRECT",
+          "score": 0.0975,
+          "weight": 0.0002777777777777778
+        },
+        {
+          "confidence": 0.2,
+          "outcome": "INCORRECT",
+          "score": -0.04000000000000001,
+          "weight": 0.0009764309764309764
+        },
+        {
+          "confidence": 0.3,
+          "outcome": "CORRECT",
+          "score": 0.51,
+          "weight": 0.0026599326599326596
+        },
+        {
+          "confidence": 0.3,
+          "outcome": "INCORRECT",
+          "score": -0.09,
+          "weight": 0.007424242424242423
+        },
+        {
+          "confidence": 0.35,
+          "outcome": "INCORRECT",
+          "score": -0.12249999999999998,
+          "weight": 0.00042087542087542086
+        },
+        {
+          "confidence": 0.4,
+          "outcome": "INCORRECT",
+          "score": -0.16000000000000003,
+          "weight": 0.0009764309764309764
+        },
+        {
+          "confidence": 0.5,
+          "outcome": "CORRECT",
+          "score": 0.75,
+          "weight": 0.0002777777777777778
+        },
+        {
+          "confidence": 0.5,
+          "outcome": "INCORRECT",
+          "score": -0.25,
+          "weight": 0.0002777777777777778
+        },
+        {
+          "confidence": 0.55,
+          "outcome": "CORRECT",
+          "score": 0.7975000000000001,
+          "weight": 0.0008417508417508417
+        },
+        {
+          "confidence": 0.55,
+          "outcome": "INCORRECT",
+          "score": -0.30250000000000005,
+          "weight": 0.0013973063973063973
+        },
+        {
+          "confidence": 0.6,
+          "outcome": "CORRECT",
+          "score": 0.84,
+          "weight": 0.0015404040404040403
+        },
+        {
+          "confidence": 0.6,
+          "outcome": "INCORRECT",
+          "score": -0.36,
+          "weight": 0.004335016835016834
+        },
+        {
+          "confidence": 0.7,
+          "outcome": "CORRECT",
+          "score": 0.9099999999999999,
+          "weight": 0.0092003367003367
+        },
+        {
+          "confidence": 0.7,
+          "outcome": "INCORRECT",
+          "score": -0.48999999999999994,
+          "weight": 0.016355218855218855
+        },
+        {
+          "confidence": 0.75,
+          "outcome": "CORRECT",
+          "score": 0.9375,
+          "weight": 0.0033333333333333335
+        },
+        {
+          "confidence": 0.75,
+          "outcome": "INCORRECT",
+          "score": -0.5625,
+          "weight": 0.0023653198653198655
+        },
+        {
+          "confidence": 0.8,
+          "outcome": "CORRECT",
+          "score": 0.96,
+          "weight": 0.008636363636363636
+        },
+        {
+          "confidence": 0.8,
+          "outcome": "INCORRECT",
+          "score": -0.6400000000000001,
+          "weight": 0.008644781144781144
+        },
+        {
+          "confidence": 0.85,
+          "outcome": "CORRECT",
+          "score": 0.9775,
+          "weight": 0.015606060606060604
+        },
+        {
+          "confidence": 0.85,
+          "outcome": "INCORRECT",
+          "score": -0.7224999999999999,
+          "weight": 0.0259006734006734
+        },
+        {
+          "confidence": 0.9,
+          "outcome": "CORRECT",
+          "score": 0.99,
+          "weight": 0.10285353535353559
+        },
+        {
+          "confidence": 0.9,
+          "outcome": "INCORRECT",
+          "score": -0.81,
+          "weight": 0.06893097643097658
+        },
+        {
+          "confidence": 0.92,
+          "outcome": "CORRECT",
+          "score": 0.9936,
+          "weight": 0.0023821548821548817
+        },
+        {
+          "confidence": 0.92,
+          "outcome": "INCORRECT",
+          "score": -0.8464,
+          "weight": 0.0015404040404040403
+        },
+        {
+          "confidence": 0.95,
+          "outcome": "CORRECT",
+          "score": 0.9974999999999999,
+          "weight": 0.24109427609427364
+        },
+        {
+          "confidence": 0.95,
+          "outcome": "INCORRECT",
+          "score": -0.9025,
+          "weight": 0.16352693602693677
+        },
+        {
+          "confidence": 0.96,
+          "outcome": "CORRECT",
+          "score": 0.9984,
+          "weight": 0.0016835016835016834
+        },
+        {
+          "confidence": 0.96,
+          "outcome": "INCORRECT",
+          "score": -0.9216,
+          "weight": 0.00042087542087542086
+        },
+        {
+          "confidence": 0.98,
+          "outcome": "CORRECT",
+          "score": 0.9996,
+          "weight": 0.0025168350168350167
+        },
+        {
+          "confidence": 0.98,
+          "outcome": "INCORRECT",
+          "score": -0.9603999999999999,
+          "weight": 0.0012626262626262625
+        },
+        {
+          "confidence": 0.99,
+          "outcome": "CORRECT",
+          "score": 0.9999,
+          "weight": 0.005563973063973064
+        },
+        {
+          "confidence": 0.99,
+          "outcome": "INCORRECT",
+          "score": -0.9801,
+          "weight": 0.0002777777777777778
+        },
+        {
+          "confidence": 1.0,
+          "outcome": "CORRECT",
+          "score": 1.0,
+          "weight": 0.17740740740740604
+        },
+        {
+          "confidence": 1.0,
+          "outcome": "INCORRECT",
+          "score": -1.0,
+          "weight": 0.08920875420875445
+        }
+      ],
+      "share_at_least_90": 0.8586700336700313,
+      "wrong_at_least_90": 0.3251683501683513,
+      "share_answered": 0.9703956228956204
+    },
+    {
+      "label": "After honest-confidence training",
+      "score": 34.44049276094276,
+      "models": [
+        "GPT-OSS 20B",
+        "Nemotron 3 Nano 30B",
+        "Qwen3 8B"
+      ],
+      "tests": "Math, medicine, ethics and GPQA; equal subject and model weights, three seeds.",
+      "source": "common_training_pooled_levels.csv",
+      "states": [
+        {
+          "confidence": null,
+          "outcome": "INVALID",
+          "score": -1.0,
+          "weight": 0.01738496071829401
+        },
+        {
+          "confidence": 0.0,
+          "outcome": "INCORRECT",
+          "score": -0.0,
+          "weight": 9.259259259259259e-05
+        },
+        {
+          "confidence": 0.1,
+          "outcome": "INCORRECT",
+          "score": -0.010000000000000002,
+          "weight": 0.0002805836139169472
+        },
+        {
+          "confidence": 0.15,
+          "outcome": "CORRECT",
+          "score": 0.27749999999999997,
+          "weight": 0.0002805836139169472
+        },
+        {
+          "confidence": 0.15,
+          "outcome": "INCORRECT",
+          "score": -0.0225,
+          "weight": 0.0004208754208754208
+        },
+        {
+          "confidence": 0.2,
+          "outcome": "CORRECT",
+          "score": 0.36,
+          "weight": 0.0007940516273849608
+        },
+        {
+          "confidence": 0.2,
+          "outcome": "INCORRECT",
+          "score": -0.04000000000000001,
+          "weight": 0.0029910213243546564
+        },
+        {
+          "confidence": 0.21,
+          "outcome": "INCORRECT",
+          "score": -0.04409999999999999,
+          "weight": 9.259259259259259e-05
+        },
+        {
+          "confidence": 0.25,
+          "outcome": "INCORRECT",
+          "score": -0.0625,
+          "weight": 0.0001402918069584736
+        },
+        {
+          "confidence": 0.3,
+          "outcome": "CORRECT",
+          "score": 0.51,
+          "weight": 0.0023793490460157123
+        },
+        {
+          "confidence": 0.3,
+          "outcome": "INCORRECT",
+          "score": -0.09,
+          "weight": 0.006248597081930417
+        },
+        {
+          "confidence": 0.35,
+          "outcome": "CORRECT",
+          "score": 0.5775,
+          "weight": 0.0004657687991021324
+        },
+        {
+          "confidence": 0.35,
+          "outcome": "INCORRECT",
+          "score": -0.12249999999999998,
+          "weight": 0.0007463524130190797
+        },
+        {
+          "confidence": 0.4,
+          "outcome": "CORRECT",
+          "score": 0.64,
+          "weight": 0.00041806958473625136
+        },
+        {
+          "confidence": 0.4,
+          "outcome": "INCORRECT",
+          "score": -0.16000000000000003,
+          "weight": 0.00037037037037037035
+        },
+        {
+          "confidence": 0.45,
+          "outcome": "CORRECT",
+          "score": 0.6975,
+          "weight": 0.00018518518518518518
+        },
+        {
+          "confidence": 0.45,
+          "outcome": "INCORRECT",
+          "score": -0.2025,
+          "weight": 0.0002328843995510662
+        },
+        {
+          "confidence": 0.5,
+          "outcome": "CORRECT",
+          "score": 0.75,
+          "weight": 0.0010662177328843994
+        },
+        {
+          "confidence": 0.5,
+          "outcome": "INCORRECT",
+          "score": -0.25,
+          "weight": 0.0006032547699214365
+        },
+        {
+          "confidence": 0.55,
+          "outcome": "CORRECT",
+          "score": 0.7975000000000001,
+          "weight": 0.0012121212121212121
+        },
+        {
+          "confidence": 0.55,
+          "outcome": "INCORRECT",
+          "score": -0.30250000000000005,
+          "weight": 0.0035914702581369227
+        },
+        {
+          "confidence": 0.6,
+          "outcome": "CORRECT",
+          "score": 0.84,
+          "weight": 0.0037654320987654303
+        },
+        {
+          "confidence": 0.6,
+          "outcome": "INCORRECT",
+          "score": -0.36,
+          "weight": 0.003167789001122333
+        },
+        {
+          "confidence": 0.65,
+          "outcome": "CORRECT",
+          "score": 0.8775,
+          "weight": 0.0001402918069584736
+        },
+        {
+          "confidence": 0.65,
+          "outcome": "INCORRECT",
+          "score": -0.42250000000000004,
+          "weight": 0.0005106621773288439
+        },
+        {
+          "confidence": 0.7,
+          "outcome": "CORRECT",
+          "score": 0.9099999999999999,
+          "weight": 0.02389169472502798
+        },
+        {
+          "confidence": 0.7,
+          "outcome": "INCORRECT",
+          "score": -0.48999999999999994,
+          "weight": 0.031060606060605945
+        },
+        {
+          "confidence": 0.75,
+          "outcome": "CORRECT",
+          "score": 0.9375,
+          "weight": 0.0031509539842873168
+        },
+        {
+          "confidence": 0.75,
+          "outcome": "INCORRECT",
+          "score": -0.5625,
+          "weight": 0.003613916947250279
+        },
+        {
+          "confidence": 0.78,
+          "outcome": "INCORRECT",
+          "score": -0.6084,
+          "weight": 0.0005106621773288439
+        },
+        {
+          "confidence": 0.8,
+          "outcome": "CORRECT",
+          "score": 0.96,
+          "weight": 0.021380471380471312
+        },
+        {
+          "confidence": 0.8,
+          "outcome": "INCORRECT",
+          "score": -0.6400000000000001,
+          "weight": 0.02043771043771038
+        },
+        {
+          "confidence": 0.85,
+          "outcome": "CORRECT",
+          "score": 0.9775,
+          "weight": 0.04294893378226718
+        },
+        {
+          "confidence": 0.85,
+          "outcome": "INCORRECT",
+          "score": -0.7224999999999999,
+          "weight": 0.055356341189674696
+        },
+        {
+          "confidence": 0.88,
+          "outcome": "INCORRECT",
+          "score": -0.7744,
+          "weight": 0.0001402918069584736
+        },
+        {
+          "confidence": 0.9,
+          "outcome": "CORRECT",
+          "score": 0.99,
+          "weight": 0.09753367003366947
+        },
+        {
+          "confidence": 0.9,
+          "outcome": "INCORRECT",
+          "score": -0.81,
+          "weight": 0.0496015712682382
+        },
+        {
+          "confidence": 0.92,
+          "outcome": "CORRECT",
+          "score": 0.9936,
+          "weight": 0.0049382716049382715
+        },
+        {
+          "confidence": 0.92,
+          "outcome": "INCORRECT",
+          "score": -0.8464,
+          "weight": 0.006007295173961842
+        },
+        {
+          "confidence": 0.95,
+          "outcome": "CORRECT",
+          "score": 0.9974999999999999,
+          "weight": 0.23728675645342093
+        },
+        {
+          "confidence": 0.95,
+          "outcome": "INCORRECT",
+          "score": -0.9025,
+          "weight": 0.1269753086419737
+        },
+        {
+          "confidence": 0.96,
+          "outcome": "CORRECT",
+          "score": 0.9984,
+          "weight": 0.0010718294051627385
+        },
+        {
+          "confidence": 0.96,
+          "outcome": "INCORRECT",
+          "score": -0.9216,
+          "weight": 0.0009764309764309765
+        },
+        {
+          "confidence": 0.98,
+          "outcome": "CORRECT",
+          "score": 0.9996,
+          "weight": 0.0079236812570146
+        },
+        {
+          "confidence": 0.98,
+          "outcome": "INCORRECT",
+          "score": -0.9603999999999999,
+          "weight": 0.0032519640852974175
+        },
+        {
+          "confidence": 0.99,
+          "outcome": "CORRECT",
+          "score": 0.9999,
+          "weight": 0.011214927048260373
+        },
+        {
+          "confidence": 0.99,
+          "outcome": "INCORRECT",
+          "score": -0.9801,
+          "weight": 0.00041806958473625136
+        },
+        {
+          "confidence": 1.0,
+          "outcome": "CORRECT",
+          "score": 1.0,
+          "weight": 0.17509539842872868
+        },
+        {
+          "confidence": 1.0,
+          "outcome": "INCORRECT",
+          "score": -1.0,
+          "weight": 0.027631874298540863
+        }
+      ],
+      "share_at_least_90": 0.7499270482603743,
+      "wrong_at_least_90": 0.21486251402917925,
+      "share_answered": 0.9826150392816986
+    },
+    {
+      "label": "Top three in the model battery",
+      "score": 89.99909192176871,
+      "models": [
+        "anthropic/claude-opus-5.5",
+        "anthropic/claude-fable-5.1",
+        "anthropic/claude-opus-5"
+      ],
+      "tests": "Highest baseline scores among the 50 admitted models, averaged over eight benchmarks.",
+      "source": "notation_rerun_models.csv (essay cohort)",
+      "states": [
+        {
+          "confidence": null,
+          "outcome": "INVALID",
+          "score": -1.0,
+          "weight": 0.002933673469387755
+        },
+        {
+          "confidence": 0.4,
+          "outcome": "CORRECT",
+          "score": 0.64,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.4,
+          "outcome": "INCORRECT",
+          "score": -0.16000000000000003,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.44,
+          "outcome": "CORRECT",
+          "score": 0.6864,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.45,
+          "outcome": "CORRECT",
+          "score": 0.6975,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.5,
+          "outcome": "CORRECT",
+          "score": 0.75,
+          "weight": 0.002916666666666667
+        },
+        {
+          "confidence": 0.5,
+          "outcome": "INCORRECT",
+          "score": -0.25,
+          "weight": 0.001258503401360544
+        },
+        {
+          "confidence": 0.52,
+          "outcome": "INCORRECT",
+          "score": -0.27040000000000003,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.55,
+          "outcome": "CORRECT",
+          "score": 0.7975000000000001,
+          "weight": 0.005008503401360545
+        },
+        {
+          "confidence": 0.55,
+          "outcome": "INCORRECT",
+          "score": -0.30250000000000005,
+          "weight": 0.0016666666666666666
+        },
+        {
+          "confidence": 0.57,
+          "outcome": "INCORRECT",
+          "score": -0.32489999999999997,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.58,
+          "outcome": "CORRECT",
+          "score": 0.8235999999999999,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.6,
+          "outcome": "CORRECT",
+          "score": 0.84,
+          "weight": 0.005008503401360545
+        },
+        {
+          "confidence": 0.6,
+          "outcome": "INCORRECT",
+          "score": -0.36,
+          "weight": 0.002933673469387755
+        },
+        {
+          "confidence": 0.61,
+          "outcome": "CORRECT",
+          "score": 0.8479,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.62,
+          "outcome": "CORRECT",
+          "score": 0.8555999999999999,
+          "weight": 0.005
+        },
+        {
+          "confidence": 0.62,
+          "outcome": "INCORRECT",
+          "score": -0.3844,
+          "weight": 0.004166666666666667
+        },
+        {
+          "confidence": 0.63,
+          "outcome": "CORRECT",
+          "score": 0.8631,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.65,
+          "outcome": "CORRECT",
+          "score": 0.8775,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.65,
+          "outcome": "INCORRECT",
+          "score": -0.42250000000000004,
+          "weight": 0.002916666666666667
+        },
+        {
+          "confidence": 0.66,
+          "outcome": "CORRECT",
+          "score": 0.8844000000000001,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.66,
+          "outcome": "INCORRECT",
+          "score": -0.43560000000000004,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.67,
+          "outcome": "CORRECT",
+          "score": 0.8911,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.67,
+          "outcome": "INCORRECT",
+          "score": -0.4489000000000001,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.68,
+          "outcome": "CORRECT",
+          "score": 0.8976,
+          "weight": 0.005416666666666667
+        },
+        {
+          "confidence": 0.68,
+          "outcome": "INCORRECT",
+          "score": -0.4624000000000001,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.7,
+          "outcome": "CORRECT",
+          "score": 0.9099999999999999,
+          "weight": 0.007083333333333334
+        },
+        {
+          "confidence": 0.7,
+          "outcome": "INCORRECT",
+          "score": -0.48999999999999994,
+          "weight": 0.0033333333333333335
+        },
+        {
+          "confidence": 0.72,
+          "outcome": "CORRECT",
+          "score": 0.9216,
+          "weight": 0.017925170068027192
+        },
+        {
+          "confidence": 0.72,
+          "outcome": "INCORRECT",
+          "score": -0.5184,
+          "weight": 0.004583333333333333
+        },
+        {
+          "confidence": 0.73,
+          "outcome": "CORRECT",
+          "score": 0.9271,
+          "weight": 0.0025
+        },
+        {
+          "confidence": 0.73,
+          "outcome": "INCORRECT",
+          "score": -0.5328999999999999,
+          "weight": 0.0008333333333333333
+        },
+        {
+          "confidence": 0.75,
+          "outcome": "CORRECT",
+          "score": 0.9375,
+          "weight": 0.0037585034013605445
+        },
+        {
+          "confidence": 0.75,
+          "outcome": "INCORRECT",
+          "score": -0.5625,
+          "weight": 0.001258503401360544
+        },
+        {
+          "confidence": 0.76,
+          "outcome": "CORRECT",
+          "score": 0.9424,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.76,
+          "outcome": "INCORRECT",
+          "score": -0.5776,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.77,
+          "outcome": "CORRECT",
+          "score": 0.9471,
+          "weight": 0.0008333333333333333
+        },
+        {
+          "confidence": 0.78,
+          "outcome": "CORRECT",
+          "score": 0.9516,
+          "weight": 0.006666666666666667
+        },
+        {
+          "confidence": 0.78,
+          "outcome": "INCORRECT",
+          "score": -0.6084,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.79,
+          "outcome": "CORRECT",
+          "score": 0.9559,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.8,
+          "outcome": "CORRECT",
+          "score": 0.96,
+          "weight": 0.03429421768707483
+        },
+        {
+          "confidence": 0.8,
+          "outcome": "INCORRECT",
+          "score": -0.6400000000000001,
+          "weight": 0.005433673469387755
+        },
+        {
+          "confidence": 0.82,
+          "outcome": "CORRECT",
+          "score": 0.9676,
+          "weight": 0.008341836734693877
+        },
+        {
+          "confidence": 0.82,
+          "outcome": "INCORRECT",
+          "score": -0.6723999999999999,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.83,
+          "outcome": "CORRECT",
+          "score": 0.9711,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.84,
+          "outcome": "CORRECT",
+          "score": 0.9744,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.85,
+          "outcome": "CORRECT",
+          "score": 0.9775,
+          "weight": 0.043511904761904814
+        },
+        {
+          "confidence": 0.85,
+          "outcome": "INCORRECT",
+          "score": -0.7224999999999999,
+          "weight": 0.003350340136054422
+        },
+        {
+          "confidence": 0.87,
+          "outcome": "CORRECT",
+          "score": 0.9831,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.88,
+          "outcome": "CORRECT",
+          "score": 0.9856,
+          "weight": 0.06893707482993207
+        },
+        {
+          "confidence": 0.88,
+          "outcome": "INCORRECT",
+          "score": -0.7744,
+          "weight": 0.005025510204081633
+        },
+        {
+          "confidence": 0.89,
+          "outcome": "CORRECT",
+          "score": 0.9879,
+          "weight": 0.006666666666666667
+        },
+        {
+          "confidence": 0.9,
+          "outcome": "CORRECT",
+          "score": 0.99,
+          "weight": 0.040187074829932015
+        },
+        {
+          "confidence": 0.9,
+          "outcome": "INCORRECT",
+          "score": -0.81,
+          "weight": 0.0025
+        },
+        {
+          "confidence": 0.92,
+          "outcome": "CORRECT",
+          "score": 0.9936,
+          "weight": 0.040977891156462616
+        },
+        {
+          "confidence": 0.92,
+          "outcome": "INCORRECT",
+          "score": -0.8464,
+          "weight": 0.0020918367346938775
+        },
+        {
+          "confidence": 0.93,
+          "outcome": "CORRECT",
+          "score": 0.9951,
+          "weight": 0.035858843537414954
+        },
+        {
+          "confidence": 0.93,
+          "outcome": "INCORRECT",
+          "score": -0.8649000000000001,
+          "weight": 0.0012499999999999998
+        },
+        {
+          "confidence": 0.94,
+          "outcome": "CORRECT",
+          "score": 0.9964,
+          "weight": 0.0008333333333333333
+        },
+        {
+          "confidence": 0.95,
+          "outcome": "CORRECT",
+          "score": 0.9974999999999999,
+          "weight": 0.10410714285714263
+        },
+        {
+          "confidence": 0.95,
+          "outcome": "INCORRECT",
+          "score": -0.9025,
+          "weight": 0.00042517006802721087
+        },
+        {
+          "confidence": 0.96,
+          "outcome": "CORRECT",
+          "score": 0.9984,
+          "weight": 0.05375850340136065
+        },
+        {
+          "confidence": 0.96,
+          "outcome": "INCORRECT",
+          "score": -0.9216,
+          "weight": 0.00041666666666666664
+        },
+        {
+          "confidence": 0.97,
+          "outcome": "CORRECT",
+          "score": 0.9991,
+          "weight": 0.12145408163265269
+        },
+        {
+          "confidence": 0.97,
+          "outcome": "INCORRECT",
+          "score": -0.9409,
+          "weight": 0.0008333333333333333
+        },
+        {
+          "confidence": 0.98,
+          "outcome": "CORRECT",
+          "score": 0.9996,
+          "weight": 0.07962585034013604
+        },
+        {
+          "confidence": 0.99,
+          "outcome": "CORRECT",
+          "score": 0.9999,
+          "weight": 0.1975340136054434
+        },
+        {
+          "confidence": 1.0,
+          "outcome": "CORRECT",
+          "score": 1.0,
+          "weight": 0.03583333333333332
+        }
+      ],
+      "share_at_least_90": 0.7176870748299328,
+      "wrong_at_least_90": 0.007517006802721088,
+      "share_answered": 0.9970663265306131
+    }
+  ],
+  "source_sha256": {
+    "coverage_openai__gpt-6-astra_20260913.db": "23f8512eef4fab5c339c74abe3cf913041e39dd2436e796525d87242b15900eb",
+    "notation_rerun_20260827.db": "d4734a53de11a0ec12f3980295f33a9d69db79af4ec3a1e6e06e90eea41e8907",
+    "leader_anthropic__claude-opus-4.7_off.db": "28b04fec04cd570fc47ba5486c299846911533acb6a4d446fa8bf2735d94cc44",
+    "responses.jsonl.gz": "228f078855ac7c7db339b430dd3bdabdd2b919ea6e5633b764cf5497ef40a173",
+    "retrain/final/records.jsonl.gz": "2a3ded73b17498ba2d8bae7e0c598d32b383999f25e0ad9b32606046f687225f",
+    "retrain/trajectory/records.jsonl.gz": "4b0939c006bfae9c7ce8394fa62b37487c3cb2add2d031b30ab728fa7edf650e"
+  },
+  "weighting": "Equal model, seed and domain weights within each reference; no response text or item identities.",
+  "retained_training_evidence": "Checkpoints retrained from the untouched vendor bases under the clean confidence contract (clean-final-answer-v1, no I DON'T KNOW option) and evaluated under the confidence-only prompt; confidence arm, deterministic grading."
+}

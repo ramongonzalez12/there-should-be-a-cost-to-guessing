@@ -1,0 +1,123 @@
+{
+  "item_identity": "matched across model families for all three newly completed batteries",
+  "outputs": {
+    "alignment_contrasts": 14,
+    "alignment_levels": 27,
+    "coverage_rows": 8,
+    "external_contrasts": 126,
+    "external_levels": 225,
+    "prudence_contrasts": 56,
+    "prudence_levels": 100
+  },
+  "schema_version": 1,
+  "sources": {
+    "gpt_alignment": {
+      "path": "runs/finetune/cross_family_completion_v1/gptoss_matched_alignment/summary.json",
+      "records": 2628,
+      "sha256": "49841436b8d94faf1b994e435c84ae257595f4675179e3a2d6cb646ede13fc0b",
+      "spend": {
+        "cap_usd": 1.25,
+        "headroom_usd": 0.503303,
+        "ledger": "runs/finetune/cross_family_completion_v1/gptoss_matched_alignment/spend.jsonl",
+        "pricing_usd_per_million": {
+          "cached_prefill": 0.036,
+          "sample": 0.45,
+          "train": 0.396,
+          "uncached_prefill": 0.18
+        },
+        "rows": 232,
+        "spent_usd": 0.746697
+      }
+    },
+    "gpt_external": {
+      "path": "runs/finetune/cross_family_completion_v1/gptoss_external_transfer/summary.json",
+      "records": 12078,
+      "sha256": "95d29e7aecf165c26180dc64a2fece6bb6bfdfb7a0c4f4fe59f56e12831e8332",
+      "spend": {
+        "cap_usd": 3.28,
+        "headroom_usd": 0.00465,
+        "ledger": "runs/finetune/cross_family_completion_v1/gptoss_external_transfer/spend.jsonl",
+        "pricing_usd_per_million": {
+          "cached_prefill": 0.036,
+          "sample": 0.45,
+          "train": 0.396,
+          "uncached_prefill": 0.18
+        },
+        "rows": 378,
+        "spent_usd": 3.27535
+      }
+    },
+    "gpt_prudence": {
+      "path": "runs/finetune/cross_family_completion_v1/gptoss_plural_prudence/summary.json",
+      "records": 44928,
+      "sha256": "c9e76c489073470948745d48a29528da5b581249d8cb98a409b77c2270537441",
+      "spend": {
+        "cap_usd": 18.63,
+        "headroom_usd": 5.686629,
+        "ledger": "runs/finetune/cross_family_completion_v1/gptoss_plural_prudence/spend.jsonl",
+        "pricing_usd_per_million": {
+          "cached_prefill": 0.036,
+          "sample": 0.45,
+          "train": 0.396,
+          "uncached_prefill": 0.18
+        },
+        "rows": 1728,
+        "spent_usd": 12.943371
+      }
+    },
+    "qwen_alignment": {
+      "path": "runs/finetune/matched_alignment_battery_v1/summary.json",
+      "records": 5256,
+      "sha256": "2dc45d7fe27e732ccdeb1300f917af6cb1952883c563e8b3474e84de753b161a",
+      "spend": {
+        "cap_usd": 0.8,
+        "headroom_usd": 0.288378,
+        "ledger": "runs/finetune/matched_alignment_battery_v1/spend.jsonl",
+        "pricing_usd_per_million": {
+          "cached_prefill": 0.039,
+          "sample": 0.6,
+          "train": 0.44,
+          "uncached_prefill": 0.195
+        },
+        "rows": 232,
+        "spent_usd": 0.511622
+      }
+    },
+    "qwen_external": {
+      "path": "runs/finetune/external_transfer_v1/summary.json",
+      "records": 21472,
+      "sha256": "4c83d413f23d9aa30658338d8949e45c12ef037e8fa33bb7409c595d50c1e8e0",
+      "spend": {
+        "cap_usd": 1.56,
+        "headroom_usd": 0.004453,
+        "ledger": "runs/finetune/external_transfer_v1/spend.jsonl",
+        "pricing_usd_per_million": {
+          "cached_prefill": 0.039,
+          "sample": 0.6,
+          "train": 0.44,
+          "uncached_prefill": 0.195
+        },
+        "rows": 336,
+        "spent_usd": 1.555547
+      }
+    },
+    "qwen_prudence": {
+      "path": "runs/finetune/plural_prudence_v1/summary.json",
+      "records": 79872,
+      "sha256": "b52cd3ec1e83f56284d19da113505a7f73191476a31dfa246c4df6e5e0aa70e3",
+      "spend": {
+        "cap_usd": 8.64,
+        "headroom_usd": 1.405298,
+        "ledger": "runs/finetune/plural_prudence_v1/spend.jsonl",
+        "pricing_usd_per_million": {
+          "cached_prefill": 0.039,
+          "sample": 0.6,
+          "train": 0.44,
+          "uncached_prefill": 0.195
+        },
+        "rows": 2496,
+        "spent_usd": 7.234702
+      }
+    }
+  }
+}

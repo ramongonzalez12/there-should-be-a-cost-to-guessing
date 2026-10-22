@@ -1,0 +1,67 @@
+{
+  "analysis_date": "2026-08-24",
+  "analysis_git_head": "2a1b79aa2427b069384e2e7a7f50ad12feabfab5",
+  "analysis_script_sha256": "a12ada31fdee2c192280fbc52e794f477ed0ac9e32ac8bd182e23cf984feb180",
+  "cost_usd": 0.0,
+  "held_out_benchmark": "mmlu_pro",
+  "held_out_items": 100,
+  "malformed_attempts_forced_wrong": 62,
+  "model_family": "Qwen3 8B",
+  "prompt_conditions": [
+    "quadratic",
+    "quad_cost_0.09"
+  ],
+  "protocol": "notes/2026-08-24-prompt-threshold-factorial-protocol.md",
+  "relevant_responses": 6000,
+  "schema_version": 1,
+  "source_files": {
+    "seed2_step125": "below-zero-recovery-20260821-final/raw/seed2/evaluation_step_125_crossed/responses.jsonl",
+    "seed2_step250": "below-zero-recovery-20260821-final/raw/seed2/evaluation_step_250_crossed/responses.jsonl",
+    "seed2_step300": "below-zero-recovery-20260821-final/raw/seed2/evaluation_step_300_crossed/responses.jsonl",
+    "seed2_step375": "below-zero-recovery-20260821-final/raw/seed2/evaluation_step_375_crossed/responses.jsonl",
+    "seed2_step500": "below-zero-recovery-20260821-final/raw/seed2/evaluation_step_500_crossed/responses.jsonl",
+    "seed4_step125": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed4/evaluation_step_125_crossed/responses.jsonl",
+    "seed4_step250": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed4/evaluation_step_250_crossed/responses.jsonl",
+    "seed4_step300": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed4/evaluation_step_300_crossed/responses.jsonl",
+    "seed4_step375": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed4/evaluation_step_375_crossed/responses.jsonl",
+    "seed4_step500": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed4/evaluation_step_500_crossed/responses.jsonl",
+    "seed5_step125": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed5/evaluation_step_125_crossed/responses.jsonl",
+    "seed5_step250": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed5/evaluation_step_250_crossed/responses.jsonl",
+    "seed5_step300": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed5/evaluation_step_300_crossed/responses.jsonl",
+    "seed5_step375": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed5/evaluation_step_375_crossed/responses.jsonl",
+    "seed5_step500": "below-zero-recovery-20260821-final/untracked/finetune/runs/finetune/qwen_seed_replication_seed5/evaluation_step_500_crossed/responses.jsonl"
+  },
+  "source_sha256": {
+    "seed2_step125": "fe30191f6dca0d08043075226c4417f7939f6fbfd476a0745ce51ae2824ffba7",
+    "seed2_step250": "13a15be7ff83f7e3d9630dc1b2d6cbe0059346db27ca8a976de700834c95064b",
+    "seed2_step300": "b2f60620f733bf5adc62539405fc11818da5cace6e73c924599a436c7b08da9d",
+    "seed2_step375": "f0e3c946991565a6f9180eb436e9cc83aa81d7fff281791e1dc6f0eee6ce0fe6",
+    "seed2_step500": "a8f4e19bdd2db3cb84c3da81986bc45f14415a03f5e0f8cd6221991c64f20bcd",
+    "seed4_step125": "511411c5877e0b60f3087840f42693a79aecdfb8cc4bcdb2a55820b4290cf3b7",
+    "seed4_step250": "4d7f4b10dbd8fc3265c9ab416fb1bf04ffaf12700fb2fd927e94d050b4e77046",
+    "seed4_step300": "b6f6a9f3541997c2bab02bdd6a7ecf5b7ce3acf655130cc4289fe842f8d7ee26",
+    "seed4_step375": "eabc0281afbd449d2a98e0f2cc7d7e48963a79cae56e8795020140f3a92392c5",
+    "seed4_step500": "610ba75e1897453915718e5871be0e9ad8e3741804bc8af539658aebccabca58",
+    "seed5_step125": "38a19c49be2b5cc23e02223bff4232d1c2c4cbbdcdb0c2b83d45dfd6ea86a751",
+    "seed5_step250": "ddadca6c1f4cddab1151001d2627fd4fec1af32e5b1d42301b79e08ec8280617",
+    "seed5_step300": "0124f29a8390558db18d66364e7a20c9ec483602a268e682c8b53ba543cca766",
+    "seed5_step375": "adf0784393559313fc61307d1e21509e319c51476a64741452db395d6235dad2",
+    "seed5_step500": "a970d02dddf22bc2c18b3ab1cd568b04ff0f56b53c7754ef1c258b6e00754fd9"
+  },
+  "training_arms": [
+    "quadratic",
+    "quad_cost_0.09"
+  ],
+  "training_doses": [
+    125,
+    250,
+    300,
+    375,
+    500
+  ],
+  "training_seeds": [
+    2,
+    4,
+    5
+  ]
+}

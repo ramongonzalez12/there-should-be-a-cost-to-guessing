@@ -1,0 +1,4 @@
+arm,accuracy_pct,stated_confidence_pct,overconfidence_gap_pts,adjusted_accuracy_pts
+Before training,53.355,95.395,40.755,10.735
+Accuracy-only training,52.575,93.2,39.16,11.405
+Honest-confidence training,53.91,81.09,26.05,20.105

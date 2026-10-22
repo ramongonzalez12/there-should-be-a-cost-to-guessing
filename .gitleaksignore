@@ -1,0 +1,5 @@
+# Reviewed gitleaks false positives, one finding per line (file:rule:line).
+# A changed line or a new finding fails the export again.
+#
+# A failed call's request key: the sha1 of the request, not a credential.
+data/processed/prompt_extension_selection.json:generic-api-key:313

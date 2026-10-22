@@ -1,0 +1,24 @@
+{
+  "actual_spend_usd": 4.543019,
+  "exported_at": "2026-09-07T03:42:46.747543+00:00",
+  "family_gate_rows": 3,
+  "four_domain_responses": 27450,
+  "generalization_pair_rows": 7,
+  "generalization_summary_rows": 4,
+  "hard_program_cap_usd": 20.0,
+  "hidden_matched_pairs": 12,
+  "hidden_opportunity_responses": 16000,
+  "outputs": [
+    "data/processed/multitask_transfer_summary.csv",
+    "data/processed/multitask_transfer_levels.csv",
+    "data/processed/multitask_generalization_summary.csv",
+    "data/processed/multitask_generalization_pairs.csv",
+    "data/processed/hidden_opportunity_contrasts.csv",
+    "data/processed/multitask_family_gates.csv",
+    "data/processed/multitask_family_spend.csv"
+  ],
+  "run_root": "below-zero/runs/finetune/multitask_family_agentic_v1",
+  "schema_version": 3,
+  "transfer_level_rows": 32,
+  "transfer_summary_rows": 16
+}

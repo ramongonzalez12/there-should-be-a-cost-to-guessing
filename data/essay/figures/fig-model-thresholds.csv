@@ -1,0 +1,256 @@
+model,model_name,threshold_pct,questions_with_allowed_answer_pct,wrong_per_100_questions,wrong_among_allowed_pct
+,All 50 models,0,98.9847,15.237,15.3933
+,All 50 models,80,91.3639,12.451,13.6279
+,All 50 models,90,81.4795,9.8328,12.0678
+,All 50 models,95,69.2724,6.4743,9.3461
+,All 50 models,100,32.1798,2.6131,8.1203
+amazon/nova-pro-v1,Nova Pro,0,99.4994,27.2841,27.4214
+amazon/nova-pro-v1,Nova Pro,80,94.2428,24.2804,25.7636
+amazon/nova-pro-v1,Nova Pro,90,89.7372,22.0275,24.5467
+amazon/nova-pro-v1,Nova Pro,95,42.5532,5.8824,13.8235
+amazon/nova-pro-v1,Nova Pro,100,9.2616,1.2516,13.5135
+anthropic/claude-3-haiku,Claude 3 Haiku,0,99.75,45.375,45.4887
+anthropic/claude-3-haiku,Claude 3 Haiku,80,98.25,44.75,45.5471
+anthropic/claude-3-haiku,Claude 3 Haiku,90,92.125,42.25,45.8616
+anthropic/claude-3-haiku,Claude 3 Haiku,95,45.125,18.125,40.1662
+anthropic/claude-3-haiku,Claude 3 Haiku,100,21.375,7.25,33.9181
+anthropic/claude-fable-5.1,Claude Fable 5.1,0,99.6241,5.2632,5.283
+anthropic/claude-fable-5.1,Claude Fable 5.1,80,90.6015,2.7569,3.0429
+anthropic/claude-fable-5.1,Claude Fable 5.1,90,74.9373,1.1278,1.505
+anthropic/claude-fable-5.1,Claude Fable 5.1,95,64.787,0.2506,0.3868
+anthropic/claude-fable-5.1,Claude Fable 5.1,100,7.7694,0.0,0.0
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,0,99.5,18.875,18.9698
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,80,69.25,5.375,7.7617
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,90,52.75,3.375,6.3981
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,95,38.0,1.75,4.6053
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,100,0.0,0.0,
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,0,99.625,11.75,11.7942
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,80,76.625,2.875,3.752
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,90,46.0,0.625,1.3587
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,95,32.125,0.25,0.7782
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,100,1.25,0.0,0.0
+anthropic/claude-opus-4.7,Claude Opus 4.7,0,99.2491,7.8849,7.9445
+anthropic/claude-opus-4.7,Claude Opus 4.7,80,80.6008,2.6283,3.2609
+anthropic/claude-opus-4.7,Claude Opus 4.7,90,65.7071,1.1264,1.7143
+anthropic/claude-opus-4.7,Claude Opus 4.7,95,51.4393,0.5006,0.9732
+anthropic/claude-opus-4.7,Claude Opus 4.7,100,6.6333,0.0,0.0
+anthropic/claude-opus-4.8,Claude Opus 4.8,0,99.875,8.5,8.5106
+anthropic/claude-opus-4.8,Claude Opus 4.8,80,86.25,4.125,4.7826
+anthropic/claude-opus-4.8,Claude Opus 4.8,90,75.125,2.5,3.3278
+anthropic/claude-opus-4.8,Claude Opus 4.8,95,62.5,1.5,2.4
+anthropic/claude-opus-4.8,Claude Opus 4.8,100,7.5,0.0,0.0
+anthropic/claude-opus-5,Claude Opus 5,0,99.625,5.75,5.7716
+anthropic/claude-opus-5,Claude Opus 5,80,88.75,2.0,2.2535
+anthropic/claude-opus-5,Claude Opus 5,90,77.0,0.875,1.1364
+anthropic/claude-opus-5,Claude Opus 5,95,64.0,0.25,0.3906
+anthropic/claude-opus-5,Claude Opus 5,100,2.5,0.0,0.0
+anthropic/claude-opus-5.5,Claude Opus 5.5,0,99.8747,4.386,4.3915
+anthropic/claude-opus-5.5,Claude Opus 5.5,80,89.8496,2.005,2.2315
+anthropic/claude-opus-5.5,Claude Opus 5.5,90,63.4085,0.2506,0.3953
+anthropic/claude-opus-5.5,Claude Opus 5.5,95,49.4987,0.0,0.0
+anthropic/claude-opus-5.5,Claude Opus 5.5,100,0.5013,0.0,0.0
+anthropic/claude-sonnet-4,Claude Sonnet 4,0,99.875,15.0,15.0188
+anthropic/claude-sonnet-4,Claude Sonnet 4,80,93.25,10.875,11.6622
+anthropic/claude-sonnet-4,Claude Sonnet 4,90,59.375,2.75,4.6316
+anthropic/claude-sonnet-4,Claude Sonnet 4,95,53.25,2.0,3.7559
+anthropic/claude-sonnet-4,Claude Sonnet 4,100,11.625,0.125,1.0753
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,0,99.8747,12.0301,12.0452
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,80,86.5915,6.015,6.9465
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,90,72.5564,3.0075,4.1451
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,95,65.4135,2.5063,3.8314
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,100,20.802,0.2506,1.2048
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,0,99.625,11.125,11.1669
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,80,73.5,3.0,4.0816
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,90,56.375,1.0,1.7738
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,95,50.875,0.375,0.7371
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,100,0.0,0.0,
+anthropic/claude-sonnet-5,Claude Sonnet 5,0,97.1214,8.3855,8.634
+anthropic/claude-sonnet-5,Claude Sonnet 5,80,73.9675,2.1277,2.8765
+anthropic/claude-sonnet-5,Claude Sonnet 5,90,50.0626,0.6258,1.25
+anthropic/claude-sonnet-5,Claude Sonnet 5,95,37.0463,0.1252,0.3378
+anthropic/claude-sonnet-5,Claude Sonnet 5,100,3.1289,0.0,0.0
+cohere/command-r-plus-08-2024,Command R+,0,97.75,38.75,39.6419
+cohere/command-r-plus-08-2024,Command R+,80,91.25,36.875,40.411
+cohere/command-r-plus-08-2024,Command R+,90,88.5,35.25,39.8305
+cohere/command-r-plus-08-2024,Command R+,95,83.25,32.625,39.1892
+cohere/command-r-plus-08-2024,Command R+,100,78.625,30.25,38.4738
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,0,90.875,9.25,10.1788
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,80,89.625,8.625,9.6234
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,90,87.125,7.625,8.7518
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,95,80.375,4.875,6.0653
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,100,56.0,2.5,4.4643
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,0,99.5,18.0,18.0905
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,80,97.5,17.25,17.6923
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,90,88.25,12.625,14.3059
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,95,80.75,9.375,11.6099
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,100,27.375,1.625,5.9361
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,0,93.75,7.625,8.1333
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,80,92.5,7.125,7.7027
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,90,86.375,5.0,5.7887
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,95,80.0,3.25,4.0625
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,100,37.625,0.375,0.9967
+google/gemini-2.5-flash,Gemini 2.5 Flash,0,95.4944,13.8924,14.5478
+google/gemini-2.5-flash,Gemini 2.5 Flash,80,93.2416,13.5169,14.4966
+google/gemini-2.5-flash,Gemini 2.5 Flash,90,91.8648,13.0163,14.1689
+google/gemini-2.5-flash,Gemini 2.5 Flash,95,88.6108,11.8899,13.4181
+google/gemini-2.5-flash,Gemini 2.5 Flash,100,78.5982,9.3867,11.9427
+google/gemini-3-flash-preview,Gemini 3 Flash,0,99.875,9.125,9.1364
+google/gemini-3-flash-preview,Gemini 3 Flash,80,99.875,9.125,9.1364
+google/gemini-3-flash-preview,Gemini 3 Flash,90,97.375,7.875,8.0873
+google/gemini-3-flash-preview,Gemini 3 Flash,95,91.25,6.375,6.9863
+google/gemini-3-flash-preview,Gemini 3 Flash,100,78.375,4.25,5.4226
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,0,99.3742,12.8911,12.9723
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,80,99.1239,12.766,12.8788
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,90,95.6195,11.1389,11.6492
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,95,87.6095,7.7597,8.8571
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,100,72.3404,5.1314,7.0934
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,0,96.25,5.125,5.3247
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,80,96.125,5.125,5.3316
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,90,95.375,5.0,5.2425
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,95,94.625,4.75,5.0198
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,100,73.125,1.0,1.3675
+google/gemini-3.7-flash,Gemini 3.7 Flash,0,100.0,7.0,7.0
+google/gemini-3.7-flash,Gemini 3.7 Flash,80,99.75,6.875,6.8922
+google/gemini-3.7-flash,Gemini 3.7 Flash,90,97.0,5.625,5.799
+google/gemini-3.7-flash,Gemini 3.7 Flash,95,95.5,5.0,5.2356
+google/gemini-3.7-flash,Gemini 3.7 Flash,100,58.75,0.5,0.8511
+google/gemini-3.8-flash,Gemini 3.8 Flash,0,99.625,6.375,6.399
+google/gemini-3.8-flash,Gemini 3.8 Flash,80,99.0,6.0,6.0606
+google/gemini-3.8-flash,Gemini 3.8 Flash,90,95.5,4.625,4.8429
+google/gemini-3.8-flash,Gemini 3.8 Flash,95,93.5,3.875,4.1444
+google/gemini-3.8-flash,Gemini 3.8 Flash,100,50.625,0.25,0.4938
+google/gemma-2-27b-it,Gemma 2 27B,0,99.3742,36.5457,36.7758
+google/gemma-2-27b-it,Gemma 2 27B,80,90.9887,34.5432,37.9642
+google/gemma-2-27b-it,Gemma 2 27B,90,82.6033,31.6646,38.3333
+google/gemma-2-27b-it,Gemma 2 27B,95,58.5732,20.2753,34.6154
+google/gemma-2-27b-it,Gemma 2 27B,100,16.5207,6.383,38.6364
+google/gemma-4-31b-it,Gemma 4 31B,0,100.0,12.875,12.875
+google/gemma-4-31b-it,Gemma 4 31B,80,98.75,12.5,12.6582
+google/gemma-4-31b-it,Gemma 4 31B,90,95.125,10.375,10.9067
+google/gemma-4-31b-it,Gemma 4 31B,95,88.125,7.875,8.9362
+google/gemma-4-31b-it,Gemma 4 31B,100,77.25,6.0,7.767
+meta-llama/llama-4-maverick,Llama 4 Maverick,0,99.25,18.25,18.3879
+meta-llama/llama-4-maverick,Llama 4 Maverick,80,94.25,16.25,17.2414
+meta-llama/llama-4-maverick,Llama 4 Maverick,90,76.25,9.375,12.2951
+meta-llama/llama-4-maverick,Llama 4 Maverick,95,65.25,6.25,9.5785
+meta-llama/llama-4-maverick,Llama 4 Maverick,100,58.375,5.625,9.636
+meta/muse-glimmer-30b,Muse Glimmer 30B,0,96.625,12.375,12.8072
+meta/muse-glimmer-30b,Muse Glimmer 30B,80,69.75,2.75,3.9427
+meta/muse-glimmer-30b,Muse Glimmer 30B,90,60.125,2.0,3.3264
+meta/muse-glimmer-30b,Muse Glimmer 30B,95,50.5,1.125,2.2277
+meta/muse-glimmer-30b,Muse Glimmer 30B,100,13.25,0.0,0.0
+mistralai/mistral-medium-3,Mistral Medium 3,0,99.875,19.75,19.7747
+mistralai/mistral-medium-3,Mistral Medium 3,80,94.75,18.125,19.1293
+mistralai/mistral-medium-3,Mistral Medium 3,90,91.875,16.375,17.8231
+mistralai/mistral-medium-3,Mistral Medium 3,95,78.75,11.125,14.127
+mistralai/mistral-medium-3,Mistral Medium 3,100,54.25,5.875,10.8295
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,0,99.75,19.625,19.6742
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,80,95.875,19.0,19.8175
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,90,91.625,16.375,17.8718
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,95,76.625,10.25,13.3768
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,100,54.75,5.625,10.274
+openai/gpt-4.1,GPT-4.1,0,99.875,16.375,16.3955
+openai/gpt-4.1,GPT-4.1,80,98.75,16.125,16.3291
+openai/gpt-4.1,GPT-4.1,90,96.625,14.75,15.2652
+openai/gpt-4.1,GPT-4.1,95,91.5,13.0,14.2077
+openai/gpt-4.1,GPT-4.1,100,63.375,6.625,10.4536
+openai/gpt-4.1-mini,GPT-4.1 Mini,0,99.75,19.0,19.0476
+openai/gpt-4.1-mini,GPT-4.1 Mini,80,99.125,18.875,19.0416
+openai/gpt-4.1-mini,GPT-4.1 Mini,90,93.25,17.0,18.2306
+openai/gpt-4.1-mini,GPT-4.1 Mini,95,68.625,7.125,10.3825
+openai/gpt-4.1-mini,GPT-4.1 Mini,100,21.625,0.625,2.8902
+openai/gpt-4o-2024-08-06,GPT-4o,0,100.0,21.0,21.0
+openai/gpt-4o-2024-08-06,GPT-4o,80,95.75,19.375,20.235
+openai/gpt-4o-2024-08-06,GPT-4o,90,87.5,15.125,17.2857
+openai/gpt-4o-2024-08-06,GPT-4o,95,60.0,8.25,13.75
+openai/gpt-4o-2024-08-06,GPT-4o,100,33.125,5.125,15.4717
+openai/gpt-4o-mini,GPT-4o mini,0,100.0,28.375,28.375
+openai/gpt-4o-mini,GPT-4o mini,80,94.625,26.5,28.0053
+openai/gpt-4o-mini,GPT-4o mini,90,75.0,18.75,25.0
+openai/gpt-4o-mini,GPT-4o mini,95,42.625,6.875,16.129
+openai/gpt-4o-mini,GPT-4o mini,100,15.625,2.5,16.0
+openai/gpt-5.1,GPT-5.1,0,99.875,21.0,21.0263
+openai/gpt-5.1,GPT-5.1,80,90.75,16.25,17.9063
+openai/gpt-5.1,GPT-5.1,90,80.875,12.375,15.3014
+openai/gpt-5.1,GPT-5.1,95,62.375,7.75,12.4248
+openai/gpt-5.1,GPT-5.1,100,34.25,2.5,7.2993
+openai/gpt-5.2,GPT-5.2,0,99.5,10.5,10.5528
+openai/gpt-5.2,GPT-5.2,80,86.75,7.0,8.0692
+openai/gpt-5.2,GPT-5.2,90,75.0,4.375,5.8333
+openai/gpt-5.2,GPT-5.2,95,52.875,1.25,2.3641
+openai/gpt-5.2,GPT-5.2,100,3.625,0.125,3.4483
+openai/gpt-5.4,GPT-5.4,0,99.7497,15.0188,15.0565
+openai/gpt-5.4,GPT-5.4,80,95.2441,12.6408,13.272
+openai/gpt-5.4,GPT-5.4,90,88.7359,10.2628,11.5656
+openai/gpt-5.4,GPT-5.4,95,78.4731,7.2591,9.2504
+openai/gpt-5.4,GPT-5.4,100,20.9011,0.5006,2.3952
+openai/gpt-5.4-nano,GPT-5.4 Nano,0,99.375,32.0,32.2013
+openai/gpt-5.4-nano,GPT-5.4 Nano,80,56.875,13.75,24.1758
+openai/gpt-5.4-nano,GPT-5.4 Nano,90,42.25,8.125,19.2308
+openai/gpt-5.4-nano,GPT-5.4 Nano,95,24.375,3.375,13.8462
+openai/gpt-5.4-nano,GPT-5.4 Nano,100,0.375,0.0,0.0
+openai/gpt-5.5,GPT-5.5,0,99.625,8.25,8.2811
+openai/gpt-5.5,GPT-5.5,80,96.625,6.875,7.1151
+openai/gpt-5.5,GPT-5.5,90,88.125,4.875,5.5319
+openai/gpt-5.5,GPT-5.5,95,78.625,3.0,3.8156
+openai/gpt-5.5,GPT-5.5,100,40.875,0.5,1.2232
+openai/gpt-5.6-luna,GPT-5.6 Luna,0,100.0,12.5,12.5
+openai/gpt-5.6-luna,GPT-5.6 Luna,80,98.0,11.5,11.7347
+openai/gpt-5.6-luna,GPT-5.6 Luna,90,95.125,10.375,10.9067
+openai/gpt-5.6-luna,GPT-5.6 Luna,95,89.75,8.75,9.7493
+openai/gpt-5.6-luna,GPT-5.6 Luna,100,34.25,1.5,4.3796
+openai/gpt-5.6-sol,GPT-5.6 Sol,0,100.0,8.5,8.5
+openai/gpt-5.6-sol,GPT-5.6 Sol,80,97.75,7.75,7.9284
+openai/gpt-5.6-sol,GPT-5.6 Sol,90,95.375,7.125,7.4705
+openai/gpt-5.6-sol,GPT-5.6 Sol,95,89.875,5.875,6.5369
+openai/gpt-5.6-sol,GPT-5.6 Sol,100,36.25,0.25,0.6897
+openai/gpt-5.6-terra,GPT-5.6 Terra,0,100.0,11.125,11.125
+openai/gpt-5.6-terra,GPT-5.6 Terra,80,95.5,9.0,9.4241
+openai/gpt-5.6-terra,GPT-5.6 Terra,90,91.75,7.75,8.4469
+openai/gpt-5.6-terra,GPT-5.6 Terra,95,83.875,5.5,6.5574
+openai/gpt-5.6-terra,GPT-5.6 Terra,100,30.0,0.625,2.0833
+openai/gpt-6-astra,GPT-6 Astra,0,100.0,6.875,6.875
+openai/gpt-6-astra,GPT-6 Astra,80,97.75,6.0,6.1381
+openai/gpt-6-astra,GPT-6 Astra,90,95.0,5.125,5.3947
+openai/gpt-6-astra,GPT-6 Astra,95,90.75,3.875,4.27
+openai/gpt-6-astra,GPT-6 Astra,100,46.25,0.375,0.8108
+openai/gpt-6-luna,GPT-6 Luna,0,99.875,10.375,10.388
+openai/gpt-6-luna,GPT-6 Luna,80,97.0,9.25,9.5361
+openai/gpt-6-luna,GPT-6 Luna,90,93.75,8.375,8.9333
+openai/gpt-6-luna,GPT-6 Luna,95,85.5,5.75,6.7251
+openai/gpt-6-luna,GPT-6 Luna,100,28.75,0.625,2.1739
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,0,99.875,9.75,9.7622
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,80,96.625,9.0,9.3144
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,90,91.5,7.0,7.6503
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,95,84.5,5.25,6.213
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,100,26.0,0.625,2.4038
+openai/gpt-6-sol,GPT-6 Sol,0,99.875,8.75,8.761
+openai/gpt-6-sol,GPT-6 Sol,80,95.625,6.75,7.0588
+openai/gpt-6-sol,GPT-6 Sol,90,89.25,4.75,5.3221
+openai/gpt-6-sol,GPT-6 Sol,95,83.875,3.875,4.62
+openai/gpt-6-sol,GPT-6 Sol,100,30.75,0.0,0.0
+openai/gpt-6.1-sol,GPT-6.1 Sol,0,100.0,6.5,6.5
+openai/gpt-6.1-sol,GPT-6.1 Sol,80,98.375,5.75,5.845
+openai/gpt-6.1-sol,GPT-6.1 Sol,90,95.5,5.0,5.2356
+openai/gpt-6.1-sol,GPT-6.1 Sol,95,91.0,4.25,4.6703
+openai/gpt-6.1-sol,GPT-6.1 Sol,100,46.5,0.375,0.8065
+openai/o4-mini,o4-mini,0,99.0,12.875,13.0051
+openai/o4-mini,o4-mini,80,95.25,11.375,11.9423
+openai/o4-mini,o4-mini,90,85.5,8.0,9.3567
+openai/o4-mini,o4-mini,95,55.125,3.0,5.4422
+openai/o4-mini,o4-mini,100,19.5,0.25,1.2821
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,0,99.625,24.875,24.9686
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,80,88.875,21.875,24.6132
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,90,65.0,13.25,20.3846
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,95,51.625,8.5,16.4649
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,100,40.375,5.75,14.2415
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,0,95.125,34.5,36.2681
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,80,92.375,33.5,36.2652
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,90,60.125,21.0,34.9272
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,95,57.25,19.125,33.4061
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,100,31.0,7.125,22.9839
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,0,97.622,14.6433,15.0
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,80,96.4956,14.1427,14.6563
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,90,92.9912,12.766,13.7281
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,95,91.1139,11.8899,13.0495
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,100,27.4093,1.0013,3.653

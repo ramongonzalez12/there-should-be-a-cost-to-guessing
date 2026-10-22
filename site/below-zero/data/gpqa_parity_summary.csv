@@ -1,0 +1,19 @@
+metric,value,unit,note
+graded_on,2026-08-16,date,Generation and deterministic grading completed.
+complete_runs_passing,6,count,Models whose full planned run landed inside its diagnostic interval.
+fully_recorded_passes,1,count,Passing models with the exact ordered prompt and hash stored at inference time.
+reconstructed_passes,5,count,Passing models whose prompts were reconstructed from frozen items and committed code.
+invalid_attempts,3,count,Models attempted but excluded by the validity rules.
+incomplete_smokes,3,count,One-item connection checks that are not replication evidence.
+companies_passing,5,count,Distinct model companies represented by the six passing runs.
+items_per_complete_run,198,count,"All GPQA Diamond items, one pass@1 response each."
+published_repeats,5,count,Repeats behind each Artificial Analysis published score.
+published_trials,990,count,Trials behind each published score: 198 items times five repeats.
+format_failure_threshold,0.05,fraction,Pre-registered ceiling on unparseable responses before an arm is invalid.
+parity_cost_usd,43.007847235,usd,Provider-reported cost of every GPQA parity row including connection checks and excluded runs.
+database_cost_usd,45.312908525,usd,Whole database including earlier Stage 1 work.
+openrouter_key_usage_usd,46.211274905,usd,OpenRouter key-level usage observed after the final validation call.
+provider_database_gap_usd,0.89836638,usd,Key-level usage not attributed to the current database; preserved rather than silently assigned.
+spend_ceiling_usd,50,usd,Authorised ceiling for this validation work.
+attempts_logged,1448,count,GPQA standard-arm rows in the append-only attempt ledger.
+distinct_parity_keys,1430,count,Distinct GPQA standard-arm keys. The difference is preserved explicit retries rather than silent overwrites.

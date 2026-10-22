@@ -1,0 +1,23 @@
+benchmark_key,benchmark,responses,uncertainty_or_decline_responses,uncertainty_or_decline_pct
+MMMU-Open-Ended,MMMU-Open-Ended,583,28,4.803
+hle,Humanity's Last Exam,6306,222,3.52
+gpqa-diamond,GPQA Diamond,13662,354,2.591
+reward-bench-2,reward-bench-2,95148,1360,1.429
+MathVista,MathVista,9000,108,1.2
+cyse2_interpreter_abuse,CyberSecEval 2 (interpreter abuse),20000,183,0.915
+cyse2_prompt_injection,CyberSecEval 2 (prompt injection),10040,91,0.906
+math-mc,MATH (multiple choice),353808,1857,0.525
+MMMU-Multiple-Choice,MMMU-Multiple-Choice,10164,32,0.315
+gsm-mc,GSM (multiple choice),93649,286,0.305
+frontiermath,FrontierMath,880,2,0.227
+openai_humaneval,HumanEval,1968,1,0.051
+MMLU-Pro,MMLU-Pro,168432,31,0.018
+piqa,PIQA,18380,1,0.005
+hellaswag,HellaSwag,140588,0,0.0
+cyse2_vulnerability_exploit,CyberSecEval 2 (vulnerability exploit),25739,0,0.0
+mbpp,MBPP,15420,0,0.0
+gsm8k,GSM8K,14509,0,0.0
+commonsense_qa,CommonsenseQA,13431,0,0.0
+gpqa_diamond,GPQA Diamond (alt run),7880,0,0.0
+big_bench_hard,BIG-Bench Hard,3750,0,0.0
+theory_of_mind,Theory of Mind,100,0,0.0

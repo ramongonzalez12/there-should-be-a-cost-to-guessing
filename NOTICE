@@ -1,0 +1,39 @@
+NOTICE
+
+This repository's code is MIT licensed (LICENSE) and its data CC BY 4.0
+(LICENSE-DATA). It refers to, but does not redistribute, the third-party
+materials below. Item ids and reference answers in data/ remain under each
+source's terms.
+
+Benchmarks in the essay's battery (data/essay/)
+  MMLU-Pro (TIGER-Lab): MIT (Hugging Face dataset), Apache 2.0 (GitHub).
+  GPQA Diamond (Rein et al.): CC BY 4.0 (data), MIT (code). The authors ask
+    that examples not be revealed in plain text or images online; no question
+    text is included, and item ids are opaque hashes.
+  MedMCQA: Apache 2.0 (Hugging Face), MIT (GitHub).
+  MATH-500 (HuggingFaceH4, from Hendrycks et al. MATH): no license on the
+    dataset card; Art of Problem Solving claims the problems and solutions.
+    Reference answers are withheld; parsed answers and verdicts ship.
+  BoolQ (Google): CC BY-SA 3.0.
+  TruthfulQA (Lin et al.): Apache 2.0.
+  ETHICS (Hendrycks et al.): MIT.
+  BBQ (Parrish et al.): CC BY 4.0.
+
+Census source
+  EvalEval EEE datastore: MIT; individual records remain subject to the
+    terms of their original sources. Counts and rates only.
+
+Base models of the training recipe (adapters, if released, carry these terms)
+  Qwen3-8B (Qwen): Apache 2.0.
+  NVIDIA Nemotron 3 Nano 30B A3B: Licensed by NVIDIA Corporation under the
+    NVIDIA Nemotron Model License (NVIDIA Nemotron Open Model License).
+  NVIDIA Nemotron 3.5 Lightning 30B A3B: OpenMDW 1.1.
+
+Duties attached to model outputs in the graded rows
+  Models trained on outputs of Llama models must be named with a "Llama"
+    prefix and show "Built with Llama" (Llama license).
+  Models trained on outputs of Qwen 2.5 models must display "Built with
+    Qwen" or "Improved using Qwen" (Qwen 2.5 license).
+  Models trained on outputs of Gemma 2 or Gemma 3 are Model Derivatives
+    under the Gemma terms, whose prohibited-use policy follows them.
+  DeepSeek's platform terms ask that AI-generated content be disclosed.

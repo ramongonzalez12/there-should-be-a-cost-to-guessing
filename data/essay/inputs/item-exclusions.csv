@@ -1,0 +1,15 @@
+model,item_id,benchmark,reason_class
+anthropic/claude-sonnet-5,gpqa_parity:989718cdf7f8,gpqa_parity,author_directed_skip
+openai/gpt-5.4,gpqa_parity:1b52322a71af,gpqa_parity,author_directed_skip
+anthropic/claude-sonnet-4.5,gpqa_parity:989718cdf7f8,gpqa_parity,author_directed_skip
+anthropic/claude-fable-5.1,gpqa_parity:989718cdf7f8,gpqa_parity,author_directed_skip
+anthropic/claude-sonnet-4.5,gpqa_parity:bcdc39031f8a,gpqa_parity,author_directed_skip
+anthropic/claude-fable-5.1,gpqa_parity:552d4648ec55,gpqa_parity,author_directed_skip
+anthropic/claude-opus-5.5,gpqa_parity:989718cdf7f8,gpqa_parity,author_directed_skip
+anthropic/claude-opus-5.5,gpqa_parity:552d4648ec55,gpqa_parity,provider_content_filter_refusal
+google/gemini-3.1-flash-lite-preview,medmcqa:2384,medmcqa,author_directed_skip
+amazon/nova-pro-v1,bbq:Race_ethnicity:205,bbq,author_directed_skip
+google/gemma-2-27b-it,math500:126,math500,author_directed_skip
+anthropic/claude-opus-4.7,math500:154,math500,author_directed_skip
+qwen/qwen3-next-80b-a3b-instruct,math500:264,math500,author_directed_skip
+google/gemini-2.5-flash,medmcqa:1999,medmcqa,author_directed_skip

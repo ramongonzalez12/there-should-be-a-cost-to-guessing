@@ -1,0 +1,104 @@
+{
+  "study_id": "answer-presence-10k-v1",
+  "status": "automated audit complete; independent human verification pending",
+  "completed_date": "2026-09-20",
+  "source_dataset": "evaleval/EEE_datastore",
+  "source_revision": "cafb5f9ce1eef110b9f90cd90b3752ed7f743e9b",
+  "sampling_seed": "e01e0602f84321cb9ffebe1820a087dd4104e5b0d583a5ca686f9e7378ad610b",
+  "sample_sha256": "f2e74b534cc5b0e25e2f93265a0f9d86a511929ef720d2226e5cf0e3ddcda2d8",
+  "benchmark_entries": [
+    "MMLU-Pro",
+    "MMMU-Multiple-Choice",
+    "MMMU-Open-Ended",
+    "MathVista",
+    "big_bench_hard",
+    "commonsense_qa",
+    "frontiermath",
+    "gpqa-diamond",
+    "gpqa_diamond",
+    "gsm-mc",
+    "gsm8k",
+    "hellaswag",
+    "hle",
+    "math-mc",
+    "piqa",
+    "theory_of_mind"
+  ],
+  "source_model_ids": 92,
+  "observed_cells": 333,
+  "review_model": "gpt-5.6-luna",
+  "review_reasoning": "low",
+  "passes": 2,
+  "sampling_design": "Uniform random sample without replacement; coverage supplement excluded from primary percentage",
+  "unit": "Published graded question/model/run record; may contain multiple assistant attempts",
+  "answer_definition": "Identifiable proposed answer in assistant text or an explicit answer-submission call, regardless of correctness; computation alone does not establish an answer",
+  "scope_exclusions": "Three CyberSecEval 2 suites, HumanEval, MBPP and RewardBench 2 excluded from the earlier 22-entry one-checkable-answer group",
+  "representation_correction": {
+    "records": 192,
+    "primary": 89,
+    "coverage": 103,
+    "all_affected_records_re_reviewed": true,
+    "original_results_retained": true,
+    "original_primary_answer_rates": {
+      "pass_a": 0.986,
+      "pass_b": 0.9879
+    }
+  },
+  "population_n": 855122,
+  "primary_n": 10000,
+  "coverage_n": 965,
+  "primary_counts": {
+    "pass_a": {
+      "answer": 9890,
+      "other_nonanswer": 101,
+      "unresolved": 6,
+      "explicit_abstention": 3
+    },
+    "pass_b": {
+      "answer": 9903,
+      "other_nonanswer": 88,
+      "unresolved": 4,
+      "explicit_abstention": 5
+    }
+  },
+  "primary_both_answer": 9871,
+  "primary_either_answer": 9922,
+  "primary_label_disagreements": 54,
+  "sampling_only_intervals": {
+    "pass_a": {
+      "count": 9890,
+      "fraction": 0.989,
+      "confidence": 0.99,
+      "lower": 0.986038249512935,
+      "upper": 0.9914889337427876,
+      "secondary_95_lower": 0.9867703087980428,
+      "secondary_95_upper": 0.9909393045670676
+    },
+    "pass_b": {
+      "count": 9903,
+      "fraction": 0.9903,
+      "confidence": 0.99,
+      "lower": 0.9874976903880383,
+      "upper": 0.9926267830789057,
+      "secondary_95_lower": 0.988192328112246,
+      "secondary_95_upper": 0.9921169143116421
+    },
+    "both_answer": {
+      "count": 9871,
+      "fraction": 0.9871,
+      "confidence": 0.99,
+      "lower": 0.9839215924745242,
+      "upper": 0.9898084717736183,
+      "secondary_95_lower": 0.9847051064058696,
+      "secondary_95_upper": 0.9892062185278826
+    }
+  },
+  "human_validation_present": false,
+  "primary_escalations_n": 129,
+  "all_escalations_n": 228,
+  "verification_n": 2000,
+  "human_queue_n": 2228,
+  "result_artifact_sha256": "f933b29aad4dccb2287f6f5d1baf3ca7869c5f1995314d1994311ab3c7dbd4df",
+  "labels_artifact_sha256": "b68f5b389a6971c43678ca4ea6ede9d8409b4c05d3453acef44d66e409c87051",
+  "results_commit": "ee57e51130f49bfb889994d61f28269e16beb43a"
+}

@@ -1,0 +1,209 @@
+{
+  "arm_summaries": [
+    {
+      "arm": "hedge_placebo",
+      "model_benchmark_cells": 104,
+      "answer_rate": 0.9535576923076923,
+      "usable_confidence_rate": 0.9433653846153847,
+      "accuracy": 0.8243724316152534,
+      "confidence": 0.7622010490826804,
+      "confidence_gap": -0.062171382532573,
+      "calibrated_score": 0.6362306538461537,
+      "parse_failure_rate": 0.010192307692307693,
+      "mean_absolute_confidence_gap": 0.12024182895883698
+    },
+    {
+      "arm": "quad_worked_example",
+      "model_benchmark_cells": 104,
+      "answer_rate": 0.9703846153846154,
+      "usable_confidence_rate": 0.9572115384615384,
+      "accuracy": 0.8280275956425249,
+      "confidence": 0.9074258568079279,
+      "confidence_gap": 0.07939826116540304,
+      "calibrated_score": 0.6483473697346154,
+      "parse_failure_rate": 0.013173076923076925,
+      "mean_absolute_confidence_gap": 0.10414558805172815
+    }
+  ],
+  "contrasts_vs_integrated_cells": {
+    "hedge_placebo_vs_control": {
+      "confidence": {
+        "delta": -0.1587838284768292,
+        "ci_low": -0.17883042834125096,
+        "ci_high": -0.14040803781471814
+      },
+      "accuracy": {
+        "delta": -0.004702924392374583,
+        "ci_low": -0.01059396143978503,
+        "ci_high": 0.0011872234502021592
+      },
+      "signed_gap": {
+        "delta": -0.1540809040844546,
+        "ci_low": -0.17314037046269679,
+        "ci_high": -0.13619989368478846
+      },
+      "absolute_gap": {
+        "delta": 0.00866924776012991,
+        "ci_low": -0.014495866107428857,
+        "ci_high": 0.03162695131059866
+      },
+      "calibrated_score": {
+        "delta": -0.0009761586538461534,
+        "ci_low": -0.01736836538461539,
+        "ci_high": 0.0156226826923077
+      },
+      "cells_gap_closer": 45,
+      "cells_score_improved": 45
+    },
+    "hedge_placebo_vs_quad_score_only": {
+      "confidence": {
+        "delta": -0.1519592285158514,
+        "ci_low": -0.16976804640545076,
+        "ci_high": -0.13541790528967962
+      },
+      "accuracy": {
+        "delta": -0.004159645216288601,
+        "ci_low": -0.009918141637591926,
+        "ci_high": 0.0014734124100003845
+      },
+      "signed_gap": {
+        "delta": -0.1477995832995628,
+        "ci_low": -0.1646278460637616,
+        "ci_high": -0.13162602728702713
+      },
+      "absolute_gap": {
+        "delta": 0.013338653008227423,
+        "ci_low": -0.009047069186408043,
+        "ci_high": 0.035530023261610595
+      },
+      "calibrated_score": {
+        "delta": -0.006600052884615396,
+        "ci_low": -0.02130750480769232,
+        "ci_high": 0.008233418269230755
+      },
+      "cells_gap_closer": 45,
+      "cells_score_improved": 45
+    },
+    "quad_worked_example_vs_control": {
+      "confidence": {
+        "delta": -0.013559020751581675,
+        "ci_low": -0.018678019773074976,
+        "ci_high": -0.008802052309993319
+      },
+      "accuracy": {
+        "delta": -0.0010477603651031,
+        "ci_low": -0.0070077133742012096,
+        "ci_high": 0.0052994899873506675
+      },
+      "signed_gap": {
+        "delta": -0.012511260386478576,
+        "ci_low": -0.02086087232124735,
+        "ci_high": -0.004326548268514445
+      },
+      "absolute_gap": {
+        "delta": -0.0074269931469789175,
+        "ci_low": -0.015962915983934352,
+        "ci_high": 0.0005850122494531346
+      },
+      "calibrated_score": {
+        "delta": 0.011140557234615395,
+        "ci_low": -0.006005749999999986,
+        "ci_high": 0.028508989926923092
+      },
+      "cells_gap_closer": 53,
+      "cells_score_improved": 58
+    },
+    "quad_worked_example_vs_quad_score_only": {
+      "confidence": {
+        "delta": -0.00673442079060388,
+        "ci_low": -0.008961999116740059,
+        "ci_high": -0.0046531981925324595
+      },
+      "accuracy": {
+        "delta": -0.0005044811890171172,
+        "ci_low": -0.00491950198225186,
+        "ci_high": 0.003682339622336509
+      },
+      "signed_gap": {
+        "delta": -0.0062299396015867625,
+        "ci_low": -0.010942723492240534,
+        "ci_high": -0.0014458755772011915
+      },
+      "absolute_gap": {
+        "delta": -0.0027575878988814057,
+        "ci_low": -0.007147855627406304,
+        "ci_high": 0.0016138780924507834
+      },
+      "calibrated_score": {
+        "delta": 0.0055166630038461515,
+        "ci_low": -0.003317135530769231,
+        "ci_high": 0.014592197115384616
+      },
+      "cells_gap_closer": 59,
+      "cells_score_improved": 59
+    },
+    "hedge_placebo_vs_rerun_control": {
+      "confidence": {
+        "delta": -0.1589456846794678,
+        "ci_low": -0.17883147044930597,
+        "ci_high": -0.14042845702472498
+      },
+      "accuracy": {
+        "delta": -0.005596229464421281,
+        "ci_low": -0.011245805351680358,
+        "ci_high": -4.4761704890725915e-05
+      },
+      "signed_gap": {
+        "delta": -0.15334945521504653,
+        "ci_low": -0.17219942742308258,
+        "ci_high": -0.13572111242687573
+      },
+      "absolute_gap": {
+        "delta": 0.010681158077288665,
+        "ci_low": -0.012219031945827548,
+        "ci_high": 0.03346005658726828
+      },
+      "calibrated_score": {
+        "delta": -0.00614334615384616,
+        "ci_low": -0.02203025961538463,
+        "ci_high": 0.009861884615384602
+      },
+      "cells_gap_closer": 45,
+      "cells_score_improved": 47
+    },
+    "quad_worked_example_vs_rerun_control": {
+      "confidence": {
+        "delta": -0.013720876954220286,
+        "ci_low": -0.018981906658898668,
+        "ci_high": -0.008771381648862634
+      },
+      "accuracy": {
+        "delta": -0.001941065437149797,
+        "ci_low": -0.008259929369044362,
+        "ci_high": 0.004661726567615047
+      },
+      "signed_gap": {
+        "delta": -0.01177981151707049,
+        "ci_low": -0.020028841225077938,
+        "ci_high": -0.0033926348850895206
+      },
+      "absolute_gap": {
+        "delta": -0.005415082829820164,
+        "ci_low": -0.01368072702398393,
+        "ci_high": 0.002540697404417741
+      },
+      "calibrated_score": {
+        "delta": 0.0059733697346153886,
+        "ci_low": -0.011191477334615372,
+        "ci_high": 0.02271386973461539
+      },
+      "cells_gap_closer": 58,
+      "cells_score_improved": 57
+    }
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20260827,
+    "unit": "model_benchmark_cell"
+  }
+}

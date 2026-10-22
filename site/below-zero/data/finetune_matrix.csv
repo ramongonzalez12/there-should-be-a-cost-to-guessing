@@ -1,0 +1,25 @@
+checkpoint,checkpoint_label,prompt_condition,prompt_label,seed,n,accuracy,abstention_rate,mean_confidence,over_under_confidence,calibrated_score,items_sha256
+base,Untuned base,neutral,Answer normally and give a confidence,0,200,0.6,0.115,0.8958,0.2958,0.3905,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+base,Untuned base,neutral,Answer normally and give a confidence,1,200,0.6,0.115,0.8949,0.2949,0.3902,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+base,Untuned base,neutral,Answer normally and give a confidence,mean,400,0.6,0.115,0.8953,0.2953,0.3903,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+base,Untuned base,quadratic,Maximise the confidence-calibrated score,0,200,0.59,0.13,0.8495,0.2595,0.389,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+base,Untuned base,quadratic,Maximise the confidence-calibrated score,1,200,0.59,0.135,0.8489,0.2589,0.3963,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+base,Untuned base,quadratic,Maximise the confidence-calibrated score,mean,400,0.59,0.1325,0.8492,0.2592,0.3927,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+binary,Accuracy only,neutral,Answer normally and give a confidence,0,200,0.655,0.0,0.9567,0.3017,0.3421,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+binary,Accuracy only,neutral,Answer normally and give a confidence,1,200,0.65,0.0,0.9572,0.3072,0.3343,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+binary,Accuracy only,neutral,Answer normally and give a confidence,mean,400,0.6525,0.0,0.957,0.3045,0.3382,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+binary,Accuracy only,quadratic,Maximise the confidence-calibrated score,0,200,0.615,0.0,0.9354,0.3204,0.2768,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+binary,Accuracy only,quadratic,Maximise the confidence-calibrated score,1,200,0.63,0.005,0.9184,0.2884,0.3257,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+binary,Accuracy only,quadratic,Maximise the confidence-calibrated score,mean,400,0.6225,0.0025,0.9269,0.3044,0.3013,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quadratic,Confidence-calibrated,neutral,Answer normally and give a confidence,0,200,0.62,0.0,0.453,-0.167,0.4094,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quadratic,Confidence-calibrated,neutral,Answer normally and give a confidence,1,200,0.645,0.0,0.632,-0.013,0.4762,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quadratic,Confidence-calibrated,neutral,Answer normally and give a confidence,mean,400,0.6325,0.0,0.5425,-0.09,0.4428,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quadratic,Confidence-calibrated,quadratic,Maximise the confidence-calibrated score,0,200,0.63,0.0,0.5454,-0.0846,0.4302,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quadratic,Confidence-calibrated,quadratic,Maximise the confidence-calibrated score,1,200,0.625,0.01,0.7185,0.0935,0.425,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quadratic,Confidence-calibrated,quadratic,Maximise the confidence-calibrated score,mean,400,0.6275,0.005,0.6319,0.0044,0.4276,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quad_cost,Confidence-calibrated + fixed cost,neutral,Answer normally and give a confidence,0,200,0.645,0.0,0.6787,0.0337,0.4658,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quad_cost,Confidence-calibrated + fixed cost,neutral,Answer normally and give a confidence,1,200,0.645,0.0,0.7935,0.1485,0.4199,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quad_cost,Confidence-calibrated + fixed cost,neutral,Answer normally and give a confidence,mean,400,0.645,0.0,0.7361,0.0911,0.4428,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quad_cost,Confidence-calibrated + fixed cost,quadratic,Maximise the confidence-calibrated score,0,200,0.63,0.0,0.6944,0.0644,0.4337,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quad_cost,Confidence-calibrated + fixed cost,quadratic,Maximise the confidence-calibrated score,1,200,0.63,0.01,0.7798,0.1498,0.377,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1
+quad_cost,Confidence-calibrated + fixed cost,quadratic,Maximise the confidence-calibrated score,mean,400,0.63,0.005,0.7371,0.1071,0.4054,67c43b27601416a6f7f64eaeafa3915f7546dee07a4613be3cc4fefd0fae24b1

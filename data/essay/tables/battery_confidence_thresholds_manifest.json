@@ -1,0 +1,330 @@
+{
+  "cohort_sha256": "31e1deaf92cc9ab35626d37a9b4b7efcb03044be06ac324c28d393cf802f2e2b",
+  "source_sha256": {
+    "responses.jsonl.gz": "228f078855ac7c7db339b430dd3bdabdd2b919ea6e5633b764cf5497ef40a173"
+  },
+  "output_sha256": "99b27c992f3bf154959193f3f8795507031a755b0566d09ec38772d102089beb",
+  "models": 50,
+  "rows": 400,
+  "thresholds": [
+    0,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    1
+  ],
+  "published_cell_metrics_reproduced": true,
+  "confidence_audit": {
+    "amazon/nova-pro-v1": {
+      "usable": 795,
+      "above_40": 792,
+      "wrong": 218,
+      "wrong_above_40": 217
+    },
+    "anthropic/claude-3-haiku": {
+      "usable": 798,
+      "above_40": 798,
+      "wrong": 363,
+      "wrong_above_40": 363
+    },
+    "anthropic/claude-fable-5.1": {
+      "usable": 795,
+      "above_40": 795,
+      "wrong": 42,
+      "wrong_above_40": 42
+    },
+    "anthropic/claude-haiku-4.5": {
+      "usable": 796,
+      "above_40": 769,
+      "wrong": 151,
+      "wrong_above_40": 133
+    },
+    "anthropic/claude-haiku-5.5": {
+      "usable": 797,
+      "above_40": 791,
+      "wrong": 94,
+      "wrong_above_40": 90
+    },
+    "anthropic/claude-opus-4.7": {
+      "usable": 793,
+      "above_40": 793,
+      "wrong": 63,
+      "wrong_above_40": 63
+    },
+    "anthropic/claude-opus-4.8": {
+      "usable": 799,
+      "above_40": 798,
+      "wrong": 68,
+      "wrong_above_40": 67
+    },
+    "anthropic/claude-opus-5": {
+      "usable": 797,
+      "above_40": 797,
+      "wrong": 46,
+      "wrong_above_40": 46
+    },
+    "anthropic/claude-opus-5.5": {
+      "usable": 797,
+      "above_40": 795,
+      "wrong": 35,
+      "wrong_above_40": 34
+    },
+    "anthropic/claude-sonnet-4": {
+      "usable": 799,
+      "above_40": 797,
+      "wrong": 120,
+      "wrong_above_40": 118
+    },
+    "anthropic/claude-sonnet-4.5": {
+      "usable": 797,
+      "above_40": 789,
+      "wrong": 96,
+      "wrong_above_40": 90
+    },
+    "anthropic/claude-sonnet-4.6": {
+      "usable": 797,
+      "above_40": 787,
+      "wrong": 89,
+      "wrong_above_40": 82
+    },
+    "anthropic/claude-sonnet-5": {
+      "usable": 776,
+      "above_40": 776,
+      "wrong": 67,
+      "wrong_above_40": 67
+    },
+    "cohere/command-r-plus-08-2024": {
+      "usable": 782,
+      "above_40": 750,
+      "wrong": 310,
+      "wrong_above_40": 308
+    },
+    "deepseek/deepseek-v4-flash": {
+      "usable": 727,
+      "above_40": 727,
+      "wrong": 74,
+      "wrong_above_40": 74
+    },
+    "deepseek/deepseek-v4-pro-0813": {
+      "usable": 796,
+      "above_40": 796,
+      "wrong": 144,
+      "wrong_above_40": 144
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "usable": 750,
+      "above_40": 750,
+      "wrong": 61,
+      "wrong_above_40": 61
+    },
+    "google/gemini-2.5-flash": {
+      "usable": 763,
+      "above_40": 752,
+      "wrong": 111,
+      "wrong_above_40": 110
+    },
+    "google/gemini-3-flash-preview": {
+      "usable": 799,
+      "above_40": 799,
+      "wrong": 73,
+      "wrong_above_40": 73
+    },
+    "google/gemini-3.1-flash-lite-preview": {
+      "usable": 794,
+      "above_40": 794,
+      "wrong": 103,
+      "wrong_above_40": 103
+    },
+    "google/gemini-3.1-pro-preview": {
+      "usable": 770,
+      "above_40": 770,
+      "wrong": 41,
+      "wrong_above_40": 41
+    },
+    "google/gemini-3.7-flash": {
+      "usable": 800,
+      "above_40": 800,
+      "wrong": 56,
+      "wrong_above_40": 56
+    },
+    "google/gemini-3.8-flash": {
+      "usable": 797,
+      "above_40": 797,
+      "wrong": 51,
+      "wrong_above_40": 51
+    },
+    "google/gemma-2-27b-it": {
+      "usable": 794,
+      "above_40": 783,
+      "wrong": 292,
+      "wrong_above_40": 292
+    },
+    "google/gemma-4-31b-it": {
+      "usable": 800,
+      "above_40": 800,
+      "wrong": 103,
+      "wrong_above_40": 103
+    },
+    "meta-llama/llama-4-maverick": {
+      "usable": 794,
+      "above_40": 772,
+      "wrong": 146,
+      "wrong_above_40": 137
+    },
+    "meta/muse-glimmer-30b": {
+      "usable": 773,
+      "above_40": 729,
+      "wrong": 99,
+      "wrong_above_40": 76
+    },
+    "mistralai/mistral-medium-3": {
+      "usable": 799,
+      "above_40": 788,
+      "wrong": 158,
+      "wrong_above_40": 158
+    },
+    "mistralai/mistral-medium-3-5": {
+      "usable": 798,
+      "above_40": 787,
+      "wrong": 157,
+      "wrong_above_40": 157
+    },
+    "openai/gpt-4.1": {
+      "usable": 799,
+      "above_40": 799,
+      "wrong": 131,
+      "wrong_above_40": 131
+    },
+    "openai/gpt-4.1-mini": {
+      "usable": 798,
+      "above_40": 798,
+      "wrong": 152,
+      "wrong_above_40": 152
+    },
+    "openai/gpt-4o-2024-08-06": {
+      "usable": 800,
+      "above_40": 796,
+      "wrong": 168,
+      "wrong_above_40": 168
+    },
+    "openai/gpt-4o-mini": {
+      "usable": 800,
+      "above_40": 797,
+      "wrong": 227,
+      "wrong_above_40": 227
+    },
+    "openai/gpt-5.1": {
+      "usable": 799,
+      "above_40": 798,
+      "wrong": 168,
+      "wrong_above_40": 167
+    },
+    "openai/gpt-5.2": {
+      "usable": 796,
+      "above_40": 796,
+      "wrong": 84,
+      "wrong_above_40": 84
+    },
+    "openai/gpt-5.4": {
+      "usable": 797,
+      "above_40": 793,
+      "wrong": 120,
+      "wrong_above_40": 118
+    },
+    "openai/gpt-5.4-nano": {
+      "usable": 795,
+      "above_40": 715,
+      "wrong": 256,
+      "wrong_above_40": 226
+    },
+    "openai/gpt-5.5": {
+      "usable": 797,
+      "above_40": 796,
+      "wrong": 66,
+      "wrong_above_40": 65
+    },
+    "openai/gpt-5.6-luna": {
+      "usable": 800,
+      "above_40": 798,
+      "wrong": 100,
+      "wrong_above_40": 98
+    },
+    "openai/gpt-5.6-sol": {
+      "usable": 800,
+      "above_40": 800,
+      "wrong": 68,
+      "wrong_above_40": 68
+    },
+    "openai/gpt-5.6-terra": {
+      "usable": 800,
+      "above_40": 797,
+      "wrong": 89,
+      "wrong_above_40": 87
+    },
+    "openai/gpt-6-astra": {
+      "usable": 800,
+      "above_40": 797,
+      "wrong": 55,
+      "wrong_above_40": 54
+    },
+    "openai/gpt-6-luna": {
+      "usable": 799,
+      "above_40": 796,
+      "wrong": 83,
+      "wrong_above_40": 80
+    },
+    "openai/gpt-6-luna-pro": {
+      "usable": 799,
+      "above_40": 798,
+      "wrong": 78,
+      "wrong_above_40": 78
+    },
+    "openai/gpt-6-sol": {
+      "usable": 799,
+      "above_40": 794,
+      "wrong": 70,
+      "wrong_above_40": 66
+    },
+    "openai/gpt-6.1-sol": {
+      "usable": 800,
+      "above_40": 798,
+      "wrong": 52,
+      "wrong_above_40": 50
+    },
+    "openai/o4-mini": {
+      "usable": 792,
+      "above_40": 789,
+      "wrong": 103,
+      "wrong_above_40": 102
+    },
+    "qwen/qwen-2.5-72b-instruct": {
+      "usable": 797,
+      "above_40": 786,
+      "wrong": 199,
+      "wrong_above_40": 198
+    },
+    "qwen/qwen-2.5-7b-instruct": {
+      "usable": 761,
+      "above_40": 758,
+      "wrong": 276,
+      "wrong_above_40": 276
+    },
+    "qwen/qwen3-next-80b-a3b-instruct": {
+      "usable": 780,
+      "above_40": 779,
+      "wrong": 117,
+      "wrong_above_40": 117
+    }
+  },
+  "confidence_audit_policy": "Strictly greater than 40% corrected confidence among usable baseline answers; declines and malformed responses excluded.",
+  "denominators": {
+    "wrong_among_accepted": "wrong / accepted; undefined if no answers pass",
+    "coverage": "accepted / all questions",
+    "wrong_per_question": "wrong / all questions"
+  },
+  "policy": "Accept usable baseline answers with corrected confidence >= threshold. No model or answer changes.",
+  "weighting": "Pool questions within each model. Across models, weight models equally rather than pooling unequal run sizes."
+}

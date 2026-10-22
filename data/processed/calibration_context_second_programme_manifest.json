@@ -1,0 +1,18 @@
+{
+  "programme": "second_programme_v1",
+  "training_matched_responses": 30744,
+  "training_baseline_responses": 3294,
+  "families": [
+    "GPT-OSS 20B",
+    "Nemotron 3 Nano 30B",
+    "Qwen3 8B"
+  ],
+  "sources": {
+    "runs/finetune/second_programme_v1/qwen/eval_final_batteries/responses.jsonl": "2baa29b7dbddd97685c583ec9b60148477fd457fd84d1dea8bcf992defa94dbf",
+    "runs/finetune/second_programme_v1/gpt_oss/eval_final_batteries/responses.jsonl": "d6f92fe4785dac624b79ba9aeb31eecbffb22c865b5c693de8cd0f5af20c8d66",
+    "runs/finetune/second_programme_v1/nemotron/eval_final_batteries/responses.jsonl": "576dc55ea1cf4a949471df34a5696ffc09abd9611fa10067e40fc235a5f79370"
+  },
+  "outputs": [
+    "data/processed/pooled_training_levels.csv"
+  ]
+}

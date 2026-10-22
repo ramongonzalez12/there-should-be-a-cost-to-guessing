@@ -1,0 +1,16 @@
+{
+  "actual_spend_usd": 1.125826497,
+  "candidate_families": 2,
+  "exported_at": "2026-08-23T17:28:11.367149+00:00",
+  "full_profile_responses": 1920,
+  "git_commit": "55e819cdc73df5d7d94e8ab2ff5b332495f7e096",
+  "hard_program_cap_usd": 20.0,
+  "outputs": [
+    "data/processed/openweight_family_gates.csv",
+    "data/processed/openweight_family_spend.csv"
+  ],
+  "reward_training_runs": 0,
+  "run_root": "runs/finetune/openweight_family_v1",
+  "schema_version": 1,
+  "unspent_authorization_usd": 18.874173503
+}

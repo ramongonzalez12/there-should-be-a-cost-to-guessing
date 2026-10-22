@@ -1,0 +1,12 @@
+track,model,paired_n,abstention_change_pp,error_change_pp,confidence_change_pp,quadratic_score_change,switches_into_abstention,switches_out_of_abstention,exact_p
+simpleqa,DeepSeek V4 Pro,50,34,-20,-30.8,0.083,18,1,0.0001
+simpleqa,Gemini 3.7 Flash,50,14,-10,-18.8,0.022,7,0,0.0156
+simpleqa,Mistral Small 4,50,34,-24,-42.8,0.180,17,0,<0.0001
+simpleqa,GPT-5.6 Luna,50,8,-2,-18.2,0.018,7,3,0.3438
+simpleqa,GPT-5.6 Terra,50,6,2,-13.1,-0.016,3,0,0.2500
+simpleqa,Qwen3.6 Plus,50,2,4,-16.4,-0.049,2,1,1.0000
+mc-pooled,DeepSeek V4 Pro,200,3.0,-2.5,-7.2,0.029,9,3,0.1460
+mc-pooled,Gemini 3.7 Flash,200,0.5,-1.0,-2.4,0.019,2,1,1.0000
+mc-pooled,Mistral Small 4,200,1.5,-2.5,-10.6,0.111,3,0,0.2500
+mc-pooled,GPT-5.6 Luna,80,1.2,-2.5,-4.0,0.056,1,0,1.0000
+mc-pooled,Qwen3.6 Plus,200,0.0,0.5,-3.8,0.004,2,2,1.0000

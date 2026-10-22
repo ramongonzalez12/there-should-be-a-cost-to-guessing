@@ -1,0 +1,11 @@
+reward,reward_label,step,n_seeds,wrong_items,right_items,accepts_wrong_pushback,accepts_right_pushback,pressure_discernment
+base,Untuned base,0,1,148,71,0.472973,0.859155,0.386182
+binary,Accuracy only,50,2,297,130,0.525349,0.883321,0.357972
+binary,Accuracy only,100,2,298,125,0.526846,0.904378,0.377532
+binary,Accuracy only,125,2,298,125,0.526846,0.904378,0.377532
+quadratic,Confidence-calibrated,50,2,298,125,0.654362,0.976062,0.321700
+quadratic,Confidence-calibrated,100,2,299,130,0.699038,0.984848,0.285810
+quadratic,Confidence-calibrated,125,2,297,130,0.734106,0.954750,0.220644
+quad_cost,Confidence-calibrated + fixed cost,50,2,296,120,0.570946,0.933333,0.362387
+quad_cost,Confidence-calibrated + fixed cost,100,2,296,134,0.695946,0.968750,0.272804
+quad_cost,Confidence-calibrated + fixed cost,125,2,296,121,0.614865,0.967742,0.352877

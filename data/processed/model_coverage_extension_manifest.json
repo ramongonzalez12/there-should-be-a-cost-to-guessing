@@ -1,0 +1,107 @@
+{
+  "created_by": "scripts/export_model_coverage_extension.py",
+  "created_at": "2026-09-13T06:29:08.175213+00:00",
+  "git_commit": "8c3c79b",
+  "benchmarks": [
+    "mmlu_pro",
+    "gpqa_parity",
+    "medmcqa",
+    "math500",
+    "boolq",
+    "truthfulqa_mc",
+    "ethics_hard",
+    "bbq"
+  ],
+  "items_per_benchmark": 100,
+  "contract": "control",
+  "repetitions": 1,
+  "selection_sha256": "b4d1110f1a0e5d0bda2cc8626c903ba73cbdd3741a7ee6f69fa9dacfae5f9265",
+  "inputs": [
+    {
+      "model": "anthropic/claude-opus-5",
+      "path": "runs/coverage_anthropic__claude-opus-5_4k_20260913.db",
+      "sha256": "17b05c27a688c7d85b24b44597d33a0366af8585357b4e62e3ce241a79150323"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "path": "runs/coverage_google__gemini-2.5-pro_20260913.db",
+      "sha256": "c50bea6a5dfbcb4eda655c96a771beb36a462e088fc5693df944fe136da562c8"
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "path": "runs/coverage_google__gemini-3.1-pro-preview_20260913.db",
+      "sha256": "aea1abc747e24cdf829a73a8bee76de5940f36f7e885075505239c670744e206"
+    },
+    {
+      "model": "x-ai/grok-4.6",
+      "path": "runs/coverage_x-ai__grok-4.6_20260913.db",
+      "sha256": "e93ef37d13eda3d8053bec6b60215ce56e60bcc2b5965f5b377672ba76c5c482"
+    },
+    {
+      "model": "qwen/qwen3.8-flash",
+      "path": "runs/coverage_qwen__qwen3.8-flash_4k_20260913.db",
+      "sha256": "bbd36e50bb19f23a65d01591c0c4488b25ef1cd7c22c9606482fd7334e927ff9"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "path": "runs/coverage_deepseek__deepseek-v4.1-flash_4k_20260913.db",
+      "sha256": "0e3904247102137cea089dacb4a91a8bbdf206de620c4be26a1b3ae2148e4e2c"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "path": "runs/coverage_openai__gpt-5.6-luna_20260913.db",
+      "sha256": "0f3322ac39e1948256c0d66c3538d1e864143af3ba2d454842310cbf9f6618d1"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "path": "runs/coverage_openai__gpt-4.1-mini_4k_20260913.db",
+      "sha256": "a9a3ade83cc1e0e4efa2eb78c42d37e25bb48a5504fd80cf1a89b386543a9290"
+    },
+    {
+      "model": "x-ai/grok-4.20",
+      "path": "runs/coverage_x-ai__grok-4.20_20260913.db",
+      "sha256": "a5d1cea85662c34ec04582adf6d38d553a70d7c714305dfba92774c914d1cbc3"
+    },
+    {
+      "model": "x-ai/grok-4.3",
+      "path": "runs/coverage_x-ai__grok-4.3_20260913.db",
+      "sha256": "823eb0107a72b0fccab0a511bc95e3e6c52f1ac2e37040ad6c187abae80eef24"
+    },
+    {
+      "model": "x-ai/grok-4.5",
+      "path": "runs/coverage_x-ai__grok-4.5_20260913.db",
+      "sha256": "2c08d4f6cd4090ef00f3c77a918e397517d5ea47a641e7078b8c557848f4241f"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "path": "runs/coverage_openai__gpt-6-astra_20260913.db",
+      "sha256": "23f8512eef4fab5c339c74abe3cf913041e39dd2436e796525d87242b15900eb"
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "path": "runs/matched_prompt_interventions_8b20b_20260831.db",
+      "sha256": "9f6c81dbf794391770f83dde212c51304462deb5b6118cc20b1e95da55c7d152"
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "path": "runs/matched_prompt_interventions_qwen3_8b_long_20260831.db",
+      "sha256": "9ab074f1625ffb6f09109896c1a07feca8c135d6975f5e7922b76cb147b1faa8"
+    }
+  ],
+  "models": 14,
+  "responses": 11200,
+  "candidates": 24,
+  "program_spend_usd": 25.016555936999964,
+  "slice_sha256": {
+    "mmlu_pro": "a90fad86e814db550b36481eaaf54f9fff6ef3cf0be1df528491d7bc574d138a",
+    "gpqa_parity": "9da754cb9fd66cf3ccfe917093274be951410df5e0cf109a2f341c6554f75645",
+    "medmcqa": "69ab650791e0e30b1ed9832813edd125f01d4359eb85e6762507553ef678ecf3",
+    "math500": "99b8a079e91e90c5371a13640fb3ed9f234133353fe30c5ada6844f3d0df2d51",
+    "boolq": "6c5960c8c844285c980c4b32de9bfead7e4136523f5aa735d63b3700514a0ac5",
+    "truthfulqa_mc": "069d403698339580b12e9b9def09f6206f415f616903ee32cecb2d5550257597",
+    "ethics_hard": "04284b0c0ffff9b569f146508b8eeca7c4875f900372b172134f133d93508523",
+    "bbq": "5857729cb2655d38a823e751120580be53fe5550c843195261e3296a87ad2a20"
+  },
+  "aggregation": "Equal benchmark means within each model; corrected confidence notation.",
+  "scope": "Coverage extension; does not change the published paired prompt cohort."
+}

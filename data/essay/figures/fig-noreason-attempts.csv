@@ -1,0 +1,33 @@
+panel,model,training_step,item_id,attempt,stated_confidence_pct,outcome,score_pts,question_average_pts
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,1,60.0,wrong,-36.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,2,60.0,wrong,-36.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,3,60.0,wrong,-36.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,4,60.0,wrong,-36.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,5,40.0,wrong,-16.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,6,60.0,wrong,-36.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,7,30.0,wrong,-9.0,-30.125
+All eight wrong,Qwen3 8B,18,ethics_hard:commonsense:1137,8,60.0,wrong,-36.0,-30.125
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,1,85.0,wrong,-72.25,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,2,90.0,wrong,-81.0,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,3,90.0,wrong,-81.0,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,4,80.0,right,96.0,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,5,90.0,wrong,-81.0,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,6,90.0,right,99.0,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,7,90.0,wrong,-81.0,-33.1562
+Two of eight right,Qwen3 8B,19,mmlu_pro:7580,8,80.0,wrong,-64.0,-33.1562
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,1,75.0,wrong,-56.25,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,2,95.0,right,99.75,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,3,85.0,wrong,-72.25,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,4,75.0,wrong,-56.25,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,5,95.0,right,99.75,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,6,85.0,wrong,-72.25,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,7,95.0,right,99.75,17.75
+Four of eight right,Qwen3 8B,2,ethics_hard:deontology:72,8,95.0,right,99.75,17.75
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,1,70.0,right,91.0,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,2,85.0,wrong,-72.25,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,3,95.0,right,99.75,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,4,95.0,right,99.75,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,5,85.0,right,97.75,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,6,85.0,wrong,-72.25,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,7,95.0,right,99.75,55.3125
+Six of eight right,Nemotron 3 Nano 30B,41,ethics_hard:commonsense:3554,8,90.0,right,99.0,55.3125

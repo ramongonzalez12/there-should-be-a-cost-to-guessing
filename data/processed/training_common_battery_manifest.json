@@ -1,0 +1,500 @@
+{
+  "protocol": "notes/2026-08-31-matched-prompt-interventions-8b-20b.md",
+  "prompt_database": {
+    "path": "runs/matched_prompt_interventions_8b20b_20260831.db",
+    "sha256": "ae54df35209c4975d7e63ae251da1671e7969947566a02641622f55a732accbe"
+  },
+  "common_items": 800,
+  "item_identity_matches_prompt_run": true,
+  "sources": [
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_training_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "math500",
+      "run_dir": "runs/evaluations/training_common_battery_qwen_math4096_20260831",
+      "responses": 1100,
+      "spent_usd": 2.733624,
+      "cap_usd": 2.74,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://c90517cb-b940-5ece-a489-84a6e1c010ed:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://c9ea03f0-c33e-5465-97bf-a0882299bad6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://0e09199c-8ca8-5530-b2b1-2e09652bd471:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed3": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed3",
+          "sampler_path": "tinker://45c0d95b-d97b-5d44-832a-c4b6c19ce6e6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://a7642a9c-a581-5ec1-b5d3-3b85258fc130:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://44923353-f304-59e1-9564-0d721a8d8414:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://934196cf-38ef-5a07-b7d1-b92b03065781:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://5739539e-2837-5ad1-b029-a6f071a69737:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed3": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed3",
+          "sampler_path": "tinker://39179679-1fd0-5c67-983f-b10674b85ad7:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://29f10d3b-4eb0-5cab-aba7-ec96195a94a2:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "4a31ff1e26f5a15f35ccc834cf39ec9c0abe0860daa294be34e473325f4fd16d",
+      "max_tokens": 4096,
+      "responses_sha256": "180a20cdbe631bd8a31a42ea88a04ebb8b99a2378b7176272d22dfb736c18093",
+      "evaluation_sha256": "b879709bb556f13b31f34679b45c9d2229f0cd38a5f3804382932052128c7137"
+    },
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_training_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_common_battery_qwen_native2048_20260831",
+      "responses": 8800,
+      "spent_usd": 11.178774,
+      "cap_usd": 11.18,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://c90517cb-b940-5ece-a489-84a6e1c010ed:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://c9ea03f0-c33e-5465-97bf-a0882299bad6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://0e09199c-8ca8-5530-b2b1-2e09652bd471:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed3": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed3",
+          "sampler_path": "tinker://45c0d95b-d97b-5d44-832a-c4b6c19ce6e6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://a7642a9c-a581-5ec1-b5d3-3b85258fc130:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://44923353-f304-59e1-9564-0d721a8d8414:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://934196cf-38ef-5a07-b7d1-b92b03065781:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://5739539e-2837-5ad1-b029-a6f071a69737:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed3": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed3",
+          "sampler_path": "tinker://39179679-1fd0-5c67-983f-b10674b85ad7:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://29f10d3b-4eb0-5cab-aba7-ec96195a94a2:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 2048,
+      "responses_sha256": "ea37e6db97e21687864691c655bbbce947e35a3a41fa0844e40dfc796e6dff6c",
+      "evaluation_sha256": "e07f4fbb53064ac48fc72113f82a7077cc6dc5a6f32ce5f666240c5211a46a63"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_training_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/finetune/second_programme_v1/gpt_oss/eval_shared_battery",
+      "responses": 7200,
+      "spent_usd": 1.998385,
+      "cap_usd": 5.5,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://a3ad2dc9-caf3-5461-93e7-fd6120adf6b6:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://950cb284-bfbb-5d76-b9e9-7d239f5d73e2:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://6affa4e0-c5f4-512f-aeee-9393ecefd550:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "binary-seed6": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed6",
+          "sampler_path": "tinker://030c72fc-0935-5be0-b6fc-4420621b6aae:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 6
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://c3e714f2-48e9-583f-8363-85b050fdcac3:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://d3f376b1-bae0-5f6f-8805-88a98efe9b90:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://ac9ce145-b40e-50e5-b2d1-b31f934776f1:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed6": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed6",
+          "sampler_path": "tinker://380bf215-e561-5a18-b28f-a532c03b2d8d:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 6
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "e0058f4c7c8f7c133f31da43d42c2729d0e0c78b043ca7fd4fd1ac57f38a32b2",
+      "evaluation_sha256": "5786595022af0bc7e9498412b294b78e35afd980841f69c18fde7a5ae87b10db"
+    },
+    {
+      "model_family": "Nemotron 3 Nano 30B",
+      "study": "tinker_native_training_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/finetune/second_programme_v1/nemotron/eval_shared_battery",
+      "responses": 8800,
+      "spent_usd": 5.21011,
+      "cap_usd": 6.0,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://952fe5cb-857f-5b96-8b7e-913ef7f56377:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        },
+        "binary-seed0": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed0",
+          "sampler_path": "tinker://b3cb639e-645b-580b-9e95-0e4e295e9eb7:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "binary-seed1": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed1",
+          "sampler_path": "tinker://ee9e6191-dd63-5333-8662-44de0239d530:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "binary-seed2": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed2",
+          "sampler_path": "tinker://391bd6fd-9342-50f3-bc30-ed007d0b8330:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "binary-seed3": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed3",
+          "sampler_path": "tinker://b6020bff-d0b6-556c-9544-de692d1697f0:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "binary-seed4": {
+          "arm": "binary",
+          "dose": 60.0,
+          "label": "binary-seed4",
+          "sampler_path": "tinker://abf81620-7217-5729-a053-c1690d602991:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        },
+        "quadratic-seed0": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed0",
+          "sampler_path": "tinker://33f1d0e5-efb9-59b9-a529-3b3f5a5b88d2:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 0
+        },
+        "quadratic-seed1": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed1",
+          "sampler_path": "tinker://683174cf-b487-5e22-817f-b701ccc1abe0:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 1
+        },
+        "quadratic-seed2": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed2",
+          "sampler_path": "tinker://3715bafe-d5e5-52fc-b2ea-280a56dfe48a:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 2
+        },
+        "quadratic-seed3": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed3",
+          "sampler_path": "tinker://699ecb74-3ccb-58b8-b8bb-02dc60a71c22:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 3
+        },
+        "quadratic-seed4": {
+          "arm": "quadratic",
+          "dose": 60.0,
+          "label": "quadratic-seed4",
+          "sampler_path": "tinker://0c32da85-c679-53f3-ad79-63a14b688a5a:train:0/sampler_weights/final",
+          "training_domain": "pooled",
+          "training_seed": 4
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "34c912081f55f10eb7b19115f699b5da4c14daa4bea51ee0efac84b7b24a6fbc",
+      "evaluation_sha256": "b54876641a5aeed8e78a548c0438b6fa562512cc9c94b048d8e3e58b0d1ca5dc"
+    },
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_prompt_benchmark_replacement",
+      "status": "COMPLETE",
+      "replaced_benchmark": "math500",
+      "run_dir": "runs/evaluations/training_prompt_common_battery_qwen_math4096_20260831",
+      "responses": 300,
+      "spent_usd": 0.749453,
+      "cap_usd": 0.75,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        }
+      },
+      "items_sha256": "4a31ff1e26f5a15f35ccc834cf39ec9c0abe0860daa294be34e473325f4fd16d",
+      "max_tokens": 4096,
+      "responses_sha256": "cfd56fbdb58275de3ee40443541e3f48ebf571dd883104f2bf5e0f3d86bbfade",
+      "evaluation_sha256": "6f7f2327095ff64eac89ccbf55b45a4558352d315ae3bc02dd3c82ef03d2b923"
+    },
+    {
+      "model_family": "Qwen3 8B",
+      "study": "tinker_native_prompt_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_prompt_common_battery_qwen_native2048_20260831",
+      "responses": 2400,
+      "spent_usd": 3.081205,
+      "cap_usd": 3.09,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": null,
+          "training_domain": "base"
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 2048,
+      "responses_sha256": "26733b64d10ca6b503f4063d72d6699dc126e9e25695e3e8a7ecdf7be5f28ea5",
+      "evaluation_sha256": "7264607aa19983d09626122d0d49b8b870402b964a595269dece2b55c1a01463"
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "study": "tinker_native_prompt_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/evaluations/training_prompt_common_battery_gptoss_native_20260831",
+      "responses": 2400,
+      "spent_usd": 0.695936,
+      "cap_usd": 0.7,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://f7ae959d-8c53-5234-b4bb-2c0bb2dc7af9:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "eb0a7f90c7dca7c20118b5637e5365a6c645b20ac184839345273c76f9f2083b",
+      "evaluation_sha256": "7a917c33b9883c9a459cd3dda5d06ce200ca1652b4a1a7a71c18167b2bb5265c"
+    },
+    {
+      "model_family": "Nemotron 3 Nano 30B",
+      "study": "tinker_native_prompt_full_battery",
+      "status": "COMPLETE",
+      "replaced_benchmark": "",
+      "run_dir": "runs/finetune/second_programme_v1/nemotron/eval_control_prompt_arms",
+      "responses": 2400,
+      "spent_usd": 1.487395,
+      "cap_usd": 2.5,
+      "checkpoints": {
+        "base": {
+          "arm": "base",
+          "dose": 0.0,
+          "label": "base",
+          "sampler_path": "tinker://952fe5cb-857f-5b96-8b7e-913ef7f56377:train:0/sampler_weights/final",
+          "training_domain": "shared_format_control"
+        }
+      },
+      "items_sha256": "8de3d4ba6e55ab80d59276e4d97823cd73e81254e4d7efb4b18c13cf6cfadc80",
+      "max_tokens": 512,
+      "responses_sha256": "a6f64cbf5ccb9b853ee8d2b674c9d7de878ec85eaf5148a08a7bbad9292ca3a5",
+      "evaluation_sha256": "3f83233c4cf3ca9db9e8db0f9f27497e2514dc9c4591d5b66b819cdf1d3d5bca"
+    }
+  ],
+  "git_commit": "1c2324abf80acaf602cb80b1a12597fe89ec8917"
+}

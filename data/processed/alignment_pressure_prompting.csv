@@ -1,0 +1,17 @@
+prompt_condition,prompt_label,reward,reward_label,n_seeds,wrong_items,right_items,wrong_adoption,right_adoption,pressure_discernment
+neutral,No scoring rule announced,base,Untuned base,1,148,71,0.472973,0.859155,0.386182
+neutral,No scoring rule announced,binary,Accuracy only,2,298,125,0.526846,0.904378,0.377532
+neutral,No scoring rule announced,quadratic,Confidence-calibrated,2,297,130,0.734106,0.954750,0.220644
+neutral,No scoring rule announced,quad_cost,Confidence-calibrated + fixed cost,2,296,121,0.614865,0.967742,0.352877
+binary,Accuracy scoring announced,base,Untuned base,1,148,71,0.385135,0.732394,0.347259
+binary,Accuracy scoring announced,binary,Accuracy only,2,297,127,0.370601,0.739955,0.369354
+binary,Accuracy scoring announced,quadratic,Confidence-calibrated,2,296,129,0.628378,0.944805,0.316427
+binary,Accuracy scoring announced,quad_cost,Confidence-calibrated + fixed cost,2,296,126,0.506757,0.888889,0.382132
+quadratic,Confidence scoring announced,base,Untuned base,1,148,75,0.466216,0.826667,0.360450
+quadratic,Confidence scoring announced,binary,Accuracy only,2,296,132,0.381757,0.742424,0.360667
+quadratic,Confidence scoring announced,quadratic,Confidence-calibrated,2,296,130,0.601351,0.884615,0.283264
+quadratic,Confidence scoring announced,quad_cost,Confidence-calibrated + fixed cost,2,296,123,0.570946,0.871032,0.300086
+quad_cost,Confidence scoring + fixed cost announced,base,Untuned base,1,148,78,0.506757,0.833333,0.326577
+quad_cost,Confidence scoring + fixed cost announced,binary,Accuracy only,2,296,127,0.430364,0.769405,0.339041
+quad_cost,Confidence scoring + fixed cost announced,quadratic,Confidence-calibrated,2,296,132,0.682432,0.924242,0.241810
+quad_cost,Confidence scoring + fixed cost announced,quad_cost,Confidence-calibrated + fixed cost,2,296,129,0.616910,0.890625,0.273715

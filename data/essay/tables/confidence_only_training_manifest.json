@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "exhibits": [
+    "fig-training-answered",
+    "training-accuracy-explained"
+  ],
+  "arm": "standard",
+  "metric_scope": "answer accuracy and well-formed-answer share only",
+  "why_no_confidence_metrics": "Under the clean prompt the retained checkpoints omit the Confidence line on the multiple-choice benchmarks: in this freeze usable confidence is 13 to 98 percent on trained checkpoints and 25 to 98 percent on the prepared base, against 96 to 98 percent on the untouched base (September 27 reading of early tinker_v12 rows: 13 to 43 against 97 to 99). Confidence-dependent metrics (gap, score, tail, calibration, gate, rewards) are therefore not re-evaluated; those exhibits stay historical.",
+  "usable_confidence_observed": {
+    "prepared_base": {
+      "checkpoints": 3,
+      "min": 0.24772313296903462,
+      "max": 0.9790528233151184
+    },
+    "trained_variant": {
+      "checkpoints": 48,
+      "min": 0.13479052823315119,
+      "max": 0.9817850637522769
+    },
+    "untouched_base": {
+      "checkpoints": 3,
+      "min": 0.9626593806921676,
+      "max": 0.9808743169398907
+    }
+  },
+  "definitions": {
+    "accuracy": "100 * share of items with answer_valid and correct",
+    "coverage": "100 * share of items with answer_valid (a well-formed answer)",
+    "invalid": "100 - coverage; malformed is wrong, never a decline (Rule 1)"
+  },
+  "evaluation_protocol": "clean-final-answer-v1",
+  "grading": "deterministic clean-final-answer-v1 extractor",
+  "ancestry": "retained checkpoints trained under the historical I DON'T KNOW contract; re-evaluated, not retrained",
+  "tinker_plan": "runs/confidence_only_20260920/tinker_v12",
+  "tinker_plan_sha256": "f35b71bca2f76bb39be54113b42d03557e8ea86af261209a550be8f65ec5e899",
+  "tinker_freeze": {
+    "status": "COMPLETE",
+    "frozen_at": "2026-09-28T07:32:43.870366+00:00",
+    "records_sha256": "baf46f022b3af59b0184e1c0ffa2f544250e9319698c5f442bb69643fb6c6478",
+    "source_responses_sha256": "988acf61dc1c6d72f58d4ff0a558dd4e4d5e2920212cbab6fe4b63c8a35076bd",
+    "responses": 125172,
+    "ledger": {
+      "identity": {
+        "cap": 45.0,
+        "plan_sha256": "f35b71bca2f76bb39be54113b42d03557e8ea86af261209a550be8f65ec5e899"
+      },
+      "settled_usd": 22.817383995,
+      "settled_batches": 1023,
+      "unresolved_batches": 0
+    }
+  },
+  "records_sha256": "baf46f022b3af59b0184e1c0ffa2f544250e9319698c5f442bb69643fb6c6478",
+  "families": [
+    "Qwen3 8B",
+    "GPT-OSS 20B",
+    "Nemotron 3 Nano 30B"
+  ],
+  "preview": false,
+  "sources": [
+    {
+      "model_family": "Qwen3 8B",
+      "records": 18666,
+      "checkpoints": [
+        "ethics_binary_seed0",
+        "ethics_binary_seed1",
+        "ethics_quadratic_seed0",
+        "ethics_quadratic_seed1",
+        "math_binary_seed0",
+        "math_binary_seed1",
+        "math_quadratic_seed0",
+        "math_quadratic_seed1",
+        "medicine_binary_seed0",
+        "medicine_binary_seed1",
+        "medicine_quadratic_seed0",
+        "medicine_quadratic_seed1",
+        "pooled_binary_seed0",
+        "pooled_binary_seed1",
+        "pooled_quadratic_seed0",
+        "pooled_quadratic_seed1",
+        "prepared_base"
+      ]
+    },
+    {
+      "model_family": "GPT-OSS 20B",
+      "records": 18666,
+      "checkpoints": [
+        "ethics_binary_seed0",
+        "ethics_binary_seed1",
+        "ethics_quadratic_seed0",
+        "ethics_quadratic_seed1",
+        "math_binary_seed0",
+        "math_binary_seed1",
+        "math_quadratic_seed0",
+        "math_quadratic_seed1",
+        "medicine_binary_seed0",
+        "medicine_binary_seed1",
+        "medicine_quadratic_seed0",
+        "medicine_quadratic_seed1",
+        "pooled_binary_seed0",
+        "pooled_binary_seed1",
+        "pooled_quadratic_seed0",
+        "pooled_quadratic_seed1",
+        "prepared_base"
+      ]
+    },
+    {
+      "model_family": "Nemotron 3 Nano 30B",
+      "records": 18666,
+      "checkpoints": [
+        "ethics_binary_seed0",
+        "ethics_binary_seed1",
+        "ethics_quadratic_seed0",
+        "ethics_quadratic_seed1",
+        "math_binary_seed0",
+        "math_binary_seed1",
+        "math_quadratic_seed0",
+        "math_quadratic_seed1",
+        "medicine_binary_seed0",
+        "medicine_binary_seed1",
+        "medicine_quadratic_seed0",
+        "medicine_quadratic_seed1",
+        "pooled_binary_seed0",
+        "pooled_binary_seed1",
+        "pooled_quadratic_seed0",
+        "pooled_quadratic_seed1",
+        "prepared_base"
+      ]
+    }
+  ],
+  "files": {
+    "confidence_only_training_accuracy_cells.csv": "eeafbda7cc2db9cf32aef7df8379d5c52c62de4e5151bda2be44d7619a4f5a55",
+    "confidence_only_training_accuracy_scope_summary.csv": "66d8a068016507c1f29f731e0c01a714ddfa42e605cf4846f4233b6582485e23",
+    "confidence_only_untouched_base_prompts.csv": "28d20dd79ea345eafc9e7e3a3fdf56fb750eadfe1913fba0be710805879c7221"
+  },
+  "historical_tables_kept": "every common_training_* table, byte-identical to the pinned tree"
+}

@@ -1,0 +1,154 @@
+{
+ "n_models": 50,
+ "n_paired": 50,
+ "conf_wrong": 86.99112086510823,
+ "tail": 9.832451556380128,
+ "overall_acc": 83.74694908266336,
+ "acc": 84.60395794468488,
+ "conf": 93.13877073577817,
+ "gap": 8.534812791093291,
+ "cells": 400,
+ "cells_over": 315,
+ "years": [
+  {
+   "year": "2024",
+   "label": "2024",
+   "models": 8,
+   "control_answer_rate": 99.96875,
+   "control_accuracy": 67.37773752058501,
+   "control_confidence": 91.47468421242594,
+   "control_confidence_gap": 24.096946691840927,
+   "control_high_confidence_error_90_rate": 24.91366792929293
+  },
+  {
+   "year": "2025H1",
+   "label": "1H 2025",
+   "models": 7,
+   "control_answer_rate": 99.98214285714285,
+   "control_accuracy": 83.42129967454902,
+   "control_confidence": 93.7687059476089,
+   "control_confidence_gap": 10.34740627305986,
+   "control_high_confidence_error_90_rate": 11.61002886002886
+  },
+  {
+   "year": "2025H2",
+   "label": "2H 2025",
+   "models": 6,
+   "control_answer_rate": 100.0,
+   "control_accuracy": 85.55531976503764,
+   "control_confidence": 92.37374059427998,
+   "control_confidence_gap": 6.81842082924235,
+   "control_high_confidence_error_90_rate": 7.292727444513158
+  },
+  {
+   "year": "2026H1",
+   "label": "1H 2026",
+   "models": 12,
+   "control_answer_rate": 100.0,
+   "control_accuracy": 87.31110008247882,
+   "control_confidence": 92.3120224693991,
+   "control_confidence_gap": 5.00092238692028,
+   "control_high_confidence_error_90_rate": 6.5859638047138045
+  },
+  {
+   "year": "2026H2",
+   "label": "2H 2026",
+   "models": 17,
+   "control_answer_rate": 100.0,
+   "control_accuracy": 90.95069292751465,
+   "control_confidence": 94.51608283869233,
+   "control_confidence_gap": 3.5653899111776846,
+   "control_high_confidence_error_90_rate": 5.191476590636255
+  }
+ ],
+ "warn_rerun": {
+  "gap": {
+   "baseline": 8.534812791093291,
+   "warning": 5.435806392824654,
+   "change": -3.099006398268637,
+   "change_ci_low": -3.339022503374823,
+   "change_ci_high": -2.8666863297048324
+  },
+  "score": {
+   "baseline": 69.67232152932385,
+   "warning": 70.67918354998969,
+   "change": 1.006862020665833,
+   "change_ci_low": 0.5582519831478172,
+   "change_ci_high": 1.4255360848794196
+  },
+  "tail": {
+   "baseline": 9.832451556380128,
+   "warning": 6.991869202226346,
+   "change": -2.8405823541537827,
+   "change_ci_low": -3.0528793032364456,
+   "change_ci_high": -2.6105065965780256
+  },
+  "confidence": {
+   "baseline": 93.13877073577817,
+   "warning": 90.22682937069428,
+   "change": -2.911941365083892,
+   "change_ci_low": -2.9909796968597746,
+   "change_ci_high": -2.8376765983350483
+  },
+  "accuracy": {
+   "baseline": 84.60395794468488,
+   "warning": 84.79102297786963,
+   "change": 0.18706503318475232,
+   "change_ci_low": -0.05421232311449975,
+   "change_ci_high": 0.425007674272293
+  }
+ },
+ "rule_gap": 6.458326485179844,
+ "rule_conf": 91.27700751579859,
+ "rule_acc": 84.81868103061873,
+ "rule_overall_acc": 83.80209956709956,
+ "rule_score": 70.17989854587765,
+ "rule_tail": 7.5720464852607705,
+ "paired_gap": 8.534812791093291,
+ "paired_conf": 93.13877073577817,
+ "paired_acc": 84.60395794468488,
+ "paired_overall_acc": 83.74694908266336,
+ "paired_score": 69.67232152932385,
+ "paired_tail": 9.832451556380128,
+ "score": 69.67232152932385,
+ "v6_years": {
+  "acc_climb": 23.572955406929637,
+  "conf_plateau": 93
+ },
+ "cbc": {
+  "mean_right": 93.96443110503398,
+  "mean_wrong": 86.99112086510821,
+  "top_bin_share": 42.491383554899066,
+  "n_wrong_over_90": 26,
+  "n_models": 50
+ },
+ "gate": {
+  "0": {
+   "coverage": 98.9846557805653,
+   "risk": 15.393292507608997,
+   "models": 50
+  },
+  "0.8": {
+   "coverage": 91.36394975235335,
+   "risk": 13.627864191563763,
+   "models": 50
+  },
+  "0.9": {
+   "coverage": 81.47947815408358,
+   "risk": 12.067805572815555,
+   "models": 50
+  },
+  "0.95": {
+   "coverage": 69.27237044425833,
+   "risk": 9.346117871421779,
+   "models": 50
+  },
+  "1": {
+   "coverage": 32.17982347138183,
+   "risk": 8.12031768246791,
+   "models": 50
+  }
+ },
+ "above40": 99.1621517184218,
+ "wrong_above40": 97.92207274644656
+}

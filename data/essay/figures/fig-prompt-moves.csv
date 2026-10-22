@@ -1,0 +1,51 @@
+model,model_name,panel,accuracy_at_baseline_pct,period,gap_baseline_pts,gap_explaining_scoring_pts,gap_warning_pts,change_explaining_scoring_pts,change_warning_pts
+anthropic/claude-opus-5.5,Claude Opus 5.5,Models above 85% accuracy,95.6097,2H 2026,-5.7011,-6.0149,-7.1057,-0.3139,-1.4046
+google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,Models above 85% accuracy,94.7599,1H 2026,4.0656,3.8938,3.2874,-0.1718,-0.7782
+anthropic/claude-fable-5.1,Claude Fable 5.1,Models above 85% accuracy,94.7123,2H 2026,-2.7068,-2.3095,-4.4819,0.3974,-1.775
+anthropic/claude-opus-5,Claude Opus 5,Models above 85% accuracy,94.2372,2H 2026,-1.6028,-1.7231,-4.187,-0.1203,-2.5841
+google/gemini-3.8-flash,Gemini 3.8 Flash,Models above 85% accuracy,93.6035,2H 2026,3.8471,3.5984,1.8024,-0.2487,-2.0447
+openai/gpt-6.1-sol,GPT-6.1 Sol,Models above 85% accuracy,93.5,2H 2026,4.1912,3.835,2.9863,-0.3563,-1.205
+openai/gpt-6-astra,GPT-6 Astra,Models above 85% accuracy,93.125,2H 2026,4.4875,3.8413,3.26,-0.6462,-1.2275
+google/gemini-3.7-flash,Gemini 3.7 Flash,Models above 85% accuracy,93.0,2H 2026,4.9662,4.8863,3.6887,-0.08,-1.2776
+anthropic/claude-opus-4.7,Claude Opus 4.7,Models above 85% accuracy,92.0779,1H 2026,-3.2103,-4.4448,-5.8611,-1.2345,-2.6508
+deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,Models above 85% accuracy,92.0079,2H 2026,4.2914,5.0165,1.8488,0.7251,-2.4426
+openai/gpt-5.5,GPT-5.5,Models above 85% accuracy,91.7345,1H 2026,4.132,0.9825,0.5087,-3.1495,-3.6233
+openai/gpt-5.6-sol,GPT-5.6 Sol,Models above 85% accuracy,91.5,2H 2026,5.8562,5.5361,4.015,-0.3202,-1.8412
+anthropic/claude-opus-4.8,Claude Opus 4.8,Models above 85% accuracy,91.4987,1H 2026,-0.12,-2.445,-3.5267,-2.325,-3.4067
+anthropic/claude-sonnet-5,Claude Sonnet 5,Models above 85% accuracy,91.4634,1H 2026,-4.9407,-6.1536,-6.4365,-1.2129,-1.4959
+openai/gpt-6-sol,GPT-6 Sol,Models above 85% accuracy,91.2336,2H 2026,5.1209,4.7687,3.925,-0.3522,-1.1959
+google/gemini-3-flash-preview,Gemini 3 Flash,Models above 85% accuracy,90.8712,2H 2025,7.5113,6.0958,5.4425,-1.4155,-2.0688
+openai/gpt-6-luna-pro,GPT-6 Luna Pro,Models above 85% accuracy,90.2399,2H 2026,6.4136,6.5172,6.2062,0.1036,-0.2073
+deepseek/deepseek-v4-flash,DeepSeek V4 Flash,Models above 85% accuracy,90.2377,1H 2026,6.8558,6.9583,5.0337,0.1024,-1.8222
+openai/gpt-6-luna,GPT-6 Luna,Models above 85% accuracy,89.6162,2H 2026,7.2825,7.43,5.8938,0.1475,-1.3887
+openai/gpt-5.2,GPT-5.2,Models above 85% accuracy,89.4652,2H 2025,2.3273,0.2313,-1.6199,-2.096,-3.9472
+openai/gpt-5.6-terra,GPT-5.6 Terra,Models above 85% accuracy,88.875,2H 2026,7.6525,6.71,6.1012,-0.9425,-1.5513
+anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,Models above 85% accuracy,88.8204,1H 2026,-2.4684,-5.0911,-8.1085,-2.6226,-5.6401
+anthropic/claude-haiku-5.5,Claude Haiku 5.5,Models above 85% accuracy,88.2083,2H 2026,-3.9784,-5.7888,-7.9404,-1.8103,-3.962
+anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,Models above 85% accuracy,87.9299,2H 2025,2.7405,0.7182,-0.5974,-2.0223,-3.3379
+openai/gpt-5.6-luna,GPT-5.6 Luna,Models above 85% accuracy,87.5,2H 2026,9.9612,9.1488,9.3988,-0.8125,-0.5625
+meta/muse-glimmer-30b,Muse Glimmer 30B,Models above 85% accuracy,87.3266,2H 2026,-2.3537,-1.6149,-5.8534,0.7388,-3.4997
+google/gemma-4-31b-it,Gemma 4 31B,Models above 85% accuracy,87.125,1H 2026,10.5813,9.2162,9.4875,-1.365,-1.0938
+google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,Models above 85% accuracy,87.074,1H 2026,10.6684,7.6366,9.1227,-3.0318,-1.5457
+openai/o4-mini,o4-mini,Models above 85% accuracy,87.0085,1H 2025,4.9479,7.0951,0.4226,2.1472,-4.5253
+google/gemini-2.5-flash,Gemini 2.5 Flash,Models above 85% accuracy,85.5693,1H 2025,11.5665,8.7265,11.1653,-2.84,-0.4013
+qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,Models above 85% accuracy,85.0455,2H 2025,10.9378,8.2039,8.0892,-2.7339,-2.8487
+anthropic/claude-sonnet-4,Claude Sonnet 4,Models at or below 85% accuracy,84.9899,1H 2025,5.3666,2.8984,0.8018,-2.4682,-4.5647
+openai/gpt-5.4,GPT-5.4,Models at or below 85% accuracy,84.9306,1H 2026,10.6298,8.1612,7.3064,-2.4686,-3.3234
+openai/gpt-4.1,GPT-4.1,Models at or below 85% accuracy,83.6162,1H 2025,13.8026,11.4362,8.46,-2.3664,-5.3426
+deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,Models at or below 85% accuracy,81.8665,2H 2026,12.884,10.2459,8.855,-2.6381,-4.029
+meta-llama/llama-4-maverick,Llama 4 Maverick,Models at or below 85% accuracy,81.5935,1H 2025,9.7395,8.7217,5.1094,-1.0178,-4.6301
+anthropic/claude-haiku-4.5,Claude Haiku 4.5,Models at or below 85% accuracy,81.0466,2H 2025,3.2937,0.4628,-2.7825,-2.8309,-6.0762
+openai/gpt-4.1-mini,GPT-4.1 Mini,Models at or below 85% accuracy,80.9659,1H 2025,13.1136,12.8245,11.1818,-0.2891,-1.9319
+mistralai/mistral-medium-3-5,Mistral Medium 3.5,Models at or below 85% accuracy,80.2832,1H 2026,13.8261,11.3116,9.9911,-2.5145,-3.835
+mistralai/mistral-medium-3,Mistral Medium 3,Models at or below 85% accuracy,80.2058,1H 2025,13.8951,11.2465,11.2254,-2.6486,-2.6697
+openai/gpt-4o-2024-08-06,GPT-4o,Models at or below 85% accuracy,79.0,2024,13.6962,11.5985,10.9828,-2.0977,-2.7134
+openai/gpt-5.1,GPT-5.1,Models at or below 85% accuracy,78.9735,2H 2025,14.0999,7.0666,7.4145,-7.0333,-6.6854
+qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,Models at or below 85% accuracy,74.9433,2024,14.7967,13.3244,11.7021,-1.4724,-3.0946
+amazon/nova-pro-v1,Nova Pro,Models at or below 85% accuracy,72.6361,2024,18.2145,13.3244,14.835,-4.8902,-3.3796
+openai/gpt-4o-mini,GPT-4o mini,Models at or below 85% accuracy,71.625,2024,18.7937,12.3861,16.9352,-6.4077,-1.8586
+openai/gpt-5.4-nano,GPT-5.4 Nano,Models at or below 85% accuracy,67.7279,1H 2026,9.9916,13.3546,1.8132,3.363,-8.1783
+google/gemma-2-27b-it,Gemma 2 27B,Models at or below 85% accuracy,63.1696,2024,27.2215,21.2785,23.6223,-5.9431,-3.5992
+qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,Models at or below 85% accuracy,62.7643,2024,28.5147,16.5394,24.8755,-11.9753,-3.6392
+cohere/command-r-plus-08-2024,Command R+,Models at or below 85% accuracy,60.4088,2024,33.4494,23.6943,21.502,-9.7551,-11.9474
+anthropic/claude-3-haiku,Claude 3 Haiku,Models at or below 85% accuracy,54.4747,2024,38.0887,27.5802,31.9922,-10.5085,-6.0965

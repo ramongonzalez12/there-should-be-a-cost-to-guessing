@@ -1,0 +1,31 @@
+{
+  "committed_outputs": [
+    "data/processed/domain_transfer_contrasts.csv",
+    "data/processed/domain_alignment_behavior.csv"
+  ],
+  "records": {
+    "agentic_responses": 8736,
+    "behavior_training_domains": 3,
+    "domain_transfer_cells": 9
+  },
+  "schema_version": 1,
+  "sources": {
+    "runs/finetune/domain_transfer_v1/evaluation_matrix/domain_evaluation_items.json": "16f958db3837d9e761a69a476b8fd359e46006976488fb33ce3521f6d200c128",
+    "runs/finetune/domain_transfer_v1/evaluation_matrix/manifest.json": "d251055ccedfcf285a55e39a13374511202c87513f30706da17d3a2bd73ba629",
+    "runs/finetune/domain_transfer_v1/evaluation_matrix/responses.jsonl": "b30fe1ba9f5a98e7795afd3f3f79c656ee1902d9d21eb2213292772ec69c3a0e",
+    "runs/finetune/domain_transfer_v1/evaluation_matrix/summary.json": "dd1ced68d8fb524605f96cca08a9ffa64a5126e98fe10c7ae6dacf559e8d4691",
+    "runs/finetune/domain_transfer_v1/plural_prudence_v1/items.json": "06758998db5e2352b49d55b3c985e6a57f823fc345fdf19cabd0d0a5ac825c76",
+    "runs/finetune/domain_transfer_v1/plural_prudence_v1/manifest.json": "c078f57beaef3db37acb04e392575f97cd3c726a312d3bb8d229527d5240ddd8",
+    "runs/finetune/domain_transfer_v1/plural_prudence_v1/responses.jsonl": "11f8ee0be073e7d28e12d43d536eabdfddac86d1b271a7017c6fec206a45df22",
+    "runs/finetune/domain_transfer_v1/plural_prudence_v1/summary.json": "07f868248b184c45349edef698b6c43315641fb2b7434ea0bf7beab7aa983a61",
+    "runs/finetune/domain_transfer_v1/xstest_actions_v1/manifest.json": "77ff5b8c9752023bf233568eb75c252425a14ead14424b1bdcf6e6be5ca13043",
+    "runs/finetune/domain_transfer_v1/xstest_actions_v1/responses.jsonl": "bdab620c3c251b94c7ddded3d614e9da8695b8906865dd3b9220fe7f4104170f",
+    "runs/finetune/domain_transfer_v1/xstest_actions_v1/summary.json": "75aedd07697758dde45fb8c0596ed4f82c894606eedcbd7ed2cf511c51c1435d",
+    "runs/finetune/domain_transfer_v1/xstest_actions_v1/xstest_items.json": "13bf50d5fd46a9c3e2be8b08de938b2acb178e6a5a3a4109d2886ff865b1d341"
+  },
+  "spend_usd": {
+    "agentic": 0.746282,
+    "domain_evaluation": 0.163844,
+    "xstest": 0.199138
+  }
+}

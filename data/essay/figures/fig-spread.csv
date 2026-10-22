@@ -1,0 +1,51 @@
+rank,model,model_name,adjusted_accuracy_pts,accuracy_pct,stated_confidence_pct
+1,anthropic/claude-opus-5.5,Claude Opus 5.5,91.308,95.6097,89.9086
+2,anthropic/claude-fable-5.1,Claude Fable 5.1,89.4695,94.7123,92.0054
+3,anthropic/claude-opus-5,Claude Opus 5,89.2198,94.2372,92.6344
+4,openai/gpt-6.1-sol,GPT-6.1 Sol,87.8983,93.5,97.6912
+5,google/gemini-3.8-flash,Gemini 3.8 Flash,87.3868,93.6035,97.4506
+6,openai/gpt-6-astra,GPT-6 Astra,87.0687,93.125,97.6125
+7,google/gemini-3.7-flash,Gemini 3.7 Flash,86.7999,93.0,97.9663
+8,anthropic/claude-opus-4.8,Claude Opus 4.8,84.4835,91.4987,91.3787
+9,anthropic/claude-opus-4.7,Claude Opus 4.7,84.3221,92.0779,88.8676
+10,openai/gpt-5.5,GPT-5.5,84.2555,91.7345,95.8665
+11,openai/gpt-6-sol,GPT-6 Sol,84.0193,91.2336,96.3545
+12,openai/gpt-5.6-sol,GPT-5.6 Sol,83.8312,91.5,97.3563
+13,google/gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,82.6154,94.7599,98.8255
+14,google/gemini-3-flash-preview,Gemini 3 Flash,82.2422,90.8712,98.3825
+15,openai/gpt-6-luna-pro,GPT-6 Luna Pro,81.2343,90.2399,96.6535
+16,openai/gpt-6-luna,GPT-6 Luna,80.2764,89.6162,96.8987
+17,anthropic/claude-sonnet-4.6,Claude Sonnet 4.6,80.2442,88.8204,86.3519
+18,openai/gpt-5.2,GPT-5.2,79.9528,89.4652,91.7925
+19,openai/gpt-5.6-terra,GPT-5.6 Terra,79.546,88.875,96.5275
+20,anthropic/claude-haiku-5.5,Claude Haiku 5.5,79.1385,88.2083,84.2299
+21,anthropic/claude-sonnet-4.5,Claude Sonnet 4.5,79.038,87.9299,90.6704
+22,anthropic/claude-sonnet-5,Claude Sonnet 5,79.0229,91.4634,86.5227
+23,openai/gpt-5.6-luna,GPT-5.6 Luna,76.3149,87.5,97.4612
+24,google/gemma-4-31b-it,Gemma 4 31B,75.5472,87.125,97.7063
+25,openai/o4-mini,o4-mini,74.6684,87.0085,91.9564
+26,google/gemini-3.1-flash-lite-preview,Gemini 3.1 Flash-Lite,74.2962,87.074,97.7424
+27,anthropic/claude-sonnet-4,Claude Sonnet 4,73.438,84.9899,90.3565
+28,deepseek/deepseek-v4.1-flash,DeepSeek V4.1 Flash,73.4376,92.0079,96.2994
+29,meta/muse-glimmer-30b,Muse Glimmer 30B,72.3134,87.3266,84.973
+30,openai/gpt-5.4,GPT-5.4,71.6378,84.9306,95.5604
+31,openai/gpt-4.1,GPT-4.1,68.2658,83.6162,97.4188
+32,anthropic/claude-haiku-4.5,Claude Haiku 4.5,67.8558,81.0466,84.3403
+33,qwen/qwen3-next-80b-a3b-instruct,Qwen3-Next 80B,67.4481,85.0455,95.9834
+34,deepseek/deepseek-v4-pro-0813,DeepSeek V4 Pro,65.6139,81.8665,94.7505
+35,deepseek/deepseek-v4-flash,DeepSeek V4 Flash,64.4592,90.2377,97.0936
+36,meta-llama/llama-4-maverick,Llama 4 Maverick,64.4575,81.5935,91.333
+37,openai/gpt-4.1-mini,GPT-4.1 Mini,64.2088,80.9659,94.0795
+38,google/gemini-2.5-flash,Gemini 2.5 Flash,62.5713,85.5693,97.1358
+39,openai/gpt-5.1,GPT-5.1,61.7819,78.9735,93.0734
+40,mistralai/mistral-medium-3,Mistral Medium 3,61.2553,80.2058,94.1009
+41,mistralai/mistral-medium-3-5,Mistral Medium 3.5,61.1512,80.2832,94.1093
+42,openai/gpt-4o-2024-08-06,GPT-4o,60.618,79.0,92.6963
+43,qwen/qwen-2.5-72b-instruct,Qwen 2.5 72B,52.4819,74.9433,89.74
+44,amazon/nova-pro-v1,Nova Pro,49.636,72.6361,90.8507
+45,openai/gpt-4o-mini,GPT-4o mini,47.8447,71.625,90.4188
+46,openai/gpt-5.4-nano,GPT-5.4 Nano,42.3017,67.7279,77.7195
+47,google/gemma-2-27b-it,Gemma 2 27B,29.1541,63.1696,90.3912
+48,qwen/qwen-2.5-7b-instruct,Qwen 2.5 7B,26.0109,62.7643,91.279
+49,cohere/command-r-plus-08-2024,Command R+,16.3913,60.4088,93.8582
+50,anthropic/claude-3-haiku,Claude 3 Haiku,15.0818,54.4747,92.5634

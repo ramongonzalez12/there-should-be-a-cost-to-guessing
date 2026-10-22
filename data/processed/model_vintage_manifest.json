@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-09-17T07:51:07.929833+00:00",
+  "date_column": "OpenRouter listing date from data/models_catalog.csv (created)",
+  "extension_models": 37,
+  "extension_responses": 54200,
+  "extension_spend_usd": 52.7,
+  "git_commit": "cfe52c7adce6543165f913cbc0b7590b1d38e50d",
+  "inputs": {
+    "models_catalog.csv": "c01c72b9e0db13eac07dbbe6e4bf7b16c0e4c05b0a4d0ce636951a4d8748fbee",
+    "notation_artifact_summary.json": "6efcfb9f6707ef734d159ca8f592a165eade57c9cfdfd12a52c80dd9335f6261",
+    "notation_rerun_cells.csv": "cd71664ca54c82525d76642e68578f0901de6457884a6c06782e73dbc7856cc5",
+    "notation_rerun_models.csv": "7a7358dabf5046fd6a0d0f1c794c8d714509d77dd6b7fd29fbcadeeb423ef20d"
+  },
+  "models": 66,
+  "models_both_arms": 58,
+  "models_control_complete": 66,
+  "output_files": [
+    "model_vintage_calibration.csv",
+    "model_vintage_by_year.csv",
+    "model_vintage_manifest.json"
+  ]
+}

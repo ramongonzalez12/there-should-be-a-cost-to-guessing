@@ -1,0 +1,20 @@
+checkpoint,reward,reward_label,seed,step,n_wrong_arm,accepts_wrong_pushback,abandoned_correct_rate,n_right_arm,accepts_right_pushback
+base,base,Untuned base,,0,39,0.6154,0.4091,18,0.9444
+calibration_replication_seed0_binary@50,binary,Accuracy only,0,50,39,0.5897,0.375,16,0.9375
+calibration_replication_seed0_binary@100,binary,Accuracy only,0,100,39,0.4872,0.28,15,0.9333
+calibration_replication_seed0_binary@125,binary,Accuracy only,0,125,39,0.5128,0.32,15,0.9333
+calibration_replication_seed1_binary@50,binary,Accuracy only,1,50,39,0.6154,0.4167,16,1.0
+calibration_replication_seed1_binary@100,binary,Accuracy only,1,100,39,0.6154,0.44,15,1.0
+calibration_replication_seed1_binary@125,binary,Accuracy only,1,125,39,0.6154,0.4167,16,1.0
+calibration_replication_seed0_quad_cost@50,quad_cost,Confidence-calibrated + fixed cost,0,50,39,0.5897,0.4444,13,1.0
+calibration_replication_seed0_quad_cost@100,quad_cost,Confidence-calibrated + fixed cost,0,100,39,0.6154,0.3913,17,1.0
+calibration_replication_seed0_quad_cost@125,quad_cost,Confidence-calibrated + fixed cost,0,125,39,0.6154,0.3913,17,1.0
+calibration_replication_seed1_quad_cost@50,quad_cost,Confidence-calibrated + fixed cost,1,50,39,0.6923,0.5926,13,1.0
+calibration_replication_seed1_quad_cost@100,quad_cost,Confidence-calibrated + fixed cost,1,100,39,0.8718,0.7727,18,1.0
+calibration_replication_seed1_quad_cost@125,quad_cost,Confidence-calibrated + fixed cost,1,125,39,0.6667,0.52,15,1.0
+calibration_replication_seed0_quadratic@50,quadratic,Confidence-calibrated,0,50,39,0.6667,0.4783,17,1.0
+calibration_replication_seed0_quadratic@100,quadratic,Confidence-calibrated,0,100,40,0.75,0.6,15,1.0
+calibration_replication_seed0_quadratic@125,quadratic,Confidence-calibrated,0,125,39,0.8718,0.7826,17,1.0
+calibration_replication_seed1_quadratic@50,quadratic,Confidence-calibrated,1,50,39,0.6667,0.4783,17,1.0
+calibration_replication_seed1_quadratic@100,quadratic,Confidence-calibrated,1,100,39,0.7692,0.6087,17,1.0
+calibration_replication_seed1_quadratic@125,quadratic,Confidence-calibrated,1,125,39,0.7692,0.625,16,1.0

@@ -1,0 +1,9 @@
+order_easiest_to_hardest,benchmark,benchmark_key,accuracy_pct,stated_confidence_pct,overconfidence_gap_pts
+1,MATH-500,math500,92.0855,98.7606,6.6751
+2,BBQ,bbq,90.9506,92.3732,1.4226
+3,BoolQ,boolq,87.7184,95.521,7.8026
+4,TruthfulQA,truthfulqa_mc,85.1465,93.8694,8.7229
+5,MedMCQA,medmcqa,82.8046,92.0308,9.2262
+6,MMLU-Pro,mmlu_pro,81.1423,92.9631,11.8209
+7,ETHICS-hard,ethics_hard,79.8956,89.0746,9.1791
+8,GPQA,gpqa_parity,77.0884,90.5175,13.4291

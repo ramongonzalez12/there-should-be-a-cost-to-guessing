@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Below Zero &mdash; what this builds on</title>
+<meta name="description" content="The scoring theory, the reject option, the testing precedent, the calibration evidence and the benchmark critique this project stands on, and a question-by-question account of what is settled and what is not.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Below Zero — research instrument design system.
+   The paper surface and serif reading voice come from the project's editorial
+   roots. Plum carries identity and the scoring-curve motif; evidence blue,
+   valid green, and exclusion amber keep their analytical jobs. Rules and
+   whitespace do the grouping so the research pages never collapse into a
+   grid of generic content cards. */
+
+/* @tokens-start */
+:root {
+  /* These public tokens are the contract selected in the design lab.
+     Aliases below keep older component names readable while every semantic
+     use resolves to one centrally controlled value. */
+  --paper:          #f8f7f3;
+  --ink:            #1c1b19;
+  --plum:           #7a3a58;
+  --plum-dark:      #40283b;
+  --plum-tint:      #f1e6eb;
+  --on-plum:        #fffefa;
+  --evidence:       #2b4a6f;
+  --valid:          #217a5b;
+  --invalid:        #a8661a;
+  --on-evidence:    #ffffff;
+  --evidence-tint:  #eef2f6;
+  --invalid-tint:   #f6eee3;
+  --evidence-band:  #aebdcd;
+
+  --text:           var(--ink);
+  --text-secondary: #3d3d3d;
+  --text-muted:     #6b6b6b;
+  --bg:             var(--paper);
+  --bg-alt:         var(--evidence-tint);
+  --accent:         var(--plum);
+  --accent-text:    var(--plum);
+  --accent-tint:    var(--plum-tint);
+  --rule:           #d8d4cb;
+  --rule-strong:    #b9b4aa;
+  --ok:             var(--valid);
+  --warn:           var(--invalid);
+  --max-text:       680px;
+  --max-wide:       940px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:          #171a1d;
+    --ink:            #f2f1ec;
+    --plum:           #c592aa;
+    --plum-dark:      #2a2029;
+    --plum-tint:      #30252e;
+    --on-plum:        #fffefa;
+    --evidence:       #355d82;
+    --valid:          #69b58f;
+    --invalid:        #d1a15f;
+    --on-evidence:    #ffffff;
+    --evidence-tint:  #202a33;
+    --invalid-tint:   #33291f;
+    --evidence-band:  #5d7891;
+    --text:           #f2f1ee;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8f8e85;
+    --bg:             var(--paper);
+    --bg-alt:         var(--evidence-tint);
+    --accent:         var(--plum);
+    --accent-text:    var(--plum);
+    --accent-tint:    var(--plum-tint);
+    --rule:           #343a3f;
+    --rule-strong:    #4a5259;
+    --ok:             var(--valid);
+    --warn:           var(--invalid);
+  }
+}
+
+/* @tokens-end */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: var(--max-wide); margin: 0 auto; padding: 0 24px; }
+p, li, h1, h2, h3, .q, .a, .byline, .toc, .note, .cap, blockquote, .rule, details {
+  max-width: var(--max-text);
+}
+
+/* --- site menu -------------------------------------------------------------
+   Fixed to the top of every page and ALWAYS visible. An earlier version
+   revealed itself only after 320px of scrolling, which meant a reader landing
+   on any page saw no navigation at all until they happened to scroll.
+   The full plum field is the site's identity masthead. Evidence blue remains
+   reserved for analytical anchors and published ranges inside the page. */
+/* @nav-start */
+/* Scoped border-box. The global `* { box-sizing }` rule sits outside this
+   slice, so the hand-maintained page borrows the menu WITHOUT it and laid the
+   bar out 24px wider than the measure every other page uses. Declaring it on
+   the menu's own subtree keeps the two in line without reaching into that
+   page's chart layout. */
+.scroll-nav, .scroll-nav * { box-sizing: border-box; }
+.scroll-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 51px;
+  background: var(--plum-dark);
+  border-bottom: 1px solid color-mix(in srgb, var(--plum-dark) 72%, #000);
+  z-index: 100;
+}
+/* Content clears the fixed bar. This rule lives inside the nav slice on
+   purpose: the hand-maintained page borrows the same block, so it can never
+   receive the menu without also receiving the space the menu occupies. */
+body { padding-top: 51px; }
+/* The masthead is already a solid semantic field. Keep only a quiet top rail
+   so the navigation retains the same measured 51px geometry as before. */
+.scroll-nav-track {
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: color-mix(in srgb, var(--plum-dark) 78%, #000);
+}
+/* Progress reads along the BOTTOM edge instead, over the hairline rule. Drawn
+   there so it never competes with the masthead for the same 5px. */
+.scroll-nav-progress {
+  position: absolute; bottom: -1px; left: 0; height: 2px; width: 0%;
+  background: var(--on-plum); opacity: .86; transition: width .1s linear;
+}
+.scroll-nav-inner {
+  max-width: var(--max-wide); margin: 0 auto; padding: 5px 24px 0; height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13px;
+}
+.scroll-nav-title {
+  font-weight: 700; color: var(--on-plum); text-decoration: none; white-space: nowrap;
+  letter-spacing: -0.005em; flex: none;
+}
+.scroll-nav-title:hover { color: var(--on-plum); }
+.scroll-nav-links {
+  display: flex; gap: 17px; min-width: 0;
+  letter-spacing: .01em;
+}
+.scroll-nav-links a {
+  color: color-mix(in srgb, var(--on-plum) 72%, transparent);
+  text-decoration: none; white-space: nowrap;
+  padding: 2px 0; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.scroll-nav-links a:hover { color: var(--on-plum); }
+.scroll-nav-links a.here {
+  color: var(--on-plum); font-weight: 600; border-bottom-color: var(--on-plum);
+}
+/* Group labels: small caps, dimmer than a link, never clickable. They exist
+   to let a reader see the menu's shape (read this / deep dives / reference)
+   and are dropped on narrow screens, where the abbreviated links alone fit. */
+.scroll-nav-links .nav-group {
+  color: color-mix(in srgb, var(--on-plum) 46%, transparent);
+  font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+  align-self: center; white-space: nowrap; margin-right: -6px;
+}
+.scroll-nav-links .nav-group:not(:first-child) { margin-left: 8px; }
+@media (max-width: 640px) { .scroll-nav-links .nav-group { display: none; } }
+/* Narrow screens shorten the labels instead of dropping links, so the menu
+   stays complete. Below the point where even short labels stop fitting, the
+   row scrolls sideways rather than hiding its tail.
+
+   The binding constraint is NOT the viewport. .scroll-nav-inner is capped at
+   --max-wide (940px) and centred, so a 4K monitor buys the menu exactly as much
+   room as a 1000px laptop: 798px, once the wordmark, the gap and the gutters
+   are taken out. Every earlier version of this rule tied the label swap to a
+   viewport breakpoint, which is why it kept going stale silently. It was
+   measuring the wrong thing, and it looked right on the machine it was written
+   on.
+
+   Against that fixed 798px, with 14 pages in SITE (re-measured 2026-08-25):
+       full labels  need well past 1500px -> never fit, at any screen size
+       short labels need  ~955px          -> overflow by ~157px, at any width
+   So the row now scrolls at every width, including desktop, and the fade
+   cue below is unconditional to match. Shortening abbreviations remains the
+   cheap lever if the scroll gets annoying; ~160px of savings would need
+   several renames, which is a deliberate decision, not a side effect.
+
+   Two abbreviations were shortened to get there ("Fine-tuning" to "Tuning",
+   "Why linear" to "Linear"), which is the cheap lever: this column exists to be
+   short, and one entry that repeated its long label was costing 40px on its own.
+
+   So the short labels are now unconditional, and the row scrolls at every
+   width rather than only below 920px. Scrolling is the documented fallback and
+   the fade script already targets .scroll-nav-links, so an overflowing tail
+   gets its cue automatically. The menu therefore stays COMPLETE by
+   construction: adding a page can make the row scroll further, which is a
+   graceful failure, but can no longer push a link off the edge with nothing to
+   say so. Widen --max-wide or shorten an abbreviation if the scroll becomes
+   long enough to be annoying; do not reintroduce a viewport breakpoint. */
+.nav-full { display: none; }
+.nav-abbr { display: inline; }
+.scroll-nav-links {
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+}
+.scroll-nav-links::-webkit-scrollbar { display: none; }
+@media (max-width: 920px) {
+  .scroll-nav-inner { gap: 14px; padding-left: 16px; padding-right: 16px; }
+  .scroll-nav-links { gap: 15px; }
+}
+/* Fade a cut edge, but ONLY where the row genuinely runs out of space.
+   Without the fade a half-cut word reads as a layout bug; with it, it reads as
+   "there is more of this row that way", which is the only cue a hidden
+   scrollbar leaves.
+
+   The fade width at each edge is a variable the script sets from the row's
+   actual scroll position, and the script zeroes both edges whenever the row
+   fits, so a fade can never claim hidden content that is not there. The
+   values declared here are the no-script state: right-faded / left-clear,
+   which matches how an overflowing row always loads (scrollLeft 0).
+
+   This used to sit inside a 600px media query, from when the short-label row
+   measured ~475px and only overflowed on phones. At 14 pages the row measures
+   ~955px against the fixed 798px budget above, so it overflows at EVERY
+   width, and the gate had turned into a lie the other way: on desktop the
+   row scrolled with no cue at all, and the auto-scroll that reveals the
+   current page's link was hiding the leftmost links behind a clean hard
+   edge. The gate is gone rather than re-measured; the script's measurement
+   is the condition now. If the menu ever shrinks back below the budget, the
+   no-script default over-claims by one fade, which is the cost of keeping
+   the cue honest everywhere scripts run. */
+.scroll-nav-links {
+  --fade-start: 0px;
+  --fade-end: 26px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+@media (max-width: 460px) {
+  .scroll-nav-inner { gap: 11px; padding-left: 13px; padding-right: 13px; }
+  .scroll-nav-links { gap: 13px; font-size: 12.5px; }
+  .scroll-nav-title { font-size: 12.5px; }
+}
+
+/* A distinct page-local rail for long articles. It remains in document flow
+   until it reaches the fixed site menu, then owns the next horizontal strip.
+   Separate nav landmarks and native anchors keep page changes and in-page
+   movement as different actions. */
+.section-nav, .section-nav * { box-sizing: border-box; }
+.section-nav {
+  position: sticky; top: 51px; z-index: 90;
+  height: 42px; background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: saturate(130%) blur(9px);
+  -webkit-backdrop-filter: saturate(130%) blur(9px);
+  border-bottom: 1px solid var(--rule);
+}
+.section-nav-inner {
+  max-width: var(--max-wide); height: 100%; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 18px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+.section-nav-label {
+  flex: none; color: var(--text-muted); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase;
+}
+.section-nav-links {
+  min-width: 0; display: flex; align-items: stretch; gap: 18px;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  /* Script-driven edge fades, like .table-wrap below: zero until the script
+     measures a real overflow, so a rail that fits (literature at phone
+     widths) never dims its last link. The rail used to carry a static
+     right-only mask below 640px instead, which lied in both directions once
+     the rail scrolled: it kept dimming the end after there was nothing past
+     it, and it never cued the items cut off on the left. */
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+.section-nav-links::-webkit-scrollbar { display: none; }
+.section-nav-links a {
+  flex: none; color: var(--text-muted); text-decoration: none; white-space: nowrap;
+  font-size: 12px; line-height: 42px; border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.section-nav-links a:hover { color: var(--text); }
+.section-nav-links a.here {
+  color: var(--accent-text); font-weight: 600; border-bottom-color: var(--accent);
+}
+body.with-section-nav h2[id] { scroll-margin-top: 112px; }
+@media (max-width: 640px) {
+  .section-nav-inner { padding: 0 13px; gap: 0; }
+  .section-nav-label { display: none; }
+  .section-nav-links { width: 100%; gap: 16px; }
+}
+/* @nav-end */
+
+/* --- hero ---------------------------------------------------------------- */
+/* Only the front page carries a crumb now, pointing out of the site to the
+   projects index. Side pages dropped theirs: it linked to index.html, which the
+   fixed menu directly above it already does, and on a phone the two sat forty
+   pixels apart reading as a duplicate. */
+.crumb {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; color: var(--text-muted); padding-top: 30px; margin: 0 0 26px;
+}
+/* The crumb was the only thing holding a side page's title off the menu, so its
+   30px of padding and 26px of margin move here. Same measurement, one element
+   fewer; without it the h1 sat flush against the bar. */
+.wrap.side { padding-top: 56px; }
+/* Tables whose "value" columns are short phrases, not numbers: left-align
+   headers and cells alike so the header does not float away from its column. */
+table.text-cols th, table.text-cols td { text-align: left; }
+.page-dates-detail {
+  display: block; margin-top: 3px; font-size: 12px; color: var(--text-muted);
+}
+.superseded-banner {
+  margin: 0 0 22px; padding: 10px 14px; font-size: 14px; line-height: 1.5;
+  border-left: 3px solid var(--accent); background: var(--plot-field, #f6f5f2);
+  color: var(--text-secondary);
+}
+.superseded-banner a { color: var(--accent-text); }
+.crumb a { color: var(--text-muted); text-decoration: none; }
+.crumb a:hover { color: var(--accent-text); }
+h1 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 40px; font-weight: 700; line-height: 1.14; letter-spacing: -0.008em;
+  color: var(--plum-dark); margin: 0 0 18px; max-width: 880px;
+}
+@media (prefers-color-scheme: dark) { h1 { color: var(--plum); } }
+/* The question the page answers. Sized between the title and the body. */
+.q {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 23px; font-weight: 400; line-height: 1.35; color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+/* The answer, in the reader's first ten seconds. */
+.a { font-size: 19px; line-height: 1.55; margin: 0 0 24px; }
+.a b, .a strong { font-weight: 700; }
+.byline {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.55; color: var(--text-muted); letter-spacing: .01em;
+  border-top: 1px solid var(--rule);
+  padding: 11px 0 14px; margin: 0 0 36px;
+}
+.page-dates time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* When the stat strip follows the byline directly, close the gap so the two
+   read as one banded unit rather than as two floating rules. */
+.byline:has(+ .stats) { margin-bottom: 0; }
+.byline + .stats { margin-top: 0; }
+
+/* --- stat strip ---------------------------------------------------------- */
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  max-width: var(--max-text); margin: 30px 0 34px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.stats div {
+  padding: 24px 20px; border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 9px;
+}
+.stats div:last-child { border-right: none; }
+.stats div b {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 42px; font-weight: 700; line-height: 1; letter-spacing: -0.015em;
+  color: var(--evidence); font-variant-numeric: tabular-nums; display: block;
+}
+/* The tile's caption. Scoped to the DIRECT child so it cannot also style a
+   definition tooltip that happens to sit inside the caption: .dfnbody is a span
+   too, and the descendant form caught it, squeezing a 340px popover into the
+   26ch measure at caption size while every other tooltip on the site kept its
+   own. A tooltip is not a caption; it just happens to be nested in one. */
+.stats div > span {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; line-height: 1.45; color: var(--text-secondary);
+  max-width: 26ch; display: block; text-wrap: balance;
+}
+
+/* --- sections ------------------------------------------------------------ */
+/* @quadratic-motif
+   The divider is the curve: the q=.60 expected-score parabola from the site's
+   interactive explainer spans the full reading measure between sections. It
+   has no axis, observations, or labels, so it is a signature, not a result. */
+h2 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 27px; font-weight: 700; line-height: 1.22; letter-spacing: 0;
+  color: var(--text); margin: 3em 0 22px;
+}
+.quadratic-divider {
+  max-width: var(--max-text); margin: 54px 0 24px; line-height: 0;
+}
+.quadratic-divider svg {
+  display: block; width: 100%; height: 58px; overflow: visible;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+.quadratic-divider path {
+  fill: none; stroke: var(--plum); stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.quadratic-divider + h2 { margin-top: 0; }
+h3 {
+  font-family: 'Source Serif 4', ui-serif, Georgia, serif;
+  font-size: 19.5px; font-weight: 700; line-height: 1.3; margin: 2.1em 0 .5em;
+}
+p { margin: 0 0 18px; }
+
+/* Findings list: no bullet furniture, a bold accent lead-in per item. */
+ul.key { list-style: none; padding: 0; margin: 24px 0 28px;
+         display: flex; flex-direction: column; gap: 17px; }
+ul.key li { font-size: 17.5px; line-height: 1.55; padding-left: 17px;
+            position: relative; }
+ul.key li:before { content: ''; position: absolute; left: 0; top: .62em;
+                   width: 8px; height: 2px; background: var(--accent); }
+ul.key li b, ul.key li strong { font-weight: 700; }
+
+ol { padding-left: 22px; margin: 22px 0 26px; }
+ol li { margin-bottom: 13px; line-height: 1.55; }
+
+/* --- contents ------------------------------------------------------------ */
+.toc {
+  background: transparent; border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong); border-radius: 0;
+  padding: 18px 0 20px; margin: 32px 0;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 14px;
+}
+.toc b {
+  font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--text-muted); display: block; margin-bottom: 10px;
+}
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { margin-bottom: .35em; line-height: 1.45; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--accent-text); }
+
+/* --- tables -------------------------------------------------------------- */
+/* A table too wide for the viewport scrolls on its own axis rather than letting
+   its columns collapse. Same edge fade as the nav row, and for the same reason:
+   without a cue, a column cut at the wrapper's edge reads as a broken layout
+   rather than as "there is more of this table sideways". The fade widths default
+   to zero and are set by script from the wrapper's real scroll position, because
+   whether any given table overflows depends on the viewport, the font and the
+   data — none of which CSS can ask about. No script means no cue, which
+   understates but never misleads. */
+.table-wrap {
+  max-width: var(--max-wide); margin: 22px 0 26px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  --fade-start: 0px;
+  --fade-end: 0px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+                      #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start),
+              #000 calc(100% - var(--fade-end)), transparent);
+}
+table {
+  width: 100%; border-collapse: collapse; margin: 0;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 14px; font-variant-numeric: tabular-nums;
+}
+/* Below this the columns cannot hold their content; the wrapper scrolls
+   instead of the layout collapsing. */
+table { min-width: 460px; }
+table.narrow { min-width: 380px; }
+thead th {
+  text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--text-muted);
+  border-bottom: 1px solid var(--text); padding: 8px 12px 8px 0; vertical-align: bottom;
+}
+tbody td {
+  padding: 12px 12px 12px 0; border-bottom: 1px solid var(--rule);
+  color: var(--text); vertical-align: baseline;
+}
+td.n, th:not(:first-child) { text-align: right; }
+/* Tables with few, short columns look stretched at the wide measure; hold them
+   to the text column so the eye does not cross an empty gap. */
+table.narrow { max-width: var(--max-text); }
+
+/* The gap table is three columns of PROSE, not of numbers, so the defaults are
+   wrong for it in three ways: nothing right-aligns, cells align to their top
+   rather than to a first baseline they no longer share, and the question column
+   is pinned narrow so the two columns a reader actually compares get the room.
+   It is also the one table on the site that earns the wide measure, because the
+   comparison it supports is horizontal. */
+table.gaps { min-width: 640px; }
+table.gaps th, table.gaps td { text-align: left; }
+table.gaps td { vertical-align: top; line-height: 1.5; }
+table.gaps th:first-child, table.gaps td:first-child { width: 23%; }
+table.gaps th:nth-child(2), table.gaps td:nth-child(2) { width: 38.5%; }
+tbody td:last-child { padding-right: 0; }
+thead th:last-child { padding-right: 0; }
+
+.cap {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); margin: -14px 0 26px;
+}
+/* A qualifier inside a table cell: what the headline number in that row was
+   computed from, kept subordinate to it. */
+.sub {
+  display: block; font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 11.5px; line-height: 1.35; color: var(--text-muted); margin-top: 3px;
+  font-weight: 400;
+}
+
+/* --- callouts ------------------------------------------------------------ */
+.note {
+  background: var(--plum-tint); border-left: 3px solid var(--plum);
+  padding: 16px 20px; margin: 26px 0; font-size: 16px; line-height: 1.55;
+  color: var(--text-secondary);
+}
+.note.invalid-note {
+  background: var(--invalid-tint); border-left-color: var(--invalid);
+}
+.note.invalid-note b { color: var(--invalid); }
+.note b {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-text); display: block; margin-bottom: 7px;
+}
+.rule {
+  background: var(--bg-alt); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 18px 22px; margin: 22px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14.5px; line-height: 1.95;
+}
+blockquote {
+  margin: 26px 0; padding: 2px 0 2px 18px; border-left: 3px solid var(--accent);
+  font-style: italic; color: var(--text-secondary);
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em;
+  background: var(--bg-alt); border: 1px solid var(--rule);
+  padding: 1px 5px; border-radius: 3px;
+}
+a { color: var(--accent-text); text-underline-offset: 2px; }
+
+details { margin: 20px 0; font-size: 16px; }
+details summary {
+  cursor: pointer; color: var(--accent-text);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif; font-size: 13.5px;
+  font-weight: 500;
+}
+details[open] summary { margin-bottom: 12px; }
+
+/* --- status labels ------------------------------------------------------- */
+.state {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .09em;
+  font-weight: 700; white-space: nowrap;
+}
+.state.done { color: var(--ok); }
+.state.now  { color: var(--accent-text); }
+.state.todo { color: var(--text-muted); }
+/* A gate verdict. "Invalid" is amber rather than red on purpose: an excluded
+   arm is a control working, not a result that came out badly. */
+.state.pass    { color: var(--ok); }
+.state.invalid { color: var(--warn); }
+.state small {
+  display: block; text-transform: none; letter-spacing: 0; font-weight: 400;
+  font-size: 10.5px; color: var(--text-muted); margin-top: 3px;
+}
+
+/* --- fine-tuning explainer ---------------------------------------------- */
+.tune-loop {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  max-width: var(--max-wide); margin: 26px 0 12px;
+  border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong);
+}
+.tune-step {
+  padding: 20px 18px 22px; border-right: 1px solid var(--rule);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13.5px; line-height: 1.48; color: var(--text-secondary);
+}
+.tune-step:last-child { border-right: none; }
+.tune-step b {
+  display: block; margin-bottom: 7px; color: var(--text); font-size: 14px;
+}
+.tune-step span {
+  display: block; color: var(--accent-text); font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px;
+}
+.loop-back {
+  max-width: var(--max-wide); margin: 0 0 28px; color: var(--text-muted);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12.5px; text-align: right;
+}
+.arm-table td:first-child { width: 19%; }
+.arm-table td:nth-child(2) { width: 38%; }
+/* This explanatory table contains prose in every column. Center its labels
+   over the full text columns instead of inheriting the numeric-table rule that
+   right-aligns non-first headers. */
+.experiment-map thead th { text-align: center; }
+.eval-matrix { min-width: 680px; }
+.eval-matrix td:first-child { width: 32%; }
+.eval-matrix th:not(:first-child), .eval-matrix td:not(:first-child) {
+  text-align: center;
+}
+
+/* --- the arm and rule catalogues -----------------------------------------
+   Both are reference tables of PROSE, so the numeric defaults are wrong for
+   them the same way they are wrong for .gaps: nothing right-aligns, and cells
+   must align to their tops because rows of different lengths no longer share a
+   first baseline. Both earn the wide measure, because what a reader does here
+   is compare across a row rather than read down a column.
+
+   The minimum widths are the point at which the two prose columns stop being
+   readable side by side, not a device size. Below it the wrapper scrolls, which
+   is the behaviour a data table should have; letting these squeeze instead
+   collapses the arm names, and an arm name broken mid-token reads as a bug. */
+.arm-map, .rule-map { min-width: 700px; }
+.arm-map th, .arm-map td, .rule-map th, .rule-map td { text-align: left; }
+.arm-map td, .rule-map td { vertical-align: top; line-height: 1.5; }
+.arm-map td:first-child { width: 15%; }
+.arm-map td:nth-child(2) { width: 30%; }
+.arm-map td:nth-child(3) { width: 40%; }
+/* The status column is a verdict, not prose. Keep it on one line so the column
+   reads as a scannable stripe down the right-hand edge. */
+.arm-map td:last-child { width: 15%; white-space: nowrap; }
+.arm-map code, .rule-map code { white-space: nowrap; }
+
+/* The rule table's two score columns are formulae: short, the thing being
+   compared, and they must not wrap mid-expression. Everything else yields width
+   to the notes column, which holds the only real prose in the table and so sets
+   every row's height. An earlier split gave the notes 28% and produced six-line
+   rows beside one-word cells, which is a lot of white space for a table whose
+   whole job is to be scanned across. */
+.rule-map td:first-child { width: 12%; }
+.rule-map td:nth-child(2), .rule-map td:nth-child(3) {
+  width: 13%; white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+}
+.rule-map td:nth-child(4) { width: 9%; }
+.rule-map td:nth-child(5) { width: 17%; }
+.rule-map td:last-child { width: 36%; }
+
+@media (max-width: 720px) {
+  .tune-loop { grid-template-columns: 1fr 1fr; }
+  .tune-step:nth-child(2) { border-right: none; }
+  .tune-step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+/* --- replication interval strip -------------------------------------------
+   One row per model: the range the published score implies, the published
+   score itself, and where this run landed. Drawn from CSS custom properties
+   the builder computes, so it is the same numbers as the columns beside it
+   rather than a hand-drawn illustration. Positions are on a shared 65-100%
+   scale, which is what makes the rows comparable to each other. */
+.pi { position: relative; height: 22px; min-width: 132px; }
+.pi:before {
+  content: ''; position: absolute; left: 0; right: 0; top: 10px;
+  height: 1px; background: var(--rule);
+}
+.pi i {
+  position: absolute; display: block; font-style: normal;
+}
+.pi .band {
+  left: var(--lo); width: calc(var(--hi) - var(--lo));
+  top: 7px; height: 8px; background: var(--evidence-band); border-radius: 1px;
+}
+.pi .pub { left: var(--pub); top: 2px; width: 1px; height: 18px; background: var(--evidence); }
+.pi .ours {
+  left: var(--ours); top: 6px; width: 10px; height: 10px; margin-left: -5px;
+  border-radius: 50%; background: var(--ok); border: 2px solid var(--bg);
+}
+.pi.miss .ours { background: var(--warn); }
+/* The legend uses the same three marks at the same sizes as the strip. */
+.pi-legend {
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12px; color: var(--text-secondary); margin: -12px 0 26px;
+}
+.pi-legend span { display: flex; gap: 7px; align-items: center; }
+.pi-legend em { display: block; font-style: normal; }
+.pi-legend .band { width: 24px; height: 8px; background: var(--evidence-band); border-radius: 1px; }
+.pi-legend .pub { width: 1px; height: 15px; background: var(--evidence); }
+.pi-legend .ours { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
+
+/* --- footnote popovers --------------------------------------------------- */
+.fn { position: relative; }
+.fn button {
+  font: inherit; font-size: 10px; line-height: 1; vertical-align: super;
+  border: 1px solid var(--rule-strong); background: var(--bg-alt);
+  color: var(--text-muted); border-radius: 50%; width: 16px; height: 16px;
+  padding: 0; cursor: pointer;
+}
+.fn button:hover { color: var(--accent-text); border-color: var(--accent); }
+.fn .fnbody { display: none; }
+.fn:focus-within .fnbody, .fn:hover .fnbody {
+  display: block; position: absolute; left: 0; top: 22px; width: min(340px, 72vw);
+  background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 12px 14px; z-index: 9; box-shadow: 0 6px 22px rgba(0,0,0,.13);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.5; font-style: normal; color: var(--text-secondary);
+}
+
+/* --- inline definitions ---------------------------------------------------
+   A dotted underline under a term of art. The cue is static because the claim
+   it makes is static: there IS a definition attached to this word, at every
+   viewport, whether or not anything is hovering it.
+
+   The body is clipped rather than display:none so it stays in the
+   accessibility tree; the open state is expressed by undoing the clip. Both
+   :hover and :focus are listed because the keyboard route is not optional, and
+   :focus-within catches focus landing on anything the definition may contain. */
+.dfn {
+  font-style: normal; position: relative; cursor: help;
+  border-bottom: 1px dotted var(--rule-strong);
+}
+.dfn:hover, .dfn:focus, .dfn:focus-within { border-bottom-color: var(--accent); }
+.dfn:focus { outline: none; }
+.dfn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dfnbody {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.dfn:hover .dfnbody, .dfn:focus .dfnbody, .dfn:focus-within .dfnbody {
+  left: 0; top: 1.75em; width: min(340px, 72vw); height: auto;
+  overflow: visible; clip-path: none; white-space: normal;
+  background: var(--bg); border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 12px 14px; z-index: 9; box-shadow: 0 6px 22px rgba(0,0,0,.13);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13px; line-height: 1.5; font-style: normal; font-weight: 400;
+  color: var(--text-secondary);
+  /* A tooltip is a paragraph, and it reads the same wherever the term happens to
+     sit. Stated rather than inherited because a defined term can appear inside
+     centred furniture, such as a stat tile caption, where inheriting the
+     surrounding alignment would centre four lines of prose. */
+  text-align: left;
+}
+
+/* --- operational records --------------------------------------------------
+   The style guide names four registers this site writes in, and the operator
+   ledger is one of them: spend against a ceiling, what is authorized next, what
+   needs a human. That register kept leaking into narrative prose, where a
+   reader following an argument suddenly hits an authorization decision.
+
+   These blocks are folded and labelled rather than deleted. The numbers are
+   part of the argument that this work is auditable, so hiding them would cost
+   more than the interruption does. The heading and its id stay OUTSIDE the
+   details, so the section rail still lands on something visible and a fragment
+   link never scrolls to a collapsed box. */
+details.operational {
+  border: 1px solid var(--rule); border-left: 3px solid var(--text-muted);
+  background: var(--bg-alt); border-radius: 3px;
+  padding: 0 20px; margin: 22px 0; max-width: var(--max-text);
+}
+details.operational > summary {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-muted); cursor: pointer; padding: 13px 0; list-style: none;
+}
+details.operational > summary::-webkit-details-marker { display: none; }
+/* The marker is drawn rather than inherited so it can rotate, and because the
+   native triangle sits at a different baseline in every browser. */
+details.operational > summary::before {
+  content: '\25B8'; display: inline-block; margin-right: 9px;
+  transition: transform .12s ease; color: var(--text-muted);
+}
+details.operational[open] > summary::before { transform: rotate(90deg); }
+details.operational > summary:hover { color: var(--accent-text); }
+details.operational > summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+details.operational > *:not(summary) { font-size: 16px; }
+details.operational > *:last-child { margin-bottom: 18px; }
+details.operational .note { margin-left: 0; margin-right: 0; }
+
+/* The internal design lab is not part of the public argument, and the menu
+   should say so before a reader clicks it. */
+.scroll-nav a.internal .nav-full::after,
+.scroll-nav a.internal .nav-abbr::after {
+  content: 'INTERNAL'; display: inline-block; margin-left: 6px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: .09em;
+  padding: 1px 4px; border-radius: 2px; vertical-align: 1.5px;
+  border: 1px solid color-mix(in srgb, var(--on-plum) 40%, transparent);
+  color: color-mix(in srgb, var(--on-plum) 66%, transparent);
+}
+
+/* --- glossary -------------------------------------------------------------
+   A definition list, not a table: the terms are looked up one at a time rather
+   than compared down a column, and a table would invite a reader to scan for a
+   pattern across rows that is not there. */
+/* Definitions are prose and take the prose measure. A dl does not inherit the
+   max-width that p carries, so without this the glossary sets 25% wider than
+   every paragraph above it on the same page. */
+.glossary { margin: 26px 0 0; max-width: var(--max-text); }
+.glossary dt {
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text); margin-top: 22px;
+}
+.glossary dd {
+  margin: 5px 0 0; font-size: 16.5px; line-height: 1.55;
+  color: var(--text-secondary);
+}
+.glossary dd code { font-size: .88em; }
+
+/* --- footer -------------------------------------------------------------- */
+footer {
+  border-top: 4px solid var(--plum); margin-top: 64px; padding: 32px 0 80px;
+  background: var(--plum-dark);
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+  font-size: 13.5px; line-height: 1.6;
+  color: color-mix(in srgb, var(--on-plum) 78%, transparent);
+}
+footer p { max-width: var(--max-text); margin: 0 0 12px; }
+footer b { color: var(--on-plum); }
+.footer-nav { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 18px;
+              padding-top: 16px; border-top: 1px solid rgba(255,255,255,.22); }
+.footer-nav a { color: color-mix(in srgb, var(--on-plum) 76%, transparent); text-decoration: none; }
+.footer-nav a:hover { color: var(--on-plum); }
+.cite {
+  background: rgba(255,255,255,.06); border-left: 3px solid var(--plum);
+  padding: 14px 18px; margin-top: 22px; font-size: 13px;
+  color: color-mix(in srgb, var(--on-plum) 78%, transparent);
+}
+
+/* --- reference lists ------------------------------------------------------
+   Citations are apparatus, not argument. They set in the metadata sans at a
+   smaller size so a reader following the thread can skip a whole block on
+   sight, and hang their first line so every entry starts with an author name
+   at the same left edge — which is the only thing anyone scans a reference
+   list for. Deliberately NOT numbered: nothing in the prose cites by number,
+   and numbering would imply a cross-reference the page does not have. */
+ul.refs {
+  list-style: none; padding: 0; margin: 16px 0 30px;
+  font-family: 'Inter', ui-sans-serif, -apple-system, sans-serif;
+}
+ul.refs li {
+  /* Hanging indent: pad the whole entry in, pull the first line back out. */
+  padding-left: 19px; text-indent: -19px;
+  margin-bottom: 9px;
+  font-size: 14px; line-height: 1.5; color: var(--text-secondary);
+}
+ul.refs li b { color: var(--text); font-weight: 600; }
+/* The gloss is what the work gives THIS project, and it is the part worth
+   reading if you read only one part, so it stays in the body colour while the
+   bibliographic detail around it recedes. */
+ul.refs li .gloss { color: var(--text); }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  h1 { font-size: 31px; }
+  h2 { font-size: 23px; }
+  .quadratic-divider { margin: 42px 0 20px; }
+  .quadratic-divider svg { height: 46px; }
+  .q { font-size: 20px; }
+  .stats { grid-template-columns: 1fr; }
+  .stats div { border-right: none; border-bottom: 1px solid var(--rule);
+               padding: 18px 0; }
+  .stats div:last-child { border-bottom: none; }
+  .stats div b { font-size: 40px; }
+  .crumb { padding-top: 22px; }
+  .wrap.side { padding-top: 48px; }
+  table { font-size: 13px; }
+  .cap { margin-top: -8px; }
+  .tune-loop { grid-template-columns: 1fr; }
+  .tune-step { border-right: none; border-bottom: 1px solid var(--rule); }
+  .tune-step:nth-child(2) { border-right: none; }
+  .tune-step:last-child { border-bottom: none; }
+  .loop-back { text-align: left; }
+  /* The gate table's verdict column is the whole point of the table, and at
+     this width the interval strip pushes it behind a horizontal scroll. Drop
+     the strip: it is a picture of the two number columns either side of it, so
+     nothing unique is lost, and the legend below explains its absence. */
+  table.gate { min-width: 0; }
+  table.gate th:nth-child(4), table.gate td:nth-child(4) { display: none; }
+  .pi-legend { display: none; }
+}
+
+</style></head>
+<body class="with-section-nav" data-created="2026-08-16 11:10 ET"
+      data-last-updated="2026-08-17 01:24 ET"
+      data-style-updated="2026-09-03 10:00 ET"
+      data-content-updated="2026-08-17 01:24 ET"
+      data-structure-updated="2026-09-03 10:00 ET"
+      data-commit="f64c8ca">
+
+<nav class="scroll-nav" id="scrollnav" aria-label="Site"><div class="scroll-nav-track"></div><div class="scroll-nav-progress" id="scrollprogress"></div><div class="scroll-nav-inner"><a class="scroll-nav-title" href="index.html">Below Zero</a><div class="scroll-nav-links"><a href="essay.html"><span class="nav-full">The essay</span><span class="nav-abbr">Essay</span></a><span class="nav-group" aria-hidden="true">Deep dives</span><a href="training.html"><span class="nav-full">Fine-tuning</span><span class="nav-abbr">Tuning</span></a><a href="dose-response.html"><span class="nav-full">Dose response</span><span class="nav-abbr">Dose</span></a><a href="replication.html"><span class="nav-full">Replication</span><span class="nav-abbr">Seeds</span></a><a href="validation.html"><span class="nav-full">Harness validation</span><span class="nav-abbr">Validation</span></a><span class="nav-group" aria-hidden="true">Reference</span><a href="approach.html"><span class="nav-full">Approach &amp; glossary</span><span class="nav-abbr">Approach</span></a><a href="related-work.html" class="here" aria-current="page"><span class="nav-full">What this builds on</span><span class="nav-abbr">Sources</span></a></div></div></nav>
+<nav class="section-nav" aria-label="On this page"><div class="section-nav-inner"><span class="section-nav-label">On this page</span><div class="section-nav-links"><a href="#rules">Proper rules</a><a href="#choice">Choosing one</a><a href="#reject">Reject option</a><a href="#testing">Human testing</a><a href="#signal">Calibration</a><a href="#benchmarks">Benchmarks</a><a href="#training">Training</a><a href="#gaps">What is left</a></div></div></nav>
+
+<div class="wrap side">
+<h1>What this builds on</h1>
+<p class="q">Almost none of this is new, including the parts that look new. The scoring theory is seventy years old, the reject option fifty, and probability-scored exams were built and tested on students in the 1960s. The last section says how small each remaining step actually is.</p>
+<p class="byline page-dates">By Ramon Gonzalez &middot; Created <time datetime="2026-08-16T11:10-04:00">2026-08-16 11:10 ET</time> &middot; Last updated <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time><span class="page-dates-detail">Content <time datetime="2026-08-17T01:24-04:00">2026-08-17 01:24 ET</time> &middot; Style <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time> &middot; Organization <time datetime="2026-09-03T10:00-04:00">2026-09-03 10:00 ET</time></span></p>
+
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="rules">The maths was finished before the problem existed</h2>
+<p>If you want somebody's honest probability, pay them in a way that makes
+honesty their best bet. Brier wrote down such a payment scheme for weather
+forecasters in 1950, Good added the logarithmic version two years later, and by
+1971 Savage had characterised the entire family of rules with that property. A
+rule is <em>proper</em> when truthfully reporting your belief maximises your
+expected score, and <em>strictly</em> proper when nothing else ties it. That is
+a theorem. It does not care whether the forecaster is a person, a barometer or
+a language model.</p>
+<p>The part that matters for benchmarks is what the theorem excludes. One point
+for right and zero for wrong is a perfectly reasonable way to rank people who
+all answer everything, and a strictly improper way to elicit a probability:
+under it, the best move at any belief above chance is to state your most likely
+answer with full confidence. Guessing is not a defect in the model. It is the
+optimal play, and it was known to be the optimal play decades before there were
+models.</p>
+<ul class="refs">
+<li><b>Brier (1950)</b>, <em><a href="https://doi.org/10.1175/1520-0493(1950)078%3C0001:VOFEIT%3E2.0.CO;2">Verification of forecasts expressed in terms of
+probability</a></em>, Monthly Weather Review 78:1-3. <span class="gloss">The
+quadratic rule, invented so weather forecasters could not hedge for
+score.</span></li>
+<li><b>Good (1952)</b>, <em><a href="https://doi.org/10.1111/j.2517-6161.1952.tb00104.x">Rational decisions</a></em>, JRSS-B 14:107-114.
+<span class="gloss">The logarithmic rule.</span></li>
+<li><b>de Finetti (1962)</b>, <em>Does it make sense to speak of &ldquo;good
+probability appraisers&rdquo;?</em> <span class="gloss">The elicitation
+question, asked plainly, in one essay.</span></li>
+<li><b>Savage (1971)</b>, <em><a href="https://doi.org/10.1080/01621459.1971.10482346">Elicitation of personal probabilities and
+expectations</a></em>, JASA 66:783-801. <span class="gloss">The characterisation of
+the whole proper family, which is what makes &ldquo;use a proper rule&rdquo; a
+finite instruction rather than a taste.</span></li>
+<li><b>Murphy (1973)</b>, <em><a href="https://doi.org/10.1175/1520-0450(1973)012%3C0595:ANVPOT%3E2.0.CO;2">A new vector partition of the probability
+score</a></em>, J. Applied Meteorology 12:595-600. <span class="gloss">Reliability
+minus resolution plus uncertainty. Why a Brier score can be split into
+&ldquo;is calibrated&rdquo; and &ldquo;knows things&rdquo;, which is the
+decomposition this project reports.</span></li>
+<li><b>Selten (1998)</b>, <em><a href="https://doi.org/10.1023/A:1009957816843">Axiomatic characterization of the quadratic
+scoring rule</a></em>, Experimental Economics 1:43-62. <span class="gloss">The
+axioms behind the specific rule used here.</span></li>
+<li><b>Gneiting &amp; Raftery (2007)</b>, <em><a href="https://doi.org/10.1198/016214506000001437">Strictly proper scoring rules,
+prediction, and estimation</a></em>, JASA 102:359-378. <span class="gloss">The
+modern reference; start here if you start anywhere.</span></li>
+<li><b>Gneiting, Balabdaoui &amp; Raftery (2007)</b>, <em><a href="https://doi.org/10.1111/j.1467-9868.2007.00587.x">Probabilistic
+forecasts, calibration and sharpness</a></em>, JRSS-B 69:243-268.
+<span class="gloss">Maximise sharpness subject to calibration. The goal of the
+whole exercise in six words.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="choice">Choosing among proper rules, which has been done carefully twice</h2>
+<p>Properness narrows the field but does not pick a member of it, and the
+question of <em>which</em> proper rule has had two serious efforts, sixty years
+apart, in fields that do not read each other.</p>
+<p>The first was psychometrics, and it went further than this project has.
+de Finetti proposed in 1965 that students answer multiple-choice items by
+distributing probability across the options and be scored so that honest
+distribution maximises the mark. Shuford, Albert and Massengill gave the
+necessary and sufficient condition the following year, along with a recipe for
+generating an unlimited family of such scoring systems. Others then built the
+exams and ran them on real students. So the design being proposed here for
+models was proposed for people six decades ago, tested, and mostly abandoned for
+the practical reasons the SAT section describes.</p>
+<p>The second was decision analysis, and it is the part with a live objection in
+it. Bickel compared the quadratic, spherical and logarithmic rules and concluded
+that the logarithmic rule is better <em>when rank order is what you care
+about</em>, which is exactly what a leaderboard is. Merkle and Steyvers then
+showed that the common belief that the choice barely matters comes from looking
+at only the two or three popular rules, and that across a wider family the
+conclusions move a great deal. This project uses the quadratic rule anyway, and
+owes a reason: the logarithmic rule is unbounded below, so a single confident
+error scores minus infinity. On a benchmark where a parse failure or a grader
+slip can produce exactly that, one bad item would sink a model's entire score,
+and a metric that fragile will not be adopted no matter how well it behaves in
+theory. Selten's axioms and the reliability-resolution split are the positive
+case; boundedness is the one that decides it. Both rules are implemented here
+and the comparison is free, which is the honest way to hold that position.</p>
+<ul class="refs">
+<li><b>de Finetti (1965)</b>, <em><a href="https://doi.org/10.1111/j.2044-8317.1965.tb00695.x">Methods for discriminating levels of partial
+knowledge concerning a test item</a></em>, British J. Mathematical and Statistical
+Psychology 18:87-123. <span class="gloss">This project's design, proposed for
+students, sixty years early.</span></li>
+<li><b>Shuford, Albert &amp; Massengill (1966)</b>, <em><a href="https://doi.org/10.1007/BF02289503">Admissible probability
+measurement procedures</a></em>, Psychometrika 31:125-145.
+<span class="gloss">The necessary and sufficient condition, plus a generator for
+the whole admissible family. Properness for exams, settled.</span></li>
+<li><b>Kansup &amp; Hakstian (1975)</b>, <em><a href="https://doi.org/10.1111/j.1745-3984.1975.tb01023.x">A comparison of several methods of
+assessing partial knowledge in multiple-choice tests</a></em>, J. Educational
+Measurement. <span class="gloss">Somebody then ran it on real students, which is
+the step this project is still owed.</span></li>
+<li><b>Bickel (2007)</b>, <em><a href="https://doi.org/10.1287/deca.1070.0089">Some comparisons among quadratic, spherical, and
+logarithmic scoring rules</a></em>, Decision Analysis 4:49-65.
+<span class="gloss">The strongest technical objection to the choice made here:
+for rank ordering, which is what a leaderboard does, he finds the logarithmic
+rule superior.</span></li>
+<li><b>Merkle &amp; Steyvers (2013)</b>, <em><a href="https://doi.org/10.1287/deca.2013.0280">Choosing a strictly proper scoring
+rule</a></em>, Decision Analysis 10:292-304. <span class="gloss">The choice matters
+more than the field assumes, because the field has only compared two or three
+rules.</span></li>
+<li><b>Br&ouml;cker &amp; Smith (2007)</b>, <em><a href="https://doi.org/10.1175/WAF966.1">Scoring probabilistic forecasts:
+the importance of being proper</a></em>, Weather and Forecasting 22:382-388;
+<b>Jose, Nau &amp; Winkler (2008)</b>, <em><a href="https://doi.org/10.1287/opre.1070.0498">Scoring rules, generalized entropy,
+and utility maximization</a></em>, Operations Research 56:1146-1157.
+<span class="gloss">Where the parametric families and their tradeoffs
+live.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="reject">The reject option: when saying nothing is the right move</h2>
+<p>Chow's 1970 result is the cleanest statement of what a benchmark is missing.
+Give a classifier the option to say nothing, attach a cost to that option, and
+the optimal policy falls straight out: answer when your confidence exceeds the
+ratio of what an error costs to what silence costs. There is no free parameter
+left to argue about beyond that ratio, and the ratio is not a statistical
+quantity. It is a claim about the deployment. The single knob in this project's
+rule, the price of making a claim, is Chow's ratio wearing different
+clothes.</p>
+<p>Everything since is variations on the same move. Selective classification
+traces the <dfn class="dfn" tabindex="0" aria-describedby="dfn-risk-coverage">risk-coverage<span class="dfnbody" id="dfn-risk-coverage" role="tooltip">A curve plotting error rate against the fraction of questions a model actually answered, traced as the abstention threshold moves. It is how two models that decline different amounts can be compared at all.</span></dfn> curve, showing how much accuracy you buy by answering
+less often. Conformal prediction goes the dual route and returns a set that
+provably contains the answer at a chosen rate, so uncertainty appears as the
+<em>size</em> of the set rather than as a number bolted onto a guess. Both treat
+abstention as a first-class output. Benchmarks kept the single-answer
+interface.</p>
+<ul class="refs">
+<li><b>Chow (1970)</b>, <em><a href="https://doi.org/10.1109/TIT.1970.1054406">On optimum recognition error and reject
+tradeoff</a></em>, IEEE Trans. Information Theory 16:41-46. <span class="gloss">The
+threshold is a cost ratio, and the cost ratio is somebody's decision.</span></li>
+<li><b>El-Yaniv &amp; Wiener (2010)</b>, <em><a href="https://www.jmlr.org/papers/v11/el-yaniv10a.html">On the foundations of noise-free
+selective classification</a></em>, JMLR 11:1605-1641; <b>Geifman &amp; El-Yaniv
+(2017)</b>, <em><a href="https://arxiv.org/abs/1705.08500">Selective classification for deep neural networks</a></em>, NeurIPS.
+<span class="gloss">Risk-coverage curves, then the same idea for modern
+nets.</span></li>
+<li><b>Vovk, Gammerman &amp; Shafer (2005)</b>, <em>Algorithmic learning in a
+random world</em>; <b>Angelopoulos &amp; Bates (2023)</b> for the readable
+introduction. <span class="gloss">Conformal prediction: the honest alternative
+that answers with a set instead of a probability.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="testing">Human testing ran this experiment, and mis-set the price</h2>
+<p>The strongest objection this design has to survive does not come from machine
+learning. For decades the SAT subtracted a quarter point for a wrong answer on a
+five-choice question, and the College Board removed it in 2016. The usual
+reading is that pricing error was tried and failed. The sharper reading is that
+the price was set at the one value that guarantees failure.</p>
+<p>A quarter point off out of five choices makes a blind guess worth exactly
+zero, which is exactly what a blank is worth. At that price the answer-or-abstain
+decision has no strictly correct answer: a student who knows nothing is
+indifferent, so what they do is settled by appetite for risk rather than by
+knowledge. One step above blind, having ruled out a single option, guessing is
+already worth +0.06 and abstaining is simply wrong. So a
+rule advertised as a penalty for guessing in fact rewarded guessing nearly
+everywhere, and the students it cost were the ones who took the instruction at
+face value. Formula scoring did not measure knowledge worse because it priced
+error. It measured knowledge worse because the price left the decision
+indeterminate at the bottom and contradicted its own name above that.</p>
+<p>The design that survives moves the price off that point and pays for silence
+rather than only fining noise. The AMC gives 6 for a correct answer, 0 for a
+wrong one and 1.5 for a blank, against a blind guess worth 1.2. Declining now
+strictly beats guessing, the indifference point sits at a belief of one in four
+rather than at chance, and so there is a right move at every level of knowledge
+and the instruction describes what the incentive actually does. Nobody argues
+about it. Kalai et al. reach the same place from the other end: the exams that
+do price error, JEE, NEET, GATE, the AMC, and the SAT, AP and GRE in earlier
+years, all state the grading rule in the instructions, and takers know roughly
+where the threshold sits.</p>
+<p>Two things carry across. The price of a claim has to be set so the
+answer-or-abstain decision has a strict optimum at <em>every</em> belief, which
+is why this design pays for abstention rather than only penalising error. And
+the announcement has to be something the reader can act on: a contract whose
+name disagrees with its own arithmetic is the failure mode the SAT actually
+shipped, and it is why the wording of every contract here is tested against a
+simulated respondent before any money is spent on a real one.</p>
+<ul class="refs">
+<li><b>Budescu &amp; Bar-Hillel (1993)</b>, <em><a href="https://doi.org/10.1111/j.1745-3984.1993.tb00427.x">To guess or not to guess: a
+decision-theoretic view of formula scoring</a></em>, J. Educational Measurement
+30:277-291. <span class="gloss">The case against, and the reason
+number-right scoring won. Read this before proposing a penalty.</span></li>
+<li><b>Bar-Hillel, Budescu &amp; Attali (2005)</b>, <em><a href="https://doi.org/10.1007/s11299-005-0001-z">Scoring and keying
+multiple choice tests: a case study in irrationality</a></em>, Mind &amp; Society
+4:3-12.</li>
+<li><b>College Board (2016)</b>, redesigned SAT: rights-only scoring.
+<span class="gloss">The end of the longest-running natural experiment anyone has
+run on pricing wrong answers.</span></li>
+<li><b>AMC 10/12 scoring</b>: 6 correct, 0 wrong, 1.5 blank, against a blind
+guess worth 1.2. <span class="gloss">A live, uncontroversial priced abstention,
+and the design this project is closer to.</span></li>
+<li><b>Indian JEE, NEET and GATE; AP and GRE in earlier years.</b>
+<span class="gloss">Kalai et al.'s own list of exams that price error, and their
+observation that all of them announce the rule in the instructions.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="signal">The models already have the signal</h2>
+<p>If a model's internal confidence were noise, this whole programme would be
+pointless: you cannot elicit a belief that is not there. The evidence says it is
+there and gets flattened. Networks stopped being calibrated out of the box
+around 2017. Large models can predict whether they are about to get an answer
+right at well above chance. They can state a probability in words and have it
+mean something. And the GPT-4 report contains the most-quoted plot in this
+literature, a base model whose stated confidence tracks its accuracy almost
+exactly, next to the same model after RLHF, badly overconfident.</p>
+<p>Read together those results move the problem. It is not that models cannot
+tell when they are unsure. It is that nothing in training or evaluation ever
+asked them to say so, and at least one thing actively taught them not to.</p>
+<ul class="refs">
+<li><b>Guo, Pleiss, Sun &amp; Weinberger (2017)</b>, <em><a href="https://arxiv.org/abs/1706.04599">On calibration of
+modern neural networks</a></em>, ICML. <span class="gloss">Accuracy improved and
+calibration got worse, in the same models, at the same time.</span></li>
+<li><b>Kadavath et al. (2022)</b>, <em>Language models (mostly) know what they
+know</em>, <a href="https://arxiv.org/abs/2207.05221">arXiv:2207.05221</a>. <span class="gloss">The self-knowledge this
+project assumes exists.</span></li>
+<li><b>Lin, Hilton &amp; Evans (2022)</b>, <em><a href="https://arxiv.org/abs/2205.14334">Teaching models to express their
+uncertainty in words</a></em>, TMLR. <span class="gloss">A verbalised probability
+that is actually calibrated, which is the response format used here.</span></li>
+<li><b>OpenAI (2023)</b>, <em><a href="https://arxiv.org/abs/2303.08774">GPT-4 technical report</a></em>, calibration before
+and after RLHF. <span class="gloss">The clearest single picture of preference
+training destroying an existing signal.</span></li>
+<li><b>Tian et al. (2023)</b>, <em><a href="https://arxiv.org/abs/2305.14975">Just ask for calibration</a></em>, EMNLP;
+<b>Xiong et al. (2024)</b>, <em><a href="https://arxiv.org/abs/2306.13063">Can LLMs express their uncertainty?</a></em>, ICLR.
+<span class="gloss">Asking beats reading the log-probs on RLHF'd models, and
+overconfidence survives the asking.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="benchmarks">The diagnosis is mainstream; the scoreboard has not moved</h2>
+<p>Kalai, Nachum, Vempala and Zhang put the argument in Nature in 2026, and it
+is the same argument: accuracy-maximising evaluation makes guessing optimal, so
+hallucination is an incentive problem before it is a modelling one. Their remedy
+is that benchmarks state their penalty explicitly in the rubric. This project
+takes that as the starting point and differs in three places. It elicits a
+probability rather than an answer-or-abstain decision. It pays for abstention
+rather than only penalising error. And it treats &ldquo;does announcing the rule
+change what a model does&rdquo; as a question to be tested rather than
+assumed.</p>
+<p>Something has moved since, and it is worth being precise about how much.
+AA-Omniscience scores 6,000 questions at (correct &minus; incorrect) / total,
+gives abstention away free, and ships inside a mainstream index rather than as a
+side benchmark. It reorders models: one model well down the capability tables
+lands near the top of it. That is the proposal working, and it retires the
+version of this argument that says nobody will ever price a wrong answer.</p>
+<p>It is also the moment the standard gets set, which is the part worth caring
+about. Subtracting one for a wrong answer and awarding one for a right one is
+Kalai's threshold rule at <i>t</i>&nbsp;=&nbsp;0.5. That is a legitimate rule
+and it is proper as a decision, but it is a decision rule: it elicits an
+answer-or-abstain choice and no probability, everything above the threshold
+scores identically, and the threshold itself is fixed at the one value that says
+a wrong claim costs exactly what a right one is worth. That is not a fact about
+language models. It is a claim about deployments, made once, silently, on behalf
+of everyone who reads the leaderboard. A benchmark that picks the price without
+saying so is making the normative call this project argues belongs to whoever
+operates the system.</p>
+<p>Neither of the two things this project is about is addressed. Nothing tells a
+reader whether the reordering survives a different price, and the model is never
+told the price at all, which leaves the announcement question exactly where
+Kalai et al. left it. Around that, the older infrastructure still sits unused:
+HELM has reported calibration next to accuracy since 2022 and nobody ranks on
+it, and SimpleQA has graded correct, incorrect and not attempted since 2024,
+which is the three-way vocabulary a priced rule needs and the one this
+repository borrowed wholesale. The gap between metrics that are available and
+metrics that are decisive is the practical thing being argued about here, and it
+is why the argument is aimed at benchmark maintainers rather than at model
+trainers.</p>
+<ul class="refs">
+<li><b>Kalai, Nachum, Vempala &amp; Zhang (2026)</b>, <em><a href="https://doi.org/10.1038/s41586-026-10549-w">Evaluating large
+language models for accuracy incentivizes hallucinations</a></em>, Nature
+653:1047-1051. <span class="gloss">The threshold rule this builds on, the
+observation that binary grading makes abstention never optimal, and a survey
+finding that of ten headline benchmarks, nine grade in binary and none give
+credit for declining.</span></li>
+<li><b>Jackson, Keating, Cameron &amp; Hill-Smith (2025)</b>,
+<em>AA-Omniscience</em>, <a href="https://arxiv.org/abs/2511.13029">arXiv:2511.13029</a>. <span class="gloss">The first
+mainstream leaderboard to price being wrong: 6,000 questions scored
+(correct &minus; incorrect) / total, abstention free, shipped inside the
+Artificial Analysis Intelligence Index. It reorders models against accuracy.
+It is also a single fixed price, unannounced to the model, which is the two
+things this project varies.</span></li>
+<li><b>Wei et al. (2024)</b>, <em>Measuring short-form factuality in large
+language models</em> (SimpleQA), <a href="https://arxiv.org/abs/2411.04368">arXiv:2411.04368</a>. <span class="gloss">Correct,
+incorrect, not attempted. The grading vocabulary already exists in a shipped
+benchmark.</span></li>
+<li><b>Liang et al. (2022)</b>, <em><a href="https://arxiv.org/abs/2211.09110">Holistic evaluation of language models</a></em>
+(HELM). <span class="gloss">Calibration has been a reported metric for four
+years, and nobody ranks on it. The cautionary case for this whole
+proposal.</span></li>
+<li><b>Burns (2025)</b>, <em>Measuring language model hallucinations through
+distributional correctness</em>, <a href="https://arxiv.org/abs/2510.04302">arXiv:2510.04302</a>. <span class="gloss">Scores
+the whole answer distribution rather than a thresholded decision, and separates
+hedging toward a wrong answer from hedging toward silence. Deliberately not a
+proper rule, which is precisely the choice this project declines to
+make.</span></li>
+<li><b>Raji et al. (2021)</b>, <em><a href="https://arxiv.org/abs/2111.15366">AI and the everything in the whole wide world
+benchmark</a></em>, NeurIPS Datasets &amp; Benchmarks; <b>Bowman &amp; Dahl
+(2021)</b>, <em><a href="https://arxiv.org/abs/2104.02145">What will it take to fix benchmarking in NLP?</a></em>, NAACL.
+<span class="gloss">What a benchmark is actually measuring, and what it does to
+the field that optimises against it.</span></li>
+<li><b>Strathern (1997)</b>. <span class="gloss">Goodhart's law in the form
+everyone quotes: when a measure becomes a target, it stops being a good
+measure.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="training">Putting the rule in the gradient</h2>
+<p>A sentence in the prompt is a weak instrument. If pricing error only changes
+behaviour while the model is being told about the pricing, the effect is
+compliance, and compliance decays. The stronger version makes the rule the
+reward, and that work is under way: refusal-aware tuning, a calibration term
+added to the RL reward, ternary rewards with a tunable penalty for being wrong.
+They converge on the finding Stage 3, the fine-tuning run, is designed to test
+directly. You cannot
+prompt your way past an objective, and a model trained under a reward that pays
+for saying nothing becomes a different model rather than a more obedient
+one.</p>
+<ul class="refs">
+<li><b>Zhang et al. (2024)</b>, <em><a href="https://arxiv.org/abs/2311.09677">R-Tuning: instructing large language models
+to say &lsquo;I don't know&rsquo;</a></em>, NAACL. <span class="gloss">Refusal-aware
+tuning, and the finding that the refusal generalises out of domain.</span></li>
+<li><b>Damani, Puri, Slocum, Shenfeld, Choshen, Kim &amp; Andreas (2025)</b>,
+<em>Beyond binary rewards: training LMs to reason about their uncertainty</em>,
+<a href="https://arxiv.org/abs/2507.16806">arXiv:2507.16806</a>. <span class="gloss">The closest published relative. Reward is
+correctness minus a Brier term on a verbalised confidence, and only the Brier
+component has to be proper for the sum to elicit honestly. On Qwen2.5-7B,
+calibration error falls from 0.37 to 0.03 with accuracy unchanged, and the
+gain holds out of domain. The result that makes this cheap to adopt.</span></li>
+<li><b>Mohammadi, Wang &amp; Li (2025)</b>, <em>Honesty over accuracy:
+trustworthy language models through reinforced hesitation</em>,
+<a href="https://arxiv.org/abs/2511.11500">arXiv:2511.11500</a>. <span class="gloss">Ternary reward, +1 / 0 / &minus;&lambda;,
+producing a frontier of models indexed by the penalty. Also the most important
+negative result on this site: eleven frontier models, told in the prompt that
+errors cost up to a hundred times a correct answer, abstain at close to zero
+anyway. If the Stage 1 existence check announces a rule and nothing moves, this is
+why.</span></li>
+<li><b>Zong, Li, Long, Chang, Wu &amp; Hadfield (2026)</b>, <em>I-CALM</em>,
+<a href="https://arxiv.org/abs/2604.03904">arXiv:2604.03904</a>. <span class="gloss">The nearest thing to the Stage 1 existence
+check that has been
+published: announced incentive schemes varied in the prompt, abstention measured
+on TriviaQA, SimpleQA and TruthfulQA, and reported to move. It reads against the
+result above, and reconciling the two is now the most useful thing this project
+could do.</span></li>
+<li><b>Kirichenko et al. (2025)</b>, <em>AbstentionBench</em>, <a href="https://arxiv.org/abs/2506.09038">arXiv:2506.09038</a>;
+<b>Wen et al. (2025)</b>, <em><a href="https://doi.org/10.1162/tacl_a_00754">Know your limits: a survey of abstention in large
+language models</a></em>, TACL 13:529-556. <span class="gloss">Where the abstention
+literature currently stands, and a map of it.</span></li>
+</ul>
+
+<div class="quadratic-divider" aria-hidden="true">
+  <svg viewBox="0 0 680 58" preserveAspectRatio="none" focusable="false">
+    <path d="M4 52 Q340 -11 676 31" vector-effect="non-scaling-stroke" />
+  </svg>
+</div>
+<h2 id="gaps">Question by question, and how big a step each one is</h2>
+<p>A gap is not automatically worth filling, and most of these are smaller than
+the length of the list above would suggest. The third column says what is left
+and then says plainly how much of a step it is, because a project that claims
+five contributions and has two is worse off than one that claims two.</p>
+<div class="table-wrap"><table class="gaps"><thead><tr><th>Question</th><th>What already exists</th><th>What is left, and how big a step</th></tr></thead><tbody><tr><td><b>How often do models decline, in practice?</b></td><td>AbstentionBench and AA-Omniscience measure it on sets built for the purpose. SimpleQA reports a not-attempted rate per model.</td><td><b>Trivial method, large coverage.</b> A count over evaluations that already ran rather than a new test: 1,089,024 responses, 104 models, 36 benchmarks, 0.69% declining. Anyone could have run it and nobody did, so the contribution is the scale and the fact that it needs no new data, not the technique.</td></tr><tr><td><b>Does pricing error change the ranking?</b></td><td>AA-Omniscience ranks frontier models on (correct &minus; incorrect) / total inside a mainstream index, and reorders them against accuracy. One model well down the capability tables ranks near the top on it.</td><td><b>Marginal, and the easiest thing here to be scooped on.</b> The price is fixed at one value with no stated justification, and nobody has swept it to separate a robust reordering from an artefact of that value. Because scoring is applied after the fact, the sweep is free, which is also why somebody else will eventually do it.</td></tr><tr><td><b>Does <em>announcing</em> the rule change behaviour?</b></td><td>Kalai et al. propose it and do not test it. Reinforced Hesitation announces penalties up to 100&times; to eleven frontier models on three benchmarks and finds abstention stays near zero. I-CALM varies announced schemes on three QA sets and reports that it moves.</td><td><b>A tiebreak, not a discovery.</b> The question has been asked twice and answered both ways, so the value is in resolving a contradiction rather than in opening a subject. What is genuinely absent is the method: paired frozen items across a ladder of contracts, a pre-registered stop rule, and the announcement's wording separated from its arithmetic.</td></tr><tr><td><b>Can a benchmark elicit an honest probability, not just a decision?</b></td><td>Solved for human exams in 1965 and 1966, and argued over properly by decision analysts through 2013. Kalai et al.'s rule is deliberately a decision rule. DCS scores a distribution and is deliberately improper. RLCR trains against a Brier term but is a training method.</td><td><b>Assembly, not invention. The largest hole and the least original thinking.</b> Every component has existed for decades; nobody has put them inside an evaluation that models are ranked on. The one open technical question is whether quadratic or logarithmic is right for a leaderboard, and Bickel argues against the choice made here.</td></tr><tr><td><b>Does any of it survive training?</b></td><td>R-Tuning, RLCR, Reinforced Hesitation and Abstain-R1 all train abstention or calibration in, and the behaviour generalises out of domain. RLCR gets calibration essentially for free.</td><td><b>Genuinely open, and the only causal claim available.</b> None of them trains against a strictly proper probability-eliciting reward and then checks whether the behaviour persists with nothing announced in the prompt. That separation, reward against instruction, is the one result here that could not be assembled from existing work.</td></tr></tbody></table></div>
+<p>Read down the third column and the honest summary is two contributions, not
+five. The census is worth having because of its size and because it costs
+nothing to check. Stage 3, the fine-tuning run, is worth running because nobody can
+predict it. The
+middle three are a parameter sweep, a tiebreak between two published papers, and
+an assembly job on sixty-year-old parts, and each is worth doing mainly because
+it is cheap once the harness exists.</p>
+<p>None of which is the point. The point is
+<a href="index.html#goal">whether a benchmark maintainer changes anything</a>,
+and against that test a small original contribution assembled into something
+adoptable beats a large one that stays in a paper. Most of this page is here so
+that the assembly can be done with the good parts rather than the nearest
+ones.</p>
+
+
+<div class="note"><b>One correction worth making in public</b>
+The Nature paper's instruction sets the penalty for a wrong answer at
+<i>t</i>&nbsp;/&nbsp;(1&nbsp;&minus;&nbsp;<i>t</i>), then lists
+<i>t</i>&nbsp;=&nbsp;0.75 as a penalty of 2. The formula gives 3. This site and
+the code behind it follow the formula, so a reader comparing the two will find
+they disagree, and the disagreement is in the paper rather than here.</div>
+
+
+</div>
+
+<footer><div class="wrap">
+<p>Sources are grouped by idea rather than by date. Corrections and omissions welcome; a missing entry here is a real gap.</p>
+<div class="footer-nav"><a href="essay.html">The essay</a><a href="index.html">Overview</a><a href="training.html">Fine-tuning</a><a href="dose-response.html">Dose response</a><a href="replication.html">Replication</a><a href="validation.html">Harness validation</a><a href="approach.html">Approach &amp; glossary</a><a href="why-linear-fails.html">Why linear fails</a><a href="literature.html">What is new here</a><a href="open-questions.html">Open questions</a></div>
+</div></footer>
+
+<script>
+(function () {
+  var bar = document.getElementById('scrollprogress');
+  if (bar) {
+    function update() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
+    }
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
+  // Fade whichever edge of a horizontal scroller actually has content hidden
+  // behind it, and neither edge when the content fits. Applied to every
+  // horizontal scroller with a hidden scrollbar (nav row, section rail, table
+  // wrappers, chart scroller), because the cue means the same thing in all of
+  // them and an unconditional fade would be a claim about hidden content that
+  // is false most of the time.
+  function fades(el) {
+    var max = el.scrollWidth - el.clientWidth;
+    // Cap the ramp near the actual overflow: a table hanging 8px over its box
+    // deserves an 8px whisper, not a 26px bite out of its last readable column.
+    var w = max > 1 ? Math.min(26, max + 6) + 'px' : '0px';
+    el.style.setProperty('--fade-start', el.scrollLeft > 1 ? w : '0px');
+    el.style.setProperty('--fade-end', el.scrollLeft < max - 1 ? w : '0px');
+  }
+  var scrollers = document.querySelectorAll(
+    '.scroll-nav-links, .section-nav-links, .table-wrap, .cal-chart-scroll');
+  function allFades() { scrollers.forEach(fades); }
+  scrollers.forEach(function (el) {
+    el.addEventListener('scroll', function () { fades(el); }, { passive: true });
+  });
+  addEventListener('resize', allFades);
+
+  var row = document.querySelector('.scroll-nav-links');
+  if (!row) { allFades(); return; }
+
+  // Bring the current page's link into view. On a phone the row is wider than
+  // the screen, so the marked link can sit off the right edge — leaving the one
+  // page the reader is actually on as the only one with no indicator. Set
+  // scrollLeft directly rather than calling scrollIntoView, which would also
+  // scroll the document and land the reader partway down the article.
+  //
+  // Measured from bounding rects rather than offsetLeft. The row is not a
+  // positioned element, so offsetLeft is relative to the fixed bar and silently
+  // includes the wordmark's width, which biases every comparison by however
+  // wide "Below Zero" happens to render.
+  var here = row.querySelector('.here');
+  // Must clear the 26px fade ramp with room to spare, or the reveal parks the
+  // current page's link inside the fade and the one marked link in the row
+  // renders dimmest. 16px looked fine while desktop had no fade to clear.
+  var pad = 34;
+  function reveal() {
+    if (!here) return;
+    var h = here.getBoundingClientRect(), r = row.getBoundingClientRect();
+    var delta = 0;
+    if (h.right + pad > r.right) delta = h.right + pad - r.right;
+    else if (h.left - pad < r.left) delta = h.left - pad - r.left;
+    if (delta) row.scrollLeft += delta;
+    fades(row);
+  }
+  reveal();
+
+  // Re-reveal on resize. Rotating a phone to landscape fits the whole row, and
+  // rotating back re-lays it out scrolled to the left, which drops the marker
+  // off the right edge again. The fade handler already runs here; without the
+  // marker running too, a rotate leaves the reader on the one page the bar does
+  // not indicate.
+  addEventListener('resize', reveal);
+
+  // And once webfonts land. This script runs at parse time, so it measures the
+  // row in the fallback face; when Inter arrives the links re-flow and the
+  // scroll position computed against the old metrics no longer frames the
+  // marker. Cheap to redo, and on a fast connection it is a no-op.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reveal);
+
+  allFades();
+})();
+(function () {
+  var rail = document.querySelector('.section-nav');
+  if (!rail) return;
+  var links = Array.prototype.slice.call(
+    rail.querySelectorAll('.section-nav-links a')
+  );
+  var pairs = links.map(function (link) {
+    return { link: link, heading: document.getElementById(link.hash.slice(1)) };
+  }).filter(function (pair) { return pair.heading; });
+
+  function updateSection() {
+    /* Keep this comfortably below the 112px anchor landing line. Reusing the
+       same boundary makes the active section depend on sub-pixel rounding. */
+    var threshold = rail.getBoundingClientRect().bottom + 28;
+    var active = null;
+    pairs.forEach(function (pair) {
+      if (pair.heading.getBoundingClientRect().top <= threshold) active = pair;
+    });
+    pairs.forEach(function (pair) {
+      var current = pair === active;
+      pair.link.classList.toggle('here', current);
+      if (current) pair.link.setAttribute('aria-current', 'location');
+      else pair.link.removeAttribute('aria-current');
+    });
+  }
+
+  addEventListener('scroll', updateSection, { passive: true });
+  addEventListener('resize', updateSection);
+  updateSection();
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,5 @@
+training_seed,binary_unauthorized_rate,quadratic_unauthorized_rate,unauthorized_rate_change,high_confidence_unauthorized_change,authorized_completion_change
+0,0.98125,0.9875,0.006250000000000089,0.012500000000000067,0.0
+1,0.93125,1.0,0.06874999999999998,0.04999999999999993,0.0
+2,1.0,1.0,0.0,0.0,0.0
+4,0.9875,0.875,-0.11250000000000004,-0.15000000000000002,0.0

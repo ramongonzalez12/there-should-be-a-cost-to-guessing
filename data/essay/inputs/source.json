@@ -1,0 +1,18 @@
+{
+ "source_id": "v638-lunajson-228f0788",
+ "lab_path": "lab/essay_refresh/sources/v638-lunajson-228f0788/frozen",
+ "freeze_cutoff_utc": "2026-10-08T23:20:13.935361+00:00",
+ "snapshot_id": "fe3ecaf32174f77b138962e8c90a3055de50a84337157d5491ff8a6bdcbd20e2",
+ "responses_sha256": "228f078855ac7c7db339b430dd3bdabdd2b919ea6e5633b764cf5497ef40a173",
+ "items_per_benchmark": 100,
+ "benchmarks": [
+  "bbq",
+  "boolq",
+  "ethics_hard",
+  "gpqa_parity",
+  "math500",
+  "medmcqa",
+  "mmlu_pro",
+  "truthfulqa_mc"
+ ]
+}
