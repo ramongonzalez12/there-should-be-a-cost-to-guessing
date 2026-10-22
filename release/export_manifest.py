@@ -13,7 +13,7 @@ lab notebook and agent/spend operations private, and (since 2026-10-22) NO
 code that can send a request to a model API or a training service. What ships
 is the data, the scoring code, the no-key data step that rebuilds every essay
 number, and plain docs; the code that called, evaluated, and trained the
-models stays in the lab and is available on request. The exporter's
+models stays in the lab. The exporter's
 model-calling guard enforces that last rule, and NETWORK_ALLOWED below names
 the only shipped files that may open a network connection at all.
 """

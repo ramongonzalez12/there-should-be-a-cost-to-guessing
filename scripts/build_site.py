@@ -1277,7 +1277,7 @@ def build():
         byline_tail = (f' &middot; Code &amp; data: '
                        f'<a href="{REPO_URL}">{REPO_URL.split("//")[1]}</a>')
         # The repository ships the scoring code and data, not the code that
-        # called or trained models (that is available on request), so the
+        # called or trained models, so the
         # sentence names what is actually there.
         code_para = (f'<p>The scoring code, the processed data behind every number '
                      f'here, and the pre-registration are in the <a href="{REPO_URL}">'
@@ -10359,8 +10359,8 @@ def build_brief():
         "census": "scripts/census.py",
         "decline_samples": "scripts/census_decline_samples.py",
         "hle": "scripts/hle_rescore.py",
-        "parity": "the lab's runner (not in the repository; available on request)",
-        "pilot": "the lab's runner and its report (not in the repository; available on request)",
+        "parity": "the lab's runner (not in the repository)",
+        "pilot": "the lab's runner and its report (not in the repository)",
         "prompt_estimation": "scripts/export_prompt_estimation.py",
         "finetune": "scripts/export_finetune_matrix.py",
         "policy_architecture": "scripts/analyze_policy_architecture.py",

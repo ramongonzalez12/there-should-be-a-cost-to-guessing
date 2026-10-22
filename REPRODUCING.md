@@ -2,8 +2,7 @@
 
 This repository holds the study's data, with the scoring code and a check that
 rebuilds every number in the essay from the graded rows without an API key.
-The code that called, evaluated, and trained the models is available on
-request.
+The code that called, evaluated, and trained the models is not included.
 
 What is published falls into two groups: what you can rebuild here, for free
 and with no key, and what you can only audit. Every claim of the form "script
@@ -51,7 +50,7 @@ because the code that produced their inputs is not included:
 
 - The model calls themselves. The graded rows record what each model answered,
   how it was graded, and what the call cost; rerunning the calls needs the
-  runner, which is available on request.
+  runner, which is not included.
 - The training experiments. Their CSVs in `data/processed/` and the frozen
   summaries in `data/essay/inputs/figure-inputs.json` derive from training and
   evaluation runs whose files are not in this repository (they may contain
